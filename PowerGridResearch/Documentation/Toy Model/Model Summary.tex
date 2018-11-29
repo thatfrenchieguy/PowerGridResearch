@@ -1,0 +1,43 @@
+\documentclass{article}
+\begin{document}
+\title{Summary of Toy Scale Model}
+\maketitle
+\section{Variable Glossary}
+$A$ is the set of nodes in the multigraph
+\newline
+$D$ is the constant matrix of shortest path travel costs from row location i to column location j
+\newline
+$L_i$ is the decision variable representing whether or not the supply depot is located at $i \in A$
+\newline
+$P$ is the set of parts to be stocked in order to repair grid elements
+\newline
+$h_i$ is the cost of stocking excess of part i  
+\newline
+$s_i$ is the cost of stocking out of part i
+\newline
+$C$ is the set of scenarios to be optimized over
+\newline
+$d_{ic}$ is the demand of part i in scenario c 
+\newline
+$q_i$ is the stock quantity of part i
+\newline
+\section{Math Model}
+
+$$minimize \sum_{c \in C} ( \sum_{a \in A} \sum_{i \in A} D_{ia}L_i + \sum_{p \in P} h_p(max(q_p-d_{pc},0))+\sum_{p \in P} s_p(max(0,d_{pc}-q_p)))$$
+
+subject to
+\newline
+$ q_i > 0$ \hspace{4pt}  $\forall i \in P$
+\newline
+$L_i \in (0,1)$
+\newline
+some budget constraint?
+\newline
+some part size/inventory size constraint? 
+
+\section{Comments}
+I'm unsure if inventory size is a necessary constraint since inventory holding areas can usually be expanded if it's going to be necessary. Maybe treat it as a cost to do so
+\newline
+I need to figure out multiple depots still, but that's on the to-do list.
+\end{document}
+
