@@ -18,11 +18,14 @@
 		\item $C_{RepairTimeI}$ is the time to repair node I
 		\item $C_{TravelIJ}$ is the travel time between nodes I and J
 		\item $C_{broken}$ is a coefficient of "broken-ness" representing the average slowdown from debris on the road and minor flooding
+		\item $C_{demandI}$ is the power demand at location I in the pre-disaster steady state
+		\item $C_{GeneratorCapacityK}$ is the maximum power generation for generator K
 	\end{itemize}
 	\subsection{Variables}
 	\begin{itemize}
 		\item $Z_{i}^{t}$ is the total power flow at node i at time t
 		\item $X_{ij}^{t}$ is the flow from i to j at time t
+		\item $G_{k}^t$ is the production from generator k at time t
 		\item $Y_i^t$ is 1 if node i is functioning at time t
 		\item $W_{ij}^t$ is 1 if line ij is functioning at time t
 		\item $S_{i}^t$ is 1 if node i is serviced at time t
@@ -35,21 +38,36 @@
 	\item P is the set of power lines
 	\item R is the set of roads
 	\item T is the planning horizon
+	\item J is the set of Generators
 \end{itemize}
 	\section{Model}
 	$$	Minimize \sum_{i \in L} \sum_{t \in T} C_{FlowI}-Z_{i}^t $$
 	
 	Subject to:
-	\begin{itemize}
+	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
 		\item $Z_i^t = (\sum_{j \in L} X_{ji}^t) Y_i^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall i \in L$
 		\item $\sum_{i \in L} X_{ik} = \sum_{j \in L} X_{kj} \hspace{4pt} \forall t \in T \hspace{4pt} \forall k \in L$ 
+		\item $\sum_{i \in L} C_{DemandI}Y_I^t = \sum_{k \in J} G_k^t \hspace{4pt} \forall t \in T$
+		\item $G_k^t \leq C_{GeneratorCapacityK} \hspace{4pt} \forall t\in T$
 		\item $X_{ij}^t \leq C_{lineIJ}W_{ij}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall i,j \in P$
 		\item $\sum_{i \in L} C_{RepairTimeI} F_{i}^t + \sum_{i \in L} \sum_{j<i \in L}  K_{ij}^t C_{TravelIJ} C_{broken} \leq 8 \hspace{4pt} \forall t \in T \hspace{4pt}$
+		\item $Y_i \leq \sum_{0}^{t} F_i^t$ 
 		\item $\sum_{j \in L} K_{0j}^t \geq 1$
+		\item $\sum_{j \in L}K_{ij}^t - \sum_{j \in L}K_{ji}^t = 0  \hspace{4pt} \forall t \in T \hspace{4pt} \forall i \in L$
 		\item A subtour elimination constraint, though I'm not sure what the best way to set this up is 
-	\end{itemize}
+	\end{enumerate}
+\subsection{Explaination of Constraint Systems}
+\begin{itemize}
+	\item Constraint (1) defines total flow for inclusion in the objective function. This might be able to be dropped at a later date, but is currently included for ease of understanding/formulation until there's a working case.
+	\item Constraint (2) defines flow balance equations for each node
+	\item Constraint (3) defines input/output network balance. This is assuming Generator ramp time can be ignored, but that's fine since excess power can always be dropped to ground.
+	\item Constraint (4) constrains power generation to be in the realm of feasible production
+	\item Constraint (5) constrains line flow to be inside line capacity
+	\item Constraint (6) constrains/decides what gets done during a shift
+\end{itemize}
 	\section{Comments}
 	\begin{itemize}
+		\item I'm assuming that we're staying in the region of safe production for generators, a later thing to think about is "pushed" generators where they can be run in overdrive for short periods of time
 		\item The first constraint system is not linear, and I'm worried about it causing a mess of runtime.
 		\item Does the lack of multiplication by functionality in the second constraint system mean that we could choose X values that are non-zero for a broken node?
 	\end{itemize}

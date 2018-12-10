@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  5 DEC 2018 16:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  6 DEC 2018 00:17
 entering extended mode
 **"./Model Summary.tex"
 ("Model Summary.tex"
@@ -267,15 +267,16 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [1
 
 {C:/Users/Brian French/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] 
+[3]
 ("Model Summary.aux") ) 
 Here is how much of TeX's memory you used:
- 3235 strings out of 492970
- 46302 string characters out of 3135832
- 116620 words of memory out of 3000000
- 7062 multiletter control sequences out of 15000+200000
+ 3242 strings out of 492970
+ 46481 string characters out of 3135832
+ 117620 words of memory out of 3000000
+ 7069 multiletter control sequences out of 15000+200000
  11195 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,30p,305b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,6n,30p,305b,220s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex
 10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -286,9 +287,9 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9
 pe1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmsy7.pfb>
-Output written on "Model Summary.pdf" (2 pages, 116068 bytes).
+Output written on "Model Summary.pdf" (3 pages, 123168 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 52 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

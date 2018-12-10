@@ -108,6 +108,6 @@ def IEEE30():
     
     #colouring nodes correctly--green is loaded node, red is buss, blue is generator
         #todo when I figure out why it's completely fucked trying to access datavalues
-    nx.draw(Grid)
+    nx.draw(Grid,nx.get_node_attributes(Grid,'pos'))
     plt.show()
     return Grid
