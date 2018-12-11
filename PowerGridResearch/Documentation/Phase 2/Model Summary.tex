@@ -46,9 +46,9 @@
 	Subject to:
 	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
 		\item $Z_i^t = (\sum_{j \in L} X_{ji}^t) Y_i^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall i \in L$
-		\item $\sum_{i \in L} X_{ik} = \sum_{j \in L} X_{kj} \hspace{4pt} \forall t \in T \hspace{4pt} \forall k \in L$ 
+		\item $\sum_{i \in L} X_{ik} = \sum_{j \in L} X_{kj}+C_{demandK} \hspace{4pt} \forall t \in T \hspace{4pt} \forall k \in L$ 
 		\item $\sum_{i \in L} C_{DemandI}Y_I^t = \sum_{k \in J} G_k^t \hspace{4pt} \forall t \in T$
-		\item $G_k^t \leq C_{GeneratorCapacityK} \hspace{4pt} \forall t\in T$
+		\item $G_k^t \leq C_{GeneratorCapacityK} \hspace{4pt} \forall t\in T \hspace{4pt} \forall k \in J$
 		\item $X_{ij}^t \leq C_{lineIJ}W_{ij}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall i,j \in P$
 		\item $\sum_{i \in L} C_{RepairTimeI} F_{i}^t + \sum_{i \in L} \sum_{j<i \in L}  K_{ij}^t C_{TravelIJ} C_{broken} \leq 8 \hspace{4pt} \forall t \in T \hspace{4pt}$
 		\item $Y_i \leq \sum_{0}^{t} F_i^t$ 
