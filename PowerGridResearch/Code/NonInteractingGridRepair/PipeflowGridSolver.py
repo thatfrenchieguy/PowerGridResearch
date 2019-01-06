@@ -31,17 +31,18 @@ TotalLoad = 0
 for n in range(0,len(Grid.nodes)):
     if 'gen' in Grid.node[n]['name']:
         numgen +=1
+NumNonGenNodes = len(Grid)-numgen    
 #determine total load
-for n in range(0,30):
+for n in range(0,NumNonGenNodes):
         
     TotalLoad += Grid.node[n]['load']   
 #declare sets for use in pyomo model
 Generators = pe.Set(initialize = range(numgen))
-
+Nodes = pe.Set(initialize = range(len(Grid)))
 #Declare variables
 model.Production = pe.Var(Generators, domain=pe.NonNegativeReals)
 model.ProductionAbsoluteDummy = pe.Var(Generators, Generators, domain=pe.NonNegativeReals )
-
+model.LineFlow = pe.Var(Nodes,Nodes, domain = pe.Reals)
  #optimization criteria is balancing load in generators
 model.obj = pe.Objective(expr= sum(sum( model.ProductionAbsoluteDummy[i,j] for j in range(0,i))for i in Generators))
 
@@ -55,8 +56,12 @@ for i in Generators:
 model.con2 = pe.ConstraintList()
 model.con2.add(sum(model.Production[g] for g in Generators)==TotalLoad)
 #make sure nodes balkance
-
+model.con3 = pe.ConstraintList()
+for n in range(0,NumNonGenNodes):
+    model.con3.add(sum(model.LineFlow[n,k]+Grid.node[n]['load'] for k in range(0,Nodes)) == sum(model.LineFlow[k,n]for k in range(0,Nodes)))
+for g in Generators:
+    GenNode = NumNonGenNodes-1+g
+    model.con3.add(sum(model.LineFlow[GenNode,k] for k in range(0,Nodes)) == model.Production[g])
 #generator limits
 
 #line limits
-
