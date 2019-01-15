@@ -50,8 +50,8 @@ model.obj = pe.Objective(expr= sum(sum( model.ProductionAbsoluteDummy[i,j] for j
 model.con1 = pe.ConstraintList()
 for i in Generators:
     for j in range(0,i):
-        model.con1.add(model.ProductionAbsoluteDummy[i,j]>=model.Production[i]-model.Production[j])
-        model.con1.add(model.ProductionAbsoluteDummy[i,j]>=model.Production[j]-model.Production[i])
+        model.con1.add(model.ProductionAbsoluteDummy[i,j]>=model.Production[i]/Grid.node[30+i]['production']-model.Production[j]/Grid.node[30+j]['production'])
+        model.con1.add(model.ProductionAbsoluteDummy[i,j]>=model.Production[j]/Grid.node[30+j]['production']-model.Production[i]/Grid.node[30+i]['production'])
 #make sure total load = total production
 model.con2 = pe.ConstraintList()
 model.con2.add(sum(model.Production[g] for g in Generators)==TotalLoad)
@@ -79,4 +79,7 @@ for a in Nodes:
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)               
+
+for g in Generators:
+    print(model.Production[g].value)
                 
