@@ -58,10 +58,22 @@ model.con2.add(sum(model.Production[g] for g in Generators)==TotalLoad)
 #make sure nodes balkance
 model.con3 = pe.ConstraintList()
 for n in range(0,NumNonGenNodes):
-    model.con3.add(sum(model.LineFlow[n,k]+Grid.node[n]['load'] for k in range(0,Nodes)) == sum(model.LineFlow[k,n]for k in range(0,Nodes)))
+    model.con3.add(sum(model.LineFlow[n,k]+Grid.node[n]['load'] for k in Nodes) == sum(model.LineFlow[k,n]for k in Nodes))
 for g in Generators:
     GenNode = NumNonGenNodes-1+g
-    model.con3.add(sum(model.LineFlow[GenNode,k] for k in range(0,Nodes)) == model.Production[g])
+    model.con3.add(sum(model.LineFlow[GenNode,k] for k in Nodes) == model.Production[g])
 #generator limits
-
+model.con4 = pe.ConstraintList()
+for g in Generators:
+    model.con4.add(model.Production[g] <= Grid.node[30+g]['production'])
 #line limits
+model.con5 = pe.ConstraintList()
+for a in Nodes:
+    for b in Nodes:
+        if Grid.has_edge(a,b):
+            if 'capacity' in Grid[a][b][0]:
+                model.con5.add(model.LineFlow[a,b]<=Grid[a][b][0]['capacity'])
+            else:
+                model.con5.add(model.LineFlow[a,b]==0)
+        else:
+                model.con5.add(model.LineFlow[a,b]==0)
