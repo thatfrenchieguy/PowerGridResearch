@@ -60,8 +60,7 @@ model.con3 = pe.ConstraintList()
 for n in range(0,NumNonGenNodes):
     model.con3.add(sum(model.LineFlow[n,k]+Grid.node[n]['load'] for k in Nodes) == sum(model.LineFlow[k,n]for k in Nodes))
 for g in Generators:
-    GenNode = NumNonGenNodes-1+g
-    model.con3.add(sum(model.LineFlow[GenNode,k] for k in Nodes) == model.Production[g])
+    model.con3.add(sum(model.LineFlow[30+g,k] for k in Nodes) == model.Production[g])
 #generator limits
 model.con4 = pe.ConstraintList()
 for g in Generators:
