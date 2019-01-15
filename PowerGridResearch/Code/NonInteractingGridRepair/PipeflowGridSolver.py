@@ -77,3 +77,7 @@ for a in Nodes:
                 model.con5.add(model.LineFlow[a,b]==0)
         else:
                 model.con5.add(model.LineFlow[a,b]==0)
+solver = pe.SolverFactory('cplex')
+results = solver.solve(model, tee=True)
+print(results)               
+                
