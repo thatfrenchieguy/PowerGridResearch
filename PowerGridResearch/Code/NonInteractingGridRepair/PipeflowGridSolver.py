@@ -58,7 +58,12 @@ model.con2.add(sum(model.Production[g] for g in Generators)==TotalLoad)
 #make sure nodes balkance
 model.con3 = pe.ConstraintList()
 for n in range(0,NumNonGenNodes):
-#    model.con3.add(sum(model.LineFlow[n,k]+Grid.node[n]['load'] for k in range(0,NumNonGenNodes)) == sum(model.LineFlow[k,n]for k in range(0,NumNonGenNodes)))
+    if 'production' in Grid.node[n]:
+        model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)+Grid.node[n]['production']==sum(model.LineFlow[n,j] for j in Nodes))
+    elif 'load' in Grid.node[n]:
+        model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)==sum(model.LineFlow[n,j] for j in Nodes)+Grid.node[n]['load'])
+    else:
+        model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)==sum(model.LineFlow[n,j] for j in Nodes))
     for m in range(0,NumNonGenNodes):
        model.con3.add(model.LineFlow[n,m]==-1*model.LineFlow[m,n])
 for g in Generators:
@@ -74,8 +79,9 @@ for a in Nodes:
         if Grid.has_edge(a,b):
             if 'capacity' in Grid[a][b][0]:
                 model.con5.add(model.LineFlow[a,b]<=Grid[a][b][0]['capacity'])
-#            else:
-#                model.con5.add(model.LineFlow[a,b]==0)
+                model.con5.add(model.LineFlow[a,b]>=-1*Grid[a][b][0]['capacity'])
+            else:
+                model.con5.add(model.LineFlow[a,b]==0)
         else:
                 model.con5.add(model.LineFlow[a,b]==0)
 solver = pe.SolverFactory('cplex')
@@ -88,3 +94,11 @@ print(results)
 #    for b in Nodes:
 #        if model.LineFlow[a,b].value != 0:
 #            print(model.LineFlow[a,b].value)                
+#
+#for a in Nodes:
+#    for b in Nodes:
+#        if Grid.has_edge(a,b):
+#          if 'capacity' in Grid[a][b][0]:
+#              print("a is:"+str(a))
+#              print("b is:"+str(b))
+#              print(Grid[a][b][0]['capacity'])
