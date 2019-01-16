@@ -12,6 +12,7 @@ import pandas as pd
 import math
 import pyomo.environ as pe
 import os
+import csv
 os.path.dirname(os.path.abspath(__file__))
 #initialize graph from file
 Grid = nx.read_gml("Bus30Roads.graphml")
@@ -88,13 +89,21 @@ solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)               
 #
-#for g in Generators:
-#    print(model.Production[g].value)
-#for a in Nodes:
-#    for b in Nodes:
-#        if model.LineFlow[a,b].value != 0:
-#            print(model.LineFlow[a,b].value)                
-#
+for g in Generators:
+    print(model.Production[g].value)
+
+outputMatrix = [[0 for col in range(len(Nodes))] for row in range(len(Nodes))]
+for a in Nodes:
+    for b in Nodes:
+        if model.LineFlow[a,b].value != 0:
+            print(model.LineFlow[a,b].value)                
+            outputMatrix[a][b] = model.LineFlow[a,b].value
+            
+csvfile = "BaselineLoads.csv"            
+with open(csvfile, "w") as output:
+    writer = csv.writer(output, lineterminator='\n')
+    writer.writerows(outputMatrix)
+#statement used in debugging check
 #for a in Nodes:
 #    for b in Nodes:
 #        if Grid.has_edge(a,b):
