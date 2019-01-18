@@ -88,7 +88,7 @@ for a in Nodes:
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)               
-#
+#outputs
 for g in Generators:
     print(model.Production[g].value)
 

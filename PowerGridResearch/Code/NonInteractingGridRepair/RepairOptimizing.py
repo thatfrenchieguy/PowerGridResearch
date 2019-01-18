@@ -27,35 +27,50 @@ PowerLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Power')
 RoadLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Road')
 #import baseloads that were previously calculated
 BaseloadMatrixDF = pd.read_csv('BaselineLoads.csv')
-BaseloadMatrix = BaseloadMatrix.values.tolist() 
+BaseloadMatrix = BaseloadMatrixDF.values.tolist() 
 #Declare all iterator sets
 Nodes = pe.Set(initialize= range(0,30))
-FullNodes = pe.Set(initialize= range(0,30))
+FullNodes = pe.Set(initialize= range(0,37))
 Time = pe.Set(initialize = range(0,PlanningHorizon))
 Generators = pe.set(initialize = range(30,37))
 #declare model
 model = pe.ConcreteModel()
 #declare variables for MILP
-model.Z = pe.Var(Nodes,Time, domain= pe.NonNegativeReals)
 model.X = pe.Var(FullNodes,FullNodes,Time, domain = pe.Reals)
 model.G = pe.Var(Generators,Time, domain = pe.NonNegativeReals)
 model.Y = pe.Var(Nodes,Time, domain = pe.Binary)
-model.W = pe.Var(PowerLinesSet,Time, domain = pe.Binary)
-model.S = pe.Var(Nodes,Time, domain = pe.Binary)
+model.W = pe.Var(FullNodes,FullNodes ,Time, domain = pe.Binary)
 model.K = pe.Var(Nodes,Nodes,Time, domain = pe.Binary)
 model.F = pe.Var(Nodes,Time, domain = pe.Binary)
+model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 #declare objective
-model.obj = pe.Objective(expr = sum(SteadyStateFlow[i] - model.Z[i,t] for t in Time for i in Nodes))
-#Define total Flow
+model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,t] for t in Time for i in FullNodes for j in FullNodes))
+#define flow balance
+#line limits
 model.con1 = pe.ConstraintList()
 for t in Time:
-    for i in Nodes:
-        model.con1.add(model.Z[i,t] == model.Y[i]*sum(model.X[j,i,t] for j in FullNodes))
-#define flow balance
+    for a in FullNodes:
+        for b in FullNodes:
+            if Grid.has_edge(a,b):
+                if 'capacity' in Grid[a][b][0]:
+                    model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity'])
+                    model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity'])
+                else:
+                    model.con1.add(model.X[a,b,t]==0)
+            else:
+                model.con1.add(model.X[a,b,t]==0)
+#make sure nodes balkance
 model.con2 = pe.ConstraintList()
-for t in Time:
-    for k in Nodes:
-        model.con2(sum(model.X[i,k] for i in FullNodes)==sum(model.X[k,j] for j in FullNodes)-Grid.node[k]['load'])
+for n in FullNodes:
+    for t in Time:
+        if 'production' in Grid.node[n]:
+            model.con2.add(sum(model.LineFlow[k,n] for k in FullNodes)+Grid.node[n]['production']==sum(model.LineFlow[n,j] for j in FullNodes))
+        elif 'load' in Grid.node[n]:
+            model.con2.add(sum(model.LineFlow[k,n] for k in FullNodes)==sum(model.LineFlow[n,j] for j in FullNodes)+Grid.node[n]['load'])
+        else:
+            model.con2.add(sum(model.LineFlow[k,n] for k in FullNodes)==sum(model.LineFlow[n,j] for j in FullNodes))
+        for m in FullNodes:
+            model.con2.add(model.LineFlow[n,m]==-1*model.LineFlow[m,n])
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
@@ -75,6 +90,12 @@ for t in Time:
             else:
                 model.con5.add(model.X[i,j,t]==0)
 #scheduling constraint
-
 model.con6 = pe.ConstraintList()
 for t in Time:
+#assume all nodes take 5 hours to repair and all lines take 1 hour
+    model.con6.add(5*sum(model.F[i,t] for i in FullNodes) + 1*sum(model.FE[i,j,t] for i in FullNodes for j in FullNodes) <=8)
+#generator limits
+model.con7 = pe.ConstraintList()
+for g in Generators:
+    for t in Time:
+        model.con4.add(model.G[g,t] <= Grid.node[30+g]['production'])
