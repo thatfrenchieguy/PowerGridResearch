@@ -25,6 +25,9 @@ for i in range(0,len(Grid.nodes)):
 #Generate subsets of the multigraph
 PowerLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Power')
 RoadLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Road')
+#import baseloads that were previously calculated
+BaseloadMatrixDF = pd.read_csv('BaselineLoads.csv')
+BaseloadMatrix = BaseloadMatrix.values.tolist() 
 #Declare all iterator sets
 Nodes = pe.Set(initialize= range(0,30))
 FullNodes = pe.Set(initialize= range(0,30))
@@ -72,5 +75,6 @@ for t in Time:
             else:
                 model.con5.add(model.X[i,j,t]==0)
 #scheduling constraint
+
 model.con6 = pe.ConstraintList()
 for t in Time:
