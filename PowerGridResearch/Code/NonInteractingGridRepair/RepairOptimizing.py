@@ -21,18 +21,19 @@ ShiftLength = 8 #in Hours
 
 #convert load share to MW
 for i in range(0,len(Grid.nodes)):
-    Grid.node[i]['load'] = Grid.node[i]['load']*SteadyStatePower
+    if 'load' in Grid.node[i]:
+        Grid.node[i]['load'] = Grid.node[i]['load']*SteadyStatePower
 #Generate subsets of the multigraph
 PowerLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Power')
 RoadLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Road')
 #import baseloads that were previously calculated
-BaseloadMatrixDF = pd.read_csv('BaselineLoads.csv')
+BaseloadMatrixDF = pd.read_csv('BaselineLoads.csv', header=None)
 BaseloadMatrix = BaseloadMatrixDF.values.tolist() 
 #Declare all iterator sets
 Nodes = pe.Set(initialize= range(0,30))
 FullNodes = pe.Set(initialize= range(0,37))
 Time = pe.Set(initialize = range(0,PlanningHorizon))
-Generators = pe.set(initialize = range(30,37))
+Generators = pe.Set(initialize = range(30,37))
 #declare model
 model = pe.ConcreteModel()
 #declare variables for MILP
@@ -44,7 +45,7 @@ model.K = pe.Var(Nodes,Nodes,Time, domain = pe.Binary)
 model.F = pe.Var(Nodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 #declare objective
-model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,t] for t in Time for i in FullNodes for j in FullNodes))
+model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,j,t] for t in Time for i in FullNodes for j in FullNodes))
 #define flow balance
 #line limits
 model.con1 = pe.ConstraintList()
@@ -64,13 +65,13 @@ model.con2 = pe.ConstraintList()
 for n in FullNodes:
     for t in Time:
         if 'production' in Grid.node[n]:
-            model.con2.add(sum(model.LineFlow[k,n] for k in FullNodes)+Grid.node[n]['production']==sum(model.LineFlow[n,j] for j in FullNodes))
+            model.con2.add(sum(model.X[k,n] for k in FullNodes)+Grid.node[n]['production']==sum(model.X[n,j] for j in FullNodes))
         elif 'load' in Grid.node[n]:
-            model.con2.add(sum(model.LineFlow[k,n] for k in FullNodes)==sum(model.LineFlow[n,j] for j in FullNodes)+Grid.node[n]['load'])
+            model.con2.add(sum(model.X[k,n] for k in FullNodes)==sum(model.X[n,j] for j in FullNodes)+Grid.node[n]['load'])
         else:
-            model.con2.add(sum(model.LineFlow[k,n] for k in FullNodes)==sum(model.LineFlow[n,j] for j in FullNodes))
+            model.con2.add(sum(model.X[k,n] for k in FullNodes)==sum(model.X[n,j] for j in FullNodes))
         for m in FullNodes:
-            model.con2.add(model.LineFlow[n,m]==-1*model.LineFlow[m,n])
+            model.con2.add(model.X[n,m]==-1*model.X[m,n])
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
@@ -98,4 +99,8 @@ for t in Time:
 model.con7 = pe.ConstraintList()
 for g in Generators:
     for t in Time:
-        model.con4.add(model.G[g,t] <= Grid.node[30+g]['production'])
+        model.con4.add(model.G[g,t] <= Grid.node[g]['production'])
+        
+solver = pe.SolverFactory('cplex')
+results = solver.solve(model, tee=True)
+print(results)  
