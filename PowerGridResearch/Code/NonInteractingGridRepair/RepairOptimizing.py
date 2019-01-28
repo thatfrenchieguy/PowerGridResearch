@@ -32,10 +32,10 @@ RoadLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Road')
 BaseloadMatrixDF = pd.read_csv('BaselineLoads.csv', header=None)
 BaseloadMatrix = BaseloadMatrixDF.values.tolist() 
 #Declare all iterator sets
-Nodes = pe.Set(initialize= range(0,30))
 FullNodes = pe.Set(initialize= range(0,37))
 Time = pe.Set(initialize = range(0,PlanningHorizon))
 Generators = pe.Set(initialize = range(30,37))
+NormNodes = pe.Set(initialize= range(0,30))
 #declare model
 model = pe.ConcreteModel()
 #declare variables for MILP
@@ -43,8 +43,7 @@ model.X = pe.Var(FullNodes,FullNodes,Time, domain = pe.Reals)
 model.G = pe.Var(Generators,Time, domain = pe.NonNegativeReals)
 model.Y = pe.Var(FullNodes,Time, domain = pe.Binary)
 model.W = pe.Var(FullNodes,FullNodes ,Time, domain = pe.Binary)
-model.K = pe.Var(Nodes,Nodes,Time, domain = pe.Binary) #commenting this out for whatever reason breaks constraint 3???
-model.F = pe.Var(FullNodes,Time, domain = pe.Binary)
+model.F = pe.Var(NormNodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 #declare objective
 model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,j,t] for t in Time for i in FullNodes for j in FullNodes))
@@ -97,7 +96,7 @@ for n in FullNodes:
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
-    model.con3.add(sum(Grid.node[i]['load']*model.Y[i,t] for i in Nodes) == sum(model.G[h,t] for h in Generators))
+    model.con3.add(sum(Grid.node[i]['load']*model.Y[i,t] for i in NormNodes) == sum(model.G[h,t] for h in Generators))
 #define generator capacity balance
 model.con4 = pe.ConstraintList()
 for t in Time:
@@ -121,7 +120,7 @@ for t in Time:
 model.con6 = pe.ConstraintList()
 for t in Time:
 #assume all nodes take 5 hours to repair and all lines take 1 hour
-    model.con6.add(5*sum(model.F[i,t] for i in Nodes) + 1*sum(model.FE[i,j,t] for i in FullNodes for j in FullNodes) <=8)
+    model.con6.add(5*sum(model.F[i,t] for i in NormNodes) + 1*sum(model.FE[i,j,t] for i in FullNodes for j in FullNodes) <=8)
 #generator limits
 model.con7 = pe.ConstraintList()
 for g in Generators:
@@ -130,10 +129,11 @@ for g in Generators:
 #handle the repair/is working interaction
 model.con8 = pe.ConstraintList()
 for t in Time:
-    for n in FullNodes:
+    for n in NormNodes:
       model.con8.add(model.Y[n,t] <= sum(model.F[n,j] for j in range(0,t))+Grid.node[i]['working'] )  
     for m in FullNodes:
-      if Grid.has_edge(n,m,0):
+      for n in FullNodes:
+       if Grid.has_edge(n,m,0):
         if 'capacity' in Grid[n][m][0]:
             model.con8.add(model.W[n,m,t] <= sum(model.FE[n,m,j]for j in range(0,t))+Grid[m][n][0]['working'])  
 solver = pe.SolverFactory('cplex')
