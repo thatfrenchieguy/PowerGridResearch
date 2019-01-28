@@ -65,13 +65,13 @@ model.con2 = pe.ConstraintList()
 for n in FullNodes:
     for t in Time:
         if 'production' in Grid.node[n]:
-            model.con2.add(sum(model.X[k,n] for k in FullNodes)+Grid.node[n]['production']==sum(model.X[n,j] for j in FullNodes))
+            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)+Grid.node[n]['production']==sum(model.X[n,j,t] for j in FullNodes))
         elif 'load' in Grid.node[n]:
-            model.con2.add(sum(model.X[k,n] for k in FullNodes)==sum(model.X[n,j] for j in FullNodes)+Grid.node[n]['load'])
+            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes)+Grid.node[n]['load'])
         else:
-            model.con2.add(sum(model.X[k,n] for k in FullNodes)==sum(model.X[n,j] for j in FullNodes))
+            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes))
         for m in FullNodes:
-            model.con2.add(model.X[n,m]==-1*model.X[m,n])
+            model.con2.add(model.X[n,m,t]==-1*model.X[m,n,t])
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
@@ -87,14 +87,15 @@ for t in Time:
     for i in FullNodes:
         for j in FullNodes:
             if Grid.has_edge(i,j,0):
-                model.con5.add(model.X[i,j,t] <= Grid.edges[i,j,0]['capacity'])
+                if 'capacity' in Grid[i][j][0]:
+                    model.con5.add(model.X[i,j,t] <= Grid[i][j][0]['capacity'])
             else:
                 model.con5.add(model.X[i,j,t]==0)
 #scheduling constraint
 model.con6 = pe.ConstraintList()
 for t in Time:
 #assume all nodes take 5 hours to repair and all lines take 1 hour
-    model.con6.add(5*sum(model.F[i,t] for i in FullNodes) + 1*sum(model.FE[i,j,t] for i in FullNodes for j in FullNodes) <=8)
+    model.con6.add(5*sum(model.F[i,t] for i in Nodes) + 1*sum(model.FE[i,j,t] for i in FullNodes for j in FullNodes) <=8)
 #generator limits
 model.con7 = pe.ConstraintList()
 for g in Generators:
