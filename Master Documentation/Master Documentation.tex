@@ -69,9 +69,9 @@
 		\item $G_k^t \leq C_{GeneratorCapacityK} \hspace{4pt} \forall t\in T \hspace{4pt} \forall k \in J$
 		\item $X_{ij}^t \leq C_{lineIJ}W_{ij}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall i,j \in P$
 		\item $\sum_{i \in L} C_{RepairTimeI} F_{i}^t +\sum_{i,j \in P} C_{RepairTimeIJ} S_{ij}^t + \sum_{i \in L} \sum_{j<i \in L}  K_{ij}^t C_{TravelIJ} C_{broken} \leq 8 \hspace{4pt} \forall t \in T \hspace{4pt}$
-		\item $Y_i \leq \sum_{0}^{t} F_i^t$ 
-		\item $W_{ij} \leq \sum_{0}^{t} S_{ij}^t$
-		\item $\sum_{j \in L} K_{0j}^t \geq 1$
+		\item $Y_i^t \leq \sum_{0}^{t} F_i^t+initial \hspace{4pt} \forall i \in L$ 
+		\item $W_{ij}^t \leq \sum_{0}^{t} S_{ij}^t+initial \hspace{4pt} \forall i,j \in L $
+		\item $\sum_{j \in L} K_{0j}^t \geq 1 $
 		\item $\sum_{j \in L}K_{ij}^t - \sum_{j \in L}K_{ji}^t = 0  \hspace{4pt} \forall t \in T \hspace{4pt} \forall i \in L$
 		\item A subtour elimination constraint 
 	\end{enumerate}

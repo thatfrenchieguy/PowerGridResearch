@@ -39,10 +39,10 @@ model = pe.ConcreteModel()
 #declare variables for MILP
 model.X = pe.Var(FullNodes,FullNodes,Time, domain = pe.Reals)
 model.G = pe.Var(Generators,Time, domain = pe.NonNegativeReals)
-model.Y = pe.Var(Nodes,Time, domain = pe.Binary)
+model.Y = pe.Var(FullNodes,Time, domain = pe.Binary)
 model.W = pe.Var(FullNodes,FullNodes ,Time, domain = pe.Binary)
 model.K = pe.Var(Nodes,Nodes,Time, domain = pe.Binary)
-model.F = pe.Var(Nodes,Time, domain = pe.Binary)
+model.F = pe.Var(FullNodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 #declare objective
 model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,j,t] for t in Time for i in FullNodes for j in FullNodes))
@@ -66,7 +66,6 @@ for i in Grid.nodes:
                 random = np.random.randint(0,10)
                 if random <=1:
                     Grid[i][j][0]['working']=False
-
 #define flow balance
 #line limits
 model.con1 = pe.ConstraintList()
@@ -126,7 +125,15 @@ model.con7 = pe.ConstraintList()
 for g in Generators:
     for t in Time:
         model.con4.add(model.G[g,t] <= Grid.node[g]['production'])
-        
+#handle the repair/is working interaction
+model.con8 = pe.ConstraintList()
+for t in Time:
+    for n in FullNodes:
+      model.con8.add(model.Y[n,t] <= sum(model.F[n,j] for j in range(0,t))+Grid.node[i]['working'] )  
+    for m in FullNodes:
+      if Grid.has_edge(n,m,0):
+        if 'capacity' in Grid[n][m][0]:
+            model.con8.add(model.W[n,m,t] <= sum(model.FE[n,m,j]for j in range(0,t))+Grid[m][n][0]['working'])  
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)  
