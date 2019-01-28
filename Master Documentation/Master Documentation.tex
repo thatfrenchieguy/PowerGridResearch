@@ -26,6 +26,60 @@
 	\section{Exploratary ILP}
 	\section{Power Grid Models}
 	\subsection{NonInteracting/NonRouting}
+	\subsubsection{Variable Glossary}
+	\begin{itemize}
+		\item $C_{FlowIJ}$ is steady state flow on the grid before the hurricane
+		\item $C_{lineIJ}$ is the capacity limit for the power line going from IJ
+		\item $C_{RepairTimeI}$ is the time to repair node I
+		\item $C_{demandI}$ is the power demand at location I in the pre-disaster steady state
+		\item $C_{GeneratorCapacityK}$ is the maximum power generation for generator K
+	\end{itemize}
+	\subsubsection{Variables}
+	\begin{itemize}
+		
+		\item $X_{ij}^{t}$ is the flow from i to j at time t
+		\item $G_{k}^t$ is the production from generator k at time t
+		\item $Y_i^t$ is 1 if node i is functioning at time t
+		\item $W_{ij}^t$ is 1 if line ij is functioning at time t
+		\item $F_i^t$ is 1 is node i is serviced at time t 
+		\item $E_{ij}^t$ is 1 is line ij is serviced at time t	
+	\end{itemize}
+	\subsubsection{Sets}
+	\begin{itemize}
+		\item L is the set of nodes
+		\item P is the set of power lines
+		\item T is the planning horizon
+		\item J is the set of Generators
+	\end{itemize}
+	\subsubsection{Model}
+	$$	Minimize \sum_{i \in L} \sum_{t \in T} C_{FlowIJ}-X_{ij}^t $$
+	
+	Subject to:
+	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
+		
+		\item $\sum_{i \in L} X_{ik}+G_{k}^{t} = \sum_{j \in L} X_{kj}+C_{demandK} \hspace{4pt} \forall t \in T \hspace{4pt} \forall k \in L$ 
+		\item $\sum_{i \in L} C_{DemandI}Y_I^t = \sum_{k \in J} G_k^t \hspace{4pt} \forall t \in T$
+		\item $G_k^t \leq C_{GeneratorCapacityK} \hspace{4pt} \forall t\in T \hspace{4pt} \forall k \in J$
+		\item $X_{ij}^t \leq C_{lineIJ}W_{ij}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall i,j \in P$
+		\item $\sum_{i \in L} C_{RepairTimeI} F_{i}^t +\sum_{i,j \in P} C_{RepairTimeIJ} S_{ij}^t + \sum_{i \in L} \sum_{j<i \in L}  K_{ij}^t C_{TravelIJ} C_{broken} \leq 8 \hspace{4pt} \forall t \in T \hspace{4pt}$
+		\item $Y_i^t \leq \sum_{0}^{t} F_i^t+initial \hspace{4pt} \forall i \in L$ 
+		\item $W_{ij}^t \leq \sum_{0}^{t} S_{ij}^t+initial \hspace{4pt} \forall i,j \in L $
+		
+	\end{enumerate}
+	\subsubsection{Explanation of Constraint Systems}
+	\begin{itemize}
+		\item Constraint (1) defines flow balance equations for each node
+		\item Constraint (2) defines input/output network balance. This is assuming Generator ramp time can be ignored, but that's fine since excess power can always be dropped to ground.
+		\item Constraint (3) constrains power generation to be in the realm of feasible production
+		\item Constraint (4) constrains line flow to be inside line capacity
+		\item Constraint (5) constrains/decides what gets done during a shift
+		\item Constraints (6) and (7) handle defining operations
+		\end{itemize}
+	\subsubsection{Comments}
+	\begin{itemize}
+		\item I'm assuming that we're staying in the region of safe production for generators, a later thing to think about is "pushed" generators where they can be run in overdrive for short periods of time
+	\end{itemize}
+	
 	\subsection{NonInteracting/Routing}
 	\subsubsection{Variable Glossary}
 	\begin{itemize}

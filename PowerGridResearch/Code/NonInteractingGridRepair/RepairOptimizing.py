@@ -23,6 +23,8 @@ ShiftLength = 8 #in Hours
 for i in range(0,len(Grid.nodes)):
     if 'load' in Grid.node[i]:
         Grid.node[i]['load'] = Grid.node[i]['load']*SteadyStatePower
+    else:
+        Grid.node[i]['load'] = 0
 #Generate subsets of the multigraph
 PowerLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Power')
 RoadLines = ((u,v) for u,v,d in Grid.edges(data=True) if d['Type']=='Road')
@@ -41,7 +43,7 @@ model.X = pe.Var(FullNodes,FullNodes,Time, domain = pe.Reals)
 model.G = pe.Var(Generators,Time, domain = pe.NonNegativeReals)
 model.Y = pe.Var(FullNodes,Time, domain = pe.Binary)
 model.W = pe.Var(FullNodes,FullNodes ,Time, domain = pe.Binary)
-model.K = pe.Var(Nodes,Nodes,Time, domain = pe.Binary)
+model.K = pe.Var(Nodes,Nodes,Time, domain = pe.Binary) #commenting this out for whatever reason breaks constraint 3???
 model.F = pe.Var(FullNodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 #declare objective
@@ -95,7 +97,7 @@ for n in FullNodes:
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
-    model.con3.add(sum(Grid.node[i]['load']*model.Y[i,t] for i in Nodes) == sum(model.G[k,t] for k in Generators))
+    model.con3.add(sum(Grid.node[i]['load']*model.Y[i,t] for i in Nodes) == sum(model.G[h,t] for h in Generators))
 #define generator capacity balance
 model.con4 = pe.ConstraintList()
 for t in Time:
