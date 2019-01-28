@@ -46,6 +46,27 @@ model.F = pe.Var(Nodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 #declare objective
 model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,j,t] for t in Time for i in FullNodes for j in FullNodes))
+#define functionality
+for g in Grid.nodes:
+    Grid.node[g]['working']=True
+for i in Grid.nodes:
+    for j in Grid.nodes:
+        if Grid.has_edge(i,j,0):
+            if 'capacity' in Grid[i][j][0]:
+                Grid[i][j][0]['working']=True
+#Do scenario generation
+for n in Grid.nodes:
+    random = np.random.randint(0,20)
+    if random <=0:
+        Grid.node[n]['working']=False
+for i in Grid.nodes:
+    for j in Grid.nodes:
+        if Grid.has_edge(i,j,0):
+            if 'capacity' in Grid[i][j][0]:
+                random = np.random.randint(0,10)
+                if random <=1:
+                    Grid[i][j][0]['working']=False
+
 #define flow balance
 #line limits
 model.con1 = pe.ConstraintList()
@@ -60,7 +81,7 @@ for t in Time:
                     model.con1.add(model.X[a,b,t]==0)
             else:
                 model.con1.add(model.X[a,b,t]==0)
-#make sure nodes balkance
+#make sure nodes balance
 model.con2 = pe.ConstraintList()
 for n in FullNodes:
     for t in Time:
@@ -88,7 +109,11 @@ for t in Time:
         for j in FullNodes:
             if Grid.has_edge(i,j,0):
                 if 'capacity' in Grid[i][j][0]:
-                    model.con5.add(model.X[i,j,t] <= Grid[i][j][0]['capacity'])
+                    model.con5.add(model.X[i,j,t]<=Grid[i][j][0]['capacity']*model.W[i,j,t])
+                    model.con5.add(model.X[i,j,t]>=-1*Grid[i][j][0]['capacity']*model.W[i,j,t])
+                else:
+                    model.con5.add(model.X[i,j,t]==0)
+        
             else:
                 model.con5.add(model.X[i,j,t]==0)
 #scheduling constraint
