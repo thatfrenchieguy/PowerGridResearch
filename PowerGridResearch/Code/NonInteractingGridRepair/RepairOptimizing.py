@@ -82,17 +82,17 @@ for t in Time:
             else:
                 model.con1.add(model.X[a,b,t]==0)
 #make sure nodes balance
-model.con2 = pe.ConstraintList()
-for n in FullNodes:
-    for t in Time:
-        if 'production' in Grid.node[n]:
-            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)+Grid.node[n]['production']==sum(model.X[n,j,t] for j in FullNodes))
-        elif 'load' in Grid.node[n]:
-            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes)+Grid.node[n]['load'])
-        else:
-            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes))
-        for m in FullNodes:
-            model.con2.add(model.X[n,m,t]==-1*model.X[m,n,t])
+#model.con2 = pe.ConstraintList()
+#for n in FullNodes:
+#    for t in Time:
+#        if 'production' in Grid.node[n]:
+#            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)+Grid.node[n]['production']==sum(model.X[n,j,t] for j in FullNodes))
+#        elif 'load' in Grid.node[n]:
+#            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes)+Grid.node[n]['load'])
+#        else:
+#            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes))
+#        for m in FullNodes:
+#            model.con2.add(model.X[n,m,t]==-1*model.X[m,n,t])
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
