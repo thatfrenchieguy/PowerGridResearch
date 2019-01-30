@@ -58,14 +58,14 @@ for i in Grid.nodes:
 #Do scenario generation
 for n in Grid.nodes:
     random = np.random.randint(0,20)
-    if random <=0:
+    if random <=10:
         Grid.node[n]['working']=False
 for i in Grid.nodes:
     for j in Grid.nodes:
         if Grid.has_edge(i,j,0):
             if 'capacity' in Grid[i][j][0]:
                 random = np.random.randint(0,10)
-                if random <=1:
+                if random <=5:
                     Grid[i][j][0]['working']=False
 #define flow balance
 #line limits
@@ -82,17 +82,15 @@ for t in Time:
             else:
                 model.con1.add(model.X[a,b,t]==0)
 #make sure nodes balance
-#model.con2 = pe.ConstraintList()
-#for n in FullNodes:
-#    for t in Time:
-#        if 'production' in Grid.node[n]:
-#            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)+Grid.node[n]['production']==sum(model.X[n,j,t] for j in FullNodes))
-#        elif 'load' in Grid.node[n]:
-#            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes)+Grid.node[n]['load'])
-#        else:
-#            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes))
-#        for m in FullNodes:
-#            model.con2.add(model.X[n,m,t]==-1*model.X[m,n,t])
+model.con2 = pe.ConstraintList()
+for n in FullNodes:
+    for t in Time:
+        if 'production' in Grid.node[n]:
+            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)+model.G[n,t]==sum(model.X[n,j,t] for j in FullNodes))
+        elif 'load' in Grid.node[n]:
+            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes)+Grid.node[n]['load']*model.Y[n,t])
+        else:
+            model.con2.add(sum(model.X[k,n,t] for k in FullNodes)==sum(model.X[n,j,t] for j in FullNodes))
 #Define in/out network balance
 model.con3 = pe.ConstraintList()
 for t in Time:
@@ -139,3 +137,5 @@ for t in Time:
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)  
+
+

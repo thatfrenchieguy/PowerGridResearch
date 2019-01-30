@@ -58,15 +58,13 @@ model.con2 = pe.ConstraintList()
 model.con2.add(sum(model.Production[g] for g in Generators)==TotalLoad)
 #make sure nodes balkance
 model.con3 = pe.ConstraintList()
-for n in range(0,NumNonGenNodes):
+for n in Nodes:
     if 'production' in Grid.node[n]:
-        model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)+Grid.node[n]['production']==sum(model.LineFlow[n,j] for j in Nodes))
+        model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)+model.Production[n-30]==sum(model.LineFlow[n,j] for j in Nodes))
     elif 'load' in Grid.node[n]:
         model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)==sum(model.LineFlow[n,j] for j in Nodes)+Grid.node[n]['load'])
     else:
         model.con3.add(sum(model.LineFlow[k,n] for k in Nodes)==sum(model.LineFlow[n,j] for j in Nodes))
-    for m in range(0,NumNonGenNodes):
-       model.con3.add(model.LineFlow[n,m]==-1*model.LineFlow[m,n])
 for g in Generators:
     model.con3.add(sum(model.LineFlow[30+g,k] for k in Nodes) == model.Production[g])
 #generator limits
@@ -96,7 +94,7 @@ outputMatrix = [[0 for col in range(len(Nodes))] for row in range(len(Nodes))]
 for a in Nodes:
     for b in Nodes:
         if model.LineFlow[a,b].value != 0:
-            print(model.LineFlow[a,b].value)                
+          #  print(model.LineFlow[a,b].value)                
             outputMatrix[a][b] = model.LineFlow[a,b].value
             
 csvfile = "BaselineLoads.csv"            
