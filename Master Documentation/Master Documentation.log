@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  28 JAN 2019 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  30 JAN 2019 15:29
 entering extended mode
 **"./Master Documentation.tex"
 ("Master Documentation.tex"
@@ -265,27 +265,22 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 31.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/Brian French/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (10.07253pt too wide) in paragraph at lines 64--65
-[]$[] \OML/cmm/m/it/10 C[]F[] \OT1/cmr/m/n/10 + [] \OML/cmm/m/it/10 C[]S[] \OT1
-/cmr/m/n/10 + [] [] \OML/cmm/m/it/10 K[]C[]C[] \OMS/cmsy/m/n/10 
- []
-
-[2] [3]
-Overfull \hbox (10.07253pt too wide) in paragraph at lines 125--126
+{C:/Users/Brian French/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] 
+[3]
+Overfull \hbox (10.07253pt too wide) in paragraph at lines 127--128
 []$[] \OML/cmm/m/it/10 C[]F[] \OT1/cmr/m/n/10 + [] \OML/cmm/m/it/10 C[]S[] \OT1
 /cmr/m/n/10 + [] [] \OML/cmm/m/it/10 K[]C[]C[] \OMS/cmsy/m/n/10 
  []
 
 [4] [5] ("Master Documentation.aux") ) 
 Here is how much of TeX's memory you used:
- 3216 strings out of 492970
- 46307 string characters out of 3135832
+ 3217 strings out of 492970
+ 46325 string characters out of 3135832
  118620 words of memory out of 3000000
- 7051 multiletter control sequences out of 15000+200000
+ 7052 multiletter control sequences out of 15000+200000
  6857 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,4n,30p,312b,246s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,6n,30p,312b,246s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
 msfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
@@ -295,7 +290,7 @@ cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi1
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on "Master Documentation.pdf" (5 pages, 120995 bytes).
+Output written on "Master Documentation.pdf" (5 pages, 121507 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
