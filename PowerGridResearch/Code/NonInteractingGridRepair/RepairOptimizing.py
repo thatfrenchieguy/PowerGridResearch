@@ -46,7 +46,7 @@ model.W = pe.Var(FullNodes,FullNodes ,Time, domain = pe.Binary)
 model.F = pe.Var(NormNodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 model.D = pe.Var(FullNodes,FullNodes,Time, domain = pe.NonNegativeReals)
-
+model.DY = pe.Var(FullNodes, FullNodes,Time, domain = pe.Binary)
 #declare objective
 model.obj = pe.Objective(expr = sum(model.D[i,j,t] for t in Time for i in FullNodes for j in FullNodes), sense= pe.maximize)
 #define functionality
@@ -72,11 +72,12 @@ Grid[13][11][0]['working']=False
 
 #introduction of absolute value dummy variables for the objective function  
 model.Dummy = pe.ConstraintList()
+bigM = 10000
 for t in Time:
-    for a in FullNodes:
-        for b in FullNodes:
-            model.Dummy.add(model.D[i,j,t]<=model.X[i,j,t])
-            model.Dummy.add(model.D[i,j,t]>=-1*model.X[i,j,t])
+    for i in FullNodes:
+        for j in FullNodes:
+            model.Dummy.add(model.D[i,j,t]<=model.X[i,j,t]+bigM*(1-model.DY[i,j,t]))
+            model.Dummy.add(model.D[i,j,t]>=(-1*model.X[i,j,t])+(bigM*model.DY[i,j,t]))
 #define flow balance
 #line limits
 model.con1 = pe.ConstraintList()
@@ -87,6 +88,8 @@ for t in Time:
                 if 'capacity' in Grid[a][b][0]:
                     model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity']*model.W[a,b,t])
                     model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity']*model.W[a,b,t])
+                    model.con1.add(model.X[a,b,t]<=1000*model.W[a,b,t])
+                    model.con1.add(model.X[a,b,t]>=-1000*model.W[a,b,t])
                 else:
                     model.con1.add(model.X[a,b,t]==0)
             else:
