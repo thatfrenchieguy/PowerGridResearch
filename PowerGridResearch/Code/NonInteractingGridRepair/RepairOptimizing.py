@@ -45,8 +45,10 @@ model.Y = pe.Var(FullNodes,Time, domain = pe.Binary)
 model.W = pe.Var(FullNodes,FullNodes ,Time, domain = pe.Binary)
 model.F = pe.Var(NormNodes,Time, domain = pe.Binary)
 model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
+model.D = pe.Var(FullNodes,FullNodes,Time, domain = pe.NonNegativeReals)
+
 #declare objective
-model.obj = pe.Objective(expr = sum(BaseloadMatrix[i][j] - model.X[i,j,t] for t in Time for i in FullNodes for j in FullNodes))
+model.obj = pe.Objective(expr = sum(model.D[i,j,t] for t in Time for i in FullNodes for j in FullNodes), sense= pe.minimize)
 #define functionality
 for g in Grid.nodes:
     Grid.node[g]['working']=True
@@ -58,15 +60,22 @@ for i in Grid.nodes:
 #Do scenario generation
 for n in Grid.nodes:
     random = np.random.randint(0,20)
-    if random <=10:
+    if random <=3:
         Grid.node[n]['working']=False
 for i in Grid.nodes:
     for j in Grid.nodes:
         if Grid.has_edge(i,j,0):
             if 'capacity' in Grid[i][j][0]:
                 random = np.random.randint(0,10)
-                if random <=5:
+                if random <=1:
                     Grid[i][j][0]['working']=False
+#introduction of absolute value dummy variables for the objective function  
+model.Dummy = pe.ConstraintList()
+for t in Time:
+    for a in FullNodes:
+        for b in FullNodes:
+            model.Dummy.add(model.D[i,j,t]>=(BaseloadMatrix[i][j] - model.X[i,j,t]))
+            model.Dummy.add(model.D[i,j,t]>=-1*(BaseloadMatrix[i][j] - model.X[i,j,t]))
 #define flow balance
 #line limits
 model.con1 = pe.ConstraintList()
@@ -128,12 +137,12 @@ for g in Generators:
 model.con8 = pe.ConstraintList()
 for t in Time:
     for n in NormNodes:
-      model.con8.add(model.Y[n,t] <= sum(model.F[n,j] for j in range(0,t))+Grid.node[i]['working'] )  
+      model.con8.add(model.Y[n,t] <= sum(model.F[n,j] for j in range(0,t-1))+Grid.node[i]['working'] )  
     for m in FullNodes:
       for n in FullNodes:
        if Grid.has_edge(n,m,0):
         if 'capacity' in Grid[n][m][0]:
-            model.con8.add(model.W[n,m,t] <= sum(model.FE[n,m,j]for j in range(0,t))+Grid[m][n][0]['working'])  
+            model.con8.add(model.W[n,m,t] <= sum(model.FE[n,m,j]for j in range(0,t-1))+Grid[m][n][0]['working'])  
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)  
