@@ -48,7 +48,7 @@ model.FE = pe.Var(FullNodes,FullNodes,Time, domain = pe.Binary)
 model.D = pe.Var(FullNodes,FullNodes,Time, domain = pe.NonNegativeReals)
 
 #declare objective
-model.obj = pe.Objective(expr = sum(model.D[i,j,t] for t in Time for i in FullNodes for j in FullNodes), sense= pe.minimize)
+model.obj = pe.Objective(expr = sum(model.D[i,j,t] for t in Time for i in FullNodes for j in FullNodes), sense= pe.maximize)
 #define functionality
 for g in Grid.nodes:
     Grid.node[g]['working']=True
@@ -58,24 +58,25 @@ for i in Grid.nodes:
             if 'capacity' in Grid[i][j][0]:
                 Grid[i][j][0]['working']=True
 #Do scenario generation
-for n in Grid.nodes:
-    random = np.random.randint(0,20)
-    if random <=3:
-        Grid.node[n]['working']=False
-for i in Grid.nodes:
-    for j in Grid.nodes:
-        if Grid.has_edge(i,j,0):
-            if 'capacity' in Grid[i][j][0]:
-                random = np.random.randint(0,10)
-                if random <=1:
-                    Grid[i][j][0]['working']=False
+Grid.node[2]['working']=False
+Grid.node[4]['working']=False
+Grid.node[7]['working']=False
+Grid.node[8]['working']=False
+Grid.node[17]['working']=False
+Grid[1][5][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[7][27][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[18][19][0]['working']=False
+Grid[13][11][0]['working']=False
+
 #introduction of absolute value dummy variables for the objective function  
 model.Dummy = pe.ConstraintList()
 for t in Time:
     for a in FullNodes:
         for b in FullNodes:
-            model.Dummy.add(model.D[i,j,t]>=(BaseloadMatrix[i][j] - model.X[i,j,t]))
-            model.Dummy.add(model.D[i,j,t]>=-1*(BaseloadMatrix[i][j] - model.X[i,j,t]))
+            model.Dummy.add(model.D[i,j,t]<=model.X[i,j,t])
+            model.Dummy.add(model.D[i,j,t]>=-1*model.X[i,j,t])
 #define flow balance
 #line limits
 model.con1 = pe.ConstraintList()
@@ -84,8 +85,8 @@ for t in Time:
         for b in FullNodes:
             if Grid.has_edge(a,b):
                 if 'capacity' in Grid[a][b][0]:
-                    model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity'])
-                    model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity'])
+                    model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity']*model.W[a,b,t])
+                    model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity']*model.W[a,b,t])
                 else:
                     model.con1.add(model.X[a,b,t]==0)
             else:
@@ -110,19 +111,6 @@ for t in Time:
     for k in Generators:
         model.con4.add(model.G[k,t] <= Grid.node[k]['production'])
 #define maximum flow
-model.con5 = pe.ConstraintList()
-for t in Time:
-    for i in FullNodes:
-        for j in FullNodes:
-            if Grid.has_edge(i,j,0):
-                if 'capacity' in Grid[i][j][0]:
-                    model.con5.add(model.X[i,j,t]<=Grid[i][j][0]['capacity']*model.W[i,j,t])
-                    model.con5.add(model.X[i,j,t]>=-1*Grid[i][j][0]['capacity']*model.W[i,j,t])
-                else:
-                    model.con5.add(model.X[i,j,t]==0)
-        
-            else:
-                model.con5.add(model.X[i,j,t]==0)
 #scheduling constraint
 model.con6 = pe.ConstraintList()
 for t in Time:
