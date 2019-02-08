@@ -51,24 +51,24 @@ model.DY = pe.Var(FullNodes, FullNodes,Time, domain = pe.Binary)
 model.obj = pe.Objective(expr = sum(model.D[i,j,t] for t in Time for i in FullNodes for j in FullNodes), sense= pe.maximize)
 #define functionality
 for g in Grid.nodes:
-    Grid.node[g]['working']=True
+    Grid.node[g]['working']=1
 for i in Grid.nodes:
     for j in Grid.nodes:
         if Grid.has_edge(i,j,0):
             if 'capacity' in Grid[i][j][0]:
-                Grid[i][j][0]['working']=True
+                Grid[i][j][0]['working']=1
 #Do scenario generation
-Grid.node[2]['working']=False
-Grid.node[4]['working']=False
-Grid.node[7]['working']=False
-Grid.node[8]['working']=False
-Grid.node[17]['working']=False
-Grid[1][5][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[7][27][0]['working']=False
-Grid[14][17][0]['working']=False
-Grid[18][19][0]['working']=False
-Grid[13][11][0]['working']=False
+Grid.node[1]['working']=0
+Grid.node[5]['working']=0
+Grid.node[7]['working']=0
+Grid.node[8]['working']=0
+Grid.node[17]['working']=0
+Grid[1][5][0]['working']=0
+Grid[4][6][0]['working']=0
+Grid[7][27][0]['working']=0
+Grid[14][17][0]['working']=0
+Grid[18][19][0]['working']=0
+Grid[13][11][0]['working']=0
 
 #introduction of absolute value dummy variables for the objective function  
 model.Dummy = pe.ConstraintList()
@@ -88,6 +88,12 @@ for t in Time:
                 if 'capacity' in Grid[a][b][0]:
                     model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity']*model.W[a,b,t])
                     model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity']*model.W[a,b,t])
+                    
+                    model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity']*model.Y[a,t])
+                    model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity']*model.Y[a,t])
+                    
+                    model.con1.add(model.X[a,b,t]<=Grid[a][b][0]['capacity']*model.Y[b,t])
+                    model.con1.add(model.X[a,b,t]>=-1*Grid[a][b][0]['capacity']*model.Y[b,t])
                     model.con1.add(model.X[a,b,t]<=1000*model.W[a,b,t])
                     model.con1.add(model.X[a,b,t]>=-1000*model.W[a,b,t])
                 else:
@@ -126,9 +132,9 @@ for g in Generators:
         model.con4.add(model.G[g,t] <= Grid.node[g]['production'])
 #handle the repair/is working interaction
 model.con8 = pe.ConstraintList()
-for t in Time:
+for t in range(1,len(Time)):
     for n in NormNodes:
-      model.con8.add(model.Y[n,t] <= sum(model.F[n,j] for j in range(0,t-1))+Grid.node[i]['working'] )  
+      model.con8.add(model.Y[n,t] <= sum(model.F[n,j] for j in range(0,t-1))+Grid.node[n]['working'] )  
     for m in FullNodes:
       for n in FullNodes:
        if Grid.has_edge(n,m,0):
@@ -137,5 +143,12 @@ for t in Time:
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)  
-
-
+for a in FullNodes:
+    for b in FullNodes:
+        for t in Time:
+            if model.FE[a,b,t].value != 0:
+                print(['a is ', a, 'b is ', b, 't is ',t,])
+for n in NormNodes:
+    for t in Time:
+        if model.F[n,t].value != 0:
+            print(['n is ', n, 't is ',t,'value is ',model.F[n,t].value])
