@@ -66,4 +66,16 @@ for i in Nodes:
     for t in Time:
         model.Working.add(model.W_n<=sum(model.F_n[i,g] for g in range(0,t-1)))
         for j in Nodes:
-            model.Working.add(model.W_l<=sum(model.F_l[i,j,g] for g in range(0,t-1)))                
+            model.Working.add(model.W_l<=sum(model.F_l[i,j,g] for g in range(0,t-1)))     
+            
+#build shortest path matrix
+SP = np.zeros((len(Nodes),len(Nodes)))
+RoadGrid = nx.Graph()
+RoadGrid.add_nodes_from(Grid.nodes)
+for i in Nodes:
+    for j in Nodes:
+        if Grid.has_edge(i,j,1):
+            RoadGrid.add_edge(i,j,weight = Grid[i][j][1]['length'])
+for i in Nodes:
+    for j in Nodes:        
+        SP[i][j] = nx.shortest_path_length(RoadGrid,source = i,target = j,weight = 'weight')            
