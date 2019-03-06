@@ -147,7 +147,9 @@ def IEEE30():
 #    for i in range(0,len(Grid.nodes)):
 #        if 'gen' in Grid.node[i]['name']:
 #            Grid.add_edge(i, list(Grid.neighbors(i))[0], length = 0, Type="Road")
-    nx.draw(Grid)
+    for i in range(0,Grid.number_of_nodes()):
+        Grid.node[i]['pos']=(Grid.node[i]['xcoord'],Grid.node[i]['ycoord'])
+    nx.draw(Grid, pos = nx.get_node_attributes(Grid,'pos'))
     selected_edges = [(u,v) for u,v,e in Grid.edges(data=True) if e['Type'] == 'Road']
     H = nx.Graph(selected_edges)
     nx.draw(H)
