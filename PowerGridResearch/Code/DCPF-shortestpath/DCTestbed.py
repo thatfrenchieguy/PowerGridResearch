@@ -42,6 +42,7 @@ for e in PowerSub.edges():
     print(e)
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
+nx.set_node_attributes(Grid, {9:False}, 'working')
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
@@ -55,7 +56,7 @@ for i in Nodes:
         for t in Time:
          for k in range(0,len(EdgeTracker)):
             if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-                    model.PAcons.add(model.PowerIJ[k,t] == model.W_l[k,t]*Grid[i][j][0]['Sus']*(model.Theta[i,t]-model.Theta[j,t]))
+                    model.PAcons.add(model.PowerIJ[k,t] == Grid[i][j][0]['Sus']*(model.Theta[i,t]-model.Theta[j,t]))
         model.PAcons.add(model.Theta[i,t]<=3.14)
         model.PAcons.add(model.Theta[j,t]>=0)
 #impose power balance constraints
@@ -85,14 +86,19 @@ for e in Edges:
                 model.LineLoadcons.add(model.PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*model.W_l[e,t])     
                 model.LineLoadcons.add(model.PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*model.W_n[EdgeTracker[e][1][0],t])     
                 model.LineLoadcons.add(model.PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*model.W_n[EdgeTracker[e][1][1],t])
-#model.Working = pe.ConstraintList()
-#for i in Nodes:
-#    model.Working.add(model.W_n[i,0] == Grid.node[i]['working'])
-#    for t in range(1,len(Time)):
-#        model.Working.add(model.W_n[i,t]==Grid.node[i]['working'])
+model.Working = pe.ConstraintList()
+for i in Nodes:
+    model.Working.add(model.W_n[i,0] <= int(Grid.node[i]['working']))
+    for t in range(1,len(Time)):
+        model.Working.add(model.W_n[i,t]<=int(Grid.node[i]['working']))
 #for e in Edges:
 #    for t in Time:
 #        model.Working.add(model.W_l[e,t]==1)
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)   
+
+for i in Nodes:
+    for t in Time:
+        if model.W_n[i,t].value ==0:
+            print([i,t,Grid.node[i]['load']])
