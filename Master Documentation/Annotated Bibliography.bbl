@@ -1,0 +1,102 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{OuyangEA2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=OM}{%
+         family={Ouyang},
+         familyi={O\bibinitperiod},
+         given={Min.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DOL}{%
+         family={Duenas-Osorio},
+         familyi={D\bibinithyphendelim O\bibinitperiod},
+         given={Leonardo},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OMDOL1}
+    \strng{fullhash}{OMDOL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{pages}{15\bibrangedash 24}
+    \field{title}{Multi-dimensional Hurricane Resilience Assessment of Electric
+  Power Systems}
+    \field{volume}{48}
+    \field{journaltitle}{Structural Safety}
+    \field{year}{2014}
+  \endentry
+
+  \entry{YangEA2018}{article}{}
+    \name{author}{6}{}{%
+      {{hash=YX}{%
+         family={Yang.},
+         familyi={Y\bibinitperiod},
+         given={Xian},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li.},
+         familyi={L\bibinitperiod},
+         given={Yong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Cai.},
+         familyi={C\bibinitperiod},
+         given={Ye},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Cao.},
+         familyi={C\bibinitperiod},
+         given={Yijia},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Lee.},
+         familyi={L\bibinitperiod},
+         given={Kwang},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=JZ}{%
+         family={Jia},
+         familyi={J\bibinitperiod},
+         given={Zhijian},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YX+1}
+    \strng{fullhash}{YXLYCYCYLKJZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{pages}{1\bibrangedash 12}
+    \field{title}{Impact of Road-Block on Peak-Load of Coupled Traffic and
+  Energy Transportation Networks}
+    \field{volume}{11}
+    \field{journaltitle}{Energies}
+    \field{year}{2018}
+  \endentry
+\enddatalist
+\endinput
