@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Mon Mar 11 14:57:44 2019
+
+@author: BrianFrench
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Fri Feb 15 15:49:25 2019
 
 @author: BrianFrench
@@ -71,7 +78,7 @@ for i in Nodes:
             for k in range(0,len(EdgeTracker)):
                 if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
                     EdgeStartingStatus[k] = Grid[i][j][0]['working']
-model.obj = pe.Objective(expr = sum((1-model.W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time))
+model.obj = pe.Objective(expr = sum(t*model.F_n[i,t] for i in Nodes for t in Time)+sum(t*model.F_l[e,t] for e in Edges for t in Time))
 
 
 #impose phase angle constraints
@@ -124,11 +131,11 @@ for i in Nodes:
 for e in Edges:
     for t in Time:
         model.Working.add(model.W_l[e,t]<=sum(model.F_l[e,g] for g in range(0,t))+EdgeStartingStatus[e])
-##schedule restriction so that nothing gets double fixed
-#for i in Nodes:
-#    model.Working.add(sum(model.F_n[i,t]for t in Time)<=1)   
-#for e in Edges:
-#    model.Working.add(sum(model.F_l[e,t]for t in Time)<=1)         
+#schedule restriction so that nothing gets double fixed
+for i in Nodes:
+    model.Working.add(sum(model.F_n[i,t]for t in Time)<=1)   
+for e in Edges:
+    model.Working.add(sum(model.F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
 SP = np.zeros(len(Nodes))
 
@@ -145,6 +152,10 @@ for i in Nodes:
 model.Scheduling = pe.ConstraintList()
 for t in Time:
     model.Scheduling.add(sum(model.F_n[i,t]*5+model.F_n[i,t]*SP[i]*2*(1/50) for i in Nodes)+sum(model.F_l[e,t]*1+model.F_l[e,t]*min(SP[EdgeTracker[e][1][0]],SP[EdgeTracker[e][1][1]])*2*(1/50) for e in Edges)<=8)
+#add constraint that requires optimality
+model.Secondary = pe.ConstraintList()
+model.Secondary.add(sum((1-model.W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time)<=885)#actual objective was 876, but this gives a bit of buffer room
+
 
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)

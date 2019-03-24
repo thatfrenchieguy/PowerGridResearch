@@ -88,12 +88,21 @@ for e in Edges:
                 model.LineLoadcons.add(model.PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*model.W_n[EdgeTracker[e][1][1],t])
 model.Working = pe.ConstraintList()
 for i in Nodes:
+<<<<<<< HEAD
     model.Working.add(model.W_n[i,0] <= int(Grid.node[i]['working']))
     for t in range(1,len(Time)):
         model.Working.add(model.W_n[i,t]<=int(Grid.node[i]['working']))
 #for e in Edges:
 #    for t in Time:
 #        model.Working.add(model.W_l[e,t]==1)
+=======
+    model.Working.add(model.W_n[i,0] == Grid.node[i]['working'])
+    for t in range(1,len(Time)):
+        model.Working.add(model.W_n[i,t]==Grid.node[i]['working'])
+for e in Edges:
+    for t in Time:
+        model.Working.add(model.W_l[e,t]==1)
+>>>>>>> 09c18094e76e81e6a4f78dd3561a7bf19ab0ad22
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)   
