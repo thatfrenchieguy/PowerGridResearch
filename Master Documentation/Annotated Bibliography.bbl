@@ -17,6 +17,41 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
+  \entry{GuikemaEA2010}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GS}{%
+         family={Guikema},
+         familyi={G\bibinitperiod},
+         given={Seth.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=QS}{%
+         family={Quiring},
+         familyi={Q\bibinitperiod},
+         given={Steven.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HSR}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Seung-Ryong},
+         giveni={S\bibinithyphendelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GSQSHSR1}
+    \strng{fullhash}{GSQSHSR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{1744\bibrangedash 1752}
+    \field{title}{Prestorm Estimation of Hurricane Damage to Electric Power
+  Distribution Systems}
+    \field{volume}{30}
+    \field{journaltitle}{Risk Analysis}
+    \field{year}{2010}
+  \endentry
+
   \entry{OuyangEA2014}{article}{}
     \name{author}{2}{}{%
       {{hash=OM}{%
@@ -44,6 +79,47 @@
     \field{volume}{48}
     \field{journaltitle}{Structural Safety}
     \field{year}{2014}
+  \endentry
+
+  \entry{WinklerEA2010}{article}{}
+    \name{author}{4}{}{%
+      {{hash=WJ}{%
+         family={Winkler},
+         familyi={W\bibinitperiod},
+         given={James.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DOL}{%
+         family={Duenas-Osorio},
+         familyi={D\bibinithyphendelim O\bibinitperiod},
+         given={Leonardo.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Stein},
+         familyi={S\bibinitperiod},
+         given={Robert.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Subramanian},
+         familyi={S\bibinitperiod},
+         given={Devika},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WJ+1}
+    \strng{fullhash}{WJDOLSRSD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{pages}{323\bibrangedash 336}
+    \field{title}{Performance assessment of topologically diverse power systems
+  subjected to hurricane events}
+    \field{volume}{95}
+    \field{journaltitle}{Reliability Engineering and System Safety}
+    \field{year}{2010}
   \endentry
 
   \entry{YangEA2018}{article}{}
