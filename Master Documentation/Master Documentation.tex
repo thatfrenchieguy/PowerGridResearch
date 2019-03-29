@@ -212,5 +212,48 @@
 		\item This also assumes DC power flow, which is a much more through version of power flow than pipeflow
 		\item note that from constraint 9, once W is working, we can chose whether or not it's engaged
 	\end{itemize}
+\section{Road Models}
+\subsection{Basic Routing Repair}
+		\subsubsection{Glossary}
+	\begin{itemize}
+		\item $C_{ij}$ is a measure of the value of the road to relief supply delivery efforts
+		\item $L_{ij}$ is the length of the road between nodes i and j when everything is working as normal
+		\item $R_{ij}$ is the time to repair the road between i and j
+	\end{itemize}
+	\subsubsection{Variables}
+	\begin{itemize}
+		\item $X_{ij}^t$ is 1 if the road between nodes i and j is working at time t
+		\item $S_{ij}^t$ is the length of the road between i and j at time t. 
+		\item $K_{ij}^t$ is the decision variable that is 1 if j follows i in the tour at time t and 0 else.
+		
+	\end{itemize}
+	\subsubsection{Sets}
+	\begin{itemize}
+		\item T is the set of time over the time horizon
+		\item N is the set of nodes on the graph
+	\end{itemize}
+	\subsubsection{Model}
+	$$	Minimize \sum_{t \in T} 1.02t \sum_{i,j \in N} C_{ij}*(1-X_{ij}^t) $$
+	
+	Subject to:
+	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
+		\item $\sum_{i,j \in N} S_{ij}^t K_{ij}^t \leq 8 \hspace{6pt} \forall t\in T$
+		\item $S_{ij}^t = max(L_{ij},(1-X_{ij}^t)R_{ij}) \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N$
+		\item $\sum_{j \in N} K_{ij}^t - \sum_{j \in N} K_{ji}^t = 0 \hspace{6pt} \forall t\in T \hspace{4pt} \forall i \in N$
+		\item $X_{ij}^t <= \sum_{v=0}^{t-1} K_{ij}^v + starting \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N$
+		\item $\sum_{i,j \in S; i\neq j} X_{ij}^t \leq |S|-1 \hspace{6pt} \forall S \subset N; \hspace{2pt} S \neq \emptyset$
+	\end{enumerate}
+	\subsubsection{Explanation of Constraint Systems}
+	\begin{itemize}
+		\item Constraint 1 is a scheduling constraint so that each tour has to be less than 8 hours of stuff
+		\item Constraint 2 defines the length of a road to be either the travel length if it's working or the repair cost if it hasn't yet
+		\item Constraint 3 is path connectivity for the tour
+		\item Constraint 4 defines the functionality of each road. While it doesn't bind to 1, because there's a penalty for not being 1, it will choose 1 if possible
+		\item Constraint 5 eliminates subtours to ensure a valid tour
+	\end{itemize}
+	\subsubsection{Comments}
+	\begin{itemize}
+		\item 
+	\end{itemize}
 		
 \end{document}
