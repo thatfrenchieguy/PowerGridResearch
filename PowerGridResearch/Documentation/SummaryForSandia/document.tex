@@ -5,6 +5,10 @@
 \usepackage{amsthm}
 \usepackage{enumitem}
 
+\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\bibliography{Sources} 
+
+
 \begin{document}
 	\section{Introduction}
 	Recently disaster response and resilience has been the "hot field" in logistics and planning. There has been a concentrated effort to study several aspects such as power grid islanding (cite 2-3 things), humanitarian supply management (cite 2-3 things), and systems repair (cite 2-3 things). Many of these project miss interactions between the solutions of multiple different infrastructure systems such as the road grid being necessary to move supplies for the power grid's repair. 
@@ -12,5 +16,6 @@
 	
 	\section{Current Model}
 	\section{Roadmap}
+	Currently we're exploring the scheduling of repairs subject to the time cost of having to actually reach the nodes which is one of the largest shortcomings in previous work by \cite{NPSMasters}. Power Grid repairs are strongly dependent on the ability to access power grid elements using the road grid. Taking this into account necessitates analyzing the road grid during the post-hurricane repair phase.
 	\section{Sources}
 \end{document}

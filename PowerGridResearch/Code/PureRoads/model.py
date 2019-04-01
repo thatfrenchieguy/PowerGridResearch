@@ -87,13 +87,15 @@ for i in Nodes:
         model.Con4.add(model.X[i,j,t] == int(RoadGrid[i][j]['working']))
         for t in range(1,PlanningHorizon):
             model.X[i,j,t] <= sum(model.K[i,j,v] for v in range(0,t))+int(RoadGrid[i][j]['working'])
-#DFJ subtour eliminations
-model.Con5 = pe.ConstraintList()
-for s in S:
-    for t in Time:
-        if len(s) >=2:
-            if len(s)<=28:
-                model.Con5.add(sum(model.K[i,j,t] for i in Nodes for j in Nodes)<= len(s)-1)
+#DFJ subtour eliminations--DO NOT USE, WILL RUNTIME WALL/MEMORY ERROR
+#model.Con5 = pe.ConstraintList()
+#for s in S:
+#    for t in Time:
+#        if len(s) >=2:
+#            if len(s)<=28:
+#                model.Con5.add(sum(model.K[i,j,t] for i in Nodes for j in Nodes)<= len(s)-1)
+            
+model.U = pe.Var(Nodes,Time)    
                 
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
