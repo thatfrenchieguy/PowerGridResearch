@@ -17,6 +17,41 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
+  \entry{GolariEA2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GM}{%
+         family={Golari},
+         familyi={G\bibinitperiod},
+         given={Mehdi.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FN}{%
+         family={Fan},
+         familyi={F\bibinitperiod},
+         given={Neng.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Jianhui},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GMFNWJ1}
+    \strng{fullhash}{GMFNWJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{68\bibrangedash 77}
+    \field{title}{Two-stage stochastic optimal islanding operations under
+  severe multiple contingencies in power grids}
+    \field{volume}{114}
+    \field{journaltitle}{Electric Power Systems Research}
+    \field{year}{2014}
+  \endentry
+
   \entry{GuikemaEA2010}{article}{}
     \name{author}{3}{}{%
       {{hash=GS}{%
@@ -79,6 +114,64 @@
     \field{volume}{48}
     \field{journaltitle}{Structural Safety}
     \field{year}{2014}
+  \endentry
+
+  \entry{SalmeronEA2010}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SJ}{%
+         family={Salmeron},
+         familyi={S\bibinitperiod},
+         given={Javier.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Apte},
+         familyi={A\bibinitperiod},
+         given={Aruna},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SJAA1}
+    \strng{fullhash}{SJAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{pages}{561\bibrangedash 574}
+    \field{title}{Stochastic Optimization for Natural Disater Asset
+  Prepositioning}
+    \field{volume}{19}
+    \field{journaltitle}{Production and Operations Management}
+    \field{year}{2010}
+  \endentry
+
+  \entry{SvendsenEA2007}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SN}{%
+         family={Svendsen},
+         familyi={S\bibinitperiod},
+         given={Nils.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wolthusen},
+         familyi={W\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SNWS1}
+    \strng{fullhash}{SNWS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{pages}{44\bibrangedash 55}
+    \field{title}{Connectivity models of interdependency in mixed-type critical
+  infrastructure networks}
+    \field{volume}{12}
+    \field{journaltitle}{Information Secruity Technical Report}
+    \field{year}{2007}
   \endentry
 
   \entry{WinklerEA2010}{article}{}

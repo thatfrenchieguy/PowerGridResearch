@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  25 MAR 2019 14:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  1 APR 2019 15:08
 entering extended mode
 **"./Annotated Bibliography.tex"
 ("Annotated Bibliography.tex"
@@ -518,41 +518,35 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
- [1
+
+Overfull \hbox (53.19516pt too wide) in paragraph at lines 24--26
+\OT1/cmr/m/n/10 built a stochas-tic prepo-si-tion-ing model for clas-si-cal dis
+-as-ter re-sponse (food/shelter/etc) 
+ []
+
+[1
 
 {C:/Users/Brian French/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Citation 'SvendsenEA2007' on page 2 undefined on input line 57.
-
-[2] ("Annotated Bibliography.aux")
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                "Annotated Bibliography"
-(biblatex)                and rerun LaTeX afterwards.
-
+[2] [3] ("Annotated Bibliography.aux")
 Package logreq Info: Writing requests to '"Annotated Bibliography".run.xml'.
 \openout1 = `"Annotated Bibliography.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 9904 strings out of 492970
- 172956 string characters out of 3135832
+ 9911 strings out of 492970
+ 173195 string characters out of 3135832
  432126 words of memory out of 3000000
- 13688 multiletter control sequences out of 15000+200000
- 4899 words of font info for 18 fonts, out of 3000000 for 9000
+ 13696 multiletter control sequences out of 15000+200000
+ 4591 words of font info for 17 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,4n,53p,837b,933s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Annotated Bibliography.pdf" (2 pages, 73116 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "Annotated Bibliography.pdf" (3 pages, 65242 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
+ 28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
