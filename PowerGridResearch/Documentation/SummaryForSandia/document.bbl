@@ -16,5 +16,80 @@
   {}
 \endgroup
 
-\datalist[entry]{nty/global//global/global}\enddatalist
+\datalist[entry]{nty/global//global/global}
+  \entry{DeepjyotiEA2018}{article}{}
+  \endentry
+
+  \entry{NPSMasters}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=ACC}{%
+         family={Ang},
+         familyi={A\bibinitperiod},
+         given={Chee\bibnamedelima Chien},
+         giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ACC1}
+    \strng{fullhash}{ACC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Found online}
+    \field{title}{Optimized Recovery of Damaged Electrial Power Grids}
+    \list{institution}{1}{%
+      {Naval Postgraduate School}%
+    }
+    \field{type}{mathesis}
+    \field{month}{03}
+    \field{year}{2006}
+  \endentry
+
+  \entry{PanteliEA2016}{article}{}
+    \name{author}{4}{}{%
+      {{hash=PM}{%
+         family={{Panteli}},
+         familyi={P\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=TDN}{%
+         family={{Trakas}},
+         familyi={T\bibinitperiod},
+         given={D.\bibnamedelima N.},
+         giveni={D\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={{Mancarella}},
+         familyi={M\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HND}{%
+         family={{Hatziargyriou}},
+         familyi={H\bibinitperiod},
+         given={N.\bibnamedelima D.},
+         giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PM+1}
+    \strng{fullhash}{PMTDNMPHND1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{doi}
+    \verb 10.1109/TSG.2016.2535228
+    \endverb
+    \field{issn}{1949-3053}
+    \field{number}{6}
+    \field{pages}{2913\bibrangedash 2922}
+    \field{title}{Boosting the Power Grid Resilience to Extreme Weather Events
+  Using Defensive Islanding}
+    \field{volume}{7}
+    \field{journaltitle}{IEEE Transactions on Smart Grid}
+    \field{year}{2016}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+\enddatalist
 \endinput

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  1 APR 2019 16:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  8 APR 2019 14:39
 entering extended mode
 **./document.tex
 (document.tex
@@ -261,8 +261,6 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 f"
 File: blx-dm.def 2018/11/02 v3.12 biblatex localization (PK/MW)
 )
-Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'verbose-trad2.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count151
@@ -380,18 +378,12 @@ File: biblatex.def 2018/11/02 v3.12 biblatex compatibility (PK/MW)
 \c@biburllcpenalty=\count290
 \c@smartand=\count291
 )
-Package biblatex Info: Trying to load bibliography style 'verbose-trad2'...
-Package biblatex Info: ... file 'verbose-trad2.bbx' found.
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
 
-("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\bbx\verbo
-se-trad2.bbx"
-File: verbose-trad2.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
-Package biblatex Info: Trying to load bibliography style 'authortitle'...
-Package biblatex Info: ... file 'authortitle.bbx' found.
-
-("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\bbx\autho
-rtitle.bbx"
-File: authortitle.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\bbx\numer
+ic.bbx"
+File: numeric.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
@@ -400,20 +392,24 @@ ard.bbx"
 File: standard.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count292
 \c@bbx:relatedtotal=\count293
-)))
-Package biblatex Info: Trying to load citation style 'verbose-trad2'...
-Package biblatex Info: ... file 'verbose-trad2.cbx' found.
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
 
-("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\cbx\verbo
-se-trad2.cbx"
-File: verbose-trad2.cbx 2018/11/02 v3.12 biblatex citation style (PK/MW)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\cbx\numer
+ic.cbx"
+File: numeric.cbx 2018/11/02 v3.12 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
 Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -434,18 +430,18 @@ File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
  (document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
@@ -508,43 +504,65 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'document.bbl' found.
 
-(document.bbl)
-Package biblatex Info: Reference section=0 on input line 12.
-Package biblatex Info: Reference segment=0 on input line 12.
+(document.bbl
 
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'PanteliEA2016':
+(biblatex)                - Invalid format of field 'month'.
 
-LaTeX Warning: Citation 'NPSMasters' on page 1 undefined on input line 19.
+)
+Package biblatex Info: Reference section=0 on input line 11.
+Package biblatex Info: Reference segment=0 on input line 11.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+LaTeX Font Info:    Try loading font information for U+msa on input line 22.
 
-[1
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 22.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
 
 {C:/Users/Brian French/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(document.aux)
+Overfull \hbox (74.41222pt too wide) in paragraph at lines 67--68
+[]$[] \OML/cmm/m/it/10 C[]F[] \OT1/cmr/m/n/10 + [] \OML/cmm/m/it/10 C[]S[] \OT1
+/cmr/m/n/10 + [] \OML/cmm/m/it/10 F[]C[] \OT1/cmr/m/n/10 + [] \OML/cmm/m/it/10 
+S[] \OMS/cmsy/m/n/10  \OML/cmm/m/it/10 min\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[
+]; C[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
+ []
 
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                document
-(biblatex)                and rerun LaTeX afterwards.
-
+[2] [3] [4] [5] (document.aux)
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 9862 strings out of 492970
- 171978 string characters out of 3135832
- 430080 words of memory out of 3000000
- 13651 multiletter control sequences out of 15000+200000
- 4553 words of font info for 17 fonts, out of 3000000 for 9000
+ 9897 strings out of 492970
+ 172512 string characters out of 3135832
+ 434110 words of memory out of 3000000
+ 13674 multiletter control sequences out of 15000+200000
+ 6857 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,4n,37p,821b,745s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 48i,6n,37p,1101b,1120s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on document.pdf (1 page, 43616 bytes).
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb>
+Output written on document.pdf (5 pages, 129149 bytes).
 PDF statistics:
- 18 PDF objects out of 1000 (max. 8388607)
+ 54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

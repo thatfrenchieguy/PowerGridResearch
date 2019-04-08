@@ -4,18 +4,132 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
-
-\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\usepackage[backend=bibtex]{biblatex}
 \bibliography{Sources} 
 
 
 \begin{document}
 	\section{Introduction}
-	Recently disaster response and resilience has been the "hot field" in logistics and planning. There has been a concentrated effort to study several aspects such as power grid islanding (cite 2-3 things), humanitarian supply management (cite 2-3 things), and systems repair (cite 2-3 things). Many of these project miss interactions between the solutions of multiple different infrastructure systems such as the road grid being necessary to move supplies for the power grid's repair. 
-	\section{Literature}
+	Recently disaster response and resilience has been the "hot field" in humanitarian logistics, inventory planning, and power grid electrical engineering. There has been a concentrated effort to study several aspects such as power grid islanding \cite{PanteliEA2016} \cite{DeepjyotiEA2018}, humanitarian supply management \cite{JiangEA2012} \cite{CaunhyeEA2012}, and systems repair (cite 2-3 things). Many of these project miss interactions between the solutions of multiple different infrastructure systems such as the road grid being necessary to move supplies for the power grid's repair. This is likely due to disaster response being a problem of many actors all acting on their own share of the problem with little consideration for the bigger picture\cite{VerasEA2012} . Solving the full case of dozens of actors all with different sets of information and different problem would be completely unmanageable, so we simplify it for the time being to a power utility and a road grid actor each trying to repair their piece of the infrastructure.
 	
 	\section{Current Model}
+	\subsection{Power Grid}
+	Summary: Find a set of power grid elements (busses and lines) to repair in each 8 hour shift of work that minimizes total load shed over time. This is subject to the operation of a grid using DC-approximation to power flow and the ability to find a path for the repair crew to reach everything. For now inclusion of proper routing would complicate the problem to a degree where even simple cases would be hard to set up, so routing is approximated using shortest paths right now since that provides an maximal bound on the length of the path a repair crew would take. 
+	
+	\subsection{DC Power Flow/Shortest Path "Routing"}	
+	\subsubsection{Glossary}
+	\begin{itemize}
+		\item $C_{lineE}$ is the capacity limit for the power line E
+		\item $C_{RepairTimeI}$ is the time to repair node I
+		\item $C_{RepairTimeE}$ is the time to repair line E
+		\item $C_{SP(i)}$ is the shortest path to node i from the central depot
+		\item $C_{broken}$ is a coefficient of "broken-ness" representing the average slowdown from debris on the road and minor flooding
+		\item $C_{demandI}$ is the power demand at location I in the pre-disaster steady state
+		\item $C_{GeneratorCapacityK}$ is the maximum power generation for generator K
+		\item $B_e$ is the line susceptance (imaginary part of admittance, also inverse of resistance) for power line e
+	\end{itemize}
+	\subsubsection{Variables}
+	\begin{itemize}
+		
+		\item $X_{e}^{t}$ is the flow on line e at time t
+		\item $G_{k}^t$ is the production from generator k at time t
+		\item $V_i^t$ is 1 if node i is functioning at time t
+		\item $W_{e}^t$ is 1 if line e is functioning at time t
+		\item $S_{e}^t$ is 1 if line e is serviced at time t
+		\item $F_i^t$ is 1 is node i is serviced at time t 
+		\item $\theta_i^t$ is the phase angle for the power flow at i in time t
+		
+	\end{itemize}
+	\subsubsection{Sets}
+	\begin{itemize}
+		\item N is the set of nodes
+		\item E is the set of power lines
+		\item R is the set of roads
+		\item T is the planning horizon
+		\item o(i) is the set of lines with origin i
+		\item d(i) is the set of lines with destination i
+		\item o(e) is the origin node of line e
+		\item d(e) is the destination node of line e
+	\end{itemize}
+	\subsubsection{Model}
+	$$	Minimize \sum_{i \in N} \sum_{t \in T} (1-W_i^t)*C_{demand\_i} $$
+	
+	Subject to:
+	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
+		
+		\item $ X_e^t = B_e * (\theta_{origin}^t - \theta_{destination}^t) \forall t \in T \hspace{4pt} \forall e \in E$
+		\item $ G_i^t - \sum_{l\|o(l)=i} X_l^t + \sum_{l\|d(l)=i} X_l^t = C_{demand\_i} \hspace{4pt} \forall t \in T \hspace{4pt} \forall i \in N$
+		\item $G_k^t \leq C_{GeneratorCapacityK} V_{k}^t \hspace{4pt} \forall t\in T \hspace{4pt} \forall k \in N$
+		\item $-C_{line\_e}W_{e}^t \leq X_{e}^t \leq C_{line\_e}W_{e}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall e \in E$
+		\item $-C_{line\_e}V_{o(e)}^t \leq X_{e}^t \leq C_{line\_e}V_{o(e)}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall e \in E$
+		\item $-C_{line\_e}V_{d(e)}^t \leq X_{e}^t \leq C_{line\_e}V_{d(e)}^t \hspace{4pt} \forall t \in T \hspace{4pt} \forall e \in E$
+		
+		\item $\sum_{i \in L} C_{RepairTimeI} F_{i}^t +\sum_{e \in E} C_{RepairTime\_e} S_{e}^t + \sum_{i \in L} F_i^t C_{SP(i)} + \sum_{e \in E} S_{e}^t * min(C_{SP(o(e))},C_{SP(d(e))}) \leq 8 \hspace{4pt} \forall t \in T \hspace{4pt}$
+		\item $V_i^t \leq \sum_{0}^{t-1} F_i^t+initial \hspace{4pt} \forall i \in L$ 
+		\item $W_{e}^t \leq \sum_{0}^{t-1} S_{e}^t+initial \hspace{4pt} \forall e \in E $
+	\end{enumerate}
+	\subsubsection{Explanation of Constraint Systems}
+	\begin{itemize}
+		\item Constraint (1) defines flow based on line limits and line susceptance as per Salmeron, Ross, and Baldick 2004
+		\item Constraint (2) defines node power balance so that inflow has to match outflow at each node.
+		\item Constraint (3) constrains power generation to be in the realm of feasible production conditional on the relevant node being operational
+		\item Constraints (4)-(6) constrains line flow to be inside line capacity conditional on the relevant elements being operational
+		\item Constraint (7) constrains/decides what gets done during a shift and handles shortest path travel time.
+		\item Constraints (8) and (9) handle defining operations
+	\end{itemize}
+	\subsubsection{Comments}
+	\begin{itemize}
+		\item The assumption in this version of the model is that a vehicle can only do one operation per trip, so routing reduces to shortest path
+		\item This also assumes DC power flow, which is a much more through version of power flow than pipeflow
+		\item note that from constraint 9, once W is working, we can chose whether or not it's engaged
+	\end{itemize}
+	\subsection{Road Grid}
+	Summary: Find a tour at each time step that corresponds to less than 8 hours of things to do in a way that minimizes the cost of damaged roads. Cost is for now just the length of the road, but it's trivial to change the valuation of roads to their utility to a humanitarian response agency.
+	\subsection{Basic Routing Repair}
+	\subsubsection{Glossary}
+	\begin{itemize}
+		\item $C_{ij}$ is a measure of the value of the road to relief supply delivery efforts
+		\item $L_{ij}$ is the length of the road between nodes i and j when everything is working as normal
+		\item $R_{ij}$ is the time to repair the road between i and j
+	\end{itemize}
+	\subsubsection{Variables}
+	\begin{itemize}
+		\item $X_{ij}^t$ is 1 if the road between nodes i and j is working at time t
+		\item $S_{ij}^t$ is the length of the road between i and j at time t. 
+		\item $K_{ij}^t$ is the decision variable that is 1 if j follows i in the tour at time t and 0 else.
+		
+	\end{itemize}
+	\subsubsection{Sets}
+	\begin{itemize}
+		\item T is the set of time over the time horizon
+		\item N is the set of nodes on the graph
+	\end{itemize}
+	\subsubsection{Model}
+	$$	Minimize \sum_{t \in T} 1.02t \sum_{i,j \in N} C_{ij}*(1-X_{ij}^t) $$
+	
+	Subject to:
+	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
+		\item $\sum_{i,j \in N} S_{ij}^t K_{ij}^t \leq 8 \hspace{6pt} \forall t\in T$
+		\item $S_{ij}^t = max(L_{ij},(1-X_{ij}^t)R_{ij}) \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N$
+		\item $\sum_{j \in N} K_{ij}^t - \sum_{j \in N} K_{ji}^t = 0 \hspace{6pt} \forall t\in T \hspace{4pt} \forall i \in N$
+		\item $X_{ij}^t <= \sum_{v=0}^{t-1} K_{ij}^v + starting \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N$
+		\item $\sum_{i,j \in S; i\neq j} X_{ij}^t \leq |S|-1 \hspace{6pt} \forall S \subset N; \hspace{2pt} S \neq \emptyset$
+	\end{enumerate}
+	\subsubsection{Explanation of Constraint Systems}
+	\begin{itemize}
+		\item Constraint 1 is a scheduling constraint so that each tour has to be less than 8 hours of stuff
+		\item Constraint 2 defines the length of a road to be either the travel length if it's working or the repair cost if it hasn't yet
+		\item Constraint 3 is path connectivity for the tour
+		\item Constraint 4 defines the functionality of each road. While it doesn't bind to 1, because there's a penalty for not being 1, it will choose 1 if possible
+		\item Constraint 5 eliminates subtours to ensure a valid tour
+	\end{itemize}
+
 	\section{Roadmap}
-	Currently we're exploring the scheduling of repairs subject to the time cost of having to actually reach the nodes which is one of the largest shortcomings in previous work by \cite{NPSMasters}. Power Grid repairs are strongly dependent on the ability to access power grid elements using the road grid. Taking this into account necessitates analyzing the road grid during the post-hurricane repair phase.
+	Currently we're exploring the scheduling of repairs subject to the time cost of having to actually reach the nodes which is one of the largest shortcomings in previous work by Ang\cite{NPSMasters}. Power Grid repairs are strongly dependent on the ability to access power grid elements using the road grid. Taking this into account necessitates analyzing the road grid during the post-hurricane repair phase.
+	
+
+	The current goal is to look at what each actor (road grid repair agency and power grid repair agency) would do in a vacuum, then looking at their iterated and joint solutions. The logical next step is to treat the road grid repair as the first mover for generating their solution. This solution can now be used when solving power grid to handle how the actual routing decisions would lead to shorter driving distances when moving between grid elements.
+	
+	To get there, both models will need to be adapted to "real" infrastructure elements since they're currently being developed on IEEE Bus 30 that's been overlaid with a Watts-Newman-Strogatz graph to use as a "road grid". 
 	\section{Sources}
 \end{document}
