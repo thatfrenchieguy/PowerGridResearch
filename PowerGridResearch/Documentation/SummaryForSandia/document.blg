@@ -2,10 +2,4 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: document.aux
 The style file: biblatex.bst
 Database file #1: document-blx.bib
 Database file #2: Sources.bib
-I was expecting a `,' or a `}'---line 78 of file Sources.bib
- : 
- : author={Deka,Deepjyoti and ,Sriram V. and Baldick,Ross},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Biblatex version: 3.11
-(There was 1 error message)

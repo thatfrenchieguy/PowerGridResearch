@@ -17,7 +17,54 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
-  \entry{DeepjyotiEA2018}{article}{}
+  \entry{AksuEA2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ADT}{%
+         family={Aksu},
+         familyi={A\bibinitperiod},
+         given={Dilek\bibnamedelima Tuzun},
+         giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=OL}{%
+         family={Ozdamar},
+         familyi={O\bibinitperiod},
+         given={Linet},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \keyw{Post-disaster relief and recovery, Road restoration, Network
+  accessibility, Scheduling, Resource constraints}
+    \strng{namehash}{ADTOL1}
+    \strng{fullhash}{ADTOL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    This paper focuses on the planning of road restoration efforts during
+  disaster response and recovery. The primary objective is to maximize network
+  accessibility for all locations in the area during the restoration process so
+  that survivors are evacuated and road side debris is removed as soon as
+  possible. We propose a dynamic path based mathematical model that identifies
+  criticality of blockages and clears them with limited resources. This model
+  is more efficient than link based models and can solve restoration problems
+  for realistic size networks within reasonable time. Algorithm performance is
+  demonstrated using two instances based on districts in Istanbul.%
+    }
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.tre.2013.10.009
+    \endverb
+    \field{issn}{1366-5545}
+    \field{pages}{56 \bibrangedash  67}
+    \field{title}{A mathematical model for post-disaster road restoration:
+  Enabling accessibility and evacuation}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S1366554513001762
+    \endverb
+    \field{volume}{61}
+    \field{journaltitle}{Transportation Research Part E: Logistics and
+  Transportation Review}
+    \field{year}{2014}
   \endentry
 
   \entry{NPSMasters}{thesis}{}
@@ -43,6 +90,231 @@
     \field{type}{mathesis}
     \field{month}{03}
     \field{year}{2006}
+  \endentry
+
+  \entry{CaunhyeEA2012}{article}{}
+    \name{author}{3}{}{%
+      {{hash=CAM}{%
+         family={Caunhye},
+         familyi={C\bibinitperiod},
+         given={Aakil\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=NX}{%
+         family={Nie},
+         familyi={N\bibinitperiod},
+         given={Xiaofeng},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Pokharel},
+         familyi={P\bibinitperiod},
+         given={Shaligram},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Emergency logistics, Optimization, Modeling, Operations}
+    \strng{namehash}{CAMNXPS1}
+    \strng{fullhash}{CAMNXPS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    Optimization modeling has become a powerful tool to tackle emergency
+  logistics problems since its first adoption in maritime disaster situations
+  in the 1970s. Using techniques of content analysis, this paper reviews
+  optimization models utilized in emergency logistics. Disaster operations can
+  be performed before or after disaster occurrence. Short-notice evacuation,
+  facility location, and stock pre-positioning are drafted as the main
+  pre-disaster operations, while relief distribution and casualty
+  transportation are categorized as post-disaster operations. According to
+  these operations, works in the literature are broken down into three parts:
+  facility location, relief distribution and casualty transportation, and other
+  operations. For the first two parts, the literature is structured and
+  analyzed based on the model types, decisions, objectives, and constraints.
+  Finally, through the content analysis framework, several research gaps are
+  identified and future research directions are proposed.%
+    }
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.seps.2011.04.004
+    \endverb
+    \field{issn}{0038-0121}
+    \field{note}{Special Issue: Disaster Planning and Logistics: Part 1}
+    \field{number}{1}
+    \field{pages}{4 \bibrangedash  13}
+    \field{title}{Optimization models in emergency logistics: A literature
+  review}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0038012111000176
+    \endverb
+    \field{volume}{46}
+    \field{journaltitle}{Socio-Economic Planning Sciences}
+    \field{year}{2012}
+  \endentry
+
+  \entry{DeepjyotiEA2018}{article}{}
+    \name{author}{3}{}{%
+      {{hash=DD}{%
+         family={Deka},
+         familyi={D\bibinitperiod},
+         given={Deepjyoti},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SV}{%
+         given={Sriram\bibnamedelima V.},
+         giveni={S\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Baldick},
+         familyi={B\bibinitperiod},
+         given={Ross},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {English}%
+    }
+    \keyw{Sciences: Comprehensive Works; Eigenvalues; Natural disasters;
+  Network resilience; Network analysis; Random graphs; Algorithms; Singular
+  value decomposition; Eigenvectors; Earthquakes; Hurricanes; Failure;
+  Statistical mechanics; Flood damage; Combinatorial analysis; Communication;
+  Electricity distribution; Structural damage; Computer simulation;
+  Mathematical programming; Propagation; Growth models; Seismic activity;
+  Physics; Wind power; Electricity; Neural networks; Earthquake damage;
+  Computer engineering; Connectivity; Infrastructure; Storm damage; United
+  States--US}
+    \strng{namehash}{DDSVBR1}
+    \strng{fullhash}{DDSVBR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    Natural disasters like hurricanes, floods or earthquakes can damage power
+  grid devices and create cascading blackouts and islands. The nature of
+  failure propagation and extent of damage, among other factors, is dependent
+  on the structural features of the grid, that are distinct from that of random
+  networks. This paper analyzes the structural vulnerability of real power
+  grids to impending disasters and presents intuitive graphical metrics to
+  quantify the extent of topological damage. We develop two improved graph
+  eigen-value based bounds on the grid vulnerability. Further we study
+  adversarial attacks aimed at weakening the grid’s structural robustness and
+  present three combinatorial algorithms to determine the optimal topological
+  attack. Simulations on power grid networks and comparison with existing work
+  show the improvements of the proposed measures and attack schemes.%
+    }
+    \field{note}{Name - University of Texas; Copyright - © 2018 Deka et al.
+  This is an open access article distributed under the terms of the Creative
+  Commons Attribution License: http://creativecommons.org/licenses/by/4.0/ (the
+  “License”), which permits unrestricted use, distribution, and
+  reproduction in any medium, provided the original author and source are
+  credited. Notwithstanding the ProQuest Terms and Conditions, you may use this
+  content in accordance with the terms of the License; Last updated -
+  2018-10-15; SubjectsTermNotLitGenreText - United States--US}
+    \field{number}{10}
+    \field{title}{Topological vulnerability of power grids to disasters:
+  Bounds, adversarial attacks and reinforcement}
+    \verb{url}
+    \verb http://ezproxy.lib.utexas.edu/login?url=https://search-proquest-com.e
+    \verb zproxy.lib.utexas.edu/docview/2118789807?accountid=7118
+    \endverb
+    \field{volume}{13}
+    \field{journaltitle}{PLoS One}
+    \field{month}{10}
+    \field{year}{2018}
+  \endentry
+
+  \entry{VerasEA2012}{article}{}
+    \name{author}{5}{}{%
+      {{hash=HVJ}{%
+         family={Holguin-Veras},
+         familyi={H\bibinithyphendelim V\bibinitperiod},
+         given={Jose.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jaller},
+         familyi={J\bibinitperiod},
+         given={Miguel.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=VWL}{%
+         family={Van\bibnamedelima Wassenhove},
+         familyi={V\bibinitperiod\bibinitdelim W\bibinitperiod},
+         given={Luk.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=PN}{%
+         family={Perez},
+         familyi={P\bibinitperiod},
+         given={Noel.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=WT}{%
+         family={Wachtendorf},
+         familyi={W\bibinitperiod},
+         given={Tricia},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HVJ+1}
+    \strng{fullhash}{HVJJMVWLPNWT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{pages}{494\bibrangedash 506}
+    \field{title}{On the unique features of post-disaster humanitarian
+  logistics}
+    \field{volume}{30}
+    \field{journaltitle}{Jounral of Operations Management}
+    \field{year}{2012}
+  \endentry
+
+  \entry{JiangEA2012}{article}{}
+    \name{author}{4}{}{%
+      {{hash=JY}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Yiping},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yuan},
+         familyi={Y\bibinitperiod},
+         given={Yufei},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HK}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Kai},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Lindu},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JY+1}
+    \strng{fullhash}{JYYYHKZL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{doi}
+    \verb 10.1109/HICSS.2012.418
+    \endverb
+    \field{pages}{1277\bibrangedash 1285}
+    \field{title}{Logistics for Large-Scale Disaster Response: Achievements and
+  Challenges}
+    \field{journaltitle}{45th Hawaii International Conference on System Science
+  (HICSS}
+    \field{month}{01}
+    \field{year}{2012}
   \endentry
 
   \entry{PanteliEA2016}{article}{}

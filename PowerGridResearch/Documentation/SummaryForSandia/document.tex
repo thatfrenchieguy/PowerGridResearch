@@ -10,7 +10,7 @@
 
 \begin{document}
 	\section{Introduction}
-	Recently disaster response and resilience has been the "hot field" in humanitarian logistics, inventory planning, and power grid electrical engineering. There has been a concentrated effort to study several aspects such as power grid islanding \cite{PanteliEA2016} \cite{DeepjyotiEA2018}, humanitarian supply management \cite{JiangEA2012} \cite{CaunhyeEA2012}, and systems repair (cite 2-3 things). Many of these project miss interactions between the solutions of multiple different infrastructure systems such as the road grid being necessary to move supplies for the power grid's repair. This is likely due to disaster response being a problem of many actors all acting on their own share of the problem with little consideration for the bigger picture\cite{VerasEA2012} . Solving the full case of dozens of actors all with different sets of information and different problem would be completely unmanageable, so we simplify it for the time being to a power utility and a road grid actor each trying to repair their piece of the infrastructure.
+	Recently disaster response and resilience has been the "hot field" in humanitarian logistics, inventory planning, and power grid electrical engineering. There has been a concentrated effort to study several aspects such as power grid islanding \cite{PanteliEA2016} \cite{DeepjyotiEA2018}, humanitarian supply management \cite{JiangEA2012} \cite{CaunhyeEA2012}, and infrastructure repair\cite{AksuEA2014}. Many of these project miss interactions between the solutions of multiple different infrastructure systems such as the road grid being necessary to move supplies for the power grid's repair. This is likely due to disaster response being a problem of many actors all acting on their own share of the problem with little consideration for the bigger picture\cite{VerasEA2012} . Solving the full case of dozens of actors all with different sets of information and problems under consideration would be completely unmanageable, so we simplify it for the time being to a power utility and a road grid actor each trying to repair their piece of the infrastructure.
 	
 	\section{Current Model}
 	\subsection{Power Grid}
@@ -80,11 +80,11 @@
 	\subsubsection{Comments}
 	\begin{itemize}
 		\item The assumption in this version of the model is that a vehicle can only do one operation per trip, so routing reduces to shortest path
-		\item This also assumes DC power flow, which is a much more through version of power flow than pipeflow
-		\item note that from constraint 9, once W is working, we can chose whether or not it's engaged
+		\item This also assumes DC power flow, which is a much more through version of power flow than pipeflow-style models
+		\item note that from constraint 9, once an element is working, we can chose whether or not it's engaged or turned off to allow load to be shed
 	\end{itemize}
 	\subsection{Road Grid}
-	Summary: Find a tour at each time step that corresponds to less than 8 hours of things to do in a way that minimizes the cost of damaged roads. Cost is for now just the length of the road, but it's trivial to change the valuation of roads to their utility to a humanitarian response agency.
+	Summary: Find a tour at each time step that corresponds to less than 8 hours of things to do in a way that minimizes the cost of damaged roads. Cost is for now just the length of the road, but it's trivial to change the valuation of roads to their utility to a humanitarian response agency or another similar criterion.
 	\subsection{Basic Routing Repair}
 	\subsubsection{Glossary}
 	\begin{itemize}
@@ -128,8 +128,11 @@
 	Currently we're exploring the scheduling of repairs subject to the time cost of having to actually reach the nodes which is one of the largest shortcomings in previous work by Ang\cite{NPSMasters}. Power Grid repairs are strongly dependent on the ability to access power grid elements using the road grid. Taking this into account necessitates analyzing the road grid during the post-hurricane repair phase.
 	
 
-	The current goal is to look at what each actor (road grid repair agency and power grid repair agency) would do in a vacuum, then looking at their iterated and joint solutions. The logical next step is to treat the road grid repair as the first mover for generating their solution. This solution can now be used when solving power grid to handle how the actual routing decisions would lead to shorter driving distances when moving between grid elements.
+	The current goal is to look at what each actor (road grid repair agency and power grid repair agency) would do in a vacuum, then looking at their iterated and joint solutions. The first step is to treat the road grid repair as the first person to decide when generating their solution. This schedule of road repairs can now be used when solving power grid to handle how the actual routing decisions would lead to shorter driving distances when moving between grid elements. Since both models are built around having discrete time steps, the combined problem can be solved with a single integer program, which would be analogous to both actors working together to find a schedule set that compromises on both objectives.
 	
-	To get there, both models will need to be adapted to "real" infrastructure elements since they're currently being developed on IEEE Bus 30 that's been overlaid with a Watts-Newman-Strogatz graph to use as a "road grid". 
+	To reach a more complete state, both models will need to be adapted to "real" infrastructure elements since they're currently being developed on IEEE Bus 30 that's been overlaid with a Watts-Newman-Strogatz graph to use as a "road grid". Road data is publicly available, however power network data is considered Protected Critical Infrastructure Information (PCII) making it unavailable. ACTIVS 2000 is an statistically identical, though modified version of the Texas power grid, so it can be substituted in without substantial loss of utility.
+	
+	Later interesting extensions could include incomplete information to allow for discovery of the condition of elements during the recovery process, resource limitations when it comes to repair, and incorporating multiple instances of the recovery problem to formulate an inventory prepositioning problem for repair supplies.
 	\section{Sources}
+	\printbibliography
 \end{document}
