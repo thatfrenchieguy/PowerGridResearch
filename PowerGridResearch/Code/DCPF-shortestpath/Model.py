@@ -45,7 +45,27 @@ for i in Nodes:
     for j in Nodes:
         if Grid.has_edge(i,j,0):
             Grid[i][j][0]['working']=True
-            
+##artblock
+x  = nx.get_node_attributes(Grid,('xcoord'))
+y = nx.get_node_attributes(Grid,'ycoord')
+pos=[]
+power = []
+road = []
+for i in x:
+    pos.append((x[i],y[i]))
+for e in Grid.edges:
+    if e[2]==0:
+        power.append(e)
+    if e[2]==1:
+        road.append(e)
+        
+nx.draw_networkx_nodes(Grid, pos)
+nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
+nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .7)
+
+plt.axis('off')
+plt.show()
+#######            
 ###SCENARIO OF BROKEN THINGS###
 Grid.node[6]['working']=False
 Grid.node[27]['working']=False
@@ -149,20 +169,19 @@ for t in Time:
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)    
-
-for i in Nodes:
-    for t in Time:
+for t in Time:
+    for i in Nodes:
         if model.W_n[i,t].value <1:
-            print(["time",t,"node",i])
-for e in Edges:
-    for t in Time:
+            print(["Wtime",t,"node",i])
+for t in Time:
+    for e in Edges:
         if model.W_l[e,t].value <1:
-            print(["time",t,"edge",e])
+            print(["Wtime",t,"edge",e])
 for t in Time:
     for i in Nodes:
         if model.F_n[i,t].value==1:
-            print(['time',t,"node",i])
+            print(['Ftime',t,"node",i])
     for e in Edges:
         if model.F_l[e,t].value==1:
-            print(['time',t,"edge",e])
+            print(['Ftime',t,"edge",e])
     

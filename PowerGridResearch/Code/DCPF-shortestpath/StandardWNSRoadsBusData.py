@@ -135,5 +135,5 @@ Grid.add_edge(5,27,key=0, capacity = int(32), Type = "Power", Sus = float(15.46)
 nx.draw(Grid)
 selected_edges = [(u,v) for u,v,e in Grid.edges(data=True) if e['Type'] == 'Road']
 H = nx.Graph(selected_edges)
-nx.draw(H)
+#nx.draw(H)
 #nx.write_gml(Grid, "Bus30WithData.gml")

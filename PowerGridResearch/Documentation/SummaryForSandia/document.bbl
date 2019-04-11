@@ -32,25 +32,12 @@
          giveni={L\bibinitperiod},
       }}%
     }
-    \keyw{Post-disaster relief and recovery, Road restoration, Network
-  accessibility, Scheduling, Resource constraints}
     \strng{namehash}{ADTOL1}
     \strng{fullhash}{ADTOL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{sortinit}{A}
     \field{sortinithash}{A}
-    \field{abstract}{%
-    This paper focuses on the planning of road restoration efforts during
-  disaster response and recovery. The primary objective is to maximize network
-  accessibility for all locations in the area during the restoration process so
-  that survivors are evacuated and road side debris is removed as soon as
-  possible. We propose a dynamic path based mathematical model that identifies
-  criticality of blockages and clears them with limited resources. This model
-  is more efficient than link based models and can solve restoration problems
-  for realistic size networks within reasonable time. Algorithm performance is
-  demonstrated using two instances based on districts in Istanbul.%
-    }
     \verb{doi}
     \verb https://doi.org/10.1016/j.tre.2013.10.009
     \endverb
@@ -113,29 +100,12 @@
          giveni={S\bibinitperiod},
       }}%
     }
-    \keyw{Emergency logistics, Optimization, Modeling, Operations}
     \strng{namehash}{CAMNXPS1}
     \strng{fullhash}{CAMNXPS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{sortinit}{C}
     \field{sortinithash}{C}
-    \field{abstract}{%
-    Optimization modeling has become a powerful tool to tackle emergency
-  logistics problems since its first adoption in maritime disaster situations
-  in the 1970s. Using techniques of content analysis, this paper reviews
-  optimization models utilized in emergency logistics. Disaster operations can
-  be performed before or after disaster occurrence. Short-notice evacuation,
-  facility location, and stock pre-positioning are drafted as the main
-  pre-disaster operations, while relief distribution and casualty
-  transportation are categorized as post-disaster operations. According to
-  these operations, works in the literature are broken down into three parts:
-  facility location, relief distribution and casualty transportation, and other
-  operations. For the first two parts, the literature is structured and
-  analyzed based on the model types, decisions, objectives, and constraints.
-  Finally, through the content analysis framework, several research gaps are
-  identified and future research directions are proposed.%
-    }
     \verb{doi}
     \verb https://doi.org/10.1016/j.seps.2011.04.004
     \endverb
@@ -175,43 +145,12 @@
     \list{language}{1}{%
       {English}%
     }
-    \keyw{Sciences: Comprehensive Works; Eigenvalues; Natural disasters;
-  Network resilience; Network analysis; Random graphs; Algorithms; Singular
-  value decomposition; Eigenvectors; Earthquakes; Hurricanes; Failure;
-  Statistical mechanics; Flood damage; Combinatorial analysis; Communication;
-  Electricity distribution; Structural damage; Computer simulation;
-  Mathematical programming; Propagation; Growth models; Seismic activity;
-  Physics; Wind power; Electricity; Neural networks; Earthquake damage;
-  Computer engineering; Connectivity; Infrastructure; Storm damage; United
-  States--US}
     \strng{namehash}{DDSVBR1}
     \strng{fullhash}{DDSVBR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{sortinit}{D}
     \field{sortinithash}{D}
-    \field{abstract}{%
-    Natural disasters like hurricanes, floods or earthquakes can damage power
-  grid devices and create cascading blackouts and islands. The nature of
-  failure propagation and extent of damage, among other factors, is dependent
-  on the structural features of the grid, that are distinct from that of random
-  networks. This paper analyzes the structural vulnerability of real power
-  grids to impending disasters and presents intuitive graphical metrics to
-  quantify the extent of topological damage. We develop two improved graph
-  eigen-value based bounds on the grid vulnerability. Further we study
-  adversarial attacks aimed at weakening the grid’s structural robustness and
-  present three combinatorial algorithms to determine the optimal topological
-  attack. Simulations on power grid networks and comparison with existing work
-  show the improvements of the proposed measures and attack schemes.%
-    }
-    \field{note}{Name - University of Texas; Copyright - © 2018 Deka et al.
-  This is an open access article distributed under the terms of the Creative
-  Commons Attribution License: http://creativecommons.org/licenses/by/4.0/ (the
-  “License”), which permits unrestricted use, distribution, and
-  reproduction in any medium, provided the original author and source are
-  credited. Notwithstanding the ProQuest Terms and Conditions, you may use this
-  content in accordance with the terms of the License; Last updated -
-  2018-10-15; SubjectsTermNotLitGenreText - United States--US}
     \field{number}{10}
     \field{title}{Topological vulnerability of power grids to disasters:
   Bounds, adversarial attacks and reinforcement}
@@ -223,6 +162,41 @@
     \field{journaltitle}{PLoS One}
     \field{month}{10}
     \field{year}{2018}
+  \endentry
+
+  \entry{GuikemaEA2010}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GS}{%
+         family={Guikema},
+         familyi={G\bibinitperiod},
+         given={Seth.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=QS}{%
+         family={Quiring},
+         familyi={Q\bibinitperiod},
+         given={Steven.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HSR}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Seung-Ryong},
+         giveni={S\bibinithyphendelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GSQSHSR1}
+    \strng{fullhash}{GSQSHSR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{1744\bibrangedash 1752}
+    \field{title}{Prestorm Estimation of Hurricane Damage to Electric Power
+  Distribution Systems}
+    \field{volume}{30}
+    \field{journaltitle}{Risk Analysis}
+    \field{year}{2010}
   \endentry
 
   \entry{VerasEA2012}{article}{}
@@ -317,6 +291,81 @@
     \field{year}{2012}
   \endentry
 
+  \entry{NewmanEA2001}{article}{}
+    \name{author}{3}{}{%
+      {{hash=NM}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Watts},
+         familyi={W\bibinitperiod},
+         given={Duncan.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Strogaatz},
+         familyi={S\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NMWDSS1}
+    \strng{fullhash}{NMWDSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{pages}{1\bibrangedash 17}
+    \field{title}{Random Graphs with arbitrary degree distributions and their
+  applications}
+    \field{volume}{64}
+    \field{journaltitle}{Physical Review E}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Newman2000}{article}{}
+    \name{author}{1}{}{%
+      {{hash=NMEJ}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={M.\bibnamedelima E.\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim
+  J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NMEJ1}
+    \strng{fullhash}{NMEJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{abstract}{%
+    It is believed that almost any pair of people in the world can be connected
+  to one another by a short chain of intermediate acquaintances, of typical
+  length about six. This phenomenon, colloquially referred to as the ``six
+  degrees of separation,'' has been the subject of considerable recent interest
+  within the physics community. This paper provides a short review of the
+  topic.%
+    }
+    \verb{doi}
+    \verb 10.1023/A:1026485807148
+    \endverb
+    \field{issn}{1572-9613}
+    \field{number}{3}
+    \field{pages}{819\bibrangedash 841}
+    \field{title}{Models of the Small World}
+    \verb{url}
+    \verb https://doi.org/10.1023/A:1026485807148
+    \endverb
+    \field{volume}{101}
+    \field{journaltitle}{Journal of Statistical Physics}
+    \field{year}{2000}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{PanteliEA2016}{article}{}
     \name{author}{4}{}{%
       {{hash=PM}{%
@@ -362,6 +411,80 @@
     \field{journaltitle}{IEEE Transactions on Smart Grid}
     \field{year}{2016}
     \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{SalmeronEA2004}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SJ}{%
+         family={{Salmeron}},
+         familyi={S\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WK}{%
+         family={{Wood}},
+         familyi={W\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={{Baldick}},
+         familyi={B\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{terrorism;power system security;mathematical analysis;power system
+  protection;power system reliability;electric grid security;terrorist
+  threat;standard reliability test network;homeland security;Terrorism;Power
+  system security;Power system modeling;Power system reliability;Power
+  grids;Power generation;Costs;Power systems;Mathematical model;Power
+  transmission lines}
+    \strng{namehash}{SJWKBR1}
+    \strng{fullhash}{SJWKBR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1109/TPWRS.2004.825888
+    \endverb
+    \field{issn}{0885-8950}
+    \field{number}{2}
+    \field{pages}{905\bibrangedash 912}
+    \field{title}{Analysis of electric grid security under terrorist threat}
+    \field{volume}{19}
+    \field{journaltitle}{IEEE Transactions on Power Systems}
+    \field{year}{2004}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{WattsEA1998}{article}{}
+    \name{author}{2}{}{%
+      {{hash=WD}{%
+         family={Watts},
+         familyi={W\bibinitperiod},
+         given={Duncan.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Strogaatz},
+         familyi={S\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WDSS1}
+    \strng{fullhash}{WDSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{pages}{440\bibrangedash 442}
+    \field{title}{Collective dynamics of 'small-world' networks}
+    \field{volume}{393}
+    \field{journaltitle}{Nature}
+    \field{year}{1998}
   \endentry
 \enddatalist
 \endinput
