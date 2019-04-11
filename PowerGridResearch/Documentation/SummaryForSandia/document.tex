@@ -20,24 +20,24 @@
 	\subsubsection{Glossary}
 	\begin{itemize}
 		\item $\underline{L_e}$ and $\overline{L_e}$ is the capacity lower and upper bounds for the power line $e$
-		\item $\Delta_{I}$ is the time to repair node I
-		\item $\delta_{E}$ is the time to repair line E
-		\item $C_{SP(i)}$ is the shortest path to node i from the central depot
+		\item $\Delta_{I}$ is the time to repair node $I$
+		\item $\delta_{E}$ is the time to repair line $E$
+		\item $C_{SP(i)}$ is the shortest path to node $i$ from the central depot
 		\item $K$ is a coefficient of "broken-ness" representing the average slowdown from debris on the road and minor flooding
-		\item $D_I$ is the power demand at location I in the pre-disaster steady state
-		\item $P_K$ is the maximum power generation for generator K
-		\item $B_e$ is the line susceptance (imaginary part of admittance, also inverse of resistance) for power line e
+		\item $D_I$ is the power demand at location $I$ in the pre-disaster steady state
+		\item $P_K$ is the maximum power generation for generator $K$
+		\item $B_e$ is the line susceptance (imaginary part of admittance, also inverse of resistance) for power line $e$
 	\end{itemize}
 	\subsubsection{Variables}
 	\begin{itemize}
 		
-		\item $X_{e}^{t}$ is the flow on line e at time t
-		\item $G_{k}^t$ is the production from generator k at time t
-		\item $V_i^t$ is 1 if node i is functioning at time t
-		\item $W_{e}^t$ is 1 if line e is functioning at time t
-		\item $S_{e}^t$ is 1 if line e is serviced at time t
-		\item $F_i^t$ is 1 is node i is serviced at time t 
-		\item $\theta_i^t$ is the phase angle for the power flow at i in time t
+		\item $X_{e}^{t}$ is the flow on line $e$ at time $t$
+		\item $G_{k}^t$ is the production from generator $k$ at time $t$
+		\item $V_i^t$ is 1 if node $i$ is functioning at time $t$
+		\item $W_{e}^t$ is 1 if line $e$ is functioning at time $t$
+		\item $S_{e}^t$ is 1 if line $e$ is serviced at time $t$
+		\item $F_i^t$ is 1 is node $i$ is serviced at time $t$ 
+		\item $\theta_i^t$ is the phase angle for the power flow at $i$ in time $t$
 		
 	\end{itemize}
 	\subsubsection{Sets}
@@ -46,10 +46,10 @@
 		\item E is the set of power lines
 		\item R is the set of roads
 		\item T is the planning horizon
-		\item o(i) is the set of lines with origin i
-		\item d(i) is the set of lines with destination i
-		\item o(e) is the origin node of line e
-		\item d(e) is the destination node of line e
+		\item o(i) is the set of lines with origin $i$
+		\item d(i) is the set of lines with destination $i$
+		\item o(e) is the origin node of line $e$
+		\item d(e) is the destination node of line $e$
 	\end{itemize}
 	\subsubsection{Model}
 	$$	Minimize \sum_{i \in N} \sum_{t \in T} (1-W_i^t)*C_{demand\_i} $$
@@ -115,14 +115,14 @@
 	\subsubsection{Glossary}
 	\begin{itemize}
 		\item $C_{ij}$ is a measure of the value of the road to relief supply delivery efforts
-		\item $L_{ij}$ is the length of the road between nodes i and j when everything is working as normal
-		\item $R_{ij}$ is the time to repair the road between i and j
+		\item $L_{ij}$ is the length of the road between nodes $i$ and $j$ when everything is working as normal
+		\item $R_{ij}$ is the time to repair the road between $i$ and $j$
 	\end{itemize}
 	\subsubsection{Variables}
 	\begin{itemize}
-		\item $X_{ij}^t$ is 1 if the road between nodes i and j is working at time t
-		\item $S_{ij}^t$ is the length of the road between i and j at time t. 
-		\item $K_{ij}^t$ is the decision variable that is 1 if j follows i in the tour at time t and 0 else.
+		\item $X_{ij}^t$ is 1 if the road between nodes $i$ and $j$ is working at time $t$
+		\item $S_{ij}^t$ is the length of the road between $i$ and $j$ at time $t$. 
+		\item $K_{ij}^t$ is the decision variable that is 1 if $j$ follows $i$ in the tour at time $t$ and 0 else.
 		
 	\end{itemize}
 	\subsubsection{Sets}
