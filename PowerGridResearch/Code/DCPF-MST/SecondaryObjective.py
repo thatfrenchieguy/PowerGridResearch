@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Mon Mar 11 14:57:44 2019
+
+@author: BrianFrench
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Fri Feb 15 15:49:25 2019
 
 @author: BrianFrench
@@ -45,27 +52,7 @@ for i in Nodes:
     for j in Nodes:
         if Grid.has_edge(i,j,0):
             Grid[i][j][0]['working']=True
-##artblock
-x  = nx.get_node_attributes(Grid,('xcoord'))
-y = nx.get_node_attributes(Grid,'ycoord')
-pos=[]
-power = []
-road = []
-for i in x:
-    pos.append((x[i],y[i]))
-for e in Grid.edges:
-    if e[2]==0:
-        power.append(e)
-    if e[2]==1:
-        road.append(e)
-        
-nx.draw_networkx_nodes(Grid, pos)
-nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
-nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .7)
-
-plt.axis('off')
-plt.show()
-#######            
+            
 ###SCENARIO OF BROKEN THINGS###
 Grid.node[6]['working']=False
 Grid.node[27]['working']=False
@@ -91,7 +78,7 @@ for i in Nodes:
             for k in range(0,len(EdgeTracker)):
                 if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
                     EdgeStartingStatus[k] = Grid[i][j][0]['working']
-model.obj = pe.Objective(expr = sum((1-model.W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time))
+model.obj = pe.Objective(expr = sum(t*model.F_n[i,t] for i in Nodes for t in Time)+sum(t*model.F_l[e,t] for e in Edges for t in Time))
 
 
 #impose phase angle constraints
@@ -144,12 +131,11 @@ for i in Nodes:
 for e in Edges:
     for t in Time:
         model.Working.add(model.W_l[e,t]<=sum(model.F_l[e,g] for g in range(0,t))+EdgeStartingStatus[e])
-        
-##schedule restriction so that nothing gets double fixed
-#for i in Nodes:
-#    model.Working.add(sum(model.F_n[i,t]for t in Time)<=1)   
-#for e in Edges:
-#    model.Working.add(sum(model.F_l[e,t]for t in Time)<=1)         
+#schedule restriction so that nothing gets double fixed
+for i in Nodes:
+    model.Working.add(sum(model.F_n[i,t]for t in Time)<=1)   
+for e in Edges:
+    model.Working.add(sum(model.F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
 SP = np.zeros(len(Nodes))
 
@@ -166,23 +152,28 @@ for i in Nodes:
 model.Scheduling = pe.ConstraintList()
 for t in Time:
     model.Scheduling.add(sum(model.F_n[i,t]*5+model.F_n[i,t]*SP[i]*2*(1/50) for i in Nodes)+sum(model.F_l[e,t]*1+model.F_l[e,t]*min(SP[EdgeTracker[e][1][0]],SP[EdgeTracker[e][1][1]])*2*(1/50) for e in Edges)<=8)
+#add constraint that requires optimality
+model.Secondary = pe.ConstraintList()
+model.Secondary.add(sum((1-model.W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time)<=885)#actual objective was 876, but this gives a bit of buffer room
+
 
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
 print(results)    
-for t in Time:
-    for i in Nodes:
+
+for i in Nodes:
+    for t in Time:
         if model.W_n[i,t].value <1:
-            print(["Wtime",t,"node",i])
-for t in Time:
-    for e in Edges:
+            print(["time",t,"node",i])
+for e in Edges:
+    for t in Time:
         if model.W_l[e,t].value <1:
-            print(["Wtime",t,"edge",e])
+            print(["time",t,"edge",e])
 for t in Time:
     for i in Nodes:
         if model.F_n[i,t].value==1:
-            print(['Ftime',t,"node",i])
+            print(['time',t,"node",i])
     for e in Edges:
         if model.F_l[e,t].value==1:
-            print(['Ftime',t,"edge",e])
+            print(['time',t,"edge",e])
     

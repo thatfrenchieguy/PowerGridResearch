@@ -10,6 +10,13 @@ import numpy as np
 import pandas as pd
 import math
 import pyomo.environ as pe
+#define a powerset function
+from itertools import chain, combinations
+def powerset(iterable):
+    "list(powerset([1,2,3])) --> [(), (1,), (2,), (3,), (1,2), (1,3), (2,3), (1,2,3)]"
+    s = list(iterable)
+    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
+
 #initialize graph from file
 Grid = nx.read_gml("Bus30WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
@@ -26,6 +33,7 @@ for i in PowerSub.nodes:
         PowerSub.remove_edge(i,j,1)
 Edges = pe.Set(initialize = range(0,len(PowerSub.edges)))
 Nodes = pe.Set(initialize= range(0,30))
+NodesWithDummy = pe.Set(initialize = range(0,len(Nodes)+len(Edges)))
 Time = pe.Set(initialize = range(0,PlanningHorizon))
 model = pe.ConcreteModel()
 #define Variables
@@ -33,11 +41,13 @@ model = pe.ConcreteModel()
 model.PG = pe.Var(Nodes,Time)
 model.F_l = pe.Var(Edges,Time, domain=pe.Binary)
 model.F_n = pe.Var(Nodes,Time, domain = pe.Binary)
+model.Z = pe.Var(NodesWithDummy,NodesWithDummy,Time, domain = pe.Binary) #abuse total unimodularity to speed up the solving time if needed
 ##State Variables
 model.W_l = pe.Var(Edges,Time, domain = pe.Binary)
 model.W_n = pe.Var(Nodes, Time, domain = pe.Binary)
 model.Theta = pe.Var(Nodes,Time)
 model.PowerIJ = pe.Var(Edges,Time, domain = pe.Reals)
+model.MST = pe.Var(Time, domain = pe.NonNegativeReals)
 #default everything to working
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
@@ -151,21 +161,29 @@ for e in Edges:
 #for e in Edges:
 #    model.Working.add(sum(model.F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
-SP = np.zeros(len(Nodes))
-
+SP = np.zeros(len(Nodes), len(Nodes))
 RoadGrid = nx.Graph()
 RoadGrid.add_nodes_from(Grid.nodes)
 for i in Nodes:
     for j in Nodes:
         if Grid.has_edge(i,j,1):
             RoadGrid.add_edge(i,j,weight = Grid[i][j][1]['length'])
+for i,e in enumerate(EdgeTracker):
+    RoadGrid.add_node(30+i)
+    RoadGrid.add_edge(30+i, e[1][0], weight = 0)
+    RoadGrid.add_edge(30+i, e[1][1], weight=0)
+for i in NodesWithDummy:
+    for j in NodesWithDummy:
+        SP[i][j] = nx.shortest_path_length(RoadGrid, source = i, target = j, weight='weight')
+model.MSTCons = pe.ConstraintList()
+for t in Time:
+    model.MSTCons.add(model.MST[t] == sum(SP[i][j]*model.Z[i,j,t] for i in NodesWithDummy for j in NodesWithDummy))
+    model.MSTCons.add(sum(model.Z[i,j,t] for i in NodesWithDummy for j in NodesWithDummy) == sum(model.F_n[i,t]for i in Nodes)+sum(model.F_l[e,t] for e in Edges)-1)
+
 #arbitrarily assigning node 13 to be the warehouse node
-##Assumption is that 30 length can be traveled per hour
-for i in Nodes:        
-        SP[i] = nx.shortest_path_length(RoadGrid,source = i,target = 13,weight = 'weight')
 model.Scheduling = pe.ConstraintList()
 for t in Time:
-    model.Scheduling.add(sum(model.F_n[i,t]*5+model.F_n[i,t]*SP[i]*2*(1/50) for i in Nodes)+sum(model.F_l[e,t]*1+model.F_l[e,t]*min(SP[EdgeTracker[e][1][0]],SP[EdgeTracker[e][1][1]])*2*(1/50) for e in Edges)<=8)
+    model.Scheduling.add(sum(model.F_n[i,t]*5 for i in Nodes)+sum(model.F_l[e,t]*1 for e in Edges)+model.MST[t]<=8)
 
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
