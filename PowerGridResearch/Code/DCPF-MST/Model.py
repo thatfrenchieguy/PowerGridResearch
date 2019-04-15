@@ -33,11 +33,13 @@ for i in PowerSub.nodes:
         PowerSub.remove_edge(i,j,1)
 Edges = pe.Set(initialize = range(0,len(PowerSub.edges)))
 Nodes = pe.Set(initialize= range(0,30))
-NodesWithDummy = pe.Set(initialize = range(0,len(Nodes)+len(Edges)))
+sumlen = 71
+#sumlen = len(Nodes)+len(Edges)
+NodesWithDummy = pe.Set(initialize = range(0,sumlen))
 Time = pe.Set(initialize = range(0,PlanningHorizon))
 model = pe.ConcreteModel()
 #define Variables
-##Decision Variables
+#Decision Variables
 model.PG = pe.Var(Nodes,Time)
 model.F_l = pe.Var(Edges,Time, domain=pe.Binary)
 model.F_n = pe.Var(Nodes,Time, domain = pe.Binary)
@@ -161,7 +163,7 @@ for e in Edges:
 #for e in Edges:
 #    model.Working.add(sum(model.F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
-SP = np.zeros(len(Nodes), len(Nodes))
+SP = np.zeros((len(NodesWithDummy), len(NodesWithDummy)))
 RoadGrid = nx.Graph()
 RoadGrid.add_nodes_from(Grid.nodes)
 for i in Nodes:
@@ -179,7 +181,18 @@ model.MSTCons = pe.ConstraintList()
 for t in Time:
     model.MSTCons.add(model.MST[t] == sum(SP[i][j]*model.Z[i,j,t] for i in NodesWithDummy for j in NodesWithDummy))
     model.MSTCons.add(sum(model.Z[i,j,t] for i in NodesWithDummy for j in NodesWithDummy) == sum(model.F_n[i,t]for i in Nodes)+sum(model.F_l[e,t] for e in Edges)-1)
-
+    for s in powerset(NodesWithDummy):
+        if len(s)>=2:
+            model.MSTCons.add(sum(model.Z[i,j,t] for i in s for j in s)<=len(s)-1)
+    for i in Nodes:
+#        dropi = Nodes
+#        dropi.remove(i)
+       model.MSTCons.add(sum(model.Z[i,j,t] for j in Nodes)>=model.F_n[i,t])
+    for e in Edges:
+        i = EdgeTracker[e][1][0]
+        j = EdgeTracker[e][1][1]
+        E = len(Nodes)+e
+        model.MSTCons.add(sum(model.Z[E,j,t] for j in NodesWithDummy) <= model.F_l[e,t])
 #arbitrarily assigning node 13 to be the warehouse node
 model.Scheduling = pe.ConstraintList()
 for t in Time:
