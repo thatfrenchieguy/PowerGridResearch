@@ -39,6 +39,7 @@ for i in Nodes:
         else:
             RoadGrid[i][j]['working']=True
 #define Variables
+speed = 1/50
 model = pe.ConcreteModel()
 C=np.zeros((30,30))
 for i in Nodes:
@@ -46,18 +47,18 @@ for i in Nodes:
         if Grid.has_edge(i,j,1):
             C[i][j]=3
 model.X = pe.Var(Nodes, Nodes, Time, domain = pe.Binary)
-model.S = pe.Var(Nodes, Nodes, Time, domain = pe.NonNegativeReals)
 model.K = pe.Var(Nodes, Nodes, Time, domain = pe.Binary)
 model.obj = pe.Objective(expr = sum(1.02*t*C[i][j]*(1-model.X[i,j,t]) for i in Nodes for j in Nodes for t in Time), sense=pe.minimize)
 model.Con1 = pe.ConstraintList()
 for t in Time:
-     model.Con1.add(sum(model.S[i,j,t]*model.K[i,j,t] for i in Nodes for j in Nodes)<=8)
-model.Con2 = pe.ConstraintList()
-for i in Nodes:
-    for j in Nodes:
-        for t in Time:
-            model.Con2.add(model.S[i,j,t] >= RoadGrid[i][j]['weight'])
-            model.Con2.add(model.S[i,j,t] >= (1-model.X[i,j,t])*RoadGrid[i][j]['weight']*4) #R_ij is set to 4 length
+     model.Con1.add(sum(RoadGrid[i][j]['weight']*speed*model.K[i,j,t]*model.X[i,j,t] + model.K[i,j,t]*(1-model.X[i,j,t])*speed*RoadGrid[i][j]['weight']*4 for j in Nodes for i in Nodes)<=8)
+     #linearization from https://www.leandro-coelho.com/linearization-product-variables/
+#model.Con2 = pe.ConstraintList()
+#for i in Nodes:
+#    for j in Nodes:
+#        for t in Time:
+#            model.Con2.add(model.S[i,j,t] >= RoadGrid[i][j]['weight'])
+#            model.Con2.add(model.S[i,j,t] >= (1-model.X[i,j,t])*RoadGrid[i][j]['weight']*4) #R_ij is set to 4 length
 #tour connectivity constraints           
 model.Con3 = pe.ConstraintList()
 for i in Nodes:
@@ -88,14 +89,13 @@ for i in Nodes:
         for t in range(1,PlanningHorizon):
             model.X[i,j,t] <= sum(model.K[i,j,v] for v in range(0,t))+int(RoadGrid[i][j]['working'])
 #DFJ subtour eliminations--DO NOT USE, WILL RUNTIME WALL/MEMORY ERROR
-#model.Con5 = pe.ConstraintList()
-#for s in S:
-#    for t in Time:
-#        if len(s) >=2:
-#            if len(s)<=28:
-#                model.Con5.add(sum(model.K[i,j,t] for i in Nodes for j in Nodes)<= len(s)-1)
+model.Con5 = pe.ConstraintList()
+for s in S:
+    for t in Time:
+        if len(s) >=2:
+            if len(s)<=7:
+                model.Con5.add(sum(model.K[i,j,t] for i in Nodes for j in Nodes)<= len(s)-1)
             
-model.U = pe.Var(Nodes,Time)    
                 
 solver = pe.SolverFactory('cplex')
 results = solver.solve(model, tee=True)
