@@ -79,3 +79,4 @@ for i in Nodes:
         model.addConstr(X[i,j,t] <= sum(K[i,j,v] for v in range(0,t))+int(RoadGrid[i][j]['working']))
     
 model.optimize()
+#sytax for getting a variable in the output is variable[a,b].X to query it's value.
