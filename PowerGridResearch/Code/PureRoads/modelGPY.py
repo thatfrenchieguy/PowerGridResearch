@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import math
+import csv
 from gurobipy import *
 #define a powerset function
 from itertools import chain, combinations
@@ -72,7 +73,7 @@ for t in Time:
     for s in PS:
      if len(s)<5:
       if len(s)>2:
-        model.addConstr(sum(K[i,j,t] for i in Nodes for j in Nodes)<=len(s)-1)
+        model.addConstr(sum(K[i,j,t] for i in s for j in s)<=len(s)-1)
 for i in Nodes:
     for j in Nodes:
      for t in Time:
@@ -80,3 +81,17 @@ for i in Nodes:
     
 model.optimize()
 #sytax for getting a variable in the output is variable[a,b].X to query it's value.
+#do a sanity check:
+for t in Time:
+    for i in Nodes:
+        for j in Nodes:
+            if K[i,j,t].X >0:
+                print([i,j,t,K[i,j,t].X])
+with open ("RoadSchedule.csv",'w',newline = '') as OutputFile:
+    cw = csv.writer(OutputFile, delimiter = ',' )
+    for t in Time:
+        for i in Nodes:
+            for j in Nodes:
+                if S[i,j,t].X != 0:
+                    IJLength = S[i,j,t].X/speed
+                    cw.writerow([i,j,t,IJLength])                
