@@ -1,0 +1,992 @@
+graph [
+  multigraph 1
+  node [
+    id 0
+    label "0"
+    name "bus1"
+    load 0
+    xcoord 2
+    ycoord 3
+  ]
+  node [
+    id 1
+    label "1"
+    name "bus2"
+    load 0.08
+    xcoord 4
+    ycoord 1
+  ]
+  node [
+    id 2
+    label "2"
+    name "bus3"
+    load 0.01
+    xcoord 3
+    ycoord 3
+  ]
+  node [
+    id 3
+    label "3"
+    name "bus4"
+    load 0.2
+    xcoord 5
+    ycoord 3
+  ]
+  node [
+    id 4
+    label "4"
+    name "bus5"
+    load 0.12
+    xcoord 9
+    ycoord 1
+  ]
+  node [
+    id 5
+    label "5"
+    name "bus6"
+    load 0
+    xcoord 10
+    ycoord 4
+  ]
+  node [
+    id 6
+    label "6"
+    name "bus7"
+    load 0.08
+    xcoord 10
+    ycoord 2
+  ]
+  node [
+    id 7
+    label "7"
+    name "bus8"
+    load 0.1
+    xcoord 16
+    ycoord 4
+  ]
+  node [
+    id 8
+    label "8"
+    name "bus9"
+    load 0
+    xcoord 7
+    ycoord 7
+  ]
+  node [
+    id 9
+    label "9"
+    name "bus10"
+    load 0.07
+    xcoord 8
+    ycoord 8
+  ]
+  node [
+    id 10
+    label "10"
+    name "bus11"
+    load 0
+    xcoord 6
+    ycoord 7
+  ]
+  node [
+    id 11
+    label "11"
+    name "bus12"
+    load 0.08
+    xcoord 4
+    ycoord 8
+  ]
+  node [
+    id 12
+    label "12"
+    name "bus13"
+    load 0
+    xcoord 2
+    ycoord 8
+  ]
+  node [
+    id 13
+    label "13"
+    name "bus14"
+    load 0.02
+    xcoord 3
+    ycoord 10
+  ]
+  node [
+    id 14
+    label "14"
+    name "bus15"
+    load 0.03
+    xcoord 6
+    ycoord 15
+  ]
+  node [
+    id 15
+    label "15"
+    name "bus16"
+    load 0.01
+    xcoord 7
+    ycoord 10
+  ]
+  node [
+    id 16
+    label "16"
+    name "bus17"
+    load 0.03
+    xcoord 9
+    ycoord 12
+  ]
+  node [
+    id 17
+    label "17"
+    name "bus18"
+    load 0.01
+    xcoord 10
+    ycoord 15
+  ]
+  node [
+    id 18
+    label "18"
+    name "bus19"
+    load 0.02
+    xcoord 15
+    ycoord 15
+  ]
+  node [
+    id 19
+    label "19"
+    name "bus20"
+    load 0.01
+    xcoord 15
+    ycoord 14
+  ]
+  node [
+    id 20
+    label "20"
+    name "bus21"
+    load 0.06
+    xcoord 16
+    ycoord 12
+  ]
+  node [
+    id 21
+    label "21"
+    name "bus22"
+    load 0
+    xcoord 17
+    ycoord 10
+  ]
+  node [
+    id 22
+    label "22"
+    name "bus23"
+    load 0.01
+    xcoord 12
+    ycoord 18
+  ]
+  node [
+    id 23
+    label "23"
+    name "bus24"
+    load 0.02
+    xcoord 16
+    ycoord 18
+  ]
+  node [
+    id 24
+    label "24"
+    name "bus25"
+    load 0
+    xcoord 14
+    ycoord 20
+  ]
+  node [
+    id 25
+    label "25"
+    name "bus26"
+    load 0.01
+    xcoord 12
+    ycoord 20
+  ]
+  node [
+    id 26
+    label "26"
+    name "bus27"
+    load 0
+    xcoord 11
+    ycoord 24
+  ]
+  node [
+    id 27
+    label "27"
+    name "bus28"
+    load 0
+    xcoord 20
+    ycoord 24
+  ]
+  node [
+    id 28
+    label "28"
+    name "bus29"
+    load 0
+    xcoord 3
+    ycoord 24
+  ]
+  node [
+    id 29
+    label "29"
+    name "bus30"
+    load 0.02
+    xcoord 3
+    ycoord 19
+  ]
+  node [
+    id 30
+    label "30"
+    name "gen1"
+    production 20
+    xcoord 3.1
+    ycoord 19.1
+  ]
+  node [
+    id 31
+    label "31"
+    name "gen2"
+    production 20
+    xcoord 16.1
+    ycoord 18.1
+  ]
+  node [
+    id 32
+    label "32"
+    name "gen3"
+    production 20
+    xcoord 6.1
+    ycoord 7.1
+  ]
+  node [
+    id 33
+    label "33"
+    name "gen4"
+    production 80
+    xcoord 4.1
+    ycoord 1.1
+  ]
+  node [
+    id 34
+    label "34"
+    name "gen5"
+    production 50
+    xcoord 16.1
+    ycoord 4.1
+  ]
+  node [
+    id 35
+    label "35"
+    name "gen6"
+    production 50
+    xcoord 9.1
+    ycoord 1.1
+  ]
+  node [
+    id 36
+    label "36"
+    name "gen7"
+    production 100
+    xcoord 2.1
+    ycoord 3.1
+  ]
+  edge [
+    source 0
+    target 1
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 0
+    target 2
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 0
+    target 36
+    key 0
+    capacity 200
+    Type "Power"
+  ]
+  edge [
+    source 0
+    target 36
+    key 1
+    length 0
+    Type "Road"
+  ]
+  edge [
+    source 0
+    target 3
+    key 0
+    length 3.0
+    Type "Road"
+  ]
+  edge [
+    source 1
+    target 3
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 1
+    target 4
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 1
+    target 5
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 1
+    target 33
+    key 0
+    capacity 160
+    Type "Power"
+  ]
+  edge [
+    source 1
+    target 33
+    key 1
+    length 0
+    Type "Road"
+  ]
+  edge [
+    source 1
+    target 2
+    key 0
+    length 2.23606797749979
+    Type "Road"
+  ]
+  edge [
+    source 1
+    target 11
+    key 0
+    length 7.0
+    Type "Road"
+  ]
+  edge [
+    source 1
+    target 15
+    key 0
+    length 9.486832980505138
+    Type "Road"
+  ]
+  edge [
+    source 2
+    target 3
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 3
+    target 5
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 3
+    target 11
+    key 0
+    capacity 65
+    Type "Power"
+  ]
+  edge [
+    source 3
+    target 4
+    key 0
+    length 4.47213595499958
+    Type "Road"
+  ]
+  edge [
+    source 3
+    target 6
+    key 0
+    length 5.0990195135927845
+    Type "Road"
+  ]
+  edge [
+    source 3
+    target 19
+    key 0
+    length 14.866068747318506
+    Type "Road"
+  ]
+  edge [
+    source 4
+    target 6
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 4
+    target 35
+    key 0
+    capacity 100
+    Type "Power"
+  ]
+  edge [
+    source 4
+    target 35
+    key 1
+    length 0
+    Type "Road"
+  ]
+  edge [
+    source 4
+    target 5
+    key 0
+    length 3.1622776601683795
+    Type "Road"
+  ]
+  edge [
+    source 4
+    target 10
+    key 0
+    length 6.708203932499369
+    Type "Road"
+  ]
+  edge [
+    source 4
+    target 30
+    key 0
+    length 19.03733174580934
+    Type "Road"
+  ]
+  edge [
+    source 5
+    target 6
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 5
+    target 7
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 5
+    target 8
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 5
+    target 9
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 5
+    target 27
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 5
+    target 18
+    key 0
+    length 12.083045973594572
+    Type "Road"
+  ]
+  edge [
+    source 6
+    target 7
+    key 0
+    length 6.324555320336759
+    Type "Road"
+  ]
+  edge [
+    source 7
+    target 27
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 7
+    target 34
+    key 0
+    capacity 100
+    Type "Power"
+  ]
+  edge [
+    source 7
+    target 34
+    key 1
+    length 0
+    Type "Road"
+  ]
+  edge [
+    source 7
+    target 21
+    key 0
+    length 6.082762530298219
+    Type "Road"
+  ]
+  edge [
+    source 8
+    target 9
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 8
+    target 10
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 8
+    target 15
+    key 0
+    length 3.0
+    Type "Road"
+  ]
+  edge [
+    source 8
+    target 11
+    key 0
+    length 3.1622776601683795
+    Type "Road"
+  ]
+  edge [
+    source 8
+    target 20
+    key 0
+    length 10.295630140987
+    Type "Road"
+  ]
+  edge [
+    source 9
+    target 19
+    key 0
+    capacity 32
+    Type "Power"
+  ]
+  edge [
+    source 9
+    target 16
+    key 0
+    capacity 32
+    Type "Power"
+  ]
+  edge [
+    source 9
+    target 20
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 9
+    target 22
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 9
+    target 10
+    key 0
+    length 2.23606797749979
+    Type "Road"
+  ]
+  edge [
+    source 9
+    target 15
+    key 0
+    length 2.23606797749979
+    Type "Road"
+  ]
+  edge [
+    source 10
+    target 32
+    key 0
+    capacity 40
+    Type "Power"
+  ]
+  edge [
+    source 10
+    target 32
+    key 1
+    length 0
+    Type "Road"
+  ]
+  edge [
+    source 10
+    target 11
+    key 0
+    length 2.23606797749979
+    Type "Road"
+  ]
+  edge [
+    source 10
+    target 12
+    key 0
+    length 4.123105625617661
+    Type "Road"
+  ]
+  edge [
+    source 11
+    target 12
+    key 0
+    capacity 65
+    Type "Power"
+  ]
+  edge [
+    source 11
+    target 13
+    key 0
+    capacity 32
+    Type "Power"
+  ]
+  edge [
+    source 11
+    target 14
+    key 0
+    capacity 32
+    Type "Power"
+  ]
+  edge [
+    source 11
+    target 15
+    key 0
+    capacity 32
+    Type "Power"
+  ]
+  edge [
+    source 12
+    target 13
+    key 0
+    length 2.23606797749979
+    Type "Road"
+  ]
+  edge [
+    source 12
+    target 19
+    key 0
+    length 14.317821063276353
+    Type "Road"
+  ]
+  edge [
+    source 13
+    target 14
+    key 0
+    capacity 16
+    Type "Power"
+  ]
+  edge [
+    source 13
+    target 15
+    key 0
+    length 4.0
+    Type "Road"
+  ]
+  edge [
+    source 14
+    target 17
+    key 0
+    capacity 16
+    Type "Power"
+  ]
+  edge [
+    source 14
+    target 22
+    key 0
+    capacity 16
+    Type "Power"
+  ]
+  edge [
+    source 14
+    target 16
+    key 0
+    length 4.242640687119285
+    Type "Road"
+  ]
+  edge [
+    source 14
+    target 29
+    key 0
+    length 5.0
+    Type "Road"
+  ]
+  edge [
+    source 14
+    target 28
+    key 0
+    length 9.486832980505138
+    Type "Road"
+  ]
+  edge [
+    source 14
+    target 30
+    key 0
+    length 5.021951811795889
+    Type "Road"
+  ]
+  edge [
+    source 15
+    target 16
+    key 0
+    capacity 16
+    Type "Power"
+  ]
+  edge [
+    source 16
+    target 17
+    key 0
+    length 3.1622776601683795
+    Type "Road"
+  ]
+  edge [
+    source 17
+    target 18
+    key 0
+    capacity 16
+    Type "Power"
+  ]
+  edge [
+    source 17
+    target 22
+    key 0
+    length 3.605551275463989
+    Type "Road"
+  ]
+  edge [
+    source 17
+    target 29
+    key 0
+    length 8.06225774829855
+    Type "Road"
+  ]
+  edge [
+    source 18
+    target 19
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 18
+    target 20
+    key 0
+    length 3.1622776601683795
+    Type "Road"
+  ]
+  edge [
+    source 18
+    target 23
+    key 0
+    length 3.1622776601683795
+    Type "Road"
+  ]
+  edge [
+    source 18
+    target 21
+    key 0
+    length 5.385164807134504
+    Type "Road"
+  ]
+  edge [
+    source 19
+    target 20
+    key 0
+    length 2.23606797749979
+    Type "Road"
+  ]
+  edge [
+    source 19
+    target 23
+    key 0
+    length 4.123105625617661
+    Type "Road"
+  ]
+  edge [
+    source 19
+    target 21
+    key 0
+    length 4.47213595499958
+    Type "Road"
+  ]
+  edge [
+    source 20
+    target 21
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 20
+    target 26
+    key 0
+    length 13.0
+    Type "Road"
+  ]
+  edge [
+    source 21
+    target 23
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 22
+    target 23
+    key 0
+    capacity 16
+    Type "Power"
+  ]
+  edge [
+    source 22
+    target 25
+    key 0
+    length 2.0
+    Type "Road"
+  ]
+  edge [
+    source 22
+    target 24
+    key 0
+    length 2.8284271247461903
+    Type "Road"
+  ]
+  edge [
+    source 22
+    target 26
+    key 0
+    length 6.082762530298219
+    Type "Road"
+  ]
+  edge [
+    source 23
+    target 24
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 23
+    target 31
+    key 0
+    capacity 40
+    Type "Power"
+  ]
+  edge [
+    source 23
+    target 31
+    key 1
+    length 0
+    Type "Road"
+  ]
+  edge [
+    source 23
+    target 27
+    key 0
+    length 7.211102550927978
+    Type "Road"
+  ]
+  edge [
+    source 24
+    target 25
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 24
+    target 26
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 24
+    target 27
+    key 0
+    length 7.211102550927978
+    Type "Road"
+  ]
+  edge [
+    source 25
+    target 26
+    key 0
+    length 4.123105625617661
+    Type "Road"
+  ]
+  edge [
+    source 25
+    target 27
+    key 0
+    length 8.94427190999916
+    Type "Road"
+  ]
+  edge [
+    source 26
+    target 27
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 26
+    target 28
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 26
+    target 29
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 28
+    target 29
+    key 0
+    capacity 30
+    Type "Power"
+  ]
+  edge [
+    source 29
+    target 30
+    key 0
+    capacity 40
+    Type "Power"
+  ]
+  edge [
+    source 29
+    target 30
+    key 1
+    length 0
+    Type "Road"
+  ]
+]

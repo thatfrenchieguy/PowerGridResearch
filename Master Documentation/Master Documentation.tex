@@ -233,7 +233,7 @@
 		\item N is the set of nodes on the graph
 	\end{itemize}
 	\subsubsection{Model}
-	$$	Minimize \sum_{t \in T} 1.02t \sum_{i,j \in N} C_{ij}*(1-X_{ij}^t) $$
+	$$	Minimize \sum_{t \in T} t \sum_{i,j \in N} C_{ij}*(1-X_{ij}^t) $$
 	
 	Subject to:
 	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
@@ -253,7 +253,7 @@
 	\end{itemize}
 	\subsubsection{Comments}
 	\begin{itemize}
-		\item 
+		\item we assume $R_ij$ is 10x the length of the road representing time to drive down the road and clear debris/move trees/drain flooded patches/etc
 	\end{itemize}
 		
 \end{document}
