@@ -185,4 +185,7 @@ for t in Time:
     for e in Edges:
         if model.F_l[e,t].value==1:
             print(['Ftime',t,"edge",e])
-    
+for i in Edges:
+        for t in Time:
+            if model.PowerIJ[i,t].value != 0:
+                print(model.PowerIJ[i,t].value)

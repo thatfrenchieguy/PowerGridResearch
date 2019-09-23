@@ -132,17 +132,18 @@ obj = model.setObjective(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes fo
 
 #impose phase angle constraints
 
-M=1000
-#for t in Time:
-#    model.addConstr(Theta[0,t] == 0)
-#for i in Nodes:
-#    for j in Nodes:
-#        for t in Time:
-#         for k in range(0,len(EdgeTracker)):
-#            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-#                    model.addConstr(PowerIJ[k,t] == Grid[i][j][0]['Sus']*(Theta[i,t]-Theta[j,t]))
-##         model.addConstr(Theta[i,t]<=3.14)
-##         model.addConstr(Theta[j,t]>=-3.14)
+M=10000
+for t in Time:
+    model.addConstr(Theta[0,t] == 0)
+for i in Nodes:
+    for j in Nodes:
+        for t in Time:
+         for k in range(0,len(EdgeTracker)):
+            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
+                    print("built constraint")
+                    model.addConstr(PowerIJ[k,t] == Grid[i][j][0]['Sus']*(Theta[i,t]-Theta[j,t]))
+         model.addConstr(Theta[i,t]<=3.14)
+         model.addConstr(Theta[j,t]>=-3.14)
 #impose power balance constraints
 for i in Nodes:
     for t in Time:
@@ -196,7 +197,7 @@ for i in Nodes:
     for j in Nodes:
         SP[i][j] = nx.shortest_path_length(RoadGrid, source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] == sum(SP[i][j]*Z[i,j,t] for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] == sum(SP[i][j]*Z[i,j,t]*1/50 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) == sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=2 and len(s)<=8:
@@ -227,8 +228,13 @@ for e in Edges:
             print(["L",e,t])
             print(F_l[e,t].X)
 
-#for i in Nodes:
-#    for j in Nodes:
+for i in Nodes:
+    for j in Nodes:
+        t = 3
 #        for t in Time:
-#            if Z[i,j,t].X != 0:
-#                print(Z[i,j,t].X)
+        if Z[i,j,t].X != 0:
+                print([i,j,Z[i,j,t].X])
+for i in Edges:
+        for t in Time:
+            if PowerIJ[i,t].X != 0:
+                print(PowerIJ[i,t].X)

@@ -1842,3 +1842,123 @@ Solution count 10: 264.1 267.6 271.1 ... 708.1
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 2.641000000000e+02, best bound 2.641000000000e+02, gap 0.0000%
+Optimize a model with 45713 rows, 6864 columns and 1681179 nonzeros
+Model has 6 quadratic constraints
+Variable types: 612 continuous, 6252 integer (6252 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+02]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [1e+00, 1e+00]
+  Objective range  [2e+00, 9e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 8e+00]
+Found heuristic solution: objective 1700.4000000
+Presolve removed 45120 rows and 5634 columns
+Presolve time: 0.55s
+Presolved: 1679 rows, 1590 columns, 9576 nonzeros
+Found heuristic solution: objective 1390.2000000
+Variable types: 0 continuous, 1590 integer (1590 binary)
+
+Explored 0 nodes (0 simplex iterations) in 0.58 seconds
+Thread count was 6 (of 6 available processors)
+
+Solution count 1: 1390.2 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.390200000000e+03, best bound 1.390200000000e+03, gap 0.0000%
+Optimize a model with 45713 rows, 6864 columns and 1681179 nonzeros
+Model has 6 quadratic constraints
+Variable types: 612 continuous, 6252 integer (6252 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+02]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [1e+00, 1e+00]
+  Objective range  [2e+00, 9e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 8e+00]
+Found heuristic solution: objective 1700.4000000
+Presolve removed 45120 rows and 5634 columns
+Presolve time: 0.51s
+Presolved: 1679 rows, 1590 columns, 9576 nonzeros
+Found heuristic solution: objective 1390.2000000
+Variable types: 0 continuous, 1590 integer (1590 binary)
+
+Explored 0 nodes (0 simplex iterations) in 0.54 seconds
+Thread count was 6 (of 6 available processors)
+
+Solution count 1: 1390.2 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.390200000000e+03, best bound 1.390200000000e+03, gap 0.0000%
+Optimize a model with 45713 rows, 6864 columns and 1681179 nonzeros
+Model has 6 quadratic constraints
+Variable types: 612 continuous, 6252 integer (6252 binary)
+Coefficient statistics:
+  Matrix range     [4e-02, 2e+02]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [1e+00, 1e+00]
+  Objective range  [2e+00, 9e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 8e+00]
+Found heuristic solution: objective 1700.4000000
+Presolve removed 2700 rows and 1038 columns
+Presolve time: 1.31s
+Presolved: 44099 rows, 6186 columns, 1683492 nonzeros
+Found heuristic solution: objective 1390.2000000
+Variable types: 0 continuous, 6186 integer (6186 binary)
+
+Explored 0 nodes (0 simplex iterations) in 1.40 seconds
+Thread count was 6 (of 6 available processors)
+
+Solution count 1: 1390.2 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.390200000000e+03, best bound 1.390200000000e+03, gap 0.0000%
+Optimize a model with 56513 rows, 6864 columns and 1691979 nonzeros
+Model has 6 quadratic constraints
+Variable types: 612 continuous, 6252 integer (6252 binary)
+Coefficient statistics:
+  Matrix range     [4e-02, 2e+02]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [1e+00, 1e+00]
+  Objective range  [2e+00, 9e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 8e+00]
+Found heuristic solution: objective 1700.4000000
+Presolve removed 13500 rows and 1038 columns
+Presolve time: 1.35s
+Presolved: 44099 rows, 6186 columns, 1683492 nonzeros
+Found heuristic solution: objective 1390.2000000
+Variable types: 0 continuous, 6186 integer (6186 binary)
+
+Explored 0 nodes (0 simplex iterations) in 1.45 seconds
+Thread count was 6 (of 6 available processors)
+
+Solution count 1: 1390.2 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.390200000000e+03, best bound 1.390200000000e+03, gap 0.0000%
+Optimize a model with 56513 rows, 6864 columns and 1691979 nonzeros
+Model has 6 quadratic constraints
+Variable types: 612 continuous, 6252 integer (6252 binary)
+Coefficient statistics:
+  Matrix range     [4e-02, 2e+02]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [1e+00, 1e+00]
+  Objective range  [2e+00, 9e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 8e+00]
+Found heuristic solution: objective 1700.4000000
+Presolve removed 13500 rows and 1038 columns
+Presolve time: 1.26s
+Presolved: 44099 rows, 6186 columns, 1683492 nonzeros
+Found heuristic solution: objective 1390.2000000
+Variable types: 0 continuous, 6186 integer (6186 binary)
+
+Explored 0 nodes (0 simplex iterations) in 1.35 seconds
+Thread count was 6 (of 6 available processors)
+
+Solution count 1: 1390.2 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.390200000000e+03, best bound 1.390200000000e+03, gap 0.0000%
