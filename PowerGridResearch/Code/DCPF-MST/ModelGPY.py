@@ -127,7 +127,7 @@ for j in range(len(EdgeStartingStatus)):
 ###End STE building###
 
 
-obj = model.setObjective(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time),GRB.MINIMIZE)
+obj = model.setObjective(sum((W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time),GRB.MAXIMIZE)
 
 
 #impose phase angle constraints
@@ -135,15 +135,14 @@ obj = model.setObjective(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes fo
 M=10000
 for t in Time:
     model.addConstr(Theta[0,t] == 0)
-for i in Nodes:
-    for j in Nodes:
-        for t in Time:
-         for k in range(0,len(EdgeTracker)):
-            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-                    print("built constraint")
-                    model.addConstr(PowerIJ[k,t] == Grid[i][j][0]['Sus']*(Theta[i,t]-Theta[j,t]))
-         model.addConstr(Theta[i,t]<=3.14)
-         model.addConstr(Theta[j,t]>=-3.14)
+#for i in Nodes:
+#    for j in Nodes:
+#        for t in Time:
+#         for k in range(0,len(EdgeTracker)):
+#            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
+#                    model.addConstr(PowerIJ[k,t] == Grid[i][j][0]['Sus']*(Theta[i,t]-Theta[j,t]))
+#         model.addConstr(Theta[i,t]<=3.14)
+#         model.addConstr(Theta[j,t]>=0)
 #impose power balance constraints
 for i in Nodes:
     for t in Time:
@@ -175,16 +174,16 @@ for e in Edges:
 for i in Nodes:
     model.addConstr(W_n[i,0] <= Grid.node[i]['working'])
     for t in range(1,len(Time)):
-        model.addConstr(W_n[i,t]<=sum(F_n[i,g] for g in range(0,t))+Grid.node[i]['working'])
+        model.addConstr(W_n[i,t]<=sum(F_n[i,g] for g in range(0,t))+int(Grid.node[i]['working']))
 for e in Edges:
     for t in Time:
-        model.addConstr(W_l[e,t]<=sum(F_l[e,g] for g in range(0,t))+EdgeStartingStatus[e])
+        model.addConstr(W_l[e,t]<=sum(F_l[e,g] for g in range(0,t))+int(EdgeStartingStatus[e]))
         
 #schedule restriction so that nothing gets double fixed
-for i in Nodes:
-    model.addConstr(sum(F_n[i,t]for t in Time)<=1)   
-for e in Edges:
-    model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
+#for i in Nodes:
+#    model.addConstr(sum(F_n[i,t]for t in Time)<=1)   
+#for e in Edges:
+#    model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
 SP = np.zeros((len(Nodes), len(Nodes)))
 RoadGrid = nx.Graph()
@@ -198,7 +197,7 @@ for i in Nodes:
         SP[i][j] = nx.shortest_path_length(RoadGrid, source = i, target = j, weight='weight')
 for t in Time:
     model.addConstr(MST[t] == sum(SP[i][j]*Z[i,j,t]*1/50 for i in Nodes for j in Nodes))
-    model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) == sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
+    model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=2 and len(s)<=8:
             model.addConstr(sum(Z[i,j,t] for i in s for j in s)<=len(s)-1)
@@ -210,9 +209,10 @@ for t in Time:
     for e in Edges:
         o = EdgeTracker[e][1][0]
         d = EdgeTracker[e][1][1]        
-        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
+#        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
 #arbitrarily assigning node 13 to be the warehouse node
-
+for t in Time:
+    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
 for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
 
