@@ -183,7 +183,7 @@ for t in Time:
     model.MSTCons.add(model.MST[t] == sum(SP[i][j]*model.Z[i,j,t] for i in NodesWithDummy for j in NodesWithDummy))
     model.MSTCons.add(sum(model.Z[i,j,t] for i in NodesWithDummy for j in NodesWithDummy) == sum(model.F_n[i,t]for i in Nodes)+sum(model.F_l[e,t] for e in Edges)-1)
     for s in powerset(NodesWithDummy):
-        if len(s)>=2:
+        if len(s)>=2 and len(s) <=8:
             model.MSTCons.add(sum(model.Z[i,j,t] for i in s for j in s)<=len(s)-1)
     for i in Nodes:
 #        dropi = Nodes

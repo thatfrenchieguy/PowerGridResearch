@@ -1,0 +1,65 @@
+\documentclass[t, pdftex]{beamer}  
+%Use Cockrell School Theme.  Optional department name.  Must %ecape, i.e. use 
+%backslash, to preserve spaces.  The default is ``Cockrell School of Engineering''
+\usetheme[]{cockrell}                 
+%\usetheme[dept=Aerospace\ Engineering\ and\ Engineering\ Mechanics]{cockrell}                 
+%\usetheme[dept=Biomedical\ Engineering]{cockrell}                 
+%\usetheme[dept=Chemical\ Engineering]{cockrell}                 
+%\usetheme[dept=Civil,\ Architectural\ and\ Environmental\ Engineering]{cockrell}                 
+%\usetheme[dept=Electrical\ and\ Computer\ Engineering]{cockrell}                 
+%\usetheme[dept=Mechanical\ Engineering]{cockrell}                 
+%\usetheme[dept=Materials\ Science\ and\ Engineering]{cockrell}                 
+%\usetheme[dept=Petroleum\ and\ Geosystems\ Engineering]{cockrell}                 
+
+% Add preamble packages here
+%\usepackage{etex}
+%\usepackage[bigfiles]{media9}
+%\graphicspath{{./figs/}}
+
+%Enable cancelto in math
+\usepackage{cancel}
+\renewcommand{\CancelColor}{\color{utorange}}
+
+%Add bibliography file location for citiation
+\bibliography{}
+
+
+\title{Joint Post-Disaster Repair of Power and Road Networks}
+\subtitle{}
+\author{Erhan Kutanoglu and Brian French}
+\institute{UT Austin}
+\date{\today}
+\begin{document}
+	\maketitle
+	%Creates title frame from title, subtitle, author, institute, and date above
+	
+	%Supports table of contents
+	\frame{\frametitle{Outline}\tableofcontents}
+	
+	%Section commands will define what's shown in TOC
+	\section{Motivating the Problem}
+	\frame{\frametitle{Background}
+		\begin{itemize}
+			\item Hurricanes cause significant damage to multiple infrastructure layers
+			\item Harvey took almost 11,000 MW of production capacity offline due to wind and flooding
+			\item Flooding rendered large swathes of the road system impossible to traverse, complicating repair efforts
+			
+		\end{itemize}
+		}
+	\frame{\frametitle{Power Grid Overview}
+		\begin{itemize}
+			\item Transmission side
+			\begin{itemize}
+				\item Consists of generators, high voltage lines (345kV through 69kV), and substations.
+				\item main emphasis of this talk
+				 
+			\end{itemize}
+			\item Distribution side
+			\begin{itemize}
+			\item Consists of 14kV and low-voltage distribution lines and corresponding step-down transformers
+			\item Can be abstracted away a bit due to being a better understood problem.
+		\end{itemize}
+		\end{itemize}
+		}
+
+\end{document}
