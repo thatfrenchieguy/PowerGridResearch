@@ -37,15 +37,23 @@ for i in Nodes:
             RoadGrid.add_edge(i,j,weight = Grid[i][j][1]['length'])
         else:
             RoadGrid.add_edge(i,j,weight = 9999)
-for i in Nodes:
-    for j in Nodes:
-        if Grid.has_edge(i,j,1):
-            if np.random.uniform(0,10)<=2:
-                RoadGrid[i][j]['working']=False
-            else:
-                RoadGrid[i][j]['working']=True
-        else:
-            RoadGrid[i][j]['working']=True
+###commented out to have a fixed scenario based on the code below
+#for i in Nodes:
+#    for j in Nodes:
+#        if Grid.has_edge(i,j,1):
+#            if np.random.uniform(0,10)<=2:
+#                RoadGrid[i][j]['working']=False
+#            else:
+#                RoadGrid[i][j]['working']=True
+#        else:
+#            RoadGrid[i][j]['working']=True
+RoadGrid[5][13]['working']=False
+RoadGrid[9][13]['working']=False
+RoadGrid[14][16]['working']=False
+RoadGrid[14][28]['working']=False
+RoadGrid[18][20]['working']=False
+RoadGrid[18][21]['working']=False
+RoadGrid[22][26]['working']=False
 #define Variables
 C = np.zeros((30,30))
 for i in Nodes:
@@ -94,4 +102,8 @@ with open ("RoadSchedule.csv",'w',newline = '') as OutputFile:
             for j in Nodes:
                 if S[i,j,t].X != 0:
                     IJLength = S[i,j,t].X/speed
-                    cw.writerow([i,j,t,IJLength])                
+                    cw.writerow([i,j,t,IJLength])   
+for i in Nodes:
+    for j in Nodes:
+        if RoadGrid[i][j]['working'] == False:
+            print([i,j])

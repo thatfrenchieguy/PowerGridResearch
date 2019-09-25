@@ -17,7 +17,11 @@
 %\graphicspath{{./figs/}}
 
 %Enable cancelto in math
+\usepackage{amsmath}
+\usepackage[fleqn]{mathtools}
+\usepackage{amssymb}
 \usepackage{cancel}
+\usepackage{enumitem}
 \renewcommand{\CancelColor}{\color{utorange}}
 
 %Add bibliography file location for citiation
@@ -61,6 +65,64 @@
 		\end{itemize}
 		\end{itemize}
 		}
-	\frame{Pure Power Grid model}
+	\frame{\frametitle{Pure Power Grid Model}
 	
+}
+	\frame{\frametitle{Pure Road Grid Model}
+	Sets:
+	\begin{itemize}
+		\item $T$ is the set of time periods (shifts) over the time horizon
+		\item $N$ is the set of nodes in the graph
+	\end{itemize}
+	
+	Parameters:
+	\begin{itemize}
+		\item $C_{ij}$ is a measure of the value of the road to relief supply delivery efforts
+		\item $L_{ij}$ is the length of the road between nodes $i$ and $j$ when everything is working as normal
+		\item $R_{ij}$ is the time to repair the road between $i$ and $j$
+		\item $I_{ij}$ is the initial condition of the road between $i$ and $j$
+	\end{itemize}
+	
+	Variables:
+	\begin{itemize}
+		\item $X_{ij}^t$ is 1 if the road between nodes $i$ and $j$ is working at time $t$
+		\item $S_{ij}^t$ is the length of the road between $i$ and $j$ at time $t$. 
+		\item $K_{ij}^t$ is 1 if $j$ follows $i$ in the tour at time $t$, and 0 otherwise.	
+	\end{itemize}
+}
+\frame{\frametitle{Pure Road Grid Model Continued}
+	$$	\min \sum_{t \in T} t \sum_{i,j \in N} C_{ij}*(1-X_{ij}^t) $$
+
+subject to:
+\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]%
+	\item $\sum_{i,j \in N} S_{ij}^t K_{ij}^t \leq 8, \hspace{6pt} \forall t\in T$
+	\item $S_{ij}^t = \max \{L_{ij}, (1-X_{ij}^t)R_{ij} \}, \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N$
+	\item $\sum_{j \in N} K_{ij}^t - \sum_{j \in N} K_{ji}^t = 0, \hspace{6pt} \forall t\in T \hspace{4pt} \forall i \in N$
+	\item $X_{ij}^t \le \sum_{t'=0}^{t-1} K_{ij}^{t'} + I_{ij}, \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N$
+	\item $\sum_{i,j \in S; i\neq j} X_{ij}^t \leq |S|-1 \hspace{6pt} \forall S \subset N; \hspace{2pt} S \neq \emptyset$
+\end{enumerate}
+}
+	\frame{\frametitle{Constructed Grid for Example Results}
+	\begin{itemize}
+		\item We overlay IEEE 30 bus based power grid onto a grid to assign distances between elements
+		\item Nodes are chosen to be connected directly by roads that are modeled as a Watts-Strogatz graph
+		\item a representation of the system is shown below with power in green and roads in red.
+	\end{itemize}
+	\includegraphics[scale=0.5]{"Mock Network".png}
+}
+	\frame{\frametitle{Scenario}
+	To simulate damage to a power network, we mark the following as damaged:
+	\begin{itemize}
+		\item Power Grid Nodes: 6,18,23,27
+		\item Power Grid Edges: (1,4),(1,6),(7,27),(24,25),(11,15)(1,3)(18,19)
+		\item Road Edges: (5,13),(9,13),(14,16),(14,28),(18,20),(18,21),(22,26)
+	\end{itemize}
+}
+	\frame{\frametitle{Results}
+	
+}
+	\frame{\frametitle{Conclusions}
+	
+}
+		
 \end{document}
