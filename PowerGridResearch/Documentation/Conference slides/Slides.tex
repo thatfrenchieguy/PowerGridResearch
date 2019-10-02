@@ -50,6 +50,15 @@
 			
 		\end{itemize}
 		}
+	\frame{\frametitle{Existing Literature}
+	\begin{itemize}
+		\item Power Grid Resilience: Mousavizadeh et al 2018
+		\item Repair Planning: Ang and Salmeron 2006
+		\item Resource prepositioning: Ali Arab et al 2015
+		\item Supply delivery: Holguin-Veras et al 2012
+		\item Of note is no significant literature addressing both road and power aspects at the same time.
+	\end{itemize}
+}
 	\frame{\frametitle{Power Grid Overview}
 		\begin{itemize}
 			\item Transmission side
@@ -65,9 +74,71 @@
 		\end{itemize}
 		\end{itemize}
 		}
-	\frame{\frametitle{Pure Power Grid Model}
+	\section{Pure Power Grid Model}
+	\begin{frame}
+	\frametitle{Power Model: Sets and Indices}
+	\begin{itemize}
+		\item $N$ is the set of nodes, indexed by $i$
+		\item $E$ is the set of power lines, indexed by $e$
+		\item $R$ is the set of road segments
+		\item $T$ is the planning horizon, indexed by $t$
+		\item $O(i)$ is the set of lines with origin $i$
+		\item $D(i)$ is the set of lines with destination $i$
+		\item $o(e)$ is the origin node of line $e$
+		\item $d(e)$ is the destination node of line $e$
+	\end{itemize}
 	
-}
+\end{frame}
+\begin{frame}
+\frametitle{Power Model: Parameters and Data}
+\begin{itemize}
+\item $\underline{L_e}$ and $\overline{L_e}$ is the capacity lower and upper bounds for the power line $e$
+\item $\Delta_{i}$ is the time to repair node $i$ and $\delta_{e}$ is the time to repair line $e$
+\item $C_{SP(i)}$ is the length of the shortest path to node $i$ from the central depot
+\item $K$ is a coefficient of "broken-ness" representing the average slowdown from debris on the road and minor flooding
+\item $D_i$ is the power demand at location $i$ in the pre-disaster steady state
+\item $P_k$ is the maximum power generation for generator $k$
+\item $B_e$ is the line susceptance (imaginary part of admittance, also inverse of resistance) for power line $e$
+\item $I_e, I_i$ is the initial condition of line $e$ and node $i$, respectively.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{The Model}
+Objective:
+$$ \min \sum_{i \in N} \sum_{t \in T} (1-W_i^t)D_i $$
+Subject to:
+\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]
+
+\item $ X_e^t = B_e * (\theta_{o(e)}^t - \theta_{d(e)}^t), \hspace{5pt} \forall t \in T, \hspace{4pt} \forall e \in E$
+\item $ G_i^t - \sum_{l \in O(i)} X_l^t + \sum_{l \in D(i)} X_l^t = D_i, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N$
+\item $G_k^t \leq P_{k} V_{k}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall k \in N$
+\item $\underline{L_e}W_{e}^t \leq X_{e}^t \leq \overline{L_e}W_{e}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E$
+\item $\underline{L_e}V_{o(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{o(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E$
+\item $\underline{L_e}V_{d(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{d(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E$
+\end{enumerate}
+These 6 constraints define the mathematical rules for operation of a damaged DC-approximated power grid.
+\end{frame}
+\begin{frame}
+\frametitle{Model Continued}
+\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]
+\item $MST^t = \sum_{i \in N} \sum_{j \in N} SP_{ij}*Z_{ij}^{t} C_{speed}\hspace{4pt} \forall t \in T $
+\item $\sum_{i \in N} \sum_{j \in N} Z_{ij}^{t} >= \sum_{i \in N} F_i^t + \sum_{e \in E} S_e^t - \sum_{i \in N} F_i^t \sum_{O(i)} S_e^t - \sum_{i \in N} F_i^t \sum_{D(i)} S_e^t \hspace{4pt} \forall t \in T$
+\item $\sum_{i,j \in S} Z_{ij}^t <= |s|-1 \hspace{4pt} S\subset N$
+\item $ \sum_{j \in N} Z_{ij}^t \geq F_i^t \hspace{4pt} \forall t \in T\hspace{4pt} \forall i \in N $
+\item $ \sum_{e \in E} \delta_{e}S_e^t + \sum_{i \in N}\Delta_{i}F_i^t + MST_t <=8$
+\end{enumerate}
+
+\end{frame}
+\begin{frame}
+\frametitle{Model Continued}
+\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]
+\item $V_i^t \leq \sum_{t'=0}^{t-1} F_i^{t'}+I_i, \hspace{4pt} \forall i \in N$ 
+\item $W_{e}^t \leq \sum_{t'=0}^{t-1} S_{e}^{t'}+I_e, \hspace{4pt} \forall e \in E $
+\end{enumerate}
+These first 4 constraints outline the rules to construct a spanning tree that is minimal in some cases and "short enough" in others, the two constraints on the slide after govern functionality of a node based on its repair status.
+\end{frame}
+
+
 	\frame{\frametitle{Pure Road Grid Model}
 	Sets:
 	\begin{itemize}
@@ -118,8 +189,54 @@ subject to:
 		\item Road Edges: (5,13),(9,13),(14,16),(14,28),(18,20),(18,21),(22,26)
 	\end{itemize}
 }
-	\frame{\frametitle{Results}
-	
+	\frame{\frametitle{Results for Road}
+	{\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			Shift 1 & (5/13), (9/13), (14/28)\\
+			\hline
+			Shift 2 & (14/16),(18,21),(18,20),(22,26) \\
+			\hline
+			Shift 3 &  \\
+			\hline
+			Shift 4 &  \\
+			\hline
+			Shift 5 &  \\
+			\hline
+			Shift 6 &  \\
+			\hline
+		\end{tabular}\par
+	}
+}
+\frame{\frametitle{Results for Power}
+
+	{\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Shift 1 & Bus 6 and Lines (1/4), (11/15) \\
+		\hline
+		Shift 2 & Bus 23 and Line (24/25) \\
+		\hline
+		Shift 3 & Bus 18 and Lines (1/3), (4/6)\\
+		\hline
+		Shift 4 &  \\
+		\hline
+		Shift 5 &  \\
+		\hline
+		Shift 6 &  \\
+		\hline
+	\end{tabular}\par
+}
+}
+\frame{\frametitle{Conclusions from non-iterative problems}
+\begin{itemize}
+	\item -solutions exhibit geographical clustering
+	\subitem -effect not seen in some previous work
+	\item -fast repairs function of small network size used in example
+\end{itemize}
+}
+\frame{\frametitle{Iterative Road First Results}
+
 }
 	\frame{\frametitle{Conclusions}
 	

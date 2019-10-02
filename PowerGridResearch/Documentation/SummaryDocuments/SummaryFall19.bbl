@@ -1,0 +1,615 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{AksuEA2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ADT}{%
+         family={Aksu},
+         familyi={A\bibinitperiod},
+         given={Dilek\bibnamedelima Tuzun},
+         giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=OL}{%
+         family={Ozdamar},
+         familyi={O\bibinitperiod},
+         given={Linet},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ADTOL1}
+    \strng{fullhash}{ADTOL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.tre.2013.10.009
+    \endverb
+    \field{issn}{1366-5545}
+    \field{pages}{56 \bibrangedash  67}
+    \field{title}{A mathematical model for post-disaster road restoration:
+  Enabling accessibility and evacuation}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S1366554513001762
+    \endverb
+    \field{volume}{61}
+    \field{journaltitle}{Transportation Research Part E: Logistics and
+  Transportation Review}
+    \field{year}{2014}
+  \endentry
+
+  \entry{NPSMasters}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=ACC}{%
+         family={Ang},
+         familyi={A\bibinitperiod},
+         given={Chee\bibnamedelima Chien},
+         giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ACC1}
+    \strng{fullhash}{ACC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Found online}
+    \field{title}{Optimized Recovery of Damaged Electrial Power Grids}
+    \list{institution}{1}{%
+      {Naval Postgraduate School}%
+    }
+    \field{type}{mathesis}
+    \field{month}{03}
+    \field{year}{2006}
+  \endentry
+
+  \entry{ArabEA2015}{article}{}
+    \name{author}{6}{}{%
+      {{hash=AA}{%
+         family={{Arab}},
+         familyi={A\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={{Khodaei}},
+         familyi={K\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KSK}{%
+         family={{Khator}},
+         familyi={K\bibinitperiod},
+         given={S.\bibnamedelima K.},
+         giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=DK}{%
+         family={{Ding}},
+         familyi={D\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=EVA}{%
+         family={{Emesih}},
+         familyi={E\bibinitperiod},
+         given={V.\bibnamedelima A.},
+         giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=HZ}{%
+         family={{Han}},
+         familyi={H\bibinitperiod},
+         given={Z.},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \keyw{power system planning;power system restoration;stochastic
+  processes;storms;stochastic pre-hurricane restoration planning;electric power
+  systems infrastructure;proactive resource allocation model;power system
+  components;stochastic integer program;large-scale mixed-integer
+  equivalence;Maintenance engineering;Hurricanes;Stochastic processes;Random
+  variables;Planning;Substations;Hurricane planning;power system
+  resiliency;resource allocation;stochastic program with recourse;Hurricane
+  planning;power system resiliency;resource allocation;stochastic program with
+  recourse}
+    \strng{namehash}{AA+1}
+    \strng{fullhash}{AAKAKSKDKEVAHZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1109/TSG.2015.2388736
+    \endverb
+    \field{number}{2}
+    \field{pages}{1046\bibrangedash 1054}
+    \field{title}{Stochastic Pre-hurricane Restoration Planning for Electric
+  Power Systems Infrastructure}
+    \field{volume}{6}
+    \field{journaltitle}{IEEE Transactions on Smart Grid}
+    \field{year}{2015}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{DuqueEA2016}{article}{}
+    \name{author}{3}{}{%
+      {{hash=DPAM}{%
+         family={Duque},
+         familyi={D\bibinitperiod},
+         given={Pablo A.\bibnamedelima Maya},
+         giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
+  M\bibinitperiod},
+      }}%
+      {{hash=DIS}{%
+         family={Dolinskaya},
+         familyi={D\bibinitperiod},
+         given={Irina\bibnamedelima S.},
+         giveni={I\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Sörensen},
+         familyi={S\bibinitperiod},
+         given={Kenneth},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DPAMDISSK1}
+    \strng{fullhash}{DPAMDISSK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.ejor.2015.06.026
+    \endverb
+    \field{issn}{0377-2217}
+    \field{number}{1}
+    \field{pages}{272 \bibrangedash  285}
+    \field{title}{Network repair crew scheduling and routing for emergency
+  relief distribution problem}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0377221715005408
+    \endverb
+    \field{volume}{248}
+    \field{journaltitle}{European Journal of Operational Research}
+    \field{year}{2016}
+  \endentry
+
+  \entry{GuikemaEA2010}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GS}{%
+         family={Guikema},
+         familyi={G\bibinitperiod},
+         given={Seth.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=QS}{%
+         family={Quiring},
+         familyi={Q\bibinitperiod},
+         given={Steven.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HSR}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Seung-Ryong},
+         giveni={S\bibinithyphendelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GSQSHSR1}
+    \strng{fullhash}{GSQSHSR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{1744\bibrangedash 1752}
+    \field{title}{Prestorm Estimation of Hurricane Damage to Electric Power
+  Distribution Systems}
+    \field{volume}{30}
+    \field{journaltitle}{Risk Analysis}
+    \field{year}{2010}
+  \endentry
+
+  \entry{VerasEA2012}{article}{}
+    \name{author}{5}{}{%
+      {{hash=HVJ}{%
+         family={Holguin-Veras},
+         familyi={H\bibinithyphendelim V\bibinitperiod},
+         given={Jose.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jaller},
+         familyi={J\bibinitperiod},
+         given={Miguel.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=VWL}{%
+         family={Van\bibnamedelima Wassenhove},
+         familyi={V\bibinitperiod\bibinitdelim W\bibinitperiod},
+         given={Luk.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=PN}{%
+         family={Perez},
+         familyi={P\bibinitperiod},
+         given={Noel.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=WT}{%
+         family={Wachtendorf},
+         familyi={W\bibinitperiod},
+         given={Tricia},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HVJ+1}
+    \strng{fullhash}{HVJJMVWLPNWT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{pages}{494\bibrangedash 506}
+    \field{title}{On the unique features of post-disaster humanitarian
+  logistics}
+    \field{volume}{30}
+    \field{journaltitle}{Jounral of Operations Management}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Houser2009}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HC}{%
+         family={Houser},
+         familyi={H\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HC1}
+    \strng{fullhash}{HC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.2112/07-0923.1
+    \endverb
+    \verb{eprint}
+    \verb https://doi.org/10.2112/07-0923.1
+    \endverb
+    \field{pages}{558\bibrangedash 568}
+    \field{title}{Geomorphological Controls on Road Damage during Hurricanes
+  Ivan and Dennis}
+    \verb{url}
+    \verb https://doi.org/10.2112/07-0923.1
+    \endverb
+    \field{journaltitle}{Journal of Coastal Research}
+    \field{year}{2009}
+  \endentry
+
+  \entry{MolyneauxEA2016}{article}{}
+    \name{author}{4}{}{%
+      {{hash=ML}{%
+         family={Molyneaux},
+         familyi={M\bibinitperiod},
+         given={Lynette.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Brown},
+         familyi={B\bibinitperiod},
+         given={Colin.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wagner},
+         familyi={W\bibinitperiod},
+         given={Liam.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=FJ}{%
+         family={Foster},
+         familyi={F\bibinitperiod},
+         given={John.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ML+1}
+    \strng{fullhash}{MLBCWLFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{pages}{1068\bibrangedash 1079}
+    \field{title}{Measuring Resilience in energy systems: Insights from a
+  frange of disciplines}
+    \field{volume}{59}
+    \field{journaltitle}{Renewable and Sustainable Energy Reviews}
+    \field{year}{2016}
+  \endentry
+
+  \entry{MousavizadehEA2018}{article}{}
+    \name{author}{3}{}{%
+      {{hash=MS}{%
+         family={Mousavizadeh},
+         familyi={M\bibinitperiod},
+         given={Saeed},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HMR}{%
+         family={Haghifam},
+         familyi={H\bibinitperiod},
+         given={Mahmoud-Reza},
+         giveni={M\bibinithyphendelim R\bibinitperiod},
+      }}%
+      {{hash=SMH}{%
+         family={Shariatkhah},
+         familyi={S\bibinitperiod},
+         given={Mohammad-Hossein},
+         giveni={M\bibinithyphendelim H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MSHMRSMH1}
+    \strng{fullhash}{MSHMRSMH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.apenergy.2017.11.067
+    \endverb
+    \field{issn}{0306-2619}
+    \field{pages}{443 \bibrangedash  460}
+    \field{title}{A linear two-stage method for resiliency analysis in
+  distribution systems considering renewable energy and demand response
+  resources}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0306261917316665
+    \endverb
+    \field{volume}{211}
+    \field{journaltitle}{Applied Energy}
+    \field{year}{2018}
+  \endentry
+
+  \entry{NewmanEA2001}{article}{}
+    \name{author}{3}{}{%
+      {{hash=NM}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Watts},
+         familyi={W\bibinitperiod},
+         given={Duncan.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Strogaatz},
+         familyi={S\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NMWDSS1}
+    \strng{fullhash}{NMWDSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{pages}{1\bibrangedash 17}
+    \field{title}{Random Graphs with arbitrary degree distributions and their
+  applications}
+    \field{volume}{64}
+    \field{journaltitle}{Physical Review E}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Newman2000}{article}{}
+    \name{author}{1}{}{%
+      {{hash=NMEJ}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={M.\bibnamedelima E.\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim
+  J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NMEJ1}
+    \strng{fullhash}{NMEJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{abstract}{%
+    It is believed that almost any pair of people in the world can be connected
+  to one another by a short chain of intermediate acquaintances, of typical
+  length about six. This phenomenon, colloquially referred to as the ``six
+  degrees of separation,'' has been the subject of considerable recent interest
+  within the physics community. This paper provides a short review of the
+  topic.%
+    }
+    \verb{doi}
+    \verb 10.1023/A:1026485807148
+    \endverb
+    \field{issn}{1572-9613}
+    \field{number}{3}
+    \field{pages}{819\bibrangedash 841}
+    \field{title}{Models of the Small World}
+    \verb{url}
+    \verb https://doi.org/10.1023/A:1026485807148
+    \endverb
+    \field{volume}{101}
+    \field{journaltitle}{Journal of Statistical Physics}
+    \field{year}{2000}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{OuyangEA2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=OM}{%
+         family={Ouyang},
+         familyi={O\bibinitperiod},
+         given={Min.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DOL}{%
+         family={Duenas-Osorio},
+         familyi={D\bibinithyphendelim O\bibinitperiod},
+         given={Leonardo},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OMDOL1}
+    \strng{fullhash}{OMDOL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{pages}{15\bibrangedash 24}
+    \field{title}{Multi-dimensional Hurricane Resilience Assessment of Electric
+  Power Systems}
+    \field{volume}{48}
+    \field{journaltitle}{Structural Safety}
+    \field{year}{2014}
+  \endentry
+
+  \entry{PanteliEA2016}{article}{}
+    \name{author}{4}{}{%
+      {{hash=PM}{%
+         family={{Panteli}},
+         familyi={P\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=TDN}{%
+         family={{Trakas}},
+         familyi={T\bibinitperiod},
+         given={D.\bibnamedelima N.},
+         giveni={D\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={{Mancarella}},
+         familyi={M\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HND}{%
+         family={{Hatziargyriou}},
+         familyi={H\bibinitperiod},
+         given={N.\bibnamedelima D.},
+         giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PM+1}
+    \strng{fullhash}{PMTDNMPHND1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{doi}
+    \verb 10.1109/TSG.2016.2535228
+    \endverb
+    \field{issn}{1949-3053}
+    \field{number}{6}
+    \field{pages}{2913\bibrangedash 2922}
+    \field{title}{Boosting the Power Grid Resilience to Extreme Weather Events
+  Using Defensive Islanding}
+    \field{volume}{7}
+    \field{journaltitle}{IEEE Transactions on Smart Grid}
+    \field{year}{2016}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{SalmeronEA2004}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SJ}{%
+         family={{Salmeron}},
+         familyi={S\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WK}{%
+         family={{Wood}},
+         familyi={W\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={{Baldick}},
+         familyi={B\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{terrorism;power system security;mathematical analysis;power system
+  protection;power system reliability;electric grid security;terrorist
+  threat;standard reliability test network;homeland security;Terrorism;Power
+  system security;Power system modeling;Power system reliability;Power
+  grids;Power generation;Costs;Power systems;Mathematical model;Power
+  transmission lines}
+    \strng{namehash}{SJWKBR1}
+    \strng{fullhash}{SJWKBR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1109/TPWRS.2004.825888
+    \endverb
+    \field{issn}{0885-8950}
+    \field{number}{2}
+    \field{pages}{905\bibrangedash 912}
+    \field{title}{Analysis of electric grid security under terrorist threat}
+    \field{volume}{19}
+    \field{journaltitle}{IEEE Transactions on Power Systems}
+    \field{year}{2004}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{WattsEA1998}{article}{}
+    \name{author}{2}{}{%
+      {{hash=WD}{%
+         family={Watts},
+         familyi={W\bibinitperiod},
+         given={Duncan.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Strogaatz},
+         familyi={S\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WDSS1}
+    \strng{fullhash}{WDSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{pages}{440\bibrangedash 442}
+    \field{title}{Collective dynamics of 'small-world' networks}
+    \field{volume}{393}
+    \field{journaltitle}{Nature}
+    \field{year}{1998}
+  \endentry
+\enddatalist
+\endinput
