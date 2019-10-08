@@ -84,6 +84,7 @@ Grid.node[6]['working']=False
 Grid.node[27]['working']=False
 Grid.node[23]['working']=False
 Grid.node[18]['working']=False
+Grid.node[4]['working']=False
 #Grid.node[15]['working']=False
 Grid[1][4][0]['working']=False
 Grid[4][6][0]['working']=False
@@ -92,6 +93,9 @@ Grid[24][25][0]['working']=False
 Grid[11][15][0]['working']=False
 Grid[1][3][0]['working']=False
 Grid[19][18][0]['working']=False
+Grid[9][22][0]['working']=False
+Grid[9][19][0]['working']=False
+
 ###END SCENARIO###            
 
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
@@ -202,8 +206,7 @@ for t in Time:
         if len(s)>=2 and len(s)<=8:
             model.addConstr(sum(Z[i,j,t] for i in s for j in s)<=len(s)-1)
     for i in Nodes:
-#        dropi = Nodes
-#        dropi.remove(i)
+       model.addConstr(Z[i,i,t]==0)
        model.addConstr(sum(Z[i,j,t] for j in Nodes)>=F_n[i,t])
     
     for e in Edges:
@@ -217,13 +220,13 @@ for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
 
 model.optimize()
-for n in Nodes:
-    for t in Time:
+
+for t in Time:
+    for n in Nodes:
         if F_n[n,t].X != 0:
             print(["N",n,t])
             print(F_n[n,t].X)
-for e in Edges:
-    for t in Time:
+    for e in Edges:
         if F_l[e,t].X != 0:
             print(["L",e,t])
             print(F_l[e,t].X)
@@ -238,3 +241,8 @@ for i in Nodes:
 #        for t in Time:
 #            if PowerIJ[i,t].X != 0:
 #                print(PowerIJ[i,t].X)
+                
+for t in Time:
+    for n in Nodes:
+        if W_n[n,t].X == 0:
+            print([n,t])

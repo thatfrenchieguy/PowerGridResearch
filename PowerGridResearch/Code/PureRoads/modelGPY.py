@@ -40,19 +40,38 @@ for i in Nodes:
 for i in Nodes:
     for j in Nodes:
         if Grid.has_edge(i,j,1):
-#            if np.random.uniform(0,10)<=2:
-#                RoadGrid[i][j]['working']=False
-#            else:
+            if np.random.uniform(0,10)<=5:
+                RoadGrid[i][j]['working']=False
+            else:
                 RoadGrid[i][j]['working']=True
         else:
             RoadGrid[i][j]['working']=True
+for i in Nodes:
+    for j in Nodes:
+        if RoadGrid[i][j]['working']==False:
+            print([i,j])
+RoadGrid[0][3]['working']=False
+RoadGrid[1][2]['working']=False
+RoadGrid[1][26]['working']=False
+RoadGrid[4][5]['working']=False
 RoadGrid[5][13]['working']=False
+RoadGrid[9][10]['working']=False
 RoadGrid[9][13]['working']=False
+RoadGrid[10][11]['working']=False
+RoadGrid[10][12]['working']=False
+RoadGrid[13][15]['working']=False
 RoadGrid[14][16]['working']=False
 RoadGrid[14][28]['working']=False
-RoadGrid[18][20]['working']=False
+RoadGrid[16][17]['working']=False
+RoadGrid[17][22]['working']=False
 RoadGrid[18][21]['working']=False
+RoadGrid[19][21]['working']=False
+RoadGrid[19][23]['working']=False
+RoadGrid[22][24]['working']=False
+RoadGrid[22][25]['working']=False
 RoadGrid[22][26]['working']=False
+RoadGrid[24][27]['working']=False
+RoadGrid[25][27]['working']=False
 #define Variables
 C = np.zeros((30,30))
 for i in Nodes:

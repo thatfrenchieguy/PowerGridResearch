@@ -53,13 +53,28 @@ for i in Nodes:
                 RoadGrid[i][j]['working']=True
         else:
             RoadGrid[i][j]['working']=True
+RoadGrid[0][3]['working']=False
+RoadGrid[1][2]['working']=False
+RoadGrid[1][26]['working']=False
+RoadGrid[4][5]['working']=False
 RoadGrid[5][13]['working']=False
+RoadGrid[9][10]['working']=False
 RoadGrid[9][13]['working']=False
+RoadGrid[10][11]['working']=False
+RoadGrid[10][12]['working']=False
+RoadGrid[13][15]['working']=False
 RoadGrid[14][16]['working']=False
 RoadGrid[14][28]['working']=False
-RoadGrid[18][20]['working']=False
+RoadGrid[16][17]['working']=False
+RoadGrid[17][22]['working']=False
 RoadGrid[18][21]['working']=False
+RoadGrid[19][21]['working']=False
+RoadGrid[19][23]['working']=False
+RoadGrid[22][24]['working']=False
+RoadGrid[22][25]['working']=False
 RoadGrid[22][26]['working']=False
+RoadGrid[24][27]['working']=False
+RoadGrid[25][27]['working']=False
 #define Variables
 C = np.zeros((30,30))
 for i in Nodes:
@@ -98,12 +113,18 @@ model.optimize()
 #sytax for getting a variable in the output is variable[a,b].X to query it's value.
 #do a sanity check:
 RoadLengths = np.zeros((len(Grid.nodes),len(Grid.nodes),len(Time)))
+for i in Nodes:
+        for j in Nodes:
+             if RoadGrid[i][j]['working'] == True:
+                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']
+             else:
+                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']*8
 for t in range(1,len(Time)):
     for i in Nodes:
         for j in Nodes:
-            if (sum(K[i,j,t].X for k in range(0,t-1))) >=1:
+            if (sum(K[i,j,k].X for k in range(0,t-1))) >=1:
                 RoadLengths[i][j][t] = RoadGrid[i][j]['weight']
-            if (sum(K[i,j,t].X for k in range(0,t-1))) <=0:
+            if (sum(K[i,j,k].X for k in range(0,t-1))) <=0:
                 if RoadGrid[i][j]['working'] == True:
                     RoadLengths[i][j][t] = RoadGrid[i][j]['weight']
                 else:
@@ -172,6 +193,7 @@ Grid.node[6]['working']=False
 Grid.node[27]['working']=False
 Grid.node[23]['working']=False
 Grid.node[18]['working']=False
+Grid.node[4]['working']=False
 #Grid.node[15]['working']=False
 Grid[1][4][0]['working']=False
 Grid[4][6][0]['working']=False
@@ -180,6 +202,9 @@ Grid[24][25][0]['working']=False
 Grid[11][15][0]['working']=False
 Grid[1][3][0]['working']=False
 Grid[19][18][0]['working']=False
+Grid[9][22][0]['working']=False
+Grid[9][19][0]['working']=False
+
 ###END SCENARIO###            
 
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
@@ -203,7 +228,7 @@ for n in Nodes:
         if EdgeTracker[e][1][1] == n:
             EdgeIncidence[n][e] = 1
 ###Build broken elements into a list for STE constraints####
-STE = []
+STE = [13]
 for i in range(len(Grid.nodes())):
     if Grid.node[i]['working']==False:
         STE.append(i)
@@ -287,19 +312,29 @@ for i in Nodes:
      for t in Time:
         SP[i][j][t] = nx.shortest_path_length(ArrayOfRoadGrids[t], source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] == sum(SP[i][j][t]*Z[i,j,t]*1/50 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/50 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=2 and len(s)<=8:
             model.addConstr(sum(Z[i,j,t] for i in s for j in s)<=len(s)-1)
     for i in Nodes:
-#        dropi = Nodes
-#        dropi.remove(i)
-       model.addConstr(sum(Z[i,j,t] for j in Nodes)>=F_n[i,t])
-    
+       model.addConstr(Z[i,i,t]==0)
+       for j in Nodes:
+           IncidentToI = []
+           IncidentToJ = []
+           for e in Edges:
+               if EdgeTracker[e][1][0] == i or EdgeTracker[e][1][1] ==i:
+                   IncidentToI.append(e)
+               if EdgeTracker[e][1][0] == j or EdgeTracker[e][1][1] ==j:
+                   IncidentToJ.append(e)
+           model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
+           model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
+    for i in Nodes:
+        if Grid.node[i]['working']==True:
+            model.addConstr(F_n[i,t]==0)
     for e in Edges:
-        o = EdgeTracker[e][1][0]
-        d = EdgeTracker[e][1][1]        
+        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
+            model.addConstr(F_l[e,t] == 0)
 #        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
 #arbitrarily assigning node 13 to be the warehouse node
 for t in Time:
@@ -308,20 +343,19 @@ for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
 
 model.optimize()
-for n in Nodes:
-    for t in Time:
+for t in Time:
+    for n in Nodes:
         if F_n[n,t].X != 0:
             print(["N",n,t])
             print(F_n[n,t].X)
-for e in Edges:
-    for t in Time:
+    for e in Edges:
         if F_l[e,t].X != 0:
             print(["L",e,t])
             print(F_l[e,t].X)
 
 for i in Nodes:
     for j in Nodes:
-        t = 3
+        t = 0
 #        for t in Time:
         if Z[i,j,t].X != 0:
                 print([i,j,Z[i,j,t].X])
