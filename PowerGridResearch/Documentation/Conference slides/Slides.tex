@@ -44,33 +44,34 @@
 	\section{Motivating the Problem}
 	\frame{\frametitle{Background}
 		\begin{itemize}
-			\item Hurricanes cause significant damage to multiple infrastructure layers
-			\item Harvey took almost 11,000 MW of production capacity offline due to wind and flooding
-			\item Flooding rendered large swathes of the road system impossible to traverse, complicating repair efforts
+			\item -Hurricanes cause significant damage to multiple infrastructure layers
+			\item -Harvey took almost 11,000 MW of production capacity offline due to wind and flooding
+			\item -Flooding rendered large swathes of the road system impossible to traverse, complicating repair efforts
 			
 		\end{itemize}
 		}
 	\frame{\frametitle{Existing Literature}
 	\begin{itemize}
-		\item Power Grid Resilience: Mousavizadeh et al 2018
-		\item Repair Planning: Ang and Salmeron 2006
-		\item Resource prepositioning: Ali Arab et al 2015
-		\item Supply delivery: Holguin-Veras et al 2012
-		\item Of note is no significant literature addressing both road and power aspects at the same time.
+		\item -Power Grid Resilience: Mousavizadeh et al 2018
+		\item -Repair Planning: Ang and Salmeron 2006
+		\item -Resource prepositioning: Ali Arab et al 2015
+		\item -Supply delivery: Holguin-Veras et al 2012
+		\item -Power repair with routing: Bent, Van Hentenryck, and Coffrin 2011
+		\item -Of note is no significant literature addressing both road and power aspects at the same time.
 	\end{itemize}
 }
 	\frame{\frametitle{Power Grid Overview}
 		\begin{itemize}
-			\item Transmission side
+			\item -Transmission side
 			\begin{itemize}
-				\item Consists of generators, high voltage lines (345kV through 69kV), and substations.
-				\item main emphasis of this talk
+				\item -Consists of generators, high voltage lines (345kV through 69kV), and substations.
+				\item -main emphasis of this talk
 				 
 			\end{itemize}
-			\item Distribution side
+			\item -Distribution side
 			\begin{itemize}
-			\item Consists of 14kV and low-voltage distribution lines and corresponding step-down transformers
-			\item Can be abstracted away a bit due to being a better understood problem.
+			\item -Consists of 14kV and low-voltage distribution lines and corresponding step-down transformers
+			\item -Can be abstracted away since it always needs repairs post storm
 		\end{itemize}
 		\end{itemize}
 		}
@@ -90,12 +91,26 @@
 	
 }
 \frame{
+	\frametitle{Power Model: Variables}
+Variables:
+\begin{itemize}
+	\item $X_{e}^{t}$ is the flow on line $e$ at time $t$
+	\item $G_{k}^t$ is the production from generator $k$ at time $t$
+	\item $V_i^t$ is 1 if node $i$ is functioning at time $t$
+	\item $W_{e}^t$ is 1 if line $e$ is functioning at time $t$
+	\item $S_{e}^t$ is 1 if line $e$ is serviced at time $t$
+	\item $F_i^t$ is 1 if node $i$ is serviced at time $t$ 
+	\item $\theta_i^t$ is the phase angle for the power flow at $i$ in time $t$
+	\item $MST_t$ is the length of the tree used for "routing" at time $t$
+	\item $Z_{ij}^t$ is 1 if the shortest path link from $i$ to $j$ is an element in the tree at time $t$	
+\end{itemize}
+}
+\frame{
 \frametitle{Power Model: Parameters and Data}
 \begin{itemize}
 \item $\underline{L_e}$ and $\overline{L_e}$ is the capacity lower and upper bounds for the power line $e$
 \item $\Delta_{i}$ is the time to repair node $i$ and $\delta_{e}$ is the time to repair line $e$
 \item $C_{SP(i)}$ is the length of the shortest path to node $i$ from the central depot
-\item $K$ is a coefficient of "broken-ness" representing the average slowdown from debris on the road and minor flooding
 \item $D_i$ is the power demand at location $i$ in the pre-disaster steady state
 \item $P_k$ is the maximum power generation for generator $k$
 \item $B_e$ is the line susceptance (imaginary part of admittance, also inverse of resistance) for power line $e$
@@ -118,7 +133,32 @@ Subject to:
 \end{enumerate}
 These 6 constraints define the mathematical rules for operation of a damaged DC-approximated power grid.
 }
+\frame{
+	\frametitle{The Model Continued}
+	Subject to:
+	\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]
+		
+	\item $MST^t = \sum_{i \in N} \sum_{j \in N} SP_{ij}^t*Z_{ij}^{t} C_{speed}\hspace{4pt} \forall t \in T $
+	\item $\sum_{i \in N} \sum_{j \in N} Z_{ij}^{t} = \sum_{i \in N} F_i^t + \sum_{e \in E} S_e^t - \sum_{i \in N} F_i^t \sum_{O(i)} S_e^t - \sum_{i \in N} F_i^t \sum_{D(i)} S_e^t \hspace{4pt} \forall t \in T$
+	\item $\sum_{i,j \in S} Z_{ij}^t \leq |S|-1 \hspace{4pt} S\subset N$
+	\item $ \sum_{j \in N} Z_{ij}^t \leq F_i^t + \sum_{e \in O(i) \cup D(i)} S_{e}^t \hspace{4pt} \forall t \in T\hspace{4pt} \forall i \in N $
+	
+	These 4 constraints lay out how to construct a spanning tree among repaired elements to handle "routing"
+	\end{enumerate}
 
+}
+\frame{\frametitle{The Model Continued}
+	Subject to:
+\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.4ex, before={\everymath{\displaystyle}}]
+	\item $ \sum_{e \in E} \delta_{e}S_e^t + \sum_{i \in N}\Delta_{i}F_i^t + MST_t <=8$
+
+\item $V_i^t \leq \sum_{t'=0}^{t-1} F_i^{t'}+I_i, \hspace{4pt} \forall i \in N$ 
+\item $W_{e}^t \leq \sum_{t'=0}^{t-1} S_{e}^{t'}+I_e, \hspace{4pt} \forall e \in E $
+	\end{enumerate}
+
+These final 3 constraints govern shift scheduling and definition of functionality of grid elements
+}
+\section{Pure Road Model}
 	\frame{\frametitle{Pure Road Grid Model}
 	Sets:
 	\begin{itemize}
@@ -153,19 +193,20 @@ subject to:
 	\item $\sum_{i,j \in S; i\neq j} X_{ij}^t \leq |S|-1 \hspace{6pt} \forall S \subset N; \hspace{2pt} S \neq \emptyset$
 \end{enumerate}
 }
+\section{Scenario}
 	\frame{\frametitle{Constructed Grid for Example Results}
 	\begin{itemize}
-		\item We overlay IEEE 30 bus based power grid onto a grid to assign distances between elements
-		\item Nodes are chosen to be connected directly by roads that are modeled as a Watts-Strogatz graph
-		\item a representation of the system is shown below with power in green and roads in red.
+		\item -We overlay IEEE 30 bus based power grid onto a grid to assign distances between elements
+		\item -Nodes are chosen to be connected directly by roads that are modeled as a Watts-Strogatz graph
+		\item -a representation of the system is shown below with power in green and roads in red.
 	\end{itemize}
 	\includegraphics[scale=0.5]{"Mock Network".png}
 }
 	\frame{\frametitle{Scenario}
 	To simulate damage to a power network, we mark the following as damaged:
 	\begin{itemize}
-		\item Power Grid Nodes: 4,6,18,23,27
-		\item Power Grid Edges: (1,4),(1,6),(7,27),(24,25),(11,15),(1,3),(18,19),(9,22),(9,19)
+		\item Power Grid Nodes: 4,7,18,23,24,27
+		\item Power Grid Edges: (1,4),(4,6),(7,27),(24,25),(11,15),(1,3),(18,19),(9,22),(9,19)
 	\end{itemize}
 	We then randomly damage half the road edges in a way that represents debris and minor flooding giving them a repair time 8 times the normal transit time.
 	\begin{itemize}
@@ -174,67 +215,88 @@ subject to:
 		(19,23),(22,24),(22,25),(22,26),(24,27),(25,27)
 	\end{itemize}
 }
+\section{Preliminary Results}
+
+
 	\frame{\frametitle{Results for Road}
+			\begin{itemize}
+			\item -Assumption is that the road utility wants to maximize the length of working roads
+			\item -All tours have to start and end at node 13, which was chosen arbitrarily
+		\end{itemize}
 	{\centering
 		\begin{tabular}{|c|c|}
 			\hline
-			Shift 1 & (5/13), (9/13), (14/28)\\
+			Shift 1 & (21,18),(22,17),(25,22),(27,25)\\
 			\hline
-			Shift 2 & (14/16),(18,21),(18,20),(22,26) \\
+			Shift 2 & (9,13),(13,9),(24,22),(27,24) \\
 			\hline
-			Shift 3 &  \\
+			Shift 3 & (17,22),(18,21),(22,25),(25,27) \\
 			\hline
-			Shift 4 &  \\
+			Shift 4 & (10,9),(19,21),(22,24),(23,19),(24,27) \\
 			\hline
-			Shift 5 &  \\
+			Shift 5 & (5,13),(13,5) \\
 			\hline
-			Shift 6 &  \\
-			\hline
+			Shift 6 & Nothing fixed due to end of horizon effects
 		\end{tabular}\par
 	}
 }
 \frame{\frametitle{Results for Power}
-    Objective 1431.9
+	\begin{itemize}
+		\item -Objective 469.18
+		\item -Assumption is that all roads are repaired before they're used bt the power repair crews need them
+		\item -Repair Schedule below
+	\end{itemize}
+    
 	{\centering
 	\begin{tabular}{|c|c|}
 		\hline
-		Shift 1 & Bus 4 and Lines (1/4), (11/15) \\
+		Shift 1 & Bus 4 and Lines (11,15) \\
 		\hline
-		Shift 2 & Bus 6 \\
+		Shift 2 & Lines (1,4) and (9,19)\\
 		\hline
-		Shift 3 & Bus 6 and Line (4/6)\\
+		Shift 3 & Bus 7 and Lines (4,6)\\
 		\hline
-		Shift 4 & Bus 18 and Line (9/22) \\
+		Shift 4 & Bus 23 and Line (24,25) \\
 		\hline
-		Shift 5 & Line(18/19) \\
+		Shift 5 & Bus 24 Line (9/22) \\
 		\hline
 		Shift 6 &  \\
 		\hline
 	\end{tabular}\par
 }
 }
-\frame{\frametitle{Conclusions from non-iterative problems}
+\frame{\frametitle{Visualizations}
+\includegraphics[scale=0.4]{"LoadShedPower".png}
+
+}
+\frame{\frametitle{Conclusions from non-iterative approach}
 \begin{itemize}
 	\item -solutions exhibit geographical clustering
 	\subitem -effect not seen in some previous work
 	\item -fast repairs function of small network size used in example
+	\item -some roads are not repaired because it would require routing along multiple damaged roads and end up violating shift length constraint
+	\item -Power repairs will depend on what roads work, need to think of them together
 \end{itemize}
 }
 
+\section{Iterative Solutions}
 \frame{\frametitle{Iterative Road First Results}
-	Objective Value 1431.9
+	
+	Objective Value 552.107
+	\newline
+	
 	{\centering
 		\begin{tabular}{|c|c|}
 			\hline
-			Shift 1 & Lines (1/4),(9/19),(24,25) \\
+			Shift 1 & Bus 7 and Line (4/6) \\
 			\hline
-			Shift 2 & Bus 4 and Line (4/6),(9/19) \\
+			Shift 2 &  Lines (1,3),(1,4) \\
 			\hline
-			Shift 3 & Bus 23 and Lines (9/22), (24/25)\\
+			Shift 3 & Bus 4 and Line (18,19)\\
 			\hline
-			Shift 4 & Bus 18 and Line (18/19)  \\
+			Shift 4 &  Bus 18 and Line (7,27) \\
 			\hline
-			Shift 5 & \\
+			Shift 5 & Bus 23 and Line (24,25)\\
 			\hline
 			Shift 6 &  \\
 			\hline
@@ -243,7 +305,12 @@ subject to:
 }
 }
 	\frame{\frametitle{Conclusions}
-	
+	\begin{itemize}
+		\item -inclusion of road repair meaningfully changes repair schedule
+		\item -this suggests this as a useful direction of study
+		\item -non-contrived example should be done to better showcase the interactions on a real geography
+		\subitem -ACTIVS2000 simulated network and Texas topology provide for this
+	\end{itemize}
 }
 		
 \end{document}

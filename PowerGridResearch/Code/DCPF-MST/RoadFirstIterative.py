@@ -81,20 +81,22 @@ for i in Nodes:
     for j in Nodes:
         if RoadGrid[i][j]['weight']<9000:
             C[i][j] = RoadGrid[i][j]['weight']
-speed = 1/50
+speed = 1/20
 model = Model("mip1")
 X = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "X")
 K = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "K")
 S = model.addVars(Nodes,Nodes,Time,vtype=GRB.CONTINUOUS, name = "S")
+D = model.addVars(Time, vtype = GRB.CONTINUOUS, name = "D")
 M=500
-obj = model.setObjective(sum(t*sum(C[i][j]*(1-X[i,j,t]) for i in Nodes for j in Nodes)+.001*sum(S[i,j,t] for i in Nodes for j in Nodes) for t in Time),GRB.MINIMIZE)
+obj = model.setObjective(sum(t*sum(C[i][j]*(1-X[i,j,t]) for i in Nodes for j in Nodes)+10*D[t] for t in Time),GRB.MINIMIZE)
 for t in Time:
     for i in Nodes:
         for j in Nodes:
             model.addConstr(S[i,j,t] <= M*K[i,j,t]) 
             model.addConstr(S[i,j,t] >= RoadGrid[i][j]['weight']*speed*K[i,j,t])
             model.addConstr(S[i,j,t] >= (1-X[i,j,t])*8*RoadGrid[i][j]['weight']*speed - (1-K[i,j,t])*M)
-    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=8)
+    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=8+D[t])
+    model.addConstr(D[t]<=3)
     for i in Nodes:
         model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)
     model.addConstr(sum(K[13,j,t] for j in Nodes)==1)
@@ -128,8 +130,16 @@ for t in range(1,len(Time)):
                 if RoadGrid[i][j]['working'] == True:
                     RoadLengths[i][j][t] = RoadGrid[i][j]['weight']
                 else:
-                    RoadLengths[i][j][t] = RoadGrid[i][j]['weight']*8
+                    RoadLengths[i][j][t] = RoadGrid[i][j]['weight']*999
 
+for t in Time:
+    for i in Nodes:
+        for j in Nodes:
+            if K[i,j,t].X >0:
+             if RoadGrid[i][j]['working'] == False:
+                print([i,j,t,K[i,j,t].X])
+t=5                
+sum(C[i][j]*(1-X[i,j,t].X) for i in Nodes for j in Nodes)
 SteadyStatePower = 255 #in MW--the PU Basis
 PlanningHorizon = 6 #this is measured in shifts
 ShiftLength = 8 #in Hours
@@ -159,6 +169,8 @@ W_n = model.addVars(Nodes, Time, vtype = GRB.BINARY, name = "W_n")
 Theta = model.addVars(Nodes,Time, vtype = GRB.CONTINUOUS, name = "Theta")
 PowerIJ = model.addVars(Edges,Time, vtype = GRB.CONTINUOUS, name = "PowerIJ")
 MST = model.addVars(Time, vtype = GRB.CONTINUOUS, lb=0, name = "MST")
+Delta = model.addVars(Time, vtype = GRB.CONTINUOUS, lb =0, name = "Delta")
+
 #default everything to working
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
@@ -189,11 +201,12 @@ plt.axis('off')
 plt.show()
 #######            
 ###SCENARIO OF BROKEN THINGS###
-Grid.node[6]['working']=False
 Grid.node[27]['working']=False
 Grid.node[23]['working']=False
 Grid.node[18]['working']=False
 Grid.node[4]['working']=False
+Grid.node[7]['working']=False
+Grid.node[24]['working']=False
 #Grid.node[15]['working']=False
 Grid[1][4][0]['working']=False
 Grid[4][6][0]['working']=False
@@ -240,7 +253,7 @@ for j in range(len(EdgeStartingStatus)):
 ###End STE building###
 
 
-obj = model.setObjective(sum((W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time),GRB.MAXIMIZE)
+obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes)+20*Delta[t] for t in Time),GRB.MINIMIZE)
 
 
 #impose phase angle constraints
@@ -293,10 +306,10 @@ for e in Edges:
         model.addConstr(W_l[e,t]<=sum(F_l[e,g] for g in range(0,t))+int(EdgeStartingStatus[e]))
         
 #schedule restriction so that nothing gets double fixed
-#for i in Nodes:
-#    model.addConstr(sum(F_n[i,t]for t in Time)<=1)   
-#for e in Edges:
-#    model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
+for i in Nodes:
+    model.addConstr(sum(F_n[i,t]for t in Time)<=1)   
+for e in Edges:
+    model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
 SP = np.zeros((len(Nodes), len(Nodes), len(Time)))
 ArrayOfRoadGrids = []
@@ -312,7 +325,7 @@ for i in Nodes:
      for t in Time:
         SP[i][j][t] = nx.shortest_path_length(ArrayOfRoadGrids[t], source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/50 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=2 and len(s)<=8:
@@ -327,6 +340,7 @@ for t in Time:
                    IncidentToI.append(e)
                if EdgeTracker[e][1][0] == j or EdgeTracker[e][1][1] ==j:
                    IncidentToJ.append(e)
+#           if i!=13:
            model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
            model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
     for i in Nodes:
@@ -337,10 +351,11 @@ for t in Time:
             model.addConstr(F_l[e,t] == 0)
 #        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
 #arbitrarily assigning node 13 to be the warehouse node
+#for t in Time:
+#    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
 for t in Time:
-    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
-for t in Time:
-    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
+    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
+    model.addConstr(Delta[t]<=1.5)
 
 model.optimize()
 for t in Time:
@@ -355,11 +370,13 @@ for t in Time:
 
 for i in Nodes:
     for j in Nodes:
-        t = 0
+        t = 1
 #        for t in Time:
         if Z[i,j,t].X != 0:
                 print([i,j,Z[i,j,t].X])
 #for i in Edges:
 #        for t in Time:
 #            if PowerIJ[i,t].X != 0:
-#                print(PowerIJ[i,t].X)                
+#                print(PowerIJ[i,t].X)              
+t=5          
+print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes))

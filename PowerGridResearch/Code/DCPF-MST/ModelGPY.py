@@ -50,6 +50,7 @@ W_n = model.addVars(Nodes, Time, vtype = GRB.BINARY, name = "W_n")
 Theta = model.addVars(Nodes,Time, vtype = GRB.CONTINUOUS, name = "Theta")
 PowerIJ = model.addVars(Edges,Time, vtype = GRB.CONTINUOUS, name = "PowerIJ")
 MST = model.addVars(Time, vtype = GRB.CONTINUOUS, lb=0, name = "MST")
+Delta = model.addVars(Time, vtype = GRB.CONTINUOUS, lb =0, name = "Delta")
 #default everything to working
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
@@ -63,6 +64,7 @@ y = nx.get_node_attributes(Grid,'ycoord')
 pos=[]
 power = []
 road = []
+
 for i in x:
     pos.append((x[i],y[i]))
 for e in Grid.edges:
@@ -73,18 +75,19 @@ for e in Grid.edges:
         
 nx.draw_networkx_nodes(Grid, pos, label=True)
 nx.draw_networkx_labels(Grid, pos)
-nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
+#nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
 nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .7)
 #
 plt.axis('off')
 plt.show()
 #######            
 ###SCENARIO OF BROKEN THINGS###
-Grid.node[6]['working']=False
 Grid.node[27]['working']=False
 Grid.node[23]['working']=False
 Grid.node[18]['working']=False
 Grid.node[4]['working']=False
+Grid.node[7]['working']=False
+Grid.node[24]['working']=False
 #Grid.node[15]['working']=False
 Grid[1][4][0]['working']=False
 Grid[4][6][0]['working']=False
@@ -131,7 +134,7 @@ for j in range(len(EdgeStartingStatus)):
 ###End STE building###
 
 
-obj = model.setObjective(sum((W_n[i,t])*Grid.node[i]['load'] for i in Nodes for t in Time),GRB.MAXIMIZE)
+obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes)+20*Delta[t] for t in Time),GRB.MINIMIZE)
 
 
 #impose phase angle constraints
@@ -184,10 +187,10 @@ for e in Edges:
         model.addConstr(W_l[e,t]<=sum(F_l[e,g] for g in range(0,t))+int(EdgeStartingStatus[e]))
         
 #schedule restriction so that nothing gets double fixed
-#for i in Nodes:
-#    model.addConstr(sum(F_n[i,t]for t in Time)<=1)   
-#for e in Edges:
-#    model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
+for i in Nodes:
+    model.addConstr(sum(F_n[i,t]for t in Time)<=1)   
+for e in Edges:
+    model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
 SP = np.zeros((len(Nodes), len(Nodes)))
 RoadGrid = nx.Graph()
@@ -200,24 +203,39 @@ for i in Nodes:
     for j in Nodes:
         SP[i][j] = nx.shortest_path_length(RoadGrid, source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] == sum(SP[i][j]*Z[i,j,t]*1/50 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=2 and len(s)<=8:
             model.addConstr(sum(Z[i,j,t] for i in s for j in s)<=len(s)-1)
     for i in Nodes:
        model.addConstr(Z[i,i,t]==0)
-       model.addConstr(sum(Z[i,j,t] for j in Nodes)>=F_n[i,t])
-    
+       for j in Nodes:
+           IncidentToI = []
+           IncidentToJ = []
+           for e in Edges:
+               if EdgeTracker[e][1][0] == i or EdgeTracker[e][1][1] ==i:
+                   IncidentToI.append(e)
+               if EdgeTracker[e][1][0] == j or EdgeTracker[e][1][1] ==j:
+                   IncidentToJ.append(e)
+#           if i!=13:
+           model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
+           model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
+    for i in Nodes:
+        if Grid.node[i]['working']==True:
+            model.addConstr(F_n[i,t]==0)
     for e in Edges:
-        o = EdgeTracker[e][1][0]
-        d = EdgeTracker[e][1][1]        
+        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
+            model.addConstr(F_l[e,t] == 0)
 #        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
 #arbitrarily assigning node 13 to be the warehouse node
+#for t in Time:
+#    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
+
 for t in Time:
-    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
-for t in Time:
-    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
+
+    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
+    model.addConstr(Delta[t]<=1.5)
 
 model.optimize()
 
@@ -246,3 +264,10 @@ for t in Time:
     for n in Nodes:
         if W_n[n,t].X == 0:
             print([n,t])
+
+t=0            
+print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes))
+for i in Nodes:
+    
+    print([i,W_n[i,t].X])
+    
