@@ -53,28 +53,43 @@ for i in Nodes:
                 RoadGrid[i][j]['working']=True
         else:
             RoadGrid[i][j]['working']=True
-RoadGrid[0][3]['working']=False
-RoadGrid[1][2]['working']=False
-RoadGrid[1][26]['working']=False
-RoadGrid[4][5]['working']=False
-RoadGrid[5][13]['working']=False
-RoadGrid[9][10]['working']=False
-RoadGrid[9][13]['working']=False
-RoadGrid[10][11]['working']=False
-RoadGrid[10][12]['working']=False
-RoadGrid[13][15]['working']=False
-RoadGrid[14][16]['working']=False
-RoadGrid[14][28]['working']=False
-RoadGrid[16][17]['working']=False
-RoadGrid[17][22]['working']=False
-RoadGrid[18][21]['working']=False
-RoadGrid[19][21]['working']=False
-RoadGrid[19][23]['working']=False
-RoadGrid[22][24]['working']=False
-RoadGrid[22][25]['working']=False
-RoadGrid[22][26]['working']=False
+            
+###Random Scenario###
+#RoadGrid[0][3]['working']=False
+#RoadGrid[1][2]['working']=False
+#RoadGrid[1][26]['working']=False
+#RoadGrid[4][5]['working']=False
+#RoadGrid[5][13]['working']=False
+#RoadGrid[9][10]['working']=False
+#RoadGrid[9][13]['working']=False
+#RoadGrid[10][11]['working']=False
+#RoadGrid[10][12]['working']=False
+#RoadGrid[13][15]['working']=False
+#RoadGrid[14][16]['working']=False
+#RoadGrid[14][28]['working']=False
+#RoadGrid[16][17]['working']=False
+#RoadGrid[17][22]['working']=False
+#RoadGrid[18][21]['working']=False
+#RoadGrid[19][21]['working']=False
+#RoadGrid[19][23]['working']=False
+#RoadGrid[22][24]['working']=False
+#RoadGrid[22][25]['working']=False
+#RoadGrid[22][26]['working']=False
+#RoadGrid[24][27]['working']=False
+#RoadGrid[25][27]['working']=False
+###Geographically oriented Scenario
+RoadGrid[20][21]['working']=False
+RoadGrid[18][23]['working']=False            
+RoadGrid[23][27]['working']=False
 RoadGrid[24][27]['working']=False
+RoadGrid[17][22]['working']=False
 RoadGrid[25][27]['working']=False
+RoadGrid[29][17]['working']=False
+RoadGrid[6][7]['working']=False
+RoadGrid[1][21]['working']=False
+RoadGrid[17][29]['working']=False
+RoadGrid[13][15]['working']=False
+RoadGrid[12][10]['working']=False            
 #define Variables
 C = np.zeros((30,30))
 for i in Nodes:
@@ -199,27 +214,43 @@ nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, 
 #
 plt.axis('off')
 plt.show()
-#######            
-###SCENARIO OF BROKEN THINGS###
-Grid.node[27]['working']=False
-Grid.node[23]['working']=False
-Grid.node[18]['working']=False
-Grid.node[4]['working']=False
-Grid.node[7]['working']=False
-Grid.node[24]['working']=False
-#Grid.node[15]['working']=False
-Grid[1][4][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[7][27][0]['working']=False
-Grid[24][25][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+#######   RANDOM SCENARIO         
+####SCENARIO OF BROKEN THINGS###
+#Grid.node[27]['working']=False
+#Grid.node[23]['working']=False
+#Grid.node[18]['working']=False
+#Grid.node[4]['working']=False
+#Grid.node[7]['working']=False
+#Grid.node[24]['working']=False
+##Grid.node[15]['working']=False
+#Grid[1][4][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[7][27][0]['working']=False
+#Grid[24][25][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
+#Grid[9][22][0]['working']=False
+#Grid[9][19][0]['working']=False
+#
+####END SCENARIO###            
+###Geographic Scenario###
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[16]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
+Grid[21][7][0]['working']=False
+Grid[21][27][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[17][18][0]['working']=False
 Grid[9][22][0]['working']=False
-Grid[9][19][0]['working']=False
-
-###END SCENARIO###            
-
+Grid[9][16][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][13][0]['working']=False
+Grid[28][29][0]['working']=False
+Grid[11][14][0]['working']=False
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
@@ -370,7 +401,7 @@ for t in Time:
 
 for i in Nodes:
     for j in Nodes:
-        t = 1
+        t = 0
 #        for t in Time:
         if Z[i,j,t].X != 0:
                 print([i,j,Z[i,j,t].X])
@@ -378,5 +409,5 @@ for i in Nodes:
 #        for t in Time:
 #            if PowerIJ[i,t].X != 0:
 #                print(PowerIJ[i,t].X)              
-t=5          
+t=2          
 print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes))
