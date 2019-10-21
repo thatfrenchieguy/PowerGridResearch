@@ -1,33 +1,26 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct  2 15:45:12 2019
+Created on Fri Feb 15 15:49:25 2019
 
 @author: BrianFrench
 """
-
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May  6 14:31:19 2019
-
-@author: BrianFrench
-"""
-
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import math
-import csv
 from gurobipy import *
 #define a powerset function
 from itertools import chain, combinations
 def powerset(iterable):
+    "list(powerset([1,2,3])) --> [(), (1,), (2,), (3,), (1,2), (1,3), (2,3), (1,2,3)]"
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 #initialize graph from file
 Grid = nx.read_gml("Bus30WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
+
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
 PlanningHorizon = 6 #this is measured in shifts
@@ -37,23 +30,16 @@ Nodes = list(range(0,len(Grid.nodes)))
 Time = list(range(0,PlanningHorizon))
 RoadGrid = nx.Graph()
 RoadGrid.add_nodes_from(Grid.nodes)
+
 for i in Nodes:
     for j in Nodes:
         if Grid.has_edge(i,j,1):
+          
             RoadGrid.add_edge(i,j,weight = Grid[i][j][1]['length'])
+            RoadGrid[i][j]['working']=True
         else:
             RoadGrid.add_edge(i,j,weight = 9999)
-###commented out to have a fixed scenario based on the code below
-for i in Nodes:
-    for j in Nodes:
-        if Grid.has_edge(i,j,1):
-#            if np.random.uniform(0,10)<=2:
-#                RoadGrid[i][j]['working']=False
-#            else:
-                RoadGrid[i][j]['working']=True
-        else:
             RoadGrid[i][j]['working']=True
-            
 ###Random Scenario###
 RoadGrid[0][3]['working']=False
 RoadGrid[1][2]['working']=False
@@ -77,93 +63,25 @@ RoadGrid[22][25]['working']=False
 RoadGrid[22][26]['working']=False
 RoadGrid[24][27]['working']=False
 RoadGrid[25][27]['working']=False
-###Geographically oriented Scenario
-#RoadGrid[20][21]['working']=False
-#RoadGrid[18][23]['working']=False            
-#RoadGrid[23][27]['working']=False
-#RoadGrid[24][27]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[25][27]['working']=False
-#RoadGrid[29][17]['working']=False
-#RoadGrid[6][7]['working']=False
-#RoadGrid[1][21]['working']=False
-#RoadGrid[17][29]['working']=False
-#RoadGrid[13][15]['working']=False
-#RoadGrid[12][10]['working']=False            
-#define Variables
-C = np.zeros((30,30))
 for i in Nodes:
     for j in Nodes:
-        if RoadGrid[i][j]['weight']<9000:
-            C[i][j] = RoadGrid[i][j]['weight']
-speed = 1/20
-model = Model("mip1")
-X = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "X")
-K = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "K")
-S = model.addVars(Nodes,Nodes,Time,vtype=GRB.CONTINUOUS, name = "S")
-D = model.addVars(Time, vtype = GRB.CONTINUOUS, name = "D")
-M=500
-obj = model.setObjective(sum(t*sum(C[i][j]*(1-X[i,j,t]) for i in Nodes for j in Nodes)+10*D[t] for t in Time),GRB.MINIMIZE)
-for t in Time:
-    for i in Nodes:
-        for j in Nodes:
-            model.addConstr(S[i,j,t] <= M*K[i,j,t]) 
-            model.addConstr(S[i,j,t] >= RoadGrid[i][j]['weight']*speed*K[i,j,t])
-            model.addConstr(S[i,j,t] >= (1-X[i,j,t])*8*RoadGrid[i][j]['weight']*speed - (1-K[i,j,t])*M)
-    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=8+D[t])
-    model.addConstr(D[t]<=3)
-    for i in Nodes:
-        model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)
-    model.addConstr(sum(K[13,j,t] for j in Nodes)==1)
-    PS = powerset(Nodes)
-for s in PS:
- if len(s)<6:
-  if len(s)>1:
-   for t in Time:
-    model.addConstr(sum(K[i,j,t] for i in s for j in s)<=len(s)-1)
+        if RoadGrid.has_edge(i,j):
+            if RoadGrid[i][j]['working']==False:
+                RoadGrid[i][j]['weight'] = RoadGrid[i][j]['weight']*8
+###commented out to have a fixed scenario based on the code below
 for i in Nodes:
     for j in Nodes:
-     for t in Time:
-        model.addConstr(X[i,j,t] <= sum(K[i,j,v] for v in range(0,t))+int(RoadGrid[i][j]['working']))
-setParam("NodefileStart", 5)
-model.optimize()
-#sytax for getting a variable in the output is variable[a,b].X to query it's value.
-#do a sanity check:
-RoadLengths = np.zeros((len(Grid.nodes),len(Grid.nodes),len(Time)))
-for i in Nodes:
-        for j in Nodes:
-             if RoadGrid[i][j]['working'] == True:
-                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']
-             else:
-                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']*8
-for t in range(1,len(Time)):
-    for i in Nodes:
-        for j in Nodes:
-            if (sum(K[i,j,k].X for k in range(0,t-1))) >=1:
-                RoadLengths[i][j][t] = RoadGrid[i][j]['weight']
-            if (sum(K[i,j,k].X for k in range(0,t-1))) <=0:
-                if RoadGrid[i][j]['working'] == True:
-                    RoadLengths[i][j][t] = RoadGrid[i][j]['weight']
-                else:
-                    RoadLengths[i][j][t] = RoadGrid[i][j]['weight']*999
+        if Grid.has_edge(i,j,1):
+#            if np.random.uniform(0,10)<=2:
+#                RoadGrid[i][j]['working']=False
+#            else:
+                RoadGrid[i][j]['working']=True
+        else:
+            RoadGrid[i][j]['working']=True
+            
 
-for t in Time:
-    for i in Nodes:
-        for j in Nodes:
-            if K[i,j,t].X >0:
-                print([i,j,t,K[i,j,t].X])
-t=5                
-sum(C[i][j]*(1-X[i,j,t].X) for i in Nodes for j in Nodes)
+#declare needed constants
 
-for i in Nodes:
-    for t in Time:
-        if (sum(K[i,j,t].X for j in Nodes)-sum(K[j,i,t].X for j in Nodes)) != 0:
-            print([i,t])
-
-
-SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 6 #this is measured in shifts
-ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 PowerSub = nx.read_gml("Bus30WithData.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
@@ -191,7 +109,6 @@ Theta = model.addVars(Nodes,Time, vtype = GRB.CONTINUOUS, name = "Theta")
 PowerIJ = model.addVars(Edges,Time, vtype = GRB.CONTINUOUS, name = "PowerIJ")
 MST = model.addVars(Time, vtype = GRB.CONTINUOUS, lb=0, name = "MST")
 Delta = model.addVars(Time, vtype = GRB.CONTINUOUS, lb =0, name = "Delta")
-
 #default everything to working
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
@@ -205,8 +122,7 @@ y = nx.get_node_attributes(Grid,'ycoord')
 pos=[]
 power = []
 road = []
-tour = [[13,5],[5,4],[4,3],[3,6],[6,7],[7,21],[21,1],[1,17],[17,10],[10,9],[9,15],[15,13]]
-tourdraw = []
+
 for i in x:
     pos.append((x[i],y[i]))
 for e in Grid.edges:
@@ -214,19 +130,16 @@ for e in Grid.edges:
         power.append(e)
     if e[2]==1:
         road.append(e)
-for t in tour:
-    tourdraw.append((t[0],t[1],1))
         
 nx.draw_networkx_nodes(Grid, pos, label=True)
 nx.draw_networkx_labels(Grid, pos)
 #nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
-nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .3)
-nx.draw_networkx_edges(Grid, pos, edgelist = tourdraw, edge_color = 'b', width = 4, alpha = 1)
+nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .7)
 #
 plt.axis('off')
 plt.show()
-#######   RANDOM SCENARIO         
-####SCENARIO OF BROKEN THINGS###
+#######            
+###SCENARIO OF BROKEN THINGS###
 Grid.node[27]['working']=False
 Grid.node[23]['working']=False
 Grid.node[18]['working']=False
@@ -244,24 +157,8 @@ Grid[19][18][0]['working']=False
 Grid[9][22][0]['working']=False
 Grid[9][19][0]['working']=False
 
-####END SCENARIO###            
-####Geographic Scenario###
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[16]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-#Grid[21][7][0]['working']=False
-#Grid[21][27][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][22][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[28][29][0]['working']=False
-#Grid[11][14][0]['working']=False
+###END SCENARIO###            
+
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
@@ -283,7 +180,7 @@ for n in Nodes:
         if EdgeTracker[e][1][1] == n:
             EdgeIncidence[n][e] = 1
 ###Build broken elements into a list for STE constraints####
-STE = [13]
+STE = []
 for i in range(len(Grid.nodes())):
     if Grid.node[i]['working']==False:
         STE.append(i)
@@ -353,21 +250,12 @@ for i in Nodes:
 for e in Edges:
     model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
-SP = np.zeros((len(Nodes), len(Nodes), len(Time)))
-ArrayOfRoadGrids = []
-for t in Time:
-    RoadGrid = nx.Graph()
-    RoadGrid.add_nodes_from(Grid)
-    for i in Nodes:
-        for j in Nodes:
-            RoadGrid.add_edge(i,j,weight = RoadLengths[i][j][t])
-    ArrayOfRoadGrids.append(RoadGrid)
+SP = np.zeros((len(Nodes), len(Nodes)))
 for i in Nodes:
     for j in Nodes:
-     for t in Time:
-        SP[i][j][t] = nx.shortest_path_length(ArrayOfRoadGrids[t], source = i, target = j, weight='weight')
+        SP[i][j] = nx.shortest_path_length(RoadGrid, source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=2 and len(s)<=8:
@@ -395,11 +283,14 @@ for t in Time:
 #arbitrarily assigning node 13 to be the warehouse node
 #for t in Time:
 #    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
+
 for t in Time:
+
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
     model.addConstr(Delta[t]<=3)
 
 model.optimize()
+
 for t in Time:
     for n in Nodes:
         if F_n[n,t].X != 0:
@@ -412,13 +303,24 @@ for t in Time:
 
 for i in Nodes:
     for j in Nodes:
-        t = 0
+        t = 2
 #        for t in Time:
         if Z[i,j,t].X != 0:
                 print([i,j,Z[i,j,t].X])
 #for i in Edges:
 #        for t in Time:
 #            if PowerIJ[i,t].X != 0:
-#                print(PowerIJ[i,t].X)              
-t=5          
+#                print(PowerIJ[i,t].X)
+                
+for t in Time:
+    for n in Nodes:
+        if W_n[n,t].X == 0:
+            print([n,t])
+
+t=0            
+print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes))
+for i in Nodes:
+    
+    print([i,W_n[i,t].X])
+    
 print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes for t in Time))

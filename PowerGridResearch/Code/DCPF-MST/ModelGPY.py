@@ -235,7 +235,7 @@ for t in Time:
 for t in Time:
 
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
-    model.addConstr(Delta[t]<=1.5)
+    model.addConstr(Delta[t]<=3)
 
 model.optimize()
 
@@ -266,7 +266,7 @@ for t in Time:
             print([n,t])
 
 t=0            
-print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes))
+print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
 for i in Nodes:
     
     print([i,W_n[i,t].X])
