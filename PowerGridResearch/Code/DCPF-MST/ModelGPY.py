@@ -237,6 +237,26 @@ for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
     model.addConstr(Delta[t]<=3)
 
+model.addConstr(F_n[4,0] ==1)
+#model.addConstr(F_l[3,0]==1)
+#model.addConstr(F_l[17,1]>=1)
+#model.addConstr(F_l[24,1]>=1)
+#model.addConstr(F_l[2,1]>=1)
+#model.addConstr(F_l[35,2]>=1)
+model.addConstr(F_n[7,2]>=1)
+model.addConstr(F_n[23,3]==1)
+#model.addConstr(F_l[8,3]>=1)
+model.addConstr(F_n[24,4]==1)
+#model.addConstr(F_n[18,4]>=1)
+
+
+
+
+
+
+
+
+
 model.optimize()
 
 for t in Time:
