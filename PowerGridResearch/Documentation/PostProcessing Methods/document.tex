@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[fleqn]{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\begin{document}
+	\title{PostProcessing Methods}
+	\section{Power Grid Repair Model(PGRM) without travel}
+	\textbf{Summary of the model:} A pure scheduling based model that assumes all travel times are zero
+	\textbf{Input to postprocessing:} A schedule of repairs for power grid from the PGR model\newline
+	\textbf{Missing/ignored information:} travel times, road grid repair schedule\newline
+	\textbf{Method for Compensation:}
+	\begin{enumerate}
+		\item Define a shift length at length L
+		\item Start with shift 1 and call it the working shift
+		\item Starting with the schedule given, add the earliest scheduled repair where the shortest path from the last repaired element, the repair time, and the shortest path back to the depot all fit in working shift.
+		\item Attempt to remove the shortest path back to the origin and repeat step 3
+		\item When nothing else can be fit into a shift, return to step 2 and increment the working shift by 1
+		\item loop through the process until the entire schedule has been post-processed into a feasible repair schedule 
+	\end{enumerate}
+\textbf{Postprocessing into lost load:} To go from a schedule to a lost load, solve the optimal power distribution integer-linear program from Appendix A with elements able to be used based on when they're repaired. Because this model assumes that roads have nominal transit time, we also add 1 full shift of load lost to account for the time it takes for the road repairs to "get ahead" of when they're needed.
+
+\section{PGRM with travel on nominal roads}
+\textbf{Summary of the model:} A scheduling model that includes approximations to the routing aspect that exists in the physical system. Damage and delay from road grids is not considered.
+	\textbf{Input to postprocessing:} A schedule of repairs for power grid from the PGR model with nominal road lengths\newline
+\textbf{Missing/ignored information:} road damage, road grid repair schedule\newline
+\textbf{Method for Compensation:}
+Since this version of the model approximates travel costs using a spanning tree, we have no need to post-process into a different schedule. We convert from model output to a load-loss for comparison by using the lost load from the model, computing what one shift of lost-load before repairs would be and adding the corresponding load-loss to the model output to account for the same "get ahead" in road repairs that was previously discussed.
+
+\section{PGRM with travel on damaged roads}
+\textbf{Summary of the model:} A scheduling model that includes approximations to the routing aspect that exists in the physical system. Damage to the road grid is presumed to be static and fixed
+\textbf{Input to postprocessing:} A schedule of repairs for power grid from the PGR model with damaged road lengths\newline
+\textbf{Missing/ignored information:} road grid repair schedule\newline
+\textbf{Method for Compensation:}
+Since this version of the model approximates travel costs using a spanning tree, we have no need to post-process into a different schedule. As there's no interaction with the road repair side of the infrastructure, there is no lost shift of power flow while waiting on the road grid repairs because of the non-interaction with repair planning.
+
+\section{PGRM with road repair}
+\textbf{Summary of the model:} A scheduling model that includes approximations to the routing aspect that exists in the physical system. Damage to the road grid is presumed to have a starting state and then a repair schedule based on the priorities of the power grid organization will be followed.
+\textbf{Input to postprocessing:} A schedule of repairs for power grid from the PGR model that has been solved with the input of a road-grid repair model.\newline
+\textbf{Missing/ignored information:} Interaction between road and power utilities \newline
+\textbf{Method for Compensation:}
+Since this version of the model approximates travel costs using a spanning tree, we have no need to post-process into a different schedule. As there's no interaction with the road repair side of the infrastructure, there is no lost shift of power flow while waiting on the road grid repairs since this version of the PGRM presumes that road grid repairs will happen with no regard for what happens to the power grid repair schedule.
+
+\section{PGRM with iterative road repair interactions}
+\textbf{Summary of the model:} A framework for interacting the road grid repair model with the power grid repair model in order to try to capture some of the tradeoffs in priority between multiple infrastructure network layers.
+\textbf{Input to processing:} Initial Damage, code that can solve the PGRM with road repair, code that can solve the optimal road repair model, and a post processing utility to convert from spanning tree to proper routing. \newline
+
+\textbf{Method for iterating:}
+
+\begin{enumerate}
+	\item Solve the road grid repair model
+	\item Solve the PGRM with road repair
+	\item For each time step in the PGRM, solve the reduced routing problem outlined in Appendix B to identify what path the power grid repair would take.
+	\item Resolve the road grid repair model from the beginning with every road used in the power grid repair model's post processing having doubled weights
+	\item Resolve the PGRM with road repair with the new weights to obtain a revised power repair schedule.
+	\item Steps 4 and 5 can be repeated for multiple iterations to increase the amount of impact that the power grid has on the road grid's schedule.
+\end{enumerate}
+
+
+\section{Appendix A: Optimal DC Power Flow on a damaged grid}
+\begin{itemize}
+	\item $N$ is the set of nodes, indexed by $n$
+	\item $E$ is the set of power lines, indexed by $e$
+	\item $O(i)$ is the set of lines with origin $i$
+	\item $D(i)$ is the set of lines with destination $i$
+	\item $o(e)$ is the origin node of line $e$
+	\item $d(e)$ is the destination node of line $e$
+	\item $\underline{L_e}$ and $\overline{L_e}$ is the capacity lower and upper bounds for the power line $e$
+	\item $D_n$ is the power demand at location $n$ in the pre-disaster steady state
+	\item $P_k$ is the maximum power generation for generator $k$
+	\item $Status$ is an indicator for whether or not an element is currently damaged
+	\item $B_e$ is the line susceptance (imaginary part of admittance, also inverse of resistance) for power line $e$
+	\item $X_{e}$ is the flow on line $e$ 
+	\item $G_{k}$ is the production from generator $k$
+	\item $W_{e}$ is 1 if line $e$ is functioning 
+	\item $V_n$ is 1 if node $n$ is functioning 
+\end{itemize}
+
+$$Minimize \sum_{n \in N} D_n (1-X_n)$$
+
+Subject To:
+\begin{enumerate}
+	\item $ X_e = B_e * (\theta_{o(e)} - \theta_{d(e)}), \hspace{5pt}  \hspace{4pt} \forall e \in E$
+	\item $ G_i - \sum_{l \in O(i)} X_l + \sum_{l \in D(i)} X_l = D_i \hspace{4pt} \forall i \in N$
+	\item $G_k^t \leq P_{k} V_{k}  \hspace{4pt} \forall k \in N$
+	\item $\underline{L_e}W_{e} \leq X_{e} \leq \overline{L_e}W_{e}, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E$
+	\item $\underline{L_e}V_{o(e)} \leq X_{e} \leq \overline{L_e}V_{o(e)} \hspace{4pt} \forall e \in E$
+	\item $\underline{L_e}V_{d(e)} \leq X_{e} \leq \overline{L_e}V_{d(e)} \hspace{4pt} \forall e \in E$
+	\item $V_n \leq Status_n \hspace{4pt} \forall i \in N$ 
+	\item $W_{e} \leq Status_e, \hspace{4pt} \forall e \in E $
+	
+\end{enumerate}
+
+\section{Appendix B: PGRM to route subproblem}
+\begin{itemize}
+		\item $N$ is the set of nodes, indexed by $n$
+		\item $K_{ij}$ is a binary variable for if the path from i to j is in the route
+		\item $C_{ij}$ is the cost of traveling along the path from i to j
+		\item $Repaired_j$ is a binary indicator for whether or not the PGRM indicated a repair taking place at that node j for the time period being solved
+\end{itemize}
+$$Minimize \sum_{i \in N} \sum_{j \in N} C_{ij}K_{ij}$$
+
+Subject to:
+\begin{enumerate}
+	\item $\sum_{j \in N} K_{ij} - \sum{j \in N}K_{ji} = 0 \hspace{4pt} \forall i \in N$
+	\item $\sum_{i,j \in S} K_{ij} \leq |S|-1 \hspace{4pt} \forall S \subset N$
+	\item $\sum_{i} K_{ij} \geq Repaired_j \hspace{4pt} \forall j \in N$
+\end{enumerate}
+
+
+
+\end{document}
