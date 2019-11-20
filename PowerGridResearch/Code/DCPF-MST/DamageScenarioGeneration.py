@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import math
-from gurobipy import *
+#from gurobipy import *
 from scipy import stats
 #define a powerset function
 from itertools import chain, combinations
@@ -44,7 +44,7 @@ StrikeStart = (20,30)
 p1 = np.asarray(StrikeStart)
 StrikeEnd = (0,30)
 p2 = np.asarray(StrikeEnd)
-MaxWind = 70 #in M/s
+MaxWind = 140 #in M/s
 BaseWind = 3 #f constant in Scherb et al 2015
 HurricaneRadius = 40 #in Km from the same paper as Rmax
 for n in PowerSub.nodes:
