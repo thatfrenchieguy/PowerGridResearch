@@ -22,7 +22,7 @@ Grid = nx.read_gml("Bus30WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 12 #this is measured in shifts
+PlanningHorizon = 6 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 PowerSub = nx.read_gml("Bus30WithData.gml")

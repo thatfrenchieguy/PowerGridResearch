@@ -95,7 +95,7 @@ for t in Time:
     for i in Nodes:
         model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)
     model.addConstr(sum(K[13,j,t] for j in Nodes)==1)
-    PS = powerset(Nodes)
+PS = powerset(Nodes)
 for s in PS:
  if len(s)<7:
   if len(s)>3:

@@ -81,23 +81,44 @@ nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, 
 plt.axis('off')
 plt.show()
 #######            
-###SCENARIO OF BROKEN THINGS###
-Grid.node[27]['working']=False
-Grid.node[23]['working']=False
-Grid.node[18]['working']=False
-Grid.node[4]['working']=False
-Grid.node[7]['working']=False
-Grid.node[24]['working']=False
-#Grid.node[15]['working']=False
-Grid[1][4][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[7][27][0]['working']=False
-Grid[24][25][0]['working']=False
+#######            
+#######   RANDOM SCENARIO         
+#####SCENARIO OF BROKEN THINGS###
+#Grid.node[27]['working']=False
+#Grid.node[23]['working']=False
+#Grid.node[18]['working']=False
+#Grid.node[4]['working']=False
+#Grid.node[7]['working']=False
+#Grid.node[24]['working']=False
+##Grid.node[15]['working']=False
+#Grid[1][4][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[7][27][0]['working']=False
+#Grid[24][25][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
+#Grid[9][22][0]['working']=False
+#Grid[9][19][0]['working']=False
+
+####END SCENARIO###            
+####Geographic Scenario###
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[16]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
 Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[17][18][0]['working']=False
 Grid[9][22][0]['working']=False
-Grid[9][19][0]['working']=False
+Grid[9][16][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][13][0]['working']=False
+Grid[28][29][0]['working']=False
+Grid[11][14][0]['working']=False
 
 ###END SCENARIO###            
 
@@ -237,17 +258,17 @@ for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
     model.addConstr(Delta[t]<=3)
 
-model.addConstr(F_n[4,0] ==1)
-#model.addConstr(F_l[3,0]==1)
-#model.addConstr(F_l[17,1]>=1)
-#model.addConstr(F_l[24,1]>=1)
-#model.addConstr(F_l[2,1]>=1)
-#model.addConstr(F_l[35,2]>=1)
-model.addConstr(F_n[7,2]>=1)
-model.addConstr(F_n[23,3]==1)
-#model.addConstr(F_l[8,3]>=1)
-model.addConstr(F_n[24,4]==1)
-#model.addConstr(F_n[18,4]>=1)
+#model.addConstr(F_n[4,0] ==1)
+##model.addConstr(F_l[3,0]==1)
+##model.addConstr(F_l[17,1]>=1)
+##model.addConstr(F_l[24,1]>=1)
+##model.addConstr(F_l[2,1]>=1)
+##model.addConstr(F_l[35,2]>=1)
+#model.addConstr(F_n[7,2]>=1)
+#model.addConstr(F_n[23,3]==1)
+##model.addConstr(F_l[8,3]>=1)
+#model.addConstr(F_n[24,4]==1)
+##model.addConstr(F_n[18,4]>=1)
 
 
 
@@ -286,7 +307,8 @@ for t in Time:
             print([n,t])
 
 t=0            
-print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
+for t in Time:
+    print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
 for i in Nodes:
     
     print([i,W_n[i,t].X])
