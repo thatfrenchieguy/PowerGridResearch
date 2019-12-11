@@ -1,0 +1,141 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec  7 10:16:46 2018
+
+@author: BrianFrench
+"""
+
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 24 10:08:13 2018
+
+@author: Brian French
+"""
+
+#hardcoding bus30--loads taken from http://motor.ece.iit.edu/Data/tgplan30.doc
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import math
+import pyomo.environ as pe
+
+Grid = nx.MultiGraph()
+#apply coordinates from http://pubs.sciepub.com/ajeee/4/3/4/figure/5 with a best guess taken from looking at it and overlaying a grid
+Grid.add_node(0,name = "bus1", load = 55, productionmax = 128.9, xcoord = 27, ycoord=30)
+Grid.add_node(1,name = "bus2", load = 3,productionmax = 0, xcoord = 20, ycoord = 30)
+Grid.add_node(2,name = "bus3", load = 41,productionmax = 40, xcoord=17, ycoord=30)
+Grid.add_node(3,name = "bus4", load = 0,productionmax = 0, xcoord =6,ycoord=30)
+Grid.add_node(4,name = "bus5", load = 13,productionmax = 0, xcoord=2, ycoord=30)
+Grid.add_node(5,name = "bus6", load = 75,productionmax = 0, xcoord=2, ycoord=26)
+Grid.add_node(6,name = "bus7", load =0,productionmax = 0, xcoord = 2, ycoord=7)
+Grid.add_node(7,name = "bus8", load =150,productionmax = 450, xcoord=5,ycoord=2)
+Grid.add_node(8,name = "bus9", load = 121,productionmax = 0, xcoord=25, ycoord=2)
+Grid.add_node(9,name = "bus10", load = 5,productionmax = 0, xcoord=28, ycoord=8)
+Grid.add_node(10,name = "bus11", load = 0,productionmax = 00, xcoord=25, ycoord=9)
+Grid.add_node(11,name = "bus12", load = 377,productionmax = 310, xcoord=30, ycoord=22)
+Grid.add_node(12,name = "bus13", load = 18,productionmax = 00, xcoord=26, ycoord=22)
+Grid.add_node(13,name = "bus14", load = 10.5,productionmax = 0, xcoord=16, ycoord=22)
+Grid.add_node(14,name = "bus15", load = 22,productionmax = 0, xcoord=16, ycoord=26)
+Grid.add_node(15,name = "bus16", load = 43,productionmax = 0, xcoord=30, ycoord=30)
+Grid.add_node(16,name = "bus17", load = 42, productionmax = 0, xcoord=28, ycoord=28)
+Grid.add_node(17,name = "bus18", load = 27.2,productionmax = 0, xcoord=5, ycoord=27)
+Grid.add_node(18,name = "bus19", load= 3.3,productionmax = 0, xcoord=8, ycoord=27)
+Grid.add_node(19,name = "bus20", load = 2.3,productionmax = 0, xcoord=11, ycoord=27)
+Grid.add_node(20,name = "bus21", load = 0,productionmax = 0, xcoord=11, ycoord=23)
+Grid.add_node(21,name = "bus22", load = 0,productionmax = 0, xcoord=11, ycoord=13)
+Grid.add_node(22,name = "bus23", load = 6.3,productionmax = 0, xcoord=10, ycoord=13)
+Grid.add_node(23,name = "bus24", load = 0,productionmax = 0, xcoord=8, ycoord=13)
+Grid.add_node(24,name = "bus25", load = 6.3,productionmax = 0, xcoord=8, ycoord=10)
+Grid.add_node(25,name = "bus26", load = 0,productionmax = 0, xcoord=6, ycoord=12)
+Grid.add_node(26,name = "bus27", load = 9.3,productionmax = 0, xcoord=6, ycoord=8)
+Grid.add_node(27,name = "bus28", load = 4.6,productionmax = 0, xcoord=6, ycoord=6)
+Grid.add_node(28,name = "bus29", load = 17,productionmax = 0, xcoord=5, ycoord=2 )
+Grid.add_node(29,name = "bus30", load = 3.6,productionmax = 0, xcoord=7, ycoord=12)
+Grid.add_node(30,name = "bus31", load = 5.8,productionmax = 0, xcoord=9, ycoord=6)
+Grid.add_node(31,name = "bus32", load = 1.6,productionmax = 0, xcoord=11, ycoord=6)
+Grid.add_node(32,name = "bus33", load = 3.8,productionmax = 0, xcoord=11, ycoord=9)
+Grid.add_node(33,name = "bus34", load = 0,productionmax = 0, xcoord=15, ycoord=7)
+Grid.add_node(34,name = "bus35", load = 6,productionmax = 0, xcoord=15, ycoord=9)
+Grid.add_node(35,name = "bus36", load = 0,productionmax = 0, xcoord=16, ycoord=10)
+Grid.add_node(36,name = "bus37", load = 0,productionmax = 0, xcoord=15, ycoord=13)
+Grid.add_node(37,name = "bus38", load = 14,productionmax = 0, xcoord=15, ycoord=15)
+Grid.add_node(38,name = "bus39", load = 0,productionmax = 0, xcoord=17, ycoord=16)
+Grid.add_node(39,name = "bus40", load = 0,productionmax = 0, xcoord=17, ycoord=10)
+Grid.add_node(40,name = "bus41", load = 6.3,productionmax = 0, xcoord=22, ycoord=11)
+Grid.add_node(41,name = "bus42", load = 7.1,productionmax = 0, xcoord=19, ycoord=8)
+Grid.add_node(42,name = "bus43", load = 2,productionmax = 0, xcoord=21, ycoord=7)
+Grid.add_node(43,name = "bus44", load = 12,productionmax = 0, xcoord=13, ycoord=19)
+Grid.add_node(44,name = "bus45", load = 0,productionmax = 0, xcoord=12, ycoord=27)
+Grid.add_node(45,name = "bus46", load = 0,productionmax = 0, xcoord=16, ycoord=20)
+Grid.add_node(46,name = "bus47", load = 29.7,productionmax = 0, xcoord=16, ycoord=17)
+Grid.add_node(47,name = "bus48", load = 0,productionmax = 0, xcoord=16, ycoord=14)
+Grid.add_node(48,name = "bus49", load = 18,productionmax = 0, xcoord=19, ycoord=14)
+Grid.add_node(49,name = "bus50", load = 21,productionmax = 0, xcoord=30, ycoord=15)
+Grid.add_node(50,name = "bus51", load = 18,productionmax = 0, xcoord=30, ycoord=2)
+Grid.add_node(51,name = "bus52", load = 4.9,productionmax = 0, xcoord=7, ycoord=5)
+Grid.add_node(52,name = "bus53", load = 20,productionmax = 0, xcoord=10, ycoord=5)
+Grid.add_node(53,name = "bus54", load = 4.1,productionmax = 0, xcoord=16, ycoord=6)
+Grid.add_node(54,name = "bus55", load = 6.8,productionmax = 0, xcoord=20, ycoord=5)
+Grid.add_node(55,name = "bus56", load = 7.6,productionmax = 0, xcoord=19, ycoord=10)
+Grid.add_node(56,name = "bus57", load = 6.7,productionmax = 0, xcoord=19, ycoord=16)
+#turn coords into position to make plotable
+#bus 57 edges
+Grid.add_edge(0,1, key=0, capacity = int(500), Type = "Power", Sus = float(35.71))
+Grid.add_edge(1,2, key=0, capacity = int(500), Type = "Power", Sus = float(11.76))
+Grid.add_edge(2,3, key=0, capacity = int(500), Type = "Power", Sus = float(27.32))
+Grid.add_edge(3,4, key=0, capacity = int(500), Type = "Power", Sus = float(7.57))
+Grid.add_edge(3,5, key=0, capacity = int(500), Type = "Power", Sus = float(6.75))
+Grid.add_edge(5,6, key=0, capacity = int(500), Type = "Power", Sus = float(9.8))
+Grid.add_edge(5,7, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(7,8, key=0, capacity = int(500), Type = "Power", Sus = float(19.80))
+Grid.add_edge(8,9, key=0, capacity = int(500), Type = "Power", Sus = float(5.96))
+Grid.add_edge(8,10, key=0, capacity = int(500), Type = "Power", Sus = float(11.8))
+Grid.add_edge(8,11, key=0, capacity = int(500), Type = "Power", Sus = float(12.98))
+Grid.add_edge(8,13, key=0, capacity = int(500), Type = "Power", Sus = float(24.63))  
+Grid.add_edge(12,13, key=0, capacity = int(500), Type = "Power", Sus = float(90.91))
+Grid.add_edge(12,14, key=0, capacity = int(500), Type = "Power", Sus = float(43.48))
+Grid.add_edge(0,14, key=0, capacity = int(500), Type = "Power", Sus = float(10.12))
+Grid.add_edge(0,15, key=0, capacity = int(500), Type = "Power", Sus = float(18.31))
+Grid.add_edge(0,16, key=0, capacity = int(500), Type = "Power", Sus = float(34.96))
+Grid.add_edge(2,14, key=0, capacity = int(500), Type = "Power", Sus = float(13.38))
+
+#colouring nodes correctly--green is loaded node, red is buss, blue is generator
+    #todo when I figure out why it's completely fucked trying to access datavalues
+
+#code below was run once to generate a standard road network, then saved to file and commented out
+#apply newman-watts-strogatz connectivity
+#NWS_k = 3
+#NWS_p=.03
+#DistanceDF = pd.DataFrame(columns = ['From', 'To', 'Distance'])
+#for i in range(0,30):
+#    for j in range(0,30):
+#        SquareX = (Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2
+#        SquareY = (Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2
+#        DistanceDF.loc[j+(i*30)] = [i,j, math.sqrt(SquareX+SquareY)]
+##k connections        
+#for i in range(0,30):
+#    Subframe = DistanceDF.loc[DistanceDF['From']==i]
+#    Subframe = Subframe[Subframe.To != i]
+#    Subframe = Subframe[Subframe.To <=29]
+#    Connect = Subframe.nsmallest(NWS_k,'Distance')
+#    for index, row in Connect.iterrows():
+#        if (int(row['To']) != i) and (Grid.has_edge(i, int(row['To']))==False):
+#            Grid.add_edge(i, int(row['To']), key=1, length = float(row['Distance']), Type = "Road")
+##p connections
+#for i in range(0,30):
+#    j=i
+#    while j < 30:
+#        rand = np.random.uniform(0,1)  
+#        if (rand <= NWS_p) and (i!=j) and (Grid.has_edge(i,j)==False):
+#            Grid.add_edge(i,j,key=1, length=float(math.sqrt((Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2+(Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2)), Type="Road")
+#        j=j+1
+##connecting generators
+#for i in range(0,len(Grid.nodes)):
+#    if 'gen' in Grid.node[i]['name']:
+#        Grid.add_edge(i, list(Grid.neighbors(i))[0],key=1, length = 0, Type="Road")
+nx.draw(Grid)
+selected_edges = [(u,v) for u,v,e in Grid.edges(data=True) if e['Type'] == 'Road']
+H = nx.Graph(selected_edges)
+nx.draw(H)
+#nx.write_gml(Grid, "Bus30WithData.gml")

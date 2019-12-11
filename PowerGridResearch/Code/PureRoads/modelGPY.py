@@ -119,9 +119,7 @@ with open ("RoadSchedule.csv",'w',newline = '') as OutputFile:
     for t in Time:
         for i in Nodes:
             for j in Nodes:
-                if S[i,j,t].X != 0:
-                    IJLength = S[i,j,t].X/speed
-                    cw.writerow([i,j,t,IJLength])   
+                    cw.writerow([i,j,t,X[i,j,t].X])   
 for i in Nodes:
     for j in Nodes:
         if RoadGrid[i][j]['working'] == False:
