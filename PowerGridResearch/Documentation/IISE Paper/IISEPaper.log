@@ -1,0 +1,92 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.2)  18 DEC 2019 12:11
+entering extended mode
+**./IISEPaper.tex
+(IISEPaper.tex
+LaTeX2e <2018-04-01> patch level 5
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 99.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\dvips.def"
+File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
+))
+\c@step=\count88
+\c@theorem=\count89
+\c@proposition=\count90
+\c@corollary=\count91
+\c@definition=\count92
+
+(IISEPaper.aux)
+\openout1 = `IISEPaper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
+
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 80.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 80.
+[1
+Non-PDF special ignored!
+<special> papersize=614.295pt,794.96999pt
+
+{C:/Users/Brian French/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(IISEPaper.bbl [2]) [3] (IISEPaper.aux) ) 
+Here is how much of TeX's memory you used:
+ 514 strings out of 492970
+ 6466 string characters out of 3135832
+ 70914 words of memory out of 3000000
+ 4451 multiletter control sequences out of 15000+200000
+ 5504 words of font info for 20 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 23i,8n,19p,901b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on IISEPaper.pdf (3 pages, 96757 bytes).
+PDF statistics:
+ 36 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

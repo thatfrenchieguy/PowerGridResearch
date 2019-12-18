@@ -43,10 +43,33 @@ for i in Nodes:
             RoadGrid.add_edge(i,j,weight = 9999)
             RoadGrid[i][j]['working']=True
 ###schedule of nodes to be fixed from the pure scheduling solver
-InputNodes = [[4,0],
-              [13,1]]
+InputNodes = [[4,0,'node'],
+              [13,1,'node']]
 ###schedule of edges to be fixed from the pure scheduling solver
-InputEdges = [[4,0],
-              [23,1]]
-RoadData = 
+InputEdges = [[4,0,'edge'],
+              [23,1,'edge']]
+RoadData = []
+SP = np.zeros((len(Nodes),len(Nodes)))
+for i in Nodes:
+    for j in Nodes:
+        SP[i][j] = nx.shortest_path_length(RoadGrid, source = i, target = j, weight='weight')
+        
 ###packing heuristic
+shifts = []
+priorityLoadNodes = []
+priorityLoadEdges = []
+shiftBuildNumber = 0
+while len(InputNodes)!= 0 and len(InputEdges)!=0:
+    cost = 0
+    for j in InputNodes:
+        if j[1] < shiftBuildNumber and j not in priorityLoadNodes:
+            priorityLoadNodes.append(j)
+    for i in InputEdges:
+        if i[1] < shiftBuildNumber and i not in priorityLoadEdges:
+            priorityLoadEdges.append(i)
+    lastnode = 13 ###manually change this as needed
+    plausibleListNodes = []
+    plausibleListEdges = []
+    for j in InputNodes:
+        if j[1] == shiftBuildNumber
+            

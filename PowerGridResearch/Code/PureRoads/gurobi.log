@@ -1175,3 +1175,6 @@ Solution count 10: 5304.75 5304.75 5304.75 ... 5304.75
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 5.304750735502e+03, best bound 5.304750134323e+03, gap 0.0000%
+
+Gurobi 8.1.1 (win64, Python) logging started 12/11/19 20:23:22
+

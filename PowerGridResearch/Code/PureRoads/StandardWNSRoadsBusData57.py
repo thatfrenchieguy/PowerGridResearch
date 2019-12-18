@@ -98,44 +98,105 @@ Grid.add_edge(12,14, key=0, capacity = int(500), Type = "Power", Sus = float(43.
 Grid.add_edge(0,14, key=0, capacity = int(500), Type = "Power", Sus = float(10.12))
 Grid.add_edge(0,15, key=0, capacity = int(500), Type = "Power", Sus = float(18.31))
 Grid.add_edge(0,16, key=0, capacity = int(500), Type = "Power", Sus = float(34.96))
-Grid.add_edge(2,14, key=0, capacity = int(500), Type = "Power", Sus = float(13.38))
+Grid.add_edge(2,14, key=0, capacity = int(500), Type = "Power", Sus = float(18.38))
+Grid.add_edge(3,17, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(4,5, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(6,7, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(9,11, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(10,12, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(11,12, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(11,15, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(11,16, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(13,14, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(17,18, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(18,19, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(19,20, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(20,21, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(21,22, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(22,23, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(23,24, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(23,25, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(25,26, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(26,27, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(27,28, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(6,28, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(6,28, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(24,29, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(29,30, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(30,31, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(31,32, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(31,33, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(33,34, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(34,35, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(35,36, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(36,38, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(35,39, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(21,37, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(10,40, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(40,41, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(40,42, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(37,43, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(14,44, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(13,45, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(45,46, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(46,47, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(47,48, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(48,49, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(49,50, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(9,50, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(12,48, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(28,51, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(51,52, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(52,53, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(53,54, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(10,42, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(43,44, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(39,55, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(40,55, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(41,55, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(38,56, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(55,56, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(37,48, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(37,47, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+Grid.add_edge(8,54, key=0, capacity = int(500), Type = "Power", Sus = float(5.78))
+
 
 #colouring nodes correctly--green is loaded node, red is buss, blue is generator
     #todo when I figure out why it's completely fucked trying to access datavalues
 
 #code below was run once to generate a standard road network, then saved to file and commented out
 #apply newman-watts-strogatz connectivity
-#NWS_k = 3
-#NWS_p=.03
-#DistanceDF = pd.DataFrame(columns = ['From', 'To', 'Distance'])
-#for i in range(0,30):
-#    for j in range(0,30):
-#        SquareX = (Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2
-#        SquareY = (Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2
-#        DistanceDF.loc[j+(i*30)] = [i,j, math.sqrt(SquareX+SquareY)]
-##k connections        
-#for i in range(0,30):
-#    Subframe = DistanceDF.loc[DistanceDF['From']==i]
-#    Subframe = Subframe[Subframe.To != i]
-#    Subframe = Subframe[Subframe.To <=29]
-#    Connect = Subframe.nsmallest(NWS_k,'Distance')
-#    for index, row in Connect.iterrows():
-#        if (int(row['To']) != i) and (Grid.has_edge(i, int(row['To']))==False):
-#            Grid.add_edge(i, int(row['To']), key=1, length = float(row['Distance']), Type = "Road")
-##p connections
-#for i in range(0,30):
-#    j=i
-#    while j < 30:
-#        rand = np.random.uniform(0,1)  
-#        if (rand <= NWS_p) and (i!=j) and (Grid.has_edge(i,j)==False):
-#            Grid.add_edge(i,j,key=1, length=float(math.sqrt((Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2+(Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2)), Type="Road")
-#        j=j+1
-##connecting generators
-#for i in range(0,len(Grid.nodes)):
-#    if 'gen' in Grid.node[i]['name']:
-#        Grid.add_edge(i, list(Grid.neighbors(i))[0],key=1, length = 0, Type="Road")
+NWS_k = 3
+NWS_p=.03
+DistanceDF = pd.DataFrame(columns = ['From', 'To', 'Distance'])
+for i in range(0,57):
+    for j in range(0,57):
+        SquareX = (Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2
+        SquareY = (Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2
+        DistanceDF.loc[j+(i*57)] = [i,j, math.sqrt(SquareX+SquareY)]
+#k connections        
+for i in range(0,57):
+    Subframe = DistanceDF.loc[DistanceDF['From']==i]
+    Subframe = Subframe[Subframe.To != i]
+    Subframe = Subframe[Subframe.To <=56]
+    Connect = Subframe.nsmallest(NWS_k,'Distance')
+    for index, row in Connect.iterrows():
+        if (int(row['To']) != i) and (Grid.has_edge(i, int(row['To']))==False):
+            Grid.add_edge(i, int(row['To']), key=1, length = float(row['Distance']), Type = "Road")
+#p connections
+for i in range(0,57):
+    j=i
+    while j < 57:
+        rand = np.random.uniform(0,1)  
+        if (rand <= NWS_p) and (i!=j) and (Grid.has_edge(i,j)==False):
+            Grid.add_edge(i,j,key=1, length=float(math.sqrt((Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2+(Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2)), Type="Road")
+        j=j+1
+#connecting generators
+for i in range(0,len(Grid.nodes)):
+    if 'gen' in Grid.node[i]['name']:
+        Grid.add_edge(i, list(Grid.neighbors(i))[0],key=1, length = 0, Type="Road")
 nx.draw(Grid)
 selected_edges = [(u,v) for u,v,e in Grid.edges(data=True) if e['Type'] == 'Road']
 H = nx.Graph(selected_edges)
 nx.draw(H)
-#nx.write_gml(Grid, "Bus30WithData.gml")
+nx.write_gml(Grid, "Bus57WithData.gml")

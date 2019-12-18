@@ -1,0 +1,124 @@
+\documentclass[10pt]{article}
+\usepackage[dvips]{graphics}
+\pagestyle{plain}
+\textheight 9in
+\textwidth  6.5in
+%\footheight 0.0cm
+\topmargin  0pt
+\headheight 0in
+\headsep 0in
+\leftmargin 0.0cm
+\oddsidemargin  0cm
+\def\baselinestretch{1.0}
+\parindent 0.0 cm
+\parskip   0.2 cm
+
+\newcounter{step}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+
+\renewcommand{\floatpagefraction}{0.90}
+\renewcommand{\topfraction}{0.90}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.10}
+
+\def\thesection{\large{\arabic{section}.}}
+\def\thesubsection{\normalsize{\thesection\arabic{subsection}}}
+\def\thesubsubsection{\normalsize{\thesection\arabic{subsection}.\arabic{subsubsection}}}
+
+
+\begin{document}
+
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\Large \textbf{ Working Title: Multi-Layer Infrastructure Repairs in a Post-Disaster Context}} \\
+\vspace*{0.2cm}
+{\large \textbf{Brian French and Erhan Kutanoglu}} \\
+{\large \textbf{Operations Research and Industrial Engineering Program}} \\
+{\large \textbf{The University of Texas at Austin}} \\
+{\large \textbf{Austin, TX 78712, USA}} \\
+{\large \textbf{BCFrench@utexas.edu, erhank@mail.utexas.edu}} \\
+\end{center}
+
+\thispagestyle{empty}
+\begin{center}
+{\large \bf Abstract}
+\end{center}
+
+\vspace*{-12pt}
+
+
+{\large \bf Keywords}\\
+
+
+\vspace*{-12pt}
+\section{{\large Introduction}}
+\label{sec:ic:intro}
+\vspace*{-12pt}
+
+Hurricanes provide a growing concern in the operation of power grids in coastal areas. This paper was undertaken to address the gap in the literature where previous efforts don't consider how network layers depend on each other. To affect  repairs on a damaged power grid element, the element must be accessible to the crew attempting to repair it, which implies that the road grid is a part of the repair efforts. In the process of a hurricane, the road grid will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs as well. To handle the issues of repairing power grids efficiently, consideration for repairs of both aspects should be considered jointly.
+
+\subsection{\large Existing Literature}
+\vspace*{-12pt}
+Damage from hurricanes on infrastructure elements is well studied. All of \cite{WinklerEA2010}, \cite{ScherbEA2015}, and \cite{GuikemaEA2010} have looked at the damage to power grids in varying capacities and methodologies. Damage to the road network is studied more in the context of repairing damage. \cite{AksuEA2014} addresses concerns of accessibility to locations in the wake of road damage. \cite{DuqueEA2016} focuses their work on the ability to move disaster supplies around.
+
+In the context of power grid repair, it comes from two major areas: Network interdiction and work similar to this paper. \cite{SalmeronEA2010} is a paper emblematic of work on interdiction and provide the basis for the linear programming formulation of DC power flow used in this paper. \cite{Wood2011} provides further literature review of the interdiction problem. \cite{NPSMasters} addresses a problem similar to this work, though without addressing travel times at all. \cite{ArabEA2015} and \cite{MousavizadehEA2018} both address repairs to power grids in the context of resilience. Most similar to this paper is \cite{BentEA2011} in that they consider DC power flow and repair with travel times jointly. The key distinction is that they presume that the road operates under nominal conditions rather than including repair of the road grid into the problem.
+
+\section{\large{Model}}
+\vspace*{-12pt}
+\subsection{Overview}
+
+\subsection{Assumptions}
+\vspace*{-12pt}
+While considering coordinated repair using the mixed-integer programs below, we assume complete information about damage to both networks, complete information about repair times, and no variation in repair times. In the course of modeling the problem, we assume that a DC-flow model of power grid operation is close enough to real network behavior to draw useful insights \cite{QiEA2012}. We also assume in the power grid repair model that a minimum spanning tree can approximate routing elements NEEDS CITATION 
+\subsection{Road Model}
+\vspace*{-12pt}
+To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. This is done by solving a variation of the prize collecting rural postman problem at each time step.
+\subsection{Power Model}
+\vspace*{-12pt}
+To model the power repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift.
+
+We begin modeling the power half of the problem by defining the relevant parameters and sets
+\begin{displaymath}
+$$
+$\begin{array}{ll}
+	 N & \mbox{set of nodes, indexed by $i$}\\
+	 E & \mbox{set of power lines, indexed by $e$}\\
+	 R & \mbox{the set of road segments}\\
+	 T & \mbox{the planning horizon, indexed by t}\\
+	 O(i) & \mbox{set of lines with origin i}\\
+	 D(i) & \mbox{set of lines with destination i}\\
+	 o(e) & \mbox{origin node of line e}\\
+	 d(e) & \mbox{destination node of line e}\\
+	 \underline{L_e},\overline{L_e} & \mbox{capacity lower and upper bounds for the power line $e$}\\
+	 \Delta_{i} & \mbox{time to repair node $i$} \\
+	 \delta_{e} & \mbox{time to repair line $e$}\\
+	  C_{SP(i)} & \mbox{length of the shortest path to node $i$ from the central depot}\\
+	  D_i & \mbox{power demand at location $i$ in the pre-disaster steady state}\\
+	  P_k & \mbox{maximum power generation for generator $k$}\\
+	  B_e&  \mbox{line susceptance for power line $e$}\\
+	 I_e, I_i & \mbox{initial condition of line $e$ and node $i$, respectively}
+\end{array}$
+$$
+\end{displaymath}
+\section{\large{Results}}
+\vspace*{-12pt}
+\subsection{Methods}
+ \vspace*{-12pt}
+%%frameworks?
+%%lower bound with schedule
+%%upper bound with non-interacting road damage
+%%iterative
+
+
+\section{\large{Conclusions}}
+\label{sec:issues}
+\vspace*{-12pt}
+
+\bibliographystyle{plain}
+\bibliography{sources}
+
+\end{document}

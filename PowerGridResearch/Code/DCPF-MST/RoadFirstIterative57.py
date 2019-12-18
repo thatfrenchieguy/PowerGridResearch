@@ -26,7 +26,7 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 #initialize graph from file
-Grid = nx.read_gml("Bus30WithData.gml")
+Grid = nx.read_gml("Bus57WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
@@ -79,21 +79,29 @@ for i in Nodes:
 #RoadGrid[24][27]['working']=False
 #RoadGrid[25][27]['working']=False
 ###Geographically oriented Scenario
-RoadGrid[20][21]['working']=False
-RoadGrid[18][23]['working']=False            
-RoadGrid[14][28]['working']=False
-RoadGrid[18][21]['working']=False
-RoadGrid[17][22]['working']=False
-RoadGrid[25][27]['working']=False
-RoadGrid[29][17]['working']=False
-RoadGrid[6][7]['working']=False
-RoadGrid[1][21]['working']=False
-RoadGrid[17][29]['working']=False
-RoadGrid[13][15]['working']=False
-RoadGrid[12][10]['working']=False     
-RoadGrid[9][13]['working']=False       
+#RoadGrid[20][21]['working']=False
+#RoadGrid[18][23]['working']=False            
+#RoadGrid[14][28]['working']=False
+#RoadGrid[18][21]['working']=False
+#RoadGrid[17][22]['working']=False
+#RoadGrid[25][27]['working']=False
+#RoadGrid[29][17]['working']=False
+#RoadGrid[6][7]['working']=False
+#RoadGrid[1][21]['working']=False
+#RoadGrid[17][29]['working']=False
+#RoadGrid[13][15]['working']=False
+#RoadGrid[12][10]['working']=False     
+#RoadGrid[9][13]['working']=False       
+###Generate Random Scenario  
+for i in RoadGrid.nodes():
+    for j in range(i,len(RoadGrid.nodes())):
+      if RoadGrid.has_edge(i,j):
+        randbreak = np.random.uniform()
+        if randbreak <= .2:
+            RoadGrid[i][j]['working']=False
+    
 #define Variables
-C = np.zeros((30,30))
+C = np.zeros((57,57))
 for i in Nodes:
     for j in Nodes:
         if RoadGrid[i][j]['weight']<9000:
@@ -116,12 +124,12 @@ for t in Time:
     model.addConstr(D[t]<=3)
     for i in Nodes:
         model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)
-    model.addConstr(sum(K[13,j,t] for j in Nodes)==1)
+    model.addConstr(sum(K[38,j,t] for j in Nodes)==1)
     PS = powerset(Nodes)
 for s in PS:
- if len(s) >7:
+ if len(s)>5:
      break
- if len(s)<6:
+ if len(s)<4:
   if len(s)>1:
    for t in Time:
     model.addConstr(sum(K[i,j,t] for i in s for j in s)<=len(s)-1)
@@ -135,6 +143,7 @@ for i in Nodes:
 #        if int(RoadGrid[i][j]['working']) != 0 and int(RoadGrid[i][j]['working']) != 1:
 #            print(int(RoadGrid[i][j]['working']))
 setParam("NodefileStart", 5)
+setParam("MIPGap", .005)
 model.optimize()
 #sytax for getting a variable in the output is variable[a,b].X to query it's value.
 #do a sanity check:
@@ -174,14 +183,14 @@ SteadyStatePower = 255 #in MW--the PU Basis
 PlanningHorizon = 6 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
-PowerSub = nx.read_gml("Bus30WithData.gml")
+PowerSub = nx.read_gml("Bus57WithData.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
 for i in PowerSub.nodes:
   for j in PowerSub.nodes:
     if PowerSub.has_edge(i,j,1):
         PowerSub.remove_edge(i,j,1)
 Edges = list(range(0,len(PowerSub.edges)))
-Nodes = list(range(0,30))
+Nodes = list(range(0,57))
 sumlen = 71
 #sumlen = len(Nodes)+len(Edges)
 NodesWithDummy = list(range(0,sumlen))
@@ -262,17 +271,17 @@ Grid.node[20]['working']=False
 Grid.node[14]['working']=False
 Grid.node[29]['working']=False
 Grid.node[9]['working']=False
-Grid[11][15][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[21][23][0]['working']=False
-Grid[17][18][0]['working']=False
-Grid[9][16][0]['working']=False
-Grid[14][17][0]['working']=False
-Grid[14][13][0]['working']=False
-Grid[11][14][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[9][16][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][13][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
