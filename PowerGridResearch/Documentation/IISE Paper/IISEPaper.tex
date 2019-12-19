@@ -70,16 +70,30 @@ In the context of power grid repair, it comes from two major areas: Network inte
 \section{\large{Model}}
 \vspace*{-12pt}
 \subsection{Overview}
-
+The problem to be addressed is how to handle interactions between road and power networks during disaster response. We choose to do this by solving the problems independently to keep runtime tractable and then testing a variety of post processing methods to handle the interactions. This should allow us to capture which interactions are worth the effort to address and which can be ignored in the name of preserving runtime or simplifying analysis
 \subsection{Assumptions}
 \vspace*{-12pt}
 While considering coordinated repair using the mixed-integer programs below, we assume complete information about damage to both networks, complete information about repair times, and no variation in repair times. In the course of modeling the problem, we assume that a DC-flow model of power grid operation is close enough to real network behavior to draw useful insights \cite{QiEA2012}. We also assume in the power grid repair model that a minimum spanning tree can approximate routing elements NEEDS CITATION 
 \subsection{Road Model}
 \vspace*{-12pt}
-To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. This is done by solving a variation of the prize collecting rural postman problem at each time step.
+To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. This is done by solving a variation of the prize collecting rural postman problem at each time step. The discrete time here is done to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid.
+
+Defining Parameters and Sets to begin:
+\begin{displaymath}
+$$
+$\begin{array}{ll}
+T & \mbox{the set of time periods (shifts) over the time horizon}\\
+N & \mbox{the set of nodes in the graph}\\
+C_{ij} & \mbox{ measure of the value of the road from i to j}\\
+L_{ij} & \mbox{is the length of the road between nodes $i$ and $j$ when everything is working as normal}\\
+R_{ij} & \mbox{time to repair the road between $i$ and $j$}\\
+I_{ij} & \mbox{initial condition of the road between $i$ and $j$}\\
+\end{array}$
+$$
+\end{displaymath}
 \subsection{Power Model}
 \vspace*{-12pt}
-To model the power repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift.
+To model the power repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift. NEED TO TALK ABOUT DISCRETE TIME ASSUMPTION?
 
 We begin modeling the power half of the problem by defining the relevant parameters and sets
 \begin{displaymath}
@@ -104,6 +118,27 @@ $\begin{array}{ll}
 \end{array}$
 $$
 \end{displaymath}
+The model is then as follows
+\begin{equation}
+\min \sum_{i \in N} \sum_{t \in T} (1-W_i^t)D_i
+\end{equation}
+subject to:
+\begin{eqnarray}
+ X_e^t = B_e * (\theta_{o(e)}^t - \theta_{d(e)}^t), \hspace{5pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+ G_i^t - \sum_{l \in O(i)} X_l^t + \sum_{l \in D(i)} X_l^t = D_i, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
+ G_k^t \leq P_{k} V_{k}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall k \in N\\
+ \underline{L_e}W_{e}^t \leq X_{e}^t \leq \overline{L_e}W_{e}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+ \underline{L_e}V_{o(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{o(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+ \underline{L_e}V_{d(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{d(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+ MST^t = \sum_{i \in N} \sum_{j \in N} SP_{ij}^t*Z_{ij}^{t} C_{speed}\hspace{4pt} \forall t \in T\\
+ \sum_{i \in N} \sum_{j \in N} Z_{ij}^{t} = \sum_{i \in N} F_i^t + \sum_{e \in E} S_e^t - \sum_{i \in N} F_i^t \sum_{O(i)} S_e^t - \sum_{i \in N} F_i^t \sum_{D(i)} S_e^t \hspace{4pt} \forall t \in T\\
+ \sum_{i,j \in S} Z_{ij}^t \leq |S|-1 \hspace{4pt} S\subset N\\
+ \sum_{j \in N} Z_{ij}^t \leq F_i^t + \sum_{e \in O(i) \cup D(i)} S_{e}^t \hspace{4pt} \forall t \in T\hspace{4pt} \forall i \in N \\
+ \sum_{e \in E} \delta_{e}S_e^t + \sum_{i \in N}\Delta_{i}F_i^t + MST_t <=8\\
+ V_i^t \leq \sum_{t'=0}^{t-1} F_i^{t'}+I_i, \hspace{4pt} \forall i \in N\\
+ W_{e}^t \leq \sum_{t'=0}^{t-1} S_{e}^{t'}+I_e, \hspace{4pt} \forall e \in E
+ \end{eqnarray}
+ Constraints (2)-(7) define the flow on a damaged power grid with load being either switched on or switched off at a demand node. This is done to account for the last mile distribution lines being damaged at first making partial load shedding unrealistic.Constraints (8)-(11) handle construction of a minimum spanning tree between nodes being repaired during a shift to approximate the routing cost. We assume that a power line can be fixed starting from either of it's endpoints. Constraint (12) defines shift scheduling, and constraints (13) and (14) handle constraining operation to elements that are working.
 \section{\large{Results}}
 \vspace*{-12pt}
 \subsection{Methods}

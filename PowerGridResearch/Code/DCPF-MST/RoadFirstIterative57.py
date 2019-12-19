@@ -28,6 +28,11 @@ def powerset(iterable):
 #initialize graph from file
 Grid = nx.read_gml("Bus57WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
+demsum = 0
+gensum = 0
+for n in Grid.nodes:
+    demsum+=Grid.node[n]['load']
+    gensum += Grid.node[n]['productionmax']
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
 PlanningHorizon = 6 #this is measured in shifts
@@ -43,63 +48,76 @@ for i in Nodes:
             RoadGrid.add_edge(i,j,weight = Grid[i][j][1]['length'])
         else:
             RoadGrid.add_edge(i,j,weight = 9999)
+
 ###commented out to have a fixed scenario based on the code below
-for i in Nodes:
-    for j in Nodes:
-        if Grid.has_edge(i,j,1):
-#            print([i,j])
-#            if np.random.uniform(0,10)<=2:
-#                RoadGrid[i][j]['working']=False
-#            else:
-                RoadGrid[i][j]['working']=True
-        else:
+for i in range(0,len(Grid.nodes)):
+ for j in Nodes:
+    if Grid.has_edge(i,j,1):
             RoadGrid[i][j]['working']=True
+    else:
+        RoadGrid[i][j]['working']=True
             
 ###Random Scenario###
-#RoadGrid[0][3]['working']=False
-#RoadGrid[1][2]['working']=False
-#RoadGrid[1][26]['working']=False
-#RoadGrid[4][5]['working']=False
-#RoadGrid[5][13]['working']=False
-#RoadGrid[9][10]['working']=False
-#RoadGrid[9][13]['working']=False
-#RoadGrid[10][11]['working']=False
-#RoadGrid[10][12]['working']=False
-#RoadGrid[13][15]['working']=False
-#RoadGrid[14][16]['working']=False
-#RoadGrid[14][28]['working']=False
-#RoadGrid[16][17]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[19][21]['working']=False
-#RoadGrid[19][23]['working']=False
-#RoadGrid[22][24]['working']=False
-#RoadGrid[22][25]['working']=False
-#RoadGrid[22][26]['working']=False
-#RoadGrid[24][27]['working']=False
-#RoadGrid[25][27]['working']=False
-###Geographically oriented Scenario
-#RoadGrid[20][21]['working']=False
-#RoadGrid[18][23]['working']=False            
-#RoadGrid[14][28]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[25][27]['working']=False
-#RoadGrid[29][17]['working']=False
-#RoadGrid[6][7]['working']=False
-#RoadGrid[1][21]['working']=False
-#RoadGrid[17][29]['working']=False
-#RoadGrid[13][15]['working']=False
-#RoadGrid[12][10]['working']=False     
-#RoadGrid[9][13]['working']=False       
-###Generate Random Scenario  
-for i in RoadGrid.nodes():
-    for j in range(i,len(RoadGrid.nodes())):
-      if RoadGrid.has_edge(i,j):
-        randbreak = np.random.uniform()
-        if randbreak <= .2:
-            RoadGrid[i][j]['working']=False
-    
+RoadGrid[2][44]['working']=False
+RoadGrid[2][23]['working']=False
+RoadGrid[3][33]['working']=False
+RoadGrid[3][6]['working']=False
+RoadGrid[4][14]['working']=False
+RoadGrid[4][23]['working']=False
+RoadGrid[5][17]['working']=False
+RoadGrid[6][27]['working']=False
+RoadGrid[7][27]['working']=False
+RoadGrid[9][10]['working']=False
+RoadGrid[9][49]['working']=False
+RoadGrid[10][22]['working']=False
+RoadGrid[10][49]['working']=False
+RoadGrid[12][16]['working']=False
+RoadGrid[13][43]['working']=False
+RoadGrid[13][52]['working']=False
+RoadGrid[14][17]['working']=False
+RoadGrid[15][16]['working']=False
+RoadGrid[16][36]['working']=False
+RoadGrid[19][33]['working']=False
+RoadGrid[19][44]['working']=False
+RoadGrid[21][23]['working']=False
+RoadGrid[21][47]['working']=False
+RoadGrid[23][34]['working']=False
+RoadGrid[24][26]['working']=False
+RoadGrid[24][45]['working']=False
+RoadGrid[27][51]['working']=False
+RoadGrid[28][36]['working']=False
+RoadGrid[29][49]['working']=False
+RoadGrid[30][32]['working']=False
+RoadGrid[30][51]['working']=False
+RoadGrid[33][53]['working']=False
+RoadGrid[34][53]['working']=False
+RoadGrid[35][46]['working']=False
+RoadGrid[37][40]['working']=False
+RoadGrid[38][48]['working']=False
+RoadGrid[39][50]['working']=False
+RoadGrid[41][44]['working']=False
+RoadGrid[41][53]['working']=False
+RoadGrid[42][55]['working']=False
+RoadGrid[43][45]['working']=False
+RoadGrid[46][56]['working']=False
+RoadGrid[47][51]['working']=False
+
+####Generate Random Scenario  
+#for i in RoadGrid:
+#    for j in RoadGrid:
+#        if RoadGrid.has_edge(i,j):
+#            if RoadGrid[i][j]['working']==False and RoadGrid[i][j]['weight']<500:
+#                print([i,j])
+#for i in RoadGrid.nodes():
+#    for j in range(i,len(RoadGrid.nodes())):
+#      if RoadGrid.has_edge(i,j):
+#        randbreak = np.random.uniform()
+#        if randbreak <= .35:
+#            print([i,j])
+#            RoadGrid[i][j]['working']=False
+#        else: 
+#            RoadGrid[i][j]['working'] = True
+
 #define Variables
 C = np.zeros((57,57))
 for i in Nodes:
@@ -142,19 +160,19 @@ for i in Nodes:
 #    for j in Nodes:
 #        if int(RoadGrid[i][j]['working']) != 0 and int(RoadGrid[i][j]['working']) != 1:
 #            print(int(RoadGrid[i][j]['working']))
-setParam("NodefileStart", 5)
-setParam("MIPGap", .005)
+
+setParam("MIPGap", .01)
 model.optimize()
 #sytax for getting a variable in the output is variable[a,b].X to query it's value.
 #do a sanity check:
 RoadLengths = np.zeros((len(Grid.nodes),len(Grid.nodes),len(Time)))
-for i in Nodes:
-        for j in Nodes:
-             if RoadGrid[i][j]['working'] == True:
-                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']
-             else:
-                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']*8
-for t in range(1,len(Time)):
+#for i in Nodes:
+#        for j in Nodes:
+#             if RoadGrid[i][j]['working'] == True:
+#                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']
+#             else:
+#                    RoadLengths[i][j][0] = RoadGrid[i][j]['weight']*8
+for t in range(0,len(Time)):
     for i in Nodes:
         for j in Nodes:
             if (sum(K[i,j,k].X for k in range(0,t-1))) >=1:
@@ -163,7 +181,7 @@ for t in range(1,len(Time)):
                 if RoadGrid[i][j]['working'] == True:
                     RoadLengths[i][j][t] = RoadGrid[i][j]['weight']
                 else:
-                    RoadLengths[i][j][t] = RoadGrid[i][j]['weight']*999
+                    RoadLengths[i][j][t] = RoadGrid[i][j]['weight']*8
 
 for t in Time:
     for i in Nodes:
@@ -244,44 +262,38 @@ nx.draw_networkx_edges(Grid, pos, edgelist = tourdraw, edge_color = 'b', width =
 plt.axis('off')
 plt.show()
 #######   RANDOM SCENARIO         
-#####SCENARIO OF BROKEN THINGS###
-#Grid.node[27]['working']=False
-#Grid.node[23]['working']=False
-#Grid.node[18]['working']=False
-#Grid.node[4]['working']=False
-#Grid.node[7]['working']=False
-#Grid.node[24]['working']=False
-##Grid.node[15]['working']=False
-#Grid[1][4][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[7][27][0]['working']=False
-#Grid[24][25][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
-#Grid[9][22][0]['working']=False
-#Grid[9][19][0]['working']=False
 
+for i in Grid.nodes:
+    Grid.node[i]['working']=True
+    for j in Grid.nodes:
+        if Grid.has_edge(i,j,0):
+            Grid[i][j][0]['working']=True
 ####END SCENARIO###            
 ####Geographic Scenario###
 Grid.node[4]['working']=False
-
+Grid.node[11]['working']=False
+Grid.node[28]['working']=False
 Grid.node[21]['working']=False
 Grid.node[20]['working']=False
 Grid.node[14]['working']=False
 Grid.node[29]['working']=False
 Grid.node[9]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[11][14][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
+Grid.node[31]['working']=False
+Grid[3][4][0]['working']=False ###
+Grid[5][7][0]['working']=False
+Grid[34][35][0]['working']=False ###
+Grid[54][8][0]['working']=False
+Grid[38][56][0]['working']=False
+
+Grid[12][48][0]['working']=False
+Grid[39][55][0]['working']=False
+Grid[22][23][0]['working']=False
+Grid[8][11][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[21][37][0]['working']=False
+Grid[23][24][0]['working']=False
+Grid[24][29][0]['working']=False
+Grid[31][33][0]['working']=False
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
@@ -303,7 +315,7 @@ for n in Nodes:
         if EdgeTracker[e][1][1] == n:
             EdgeIncidence[n][e] = 1
 ###Build broken elements into a list for STE constraints####
-STE = [13]
+STE = [38]
 for i in range(len(Grid.nodes())):
     if Grid.node[i]['working']==False:
         STE.append(i)
@@ -315,7 +327,7 @@ for j in range(len(EdgeStartingStatus)):
 ###End STE building###
 
 
-obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes)+20*Delta[t] for t in Time),GRB.MINIMIZE)
+obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes) for t in Time),GRB.MINIMIZE)
 
 
 #impose phase angle constraints
@@ -350,12 +362,12 @@ for i in Nodes:
 #constrain line limits
 for e in Edges:
         for t in Time:
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t])     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t])     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t])
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t])     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t])     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t])                
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*2.2)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*2.2)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*2.2)
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*2.2)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*2.2)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*2.2)                
            
 
 #define workingness
@@ -387,10 +399,12 @@ for i in Nodes:
      for t in Time:
         SP[i][j][t] = nx.shortest_path_length(ArrayOfRoadGrids[t], source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/20 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
-        if len(s)>=2 and len(s)<=7:
+        if len(s)>=7:
+            break
+        if len(s)>=3 and len(s)<=5:
             model.addConstr(sum(Z[i,j,t] for i in s for j in s)<=len(s)-1)
     for i in Nodes:
        model.addConstr(Z[i,i,t]==0)
@@ -402,22 +416,19 @@ for t in Time:
                    IncidentToI.append(e)
                if EdgeTracker[e][1][0] == j or EdgeTracker[e][1][1] ==j:
                    IncidentToJ.append(e)
-#           if i!=13:
-           model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
-           model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
-    for i in Nodes:
-        if Grid.node[i]['working']==True:
-            model.addConstr(F_n[i,t]==0)
-    for e in Edges:
-        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
-            model.addConstr(F_l[e,t] == 0)
-#        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
-#arbitrarily assigning node 13 to be the warehouse node
-#for t in Time:
-#    model.addConstr(sum(Z[13,j,t] for j in Nodes)>=1)
+##           if i!=13:
+#           model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
+#           model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
+#    for i in Nodes:
+#        if Grid.node[i]['working']==True:
+#            model.addConstr(F_n[i,t]==0)
+#    for e in Edges:
+#        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
+#            model.addConstr(F_l[e,t] == 0)
+
 for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
-    model.addConstr(Delta[t]<=3)
+#    model.addConstr(Delta[t]<=3)
 
 model.optimize()
 for t in Time:
@@ -430,15 +441,24 @@ for t in Time:
             print(["L",e,t])
             print(F_l[e,t].X)
 
-for i in Nodes:
-    for j in Nodes:
-        t = 0
-#        for t in Time:
-        if Z[i,j,t].X != 0:
-                print([i,j,Z[i,j,t].X])
+#for i in Nodes:
+#    for j in Nodes:
+#        t = 0
+##        for t in Time:
+#        if Z[i,j,t].X != 0:
+#                print([i,j,Z[i,j,t].X])
 #for i in Edges:
 #        for t in Time:
 #            if PowerIJ[i,t].X != 0:
 #                print(PowerIJ[i,t].X)              
 for t in Time:          
     print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
+#for t in Time:
+#    print(sum(PG[n,t].X for n in Grid.nodes))
+#    for n in Grid.nodes:
+#        if Grid.node[n]['productionmax']>0 and W_n[n,t].X ==0:
+#            print([n,t,Grid.node[n]['productionmax']])
+#for i in Grid.nodes:
+#    for j in Grid.nodes:
+#        if Z[i,j,t].X != 0:
+#            print([i,j])
