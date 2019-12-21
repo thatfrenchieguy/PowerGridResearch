@@ -93,21 +93,23 @@ $$
 \end{displaymath}
 \subsection{Power Model}
 \vspace*{-12pt}
-To model the power repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift. NEED TO TALK ABOUT DISCRETE TIME ASSUMPTION?
+To model the power repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift. Traditional routing problems are computationally intractable with commercial solvers on this scale, so to keep runtime in check, a spanning tree was used instead as it provides a lower bound on routing and therefore captures most of the tradeoffs \$CITATION NEEDED. NEED TO TALK ABOUT DISCRETE TIME ASSUMPTION?
 
-We begin modeling the power half of the problem by defining the relevant parameters and sets
+We begin modeling the power half of the problem by defining the relevant parameters, sets, and design variables:
+
+\small
 \begin{displaymath}
 $$
-$\begin{array}{ll}
-	 N & \mbox{set of nodes, indexed by $i$}\\
-	 E & \mbox{set of power lines, indexed by $e$}\\
-	 R & \mbox{the set of road segments}\\
-	 T & \mbox{the planning horizon, indexed by t}\\
-	 O(i) & \mbox{set of lines with origin i}\\
-	 D(i) & \mbox{set of lines with destination i}\\
-	 o(e) & \mbox{origin node of line e}\\
-	 d(e) & \mbox{destination node of line e}\\
-	 \underline{L_e},\overline{L_e} & \mbox{capacity lower and upper bounds for the power line $e$}\\
+$\begin{array}{llll}
+	 N & \mbox{set of nodes, indexed by $i$} & X_{e}^{t} & \mbox{flow on line $e$ at time $t$}\\
+	 E & \mbox{set of power lines, indexed by $e$} & G_{k}^t & \mbox{production from generator $k$ at time $t$}\\
+	 R & \mbox{the set of road segments} & V_i^t & \mbox{indicator for node $i$ functioning at time $t$}\\
+	 T & \mbox{the planning horizon, indexed by t} & W_{e}^t & \mbox{indicator for line $e$ functioning at time $t$} \\
+	 O(i) & \mbox{set of lines with origin i} & S_{e}^t & \mbox{indicator for line $e$ serviced at time $t$}\\
+	 D(i) & \mbox{set of lines with destination i} & F_i^t & \mbox{indicator for node $i$ serviced at time $t$}\\
+	 o(e) & \mbox{origin node of line e} & \theta_i^t & \mbox{hase angle for the power flow at $i$ in time $t$}\\
+	 d(e) & \mbox{destination node of line e} & MST_t & \mbox{length of the tree used for "routing" at $t$} \\
+	 \underline{L_e},\overline{L_e} & \mbox{capacity lower and upper bounds for the power line $e$}& Z_{ij}^t & \mbox{indicator for $i$ to $j$ in the spanning tree at $t$}\\
 	 \Delta_{i} & \mbox{time to repair node $i$} \\
 	 \delta_{e} & \mbox{time to repair line $e$}\\
 	  C_{SP(i)} & \mbox{length of the shortest path to node $i$ from the central depot}\\
@@ -118,6 +120,7 @@ $\begin{array}{ll}
 \end{array}$
 $$
 \end{displaymath}
+\normalsize
 The model is then as follows
 \begin{equation}
 \min \sum_{i \in N} \sum_{t \in T} (1-W_i^t)D_i
@@ -143,6 +146,16 @@ subject to:
 \vspace*{-12pt}
 \subsection{Methods}
  \vspace*{-12pt}
+ 
+ To demonstrate both validity and utility of the model, we generate two test cases, one based on the IEEE 30 bus network and a second based on the IEEE 57 bus network. Both power grids were overlaid with a Watts-Strogatz graph to provide an simulation of a road network for the sake of the routing aspects of the problem. \$CITE-HERE. To generate a damage scenario, a subset of geographically co-located nodes, power lines, and road network edges were marked as damaged to have scenarios.
+ 
+ The scenarios were each solved under the following frameworks:
+ \begin{itemize}
+ 	\item Solve the road repair problem and use the solution to generate a time varying shortest path matrix for use when solving the power repair problem
+ 	\item Solve the power repair problem assuming statically damaged roads
+ 	\item Solve the power repair problem assuming nominal road conditions and add a one-shift delay to account for the road repairs being done before the roads are needed
+ 	\item Solve the power repair problem without travel time and using the generated schedule, post process it into a feasible repair schedule.
+ \end{itemize}
 %%frameworks?
 %%lower bound with schedule
 %%upper bound with non-interacting road damage
