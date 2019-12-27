@@ -91,6 +91,25 @@ I_{ij} & \mbox{initial condition of the road between $i$ and $j$}\\
 \end{array}$
 $$
 \end{displaymath}
+
+We then elect to minimize the length of non functioning road over the repair horizon. Without loss of generality the objective can be replaced with the repair priority weights for an agency of choice. 
+\begin{equation}
+	\min \sum_{t \in T}  \sum_{i,j \in N} C_{ij}*(1-X_{ij}^t) 
+\end{equation}
+	
+	
+	\mbox{Subject To:}
+	
+	\begin{eqnarray}
+	\sum_{i,j \in N} S_{ij}^t K_{ij}^t \leq 8, \hspace{6pt} \forall t\in T \\
+	S_{ij}^t = \max \{L_{ij}, (1-X_{ij}^t)R_{ij} \}, \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N\\
+	\sum_{j \in N} K_{ij}^t - \sum_{j \in N} K_{ji}^t = 0, \hspace{6pt} \forall t\in T \hspace{4pt} \forall i \in N\\
+	X_{ij}^t \le \sum_{t'=0}^{t-1} K_{ij}^{t'} + I_{ij}, \hspace{6pt} \forall t\in T \hspace{4pt} \forall i,j \in N\\
+	\sum_{i,j \in S; i\neq j} X_{ij}^t \leq |S|-1 \hspace{6pt} \forall S \subset N; \hspace{2pt} S \neq \emptyset
+	\end{eqnarray}
+Constraint (2) is a shift scheduling constraint capping the length of each tour. Constraint (3) is a linearizable representation of the length of a road conditional on its repair status. Constraints (4) and (6) are standard routing constraints for subtour elimination and path connectivity. Constraint(5) defines the working of damaged roads.
+
+
 \subsection{Power Model}
 \vspace*{-12pt}
 To model the power repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift. Traditional routing problems are computationally intractable with commercial solvers on this scale, so to keep runtime in check, a spanning tree was used instead as it provides a lower bound on routing and therefore captures most of the tradeoffs \$CITATION NEEDED. NEED TO TALK ABOUT DISCRETE TIME ASSUMPTION?
