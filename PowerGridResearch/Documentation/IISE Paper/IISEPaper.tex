@@ -76,7 +76,7 @@ The problem to be addressed is how to handle interactions between road and power
 While considering coordinated repair using the mixed-integer programs below, we assume complete information about damage to both networks, complete information about repair times, and no variation in repair times. In the course of modeling the problem, we assume that a DC-flow model of power grid operation is close enough to real network behavior to draw useful insights \cite{QiEA2012}. We also assume in the power grid repair model that a minimum spanning tree can approximate routing elements NEEDS CITATION 
 \subsection{Road Model}
 \vspace*{-12pt}
-To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. This is done by solving a variation of the prize collecting rural postman problem at each time step. The discrete time here is done to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid.
+To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. In doing this, damaged roads aren't rendered unable to be transited, but their lengths are merely increased to account for the difficulty traversing them while clearing debris, minor flooding, and the like. This problem is handled by solving a variation of the prize collecting rural postman problem at each time step. The discrete time here is done to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid.
 
 Defining Parameters and Sets to begin:
 \begin{displaymath}
@@ -166,7 +166,7 @@ subject to:
 \subsection{Methods}
  \vspace*{-12pt}
  
- To demonstrate both validity and utility of the model, we generate two test cases, one based on the IEEE 30 bus network and a second based on the IEEE 57 bus network. Both power grids were overlaid with a Watts-Strogatz graph to provide an simulation of a road network for the sake of the routing aspects of the problem. \$CITE-HERE. To generate a damage scenario, a subset of geographically co-located nodes, power lines, and road network edges were marked as damaged to have scenarios.
+ To demonstrate both validity and utility of the model, we generate two test cases, one based on the IEEE 30 bus network and a second based on the IEEE 57 bus network. Both power grids were overlaid with a Watts-Strogatz graph to provide an simulation of a road network for the sake of the routing aspects of the problem. \$CITE-HERE. To generate a damage scenario, a subset of geographically co-located nodes, power lines, and road network edges were marked as damaged to have scenarios to solve.
  
  The scenarios were each solved under the following frameworks:
  \begin{itemize}
@@ -175,11 +175,16 @@ subject to:
  	\item Solve the power repair problem assuming nominal road conditions and add a one-shift delay to account for the road repairs being done before the roads are needed
  	\item Solve the power repair problem without travel time and using the generated schedule, post process it into a feasible repair schedule.
  \end{itemize}
+
+In doing this, the problem is solved to a lower bound via just scheduling without travel time, status quo solution via post processing, and several variations of improved solution methods.
 %%frameworks?
 %%lower bound with schedule
 %%upper bound with non-interacting road damage
 %%iterative
+\subsection{IEEE 30 Bus Case}
 
+The IEEE 30 bus netowkr is a standard power grid that approximately resembles the power grid in southern Illinois in the 1960s \$CITE THIS. More importantly, it's been a well understood standard test grid since it's inception.
+\subsection{IEEE 57 Bus Case}
 
 \section{\large{Conclusions}}
 \label{sec:issues}
