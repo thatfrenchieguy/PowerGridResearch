@@ -59,7 +59,7 @@
 \label{sec:ic:intro}
 \vspace*{-12pt}
 
-Hurricanes provide a growing concern in the operation of power grids in coastal areas. This paper was undertaken to address the gap in the literature where previous efforts don't consider how network layers depend on each other. To affect  repairs on a damaged power grid element, the element must be accessible to the crew attempting to repair it, which implies that the road grid is a part of the repair efforts. In the process of a hurricane, the road grid will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs as well. To handle the issues of repairing power grids efficiently, consideration for repairs of both aspects should be considered jointly.
+Hurricanes provide a growing concern in the operation of power grids in coastal areas. This paper was undertaken to address the gap in the literature where previous efforts don't consider how network layers depend on each other. To affect  repairs on a damaged power grid element, the element must be accessible to the crew attempting to repair it, which implies that the road grid is a part of the repair efforts. In the process of a hurricane, the road grid will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs as well. To handle the issues of repairing power grids efficiently, consideration for repairs of both aspects should be considered jointly. Previous literature 
 
 \subsection{\large Existing Literature}
 \vspace*{-12pt}
@@ -70,10 +70,10 @@ In the context of power grid repair, it comes from two major areas: Network inte
 \section{\large{Model}}
 \vspace*{-12pt}
 \subsection{Overview}
-The problem to be addressed is how to handle interactions between road and power networks during disaster response. We choose to do this by solving the problems independently to keep runtime tractable and then testing a variety of post processing methods to handle the interactions. This should allow us to capture which interactions are worth the effort to address and which can be ignored in the name of preserving runtime or simplifying analysis
+The problem to be addressed is how to handle interactions between road and power networks during disaster response. We choose to do this by solving the problems independently to keep runtime tractable and then testing a variety of post processing methods to handle the interactions. This should allow us to capture which interactions are worth the effort to address and which can be ignored in the name of preserving runtime or simplifying analysis. 
 \subsection{Assumptions}
 \vspace*{-12pt}
-While considering coordinated repair using the mixed-integer programs below, we assume complete information about damage to both networks, complete information about repair times, and no variation in repair times. In the course of modeling the problem, we assume that a DC-flow model of power grid operation is close enough to real network behavior to draw useful insights \cite{QiEA2012}. We also assume in the power grid repair model that a minimum spanning tree can approximate routing elements NEEDS CITATION 
+While considering coordinated repair using the mixed-integer programs below, we assume complete information about damage to both networks, complete information about repair times, and no variation in repair times. In the course of modeling the problem, we assume that a DC-flow model of power grid operation is close enough to real network behavior to draw useful insights \cite{QiEA2012}. We also assume in the power grid repair model that a minimum spanning tree can approximate routing elements NEEDS CITATION as the minimum spanning tree provides a bound on the traveling salesman problem and therefore routing problems.
 \subsection{Road Model}
 \vspace*{-12pt}
 To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. In doing this, damaged roads aren't rendered unable to be transited, but their lengths are merely increased to account for the difficulty traversing them while clearing debris, minor flooding, and the like. This problem is handled by solving a variation of the prize collecting rural postman problem at each time step. The discrete time here is done to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid.
@@ -190,6 +190,7 @@ The IEEE 30 bus netowkr is a standard power grid that approximately resembles th
 \label{sec:issues}
 \vspace*{-12pt}
 
+From this, we can draw the conclusion that increasing levels of model complexity representing an improved fidelity to fully coordinated operations yields lower levels of demand shed.  
 \bibliographystyle{plain}
 \bibliography{sources}
 

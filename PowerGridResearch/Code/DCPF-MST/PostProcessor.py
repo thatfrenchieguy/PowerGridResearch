@@ -58,6 +58,9 @@ for i in Nodes:
 shifts = []
 priorityLoadNodes = []
 priorityLoadEdges = []
+EdgeRepairTime = 1
+NodeRepairTime = 5
+ShiftLength = 8
 shiftBuildNumber = 0
 while len(InputNodes)!= 0 and len(InputEdges)!=0:
     cost = 0
@@ -71,5 +74,21 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
     plausibleListNodes = []
     plausibleListEdges = []
     for j in InputNodes:
-        if j[1] == shiftBuildNumber
-            
+        if j[1] == shiftBuildNumber:
+            plausibleListNodes.append(j[0])
+    for i in InputEdges:
+        if i[1]==shiftBuildNumber:
+            plausibleListEdges.append(i[0])
+    ShiftCost = 0
+    ShiftUnderConstruction = []
+    while ShiftCost<=8:
+        NodeCosts = []
+        EdgeCosts = []
+        for n in plausibleListNodes:
+            NodeCost = NodeRepairTime+SP[lastnode][n]
+            NodeCosts.append(NodeCost)
+        for e in plausibleListEdges:
+            EdgeCost1 = EdgeRepairTime+Edgetracker[e][1][0]
+            EdgeCost2 = EdgeRepairTime+Edgetracker[e][1][1]
+        
+    
