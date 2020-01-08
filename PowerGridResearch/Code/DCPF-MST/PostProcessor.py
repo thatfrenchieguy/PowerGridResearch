@@ -42,6 +42,9 @@ for i in Nodes:
         else:
             RoadGrid.add_edge(i,j,weight = 9999)
             RoadGrid[i][j]['working']=True
+EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
+for i,e in enumerate(PowerSub.edges):
+    EdgeTracker.append([i,e])
 ###schedule of nodes to be fixed from the pure scheduling solver
 InputNodes = [[4,0,'node'],
               [13,1,'node']]
@@ -63,6 +66,7 @@ NodeRepairTime = 5
 ShiftLength = 8
 shiftBuildNumber = 0
 while len(InputNodes)!= 0 and len(InputEdges)!=0:
+    print('startingmain')
     cost = 0
     for j in InputNodes:
         if j[1] < shiftBuildNumber and j not in priorityLoadNodes:
@@ -75,20 +79,107 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
     plausibleListEdges = []
     for j in InputNodes:
         if j[1] == shiftBuildNumber:
-            plausibleListNodes.append(j[0])
+            plausibleListNodes.append(j)
     for i in InputEdges:
         if i[1]==shiftBuildNumber:
-            plausibleListEdges.append(i[0])
+            plausibleListEdges.append(i)
     ShiftCost = 0
     ShiftUnderConstruction = []
     while ShiftCost<=8:
+        flag = False
+        if len(priorityLoadNodes) != 0:
+            print('inPriorityNodes')
+            NodeCosts = []
+            for n in priorityLoadNodes:
+                NodeCost = NodeRepairTime+(SP[lastnode][n[0]])/20
+                NodeCosts.append(NodeCost)    
+            MinNodeCost = min(NodeCosts)
+            WhichNode = NodeCosts.index(MinNodeCost)
+            CheapestNode = priorityLoadNodes[WhichNode] 
+            if MinNodeCost < 8-ShiftCost:
+                ShiftUnderConstruction.append([CheapestNode])
+                for j in priorityLoadNodes:
+                    if j == CheapestNode:
+                        priorityLoadNodes = [x for x in priorityLoadNodes if x !=j]
+                        InputNodes = [x for x in InputNodes if x !=j]
+                flag = True
+                lastnode = CheapestNode[0]
+                ShiftCost+=MinNodeCost
+                
+            
+        if len(priorityLoadEdges) !=0:
+            print('inPriorityEdges')
+            EdgeCosts = []
+            for e in priorityLoadEdges:
+                EdgeCost1 = EdgeRepairTime+SP[lastnode][EdgeTracker[e[0]][1][0]]/20
+                EdgeCost2 = EdgeRepairTime+SP[lastnode][EdgeTracker[e[0]][1][1]]/20
+                CheaperEdge = min(EdgeCost1, EdgeCost2)
+                if CheaperEdge == EdgeCost1:
+                    edgenode = EdgeTracker[e[0]][1][0]
+                if CheaperEdge == EdgeCost2:
+                    edgenode = EdgeTracker[e[0]][1][1]
+                EdgeCosts.append([CheaperEdge,edgenode])  
+            MinEdgeCost = min(EdgeCosts, key=lambda x: x[0])
+            WhichEdge = EdgeCosts.index(MinEdgeCost)
+            CheapestEdge = priorityLoadEdges[WhichEdge] 
+            if MinEdgeCost[0] < 8-ShiftCost:
+                ShiftUnderConstruction.append([CheapestEdge])
+                for j in priorityLoadEdges:
+                    if j == CheapestEdge:
+                        priorityLoadEdges = [x for x in priorityLoadEdges if x !=j]
+                        InputEdges = [x for x in InputEdges if x !=j]
+                flag = True
+                lastnode = MinEdgeCost[1]
+                ShiftCost+=MinEdgeCost[0]
         NodeCosts = []
         EdgeCosts = []
-        for n in plausibleListNodes:
-            NodeCost = NodeRepairTime+SP[lastnode][n]
-            NodeCosts.append(NodeCost)
-        for e in plausibleListEdges:
-            EdgeCost1 = EdgeRepairTime+Edgetracker[e][1][0]
-            EdgeCost2 = EdgeRepairTime+Edgetracker[e][1][1]
-        
-    
+        if len(priorityLoadNodes) == 0 and len(priorityLoadEdges)==0:
+            print('inPlausibleNodes')
+            if len(plausibleListNodes)!=0:
+                for n in plausibleListNodes:
+                    NodeCost = NodeRepairTime+(SP[lastnode][n[0]])/20
+                    NodeCosts.append(NodeCost)    
+                MinNodeCost = min(NodeCosts)
+                WhichNode = NodeCosts.index(MinNodeCost)
+                CheapestNode = plausibleListNodes[WhichNode] 
+                if MinNodeCost < 8-ShiftCost:
+                    ShiftUnderConstruction.append([CheapestNode])
+                    for j in plausibleListNodes:
+                        if j == CheapestNode:
+                            plausibleListNodes = [x for x in plausibleListNodes if x !=j]
+                            InputNodes = [x for x in InputNodes if x !=j]
+                    flag = True
+                    lastnode = CheapestNode[0]
+                    ShiftCost+=MinNodeCost
+                
+            if len(plausibleListEdges) != 0:
+                for e in plausibleListEdges:
+                    EdgeCost1 = EdgeRepairTime+SP[lastnode][EdgeTracker[e[0]][1][0]]/20
+                    EdgeCost2 = EdgeRepairTime+SP[lastnode][EdgeTracker[e[0]][1][1]]/20
+                    CheaperEdge = min(EdgeCost1, EdgeCost2)
+                    if CheaperEdge == EdgeCost1:
+                        edgenode = EdgeTracker[e[0]][1][0]
+                    if CheaperEdge == EdgeCost2:
+                        edgenode = EdgeTracker[e[0]][1][1]
+                    EdgeCosts.append([CheaperEdge,edgenode])  
+                MinEdgeCost = min(EdgeCosts, key=lambda x: x[0])
+                WhichEdge = EdgeCosts.index(MinEdgeCost)
+                CheapestEdge = plausibleListEdges[WhichEdge] 
+                if MinEdgeCost[0] < 8-ShiftCost:
+                    ShiftUnderConstruction.append([CheapestEdge])
+                    for j in plausibleListEdges:
+                        if j == CheapestEdge:
+                            plausibleListEdges = [x for x in plausibleListEdges if x !=j]
+                            InputEdges = [x for x in InputEdges if x !=j]
+                    flag = True
+                    lastnode = MinEdgeCost[1]
+                
+        if flag == False:
+            shiftBuildNumber +=1
+            shifts.append(ShiftUnderConstruction)
+            print(ShiftUnderConstruction)
+            ShiftUnderConstruction = []
+            ShiftCost = 0
+            print('bang')
+            break
+            
