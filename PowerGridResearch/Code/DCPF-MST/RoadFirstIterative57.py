@@ -35,7 +35,7 @@ for n in Grid.nodes:
     gensum += Grid.node[n]['productionmax']
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 9 #this is measured in shifts
+PlanningHorizon = 6 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 Nodes = list(range(0,len(Grid.nodes)))
@@ -200,7 +200,7 @@ for t in Time:
         for j in Nodes:
             if K[i,j,t].X >0 and RoadGrid[i][j]['working'] ==False:
                 print([i,j,t,K[i,j,t].X])
-t=5                
+t=2                
 sum(C[i][j]*(1-X[i,j,t].X) for i in Nodes for j in Nodes)
 
 for i in Nodes:
@@ -210,7 +210,7 @@ for i in Nodes:
 
 
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 9 #this is measured in shifts
+PlanningHorizon = 6 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 PowerSub = nx.read_gml("Bus57WithData.gml")
@@ -306,7 +306,7 @@ Grid[21][37][0]['working']=False
 Grid[23][24][0]['working']=False
 Grid[24][29][0]['working']=False
 Grid[31][33][0]['working']=False
-setParam("MIPGap", .005)
+setParam("MIPGap", .07)
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])

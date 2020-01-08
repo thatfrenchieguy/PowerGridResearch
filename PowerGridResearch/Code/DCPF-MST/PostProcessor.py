@@ -19,7 +19,7 @@ def powerset(iterable):
 
 #done as node, shift
 ###import the edge tracker
-PowerSub = nx.read_gml("Bus30WithData.gml")
+PowerSub = nx.read_gml("Bus57WithData.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
 for i in PowerSub.nodes:
   for j in PowerSub.nodes:
@@ -28,7 +28,7 @@ for i in PowerSub.nodes:
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
-Grid = nx.read_gml("Bus30WithData.gml")
+Grid = nx.read_gml("Bus57WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 RoadGrid = nx.Graph()
 RoadGrid.add_nodes_from(Grid.nodes)
@@ -46,11 +46,27 @@ EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
 ###schedule of nodes to be fixed from the pure scheduling solver
-InputNodes = [[4,0,'node'],
-              [13,1,'node']]
+InputNodes = [[11,0,'node'],
+              [28,1,'node'],
+              [14,2,'node'],
+              [20,3,'node'],
+              [21,4,'node'],
+              [4,5,'node'],
+              [29,6,'node'],
+              [9,7,'node']]
 ###schedule of edges to be fixed from the pure scheduling solver
-InputEdges = [[4,0,'edge'],
-              [23,1,'edge']]
+InputEdges = [[18,0,'edge'],
+              [20,0,'edge'],
+              [41,0,'edge'],
+              [27,1,'edge'],
+              [42,1,'edge'],
+              [52,1,'edge'],
+              [7,2,'edge'],
+              [44,2,'edge'],
+              [63,2,'edge'],
+              [12,5,'edge'],
+              [54,5,'edge'],
+              [62,6,'edge']]
 RoadData = []
 SP = np.zeros((len(Nodes),len(Nodes)))
 for i in Nodes:
