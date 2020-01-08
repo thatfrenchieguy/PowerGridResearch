@@ -22,7 +22,7 @@ Grid = nx.read_gml("Bus57WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 6 #this is measured in shifts
+PlanningHorizon = 9 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 PowerSub = nx.read_gml("Bus57WithData.gml")
@@ -147,7 +147,7 @@ for n in Nodes:
         if EdgeTracker[e][1][1] == n:
             EdgeIncidence[n][e] = 1
 ###Build broken elements into a list for STE constraints####
-STE = []
+STE = [38]
 for i in range(len(Grid.nodes())):
     if Grid.node[i]['working']==False:
         STE.append(i)
@@ -159,7 +159,7 @@ for j in range(len(EdgeStartingStatus)):
 ###End STE building###
 
 
-obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes)+20*Delta[t] for t in Time),GRB.MINIMIZE)
+obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes) for t in Time),GRB.MINIMIZE)
 
 
 #impose phase angle constraints
@@ -218,12 +218,12 @@ for e in Edges:
     model.addConstr(sum(F_l[e,t]for t in Time)<=1)         
 #build shortest path matrix
 
-    for i in Nodes:
-        if Grid.node[i]['working']==True:
-            model.addConstr(F_n[i,t]==0)
-    for e in Edges:
-        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
-            model.addConstr(F_l[e,t] == 0)
+for i in Nodes:
+    if Grid.node[i]['working']==True:
+        model.addConstr(F_n[i,t]==0)
+for e in Edges:
+    if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
+        model.addConstr(F_l[e,t] == 0)
 #        model.addConstr(sum(Z[o,j,t] for j in Nodes)+sum(Z[j,d,t] for j in Nodes) >= F_l[e,t])
 #arbitrarily assigning node 13 to be the warehouse node
 #for t in Time:
@@ -231,7 +231,7 @@ for e in Edges:
 
 for t in Time:
 
-    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)<=8+Delta[t])
+    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)<=8)
     model.addConstr(Delta[t]<=1.5)
 
 model.optimize()

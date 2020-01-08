@@ -35,7 +35,7 @@ for n in Grid.nodes:
     gensum += Grid.node[n]['productionmax']
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 6 #this is measured in shifts
+PlanningHorizon = 9 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 Nodes = list(range(0,len(Grid.nodes)))
@@ -58,22 +58,31 @@ for i in range(0,len(Grid.nodes)):
         RoadGrid[i][j]['working']=True
             
 ###Random Scenario###
+        
+RoadGrid[0][12]['working']=False
+RoadGrid[1][14]['working']=False
 RoadGrid[2][44]['working']=False
 RoadGrid[2][23]['working']=False
 RoadGrid[3][33]['working']=False
 RoadGrid[3][6]['working']=False
 RoadGrid[4][14]['working']=False
+RoadGrid[4][17]['working']=False
 RoadGrid[4][23]['working']=False
 RoadGrid[5][17]['working']=False
+RoadGrid[6][3]['working']=False
+RoadGrid[6][51]['working']=False
 RoadGrid[6][27]['working']=False
 RoadGrid[7][27]['working']=False
+RoadGrid[8][42]['working']=False
 RoadGrid[9][10]['working']=False
 RoadGrid[9][49]['working']=False
 RoadGrid[10][22]['working']=False
 RoadGrid[10][49]['working']=False
+RoadGrid[11][26]['working']=False
 RoadGrid[12][16]['working']=False
 RoadGrid[13][43]['working']=False
 RoadGrid[13][52]['working']=False
+RoadGrid[13][43]['working']=False
 RoadGrid[14][17]['working']=False
 RoadGrid[15][16]['working']=False
 RoadGrid[16][36]['working']=False
@@ -81,14 +90,17 @@ RoadGrid[19][33]['working']=False
 RoadGrid[19][44]['working']=False
 RoadGrid[21][23]['working']=False
 RoadGrid[21][47]['working']=False
+RoadGrid[22][29]['working']=False
 RoadGrid[23][34]['working']=False
 RoadGrid[24][26]['working']=False
 RoadGrid[24][45]['working']=False
+RoadGrid[25][29]['working']=False
 RoadGrid[27][51]['working']=False
 RoadGrid[28][36]['working']=False
 RoadGrid[29][49]['working']=False
 RoadGrid[30][32]['working']=False
 RoadGrid[30][51]['working']=False
+RoadGrid[31][52]['working']=False
 RoadGrid[33][53]['working']=False
 RoadGrid[34][53]['working']=False
 RoadGrid[35][46]['working']=False
@@ -103,16 +115,16 @@ RoadGrid[46][56]['working']=False
 RoadGrid[47][51]['working']=False
 
 ####Generate Random Scenario  
-#for i in RoadGrid:
-#    for j in RoadGrid:
-#        if RoadGrid.has_edge(i,j):
-#            if RoadGrid[i][j]['working']==False and RoadGrid[i][j]['weight']<500:
-#                print([i,j])
+for i in RoadGrid:
+    for j in RoadGrid:
+        if RoadGrid.has_edge(i,j):
+            if RoadGrid[i][j]['weight']<500:
+                print([i,j])
 #for i in RoadGrid.nodes():
 #    for j in range(i,len(RoadGrid.nodes())):
 #      if RoadGrid.has_edge(i,j):
 #        randbreak = np.random.uniform()
-#        if randbreak <= .35:
+#        if randbreak <= .6:
 #            print([i,j])
 #            RoadGrid[i][j]['working']=False
 #        else: 
@@ -130,7 +142,7 @@ X = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "X")
 K = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "K")
 S = model.addVars(Nodes,Nodes,Time,vtype=GRB.CONTINUOUS, name = "S")
 D = model.addVars(Time, vtype = GRB.CONTINUOUS, name = "D")
-M=50000
+M=5000
 obj = model.setObjective(sum(t*sum(C[i][j]*(1-X[i,j,t]) for i in Nodes for j in Nodes)+10*D[t] for t in Time),GRB.MINIMIZE)
 for t in Time:
     for i in Nodes:
@@ -161,7 +173,7 @@ for i in Nodes:
 #        if int(RoadGrid[i][j]['working']) != 0 and int(RoadGrid[i][j]['working']) != 1:
 #            print(int(RoadGrid[i][j]['working']))
 
-setParam("MIPGap", .01)
+setParam("MIPGap", .05)
 model.optimize()
 #sytax for getting a variable in the output is variable[a,b].X to query it's value.
 #do a sanity check:
@@ -198,7 +210,7 @@ for i in Nodes:
 
 
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 6 #this is measured in shifts
+PlanningHorizon = 9 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 PowerSub = nx.read_gml("Bus57WithData.gml")
@@ -222,7 +234,7 @@ F_n = model.addVars(Nodes,Time, vtype= GRB.BINARY, name = "F_n")
 Z = model.addVars(Nodes,Nodes,Time, vtype = GRB.BINARY, lb = 0, ub=1, name = "Z") #abuse total unimodularity to speed up the solving time if needed
 ##State Variables
 W_l = model.addVars(Edges,Time, vtype = GRB.BINARY, name = "W_l")
-W_n = model.addVars(Nodes, Time, vtype = GRB.BINARY, name = "W_n")
+W_n = model.addVars(Nodes, Time, vtype = GRB.BINARY, lb = 0, ub=1, name = "W_n")
 Theta = model.addVars(Nodes,Time, vtype = GRB.CONTINUOUS, name = "Theta")
 PowerIJ = model.addVars(Edges,Time, vtype = GRB.CONTINUOUS, name = "PowerIJ")
 MST = model.addVars(Time, vtype = GRB.CONTINUOUS, lb=0, name = "MST")
@@ -294,6 +306,7 @@ Grid[21][37][0]['working']=False
 Grid[23][24][0]['working']=False
 Grid[24][29][0]['working']=False
 Grid[31][33][0]['working']=False
+setParam("MIPGap", .005)
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
@@ -362,12 +375,12 @@ for i in Nodes:
 #constrain line limits
 for e in Edges:
         for t in Time:
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*2.2)     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*2.2)     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*2.2)
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*2.2)     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*2.2)     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*2.2)                
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*22)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*22)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*22)
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*22)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*22)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*22)                
            
 
 #define workingness
@@ -394,17 +407,19 @@ for t in Time:
         for j in Nodes:
             RoadGrid.add_edge(i,j,weight = RoadLengths[i][j][t])
     ArrayOfRoadGrids.append(RoadGrid)
+
+
 for i in Nodes:
     for j in Nodes:
      for t in Time:
         SP[i][j][t] = nx.shortest_path_length(ArrayOfRoadGrids[t], source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/20 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes))
     for s in powerset(STE):
         if len(s)>=7:
             break
-        if len(s)>=3 and len(s)<=5:
+        if len(s)>=1 and len(s)<=5:
             model.addConstr(sum(Z[i,j,t] for i in s for j in s)<=len(s)-1)
     for i in Nodes:
        model.addConstr(Z[i,i,t]==0)
@@ -416,15 +431,15 @@ for t in Time:
                    IncidentToI.append(e)
                if EdgeTracker[e][1][0] == j or EdgeTracker[e][1][1] ==j:
                    IncidentToJ.append(e)
-##           if i!=13:
-#           model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
-#           model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
-#    for i in Nodes:
-#        if Grid.node[i]['working']==True:
-#            model.addConstr(F_n[i,t]==0)
-#    for e in Edges:
-#        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
-#            model.addConstr(F_l[e,t] == 0)
+#           if i!=13:
+           model.addConstr(Z[i,j,t]<=F_n[i,t]+sum(F_l[e,t] for e in IncidentToI))
+           model.addConstr(Z[i,j,t]<=F_n[j,t]+sum(F_l[e,t] for e in IncidentToJ))
+    for i in Nodes:
+        if Grid.node[i]['working']==True:
+            model.addConstr(F_n[i,t]==0)
+    for e in Edges:
+        if Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working'] == True:
+            model.addConstr(F_l[e,t] == 0)
 
 for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
@@ -441,23 +456,23 @@ for t in Time:
             print(["L",e,t])
             print(F_l[e,t].X)
 
-#for i in Nodes:
-#    for j in Nodes:
-#        t = 0
-##        for t in Time:
-#        if Z[i,j,t].X != 0:
-#                print([i,j,Z[i,j,t].X])
-#for i in Edges:
+for i in Nodes:
+    for j in Nodes:
+        t = 3
 #        for t in Time:
+        if Z[i,j,t].X != 0:
+                print([i,j,Z[i,j,t].X])
+##for i in Edges:
+##        for t in Time:
 #            if PowerIJ[i,t].X != 0:
 #                print(PowerIJ[i,t].X)              
 for t in Time:          
     print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
 #for t in Time:
-#    print(sum(PG[n,t].X for n in Grid.nodes))
+##    print(sum(PG[n,t].X for n in Grid.nodes))
 #    for n in Grid.nodes:
-#        if Grid.node[n]['productionmax']>0 and W_n[n,t].X ==0:
-#            print([n,t,Grid.node[n]['productionmax']])
+#        if Grid.node[n]['load']>0 and W_n[n,t].X ==0:
+#            print([n,t,Grid.node[n]['load']])
 #for i in Grid.nodes:
 #    for j in Grid.nodes:
 #        if Z[i,j,t].X != 0:
