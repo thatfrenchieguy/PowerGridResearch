@@ -19,7 +19,7 @@ def powerset(iterable):
 
 #done as node, shift
 ###import the edge tracker
-PowerSub = nx.read_gml("Bus57WithData.gml")
+PowerSub = nx.read_gml("Bus30WithData.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
 for i in PowerSub.nodes:
   for j in PowerSub.nodes:
@@ -46,27 +46,24 @@ EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
 ###schedule of nodes to be fixed from the pure scheduling solver
-InputNodes = [[11,0,'node'],
-              [28,1,'node'],
-              [14,2,'node'],
-              [20,3,'node'],
-              [21,4,'node'],
-              [4,5,'node'],
-              [29,6,'node'],
-              [9,7,'node']]
+InputNodes = [[14,0,'node'],
+              [5,1,'node'],
+              [18,2,'node'],
+              [16,3,'node'],
+              [22,4,'node']
+              ]
 ###schedule of edges to be fixed from the pure scheduling solver
-InputEdges = [[18,0,'edge'],
-              [20,0,'edge'],
-              [41,0,'edge'],
-              [27,1,'edge'],
-              [42,1,'edge'],
-              [52,1,'edge'],
-              [7,2,'edge'],
-              [44,2,'edge'],
-              [63,2,'edge'],
-              [12,5,'edge'],
-              [54,5,'edge'],
-              [62,6,'edge']]
+InputEdges = [[0,0,'edge'],
+              [3,0,'edge'],
+              [7,0,'edge'],
+              [6,1,'edge'],
+              [9,1,'edge'],
+              [26,1,'edge'],
+              [4,2,'edge'],
+              [23,2,'edge'],
+              [29,2,'edge'],
+              [20,4,'edge']
+              ]
 RoadData = []
 SP = np.zeros((len(Nodes),len(Nodes)))
 for i in Nodes:
@@ -169,6 +166,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
                     ShiftCost+=MinNodeCost
                 
             if len(plausibleListEdges) != 0:
+                print('inPlausibleEdges')
                 for e in plausibleListEdges:
                     EdgeCost1 = EdgeRepairTime+SP[lastnode][EdgeTracker[e[0]][1][0]]/20
                     EdgeCost2 = EdgeRepairTime+SP[lastnode][EdgeTracker[e[0]][1][1]]/20
@@ -188,8 +186,9 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
                             plausibleListEdges = [x for x in plausibleListEdges if x !=j]
                             InputEdges = [x for x in InputEdges if x !=j]
                     flag = True
+                    ShiftCost+=MinEdgeCost[0]
                     lastnode = MinEdgeCost[1]
-                
+        print(ShiftCost)        
         if flag == False:
             shiftBuildNumber +=1
             shifts.append(ShiftUnderConstruction)

@@ -255,8 +255,7 @@ for t in Time:
 
 for t in Time:
 
-    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8+Delta[t])
-    model.addConstr(Delta[t]<=3)
+    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=8)
 
 #model.addConstr(F_n[4,0] ==1)
 ##model.addConstr(F_l[3,0]==1)

@@ -10,16 +10,16 @@ import numpy as np
 import pandas as pd
 import math
 from gurobipy import *
-Grid = nx.read_gml("Bus57WithData.gml")
+Grid = nx.read_gml("Bus30WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
-PowerSub = nx.read_gml("Bus57WithData.gml")
+PowerSub = nx.read_gml("Bus30WithData.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
 for i in PowerSub.nodes:
   for j in PowerSub.nodes:
     if PowerSub.has_edge(i,j,1):
         PowerSub.remove_edge(i,j,1)
 Edges = list(range(0,len(PowerSub.edges)))
-Nodes = list(range(0,57))
+Nodes = list(range(0,30))
 model = Model("mip1")
 #define Variables
 #Decision Variables
@@ -47,30 +47,43 @@ for i in Grid.nodes:
             Grid[i][j][0]['working']=True
 ####END SCENARIO###            
 ####Geographic Scenario###
-Grid.node[4]['working']=False
-#Grid.node[11]['working']=False
-#Grid.node[28]['working']=False
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-Grid.node[31]['working']=False
-#Grid[3][4][0]['working']=False ###
-#Grid[5][7][0]['working']=False
-#Grid[34][35][0]['working']=False ###
-#Grid[54][8][0]['working']=False
-#Grid[38][56][0]['working']=False
 
-Grid[12][48][0]['working']=False
-#Grid[39][55][0]['working']=False
-#Grid[22][23][0]['working']=False
-#Grid[8][11][0]['working']=False
-#Grid[11][15][0]['working']=False
-Grid[21][37][0]['working']=False
-#Grid[23][24][0]['working']=False
-#Grid[24][29][0]['working']=False
-#Grid[31][33][0]['working']=False
+####IISE PAPER SCENARIO 2
+#Grid.node[5]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[16]['working']=False
+#Grid.node[18]['working']=False
+Grid.node[19]['working']=False
+Grid.node[21]['working']=False
+Grid.node[22]['working']=False
+Grid.node[23]['working']=False
+Grid.node[24]['working']=False
+Grid.node[26]['working']=False
+#Grid[0][1][0]['working']=False
+#Grid[1][4][0]['working']=False
+Grid[1][5][0]['working']=False
+#Grid[3][5][0]['working']=False
+#Grid[3][11][0]['working']=False
+#Grid[5][6][0]['working']=False
+Grid[5][7][0]['working']=False
+Grid[5][9][0]['working']=False
+Grid[8][10][0]['working']=False
+Grid[9][19][0]['working']=False
+Grid[9][22][0]['working']=False
+Grid[11][12][0]['working']=False
+Grid[11][14][0]['working']=False
+#Grid[14][17][0]['working']=False
+Grid[14][22][0]['working']=False
+#Grid[17][18][0]['working']=False
+Grid[18][19][0]['working']=False
+Grid[20][21][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[23][24][0]['working']=False
+Grid[24][25][0]['working']=False
+Grid[24][26][0]['working']=False
+Grid[26][27][0]['working']=False
+Grid[28][29][0]['working']=False
+
 setParam("MIPGap", .005)
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):

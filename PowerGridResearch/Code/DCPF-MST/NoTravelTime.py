@@ -102,24 +102,62 @@ plt.show()
 
 ####END SCENARIO###            
 ######Geographic Scenario###
-Grid.node[4]['working']=False
+#Grid.node[4]['working']=False
+#
+#Grid.node[21]['working']=False
+#Grid.node[20]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[29]['working']=False
+#Grid.node[9]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[9][16][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][13][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
 
-Grid.node[21]['working']=False
-Grid.node[20]['working']=False
+
+####IISE PAPER SCENARIO 2
+Grid.node[5]['working']=False
 Grid.node[14]['working']=False
-Grid.node[29]['working']=False
-Grid.node[9]['working']=False
-Grid[11][15][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[21][23][0]['working']=False
-Grid[17][18][0]['working']=False
-Grid[9][16][0]['working']=False
-Grid[14][17][0]['working']=False
-Grid[14][13][0]['working']=False
+Grid.node[16]['working']=False
+Grid.node[18]['working']=False
+Grid.node[19]['working']=False
+Grid.node[21]['working']=False
+Grid.node[22]['working']=False
+Grid.node[23]['working']=False
+Grid.node[24]['working']=False
+Grid.node[26]['working']=False
+Grid[0][1][0]['working']=False
+Grid[1][4][0]['working']=False
+Grid[1][5][0]['working']=False
+Grid[3][5][0]['working']=False
+Grid[3][11][0]['working']=False
+Grid[5][6][0]['working']=False
+Grid[5][7][0]['working']=False
+Grid[5][9][0]['working']=False
+Grid[8][10][0]['working']=False
+Grid[9][19][0]['working']=False
+Grid[9][22][0]['working']=False
+Grid[11][12][0]['working']=False
 Grid[11][14][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][22][0]['working']=False
+Grid[17][18][0]['working']=False
+Grid[18][19][0]['working']=False
+Grid[20][21][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[23][24][0]['working']=False
+Grid[24][25][0]['working']=False
+Grid[24][26][0]['working']=False
+Grid[26][27][0]['working']=False
+Grid[28][29][0]['working']=False
+
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])

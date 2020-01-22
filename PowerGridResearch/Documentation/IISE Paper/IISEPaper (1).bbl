@@ -37,24 +37,6 @@ Seth. Guikema, Steven. Quiring, and Seung-Ryong Han.
   distribution systems.
 \newblock {\em Risk Analysis}, 30:1744--1752, 2010.
 
-\bibitem{Held1971}
-Michael Held and Richard~M. Karp.
-\newblock The traveling-salesman problem and minimum spanning trees: Part ii.
-\newblock {\em Mathematical Programming}, 1(1):6--25, Dec 1971.
-
-\bibitem{MousavizadehEA2018}
-Saeed. Mousavizadeh, Mahmoud-Reza. Haghifam, and Mohammad-Hossein Shariatkhah.
-\newblock A linear two-stage method for resiliency analysis in distribution
-  systems considering renewable energy and demand response resources.
-\newblock {\em Applied Energy}, 211:243--460, 2018.
-
-\bibitem{Newman2002}
-M.E.J. Newman.
-\newblock The structure and function of networks.
-\newblock {\em Computer Physics Communications}, 147(1):40 -- 45, 2002.
-\newblock Proceedings of the Europhysics Conference on Computational Physics
-  Computational Modeling and Simulation of Complex Systems.
-
 \bibitem{QiEA2012}
 Y.~{Qi}, D.~{Shi}, and D.~{Tylavsky}.
 \newblock Impact of assumptions on dc power flow model accuracy.
@@ -66,13 +48,6 @@ Javier. Salmeron and Aruna Apte.
 \newblock Stochastic optimization for natural disater asset prepositioning.
 \newblock {\em Production and Operations Management}, 19:561--574, 2010.
 
-\bibitem{ScherbEA2015}
-Anke. Scherb, Luca. Garre, and Daniel Straub.
-\newblock Probabilistic risk assessment of infrastructure networks subjected to
-  hurricanes.
-\newblock {\em Proceedings of International Conference on Applications of
-  Statistics in Civil Engineering}, 1:1--9, 2015.
-
 \bibitem{Watts1998}
 Duncan. Watts and Steven Strogatz.
 \newblock Collective dynamics of 'small-world' networks.
@@ -83,11 +58,5 @@ James. Winkler, Leonardo. Duenas-Osorio, Robert. Stein, and Devika Subramanian.
 \newblock Performance assessment of topologically diverse power systems
   subjected to hurricane events.
 \newblock {\em Reliability Engineering and System Safety}, 95:323--336, 2010.
-
-\bibitem{Wood2011}
-R.~Kevin Wood.
-\newblock {\em Bilevel Network Interdiction Models: Formulations and
-  Solutions}.
-\newblock American Cancer Society, 2011.
 
 \end{thebibliography}
