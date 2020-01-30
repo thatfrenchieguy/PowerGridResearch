@@ -1,0 +1,12 @@
+What's What:
+
+Road First Iterative--solve the road problem then solve the full DCPF based power problem
+NoTravelTime -- solve the power problem only with teleporting crews
+RoadFirstContinuousShed--a test of linear load shedding rather than binary--not useful
+DamagedGridCalculator--solves lost load on a damaged DC Powerflow grid
+ModelGPY--just the road model
+.gml files--network information
+anything with 57 afterwards uses bus 57 rather than bus 30 netowrk
+PostProcessor--converts input schedule to feasible schedule
+
+Everything else is old or test files and can be safely ignored

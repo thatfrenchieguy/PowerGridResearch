@@ -4,23 +4,31 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
+\usepackage{float}
+\usepackage[dvips,xetex]{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \begin{document}
 	\title{Multi-actor network repair problems}
 	\author{Brian French}
 	\maketitle
 	
 	\section{Introduction and Motivation}
-	\subsection{Harvey Case}
-	\subsection{Coordination in repairs?}
+	Hurricanes are a growing concern in the operation of power grids in coastal areas. This is due partly to the densification of cities in coastal areas, but the impacts of climate change are causing both rising sea levels making flooding worse, but also more frequent and more severe hurricanes \cite{MannEA2006}. This phenomenon suggests that repair procedures and resilience planning will be of increased importance in the coming years.
+	
+	This thesis explores the gap in existing literature where previous efforts have not explicitly considered how multiple networks depended on each other, especially the post-disaster infrastructure recovery interactions between power grid and road networks. For example, to repair a damaged power grid element, the element must be accessible to the crew attempting to repair it. Moreover, the crew will take time to go from one element to the next to repair, affecting the power grid's performance during recovery. This implies that the road network (how damaged it is and how its recovery is planned) becomes part of the overall recovery efforts. During a hurricane, the road network will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs/clearance as well. To handle the issues of repairing power grids efficiently, both types of repairs (road network and power grid) should be considered jointly. Previous literature does not study this specific interaction as discussed in the section below.
+
 	\section{Literature Review}
 	\subsection{Existing Power Grid Repair Modeling}
 	\subsection{Existing Road Grid Repair Modling}
 	\subsection{Hurricane Damage Modeling}
 	\subsection{Resilience}
 	\subsection{Scenario Generation}
-	\section{Modeling Hurricane Arrivals}
 	\section{Repair Problem}
 	\subsection{Overview}
+	To begin looking at methods of studying repair of damaged power grids, we first must understand the Direct Current-Optimal Power Flow (DC-OPF) model as it forms the basis of all more complex power models used in this thesis.
+	\subsubsection{DCOPF}
+	
 	\subsection{Road Repair Problem}
 	\subsection{Power Grid Repair Problem}
 	\subsection{Framework for interacting}
@@ -30,8 +38,15 @@
 	\subsection{Damaged Roads}
 	\subsection{With Road Repair}
 	\subsection{Iteration}
+	\section{Resilience}
+	\subsection{Introduction}
+	Given that we've constructed a model for response to a scenario of a hurricane strike on a grid, we can use this to look at how different methods of resilience. By generating test cases and then making the grid resilient through either traditional hardening or by forming microgrids as has become popular in electrical engineering literature.
+	\subsection{Hardening}
+	\subsection{Microgriding/Islanding}
 	\section{Conclusions}
 	\subsection{Results}
 	\subsection{Future Research Direction}
 	\section{Bibliography}
+	\bibliographystyle{siam}
+	\bibliography{sources}
 \end{document}

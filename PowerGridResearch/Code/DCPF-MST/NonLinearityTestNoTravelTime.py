@@ -206,10 +206,11 @@ for i in Nodes:
          for k in range(0,len(EdgeTracker)):
             if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
 #                    print([i,j])
-#                    model.addConstr(PowerIJ[k,t] >= .95*500*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
-                    model.addConstr(PowerIJ[k,t] <= 1.05*500*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
-                    model.addConstr(PowerIJ[k,t]<=M*W_l[k,t])
-                    model.addConstr(PowerIJ[k,t]>=-1*M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] >= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])-5*M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
+#                    model.addConstr(PowerIJ[k,t] <= 1.05*500*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])*W_l[k,t])
+
                     
 #                    
 #         model.addConstr(Theta[i,t]<=3.14)

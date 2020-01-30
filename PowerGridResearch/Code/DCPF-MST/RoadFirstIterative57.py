@@ -365,14 +365,16 @@ obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Node
 M=10000
 for t in Time:
     model.addConstr(Theta[0,t] == 0)
-#for i in Nodes:
-#    for j in Nodes:
-#        for t in Time:
-#         for k in range(0,len(EdgeTracker)):
-#            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-#                    model.addConstr(PowerIJ[k,t] == Grid[i][j][0]['Sus']*(Theta[i,t]-Theta[j,t]))
-#         model.addConstr(Theta[i,t]<=3.14)
-#         model.addConstr(Theta[j,t]>=0)
+for i in Nodes:
+    for j in Nodes:
+        for t in Time:
+         for k in range(0,len(EdgeTracker)):
+            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
+#                    print([i,j])
+                    model.addConstr(PowerIJ[k,t] >= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])-5*M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
+#                    model.addConstr(PowerIJ[k,t] <= 1.05*500*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])*W_l[k,t])
 #impose power balance constraints
 for i in Nodes:
     for t in Time:

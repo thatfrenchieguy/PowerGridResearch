@@ -93,28 +93,28 @@ for i in Nodes:
 #RoadGrid[12][10]['working']=False     
 #RoadGrid[9][13]['working']=False       
 ##IISE SCENARIO 2
-#RoadGrid[0][3]['working']=False
-#RoadGrid[3][4]['working']=False
-#RoadGrid[3][6]['working']=False
-#RoadGrid[4][5]['working']=False
-#RoadGrid[5][13]['working']=False
-#RoadGrid[7][21]['working']=False
-#RoadGrid[9][10]['working']=False
-#RoadGrid[9][15]['working']=False
-#RoadGrid[10][11]['working']=False
-#RoadGrid[10][12]['working']=False
-#RoadGrid[10][17]['working']=False
-#RoadGrid[12][13]['working']=False
-#RoadGrid[14][28]['working']=False
-#RoadGrid[14][29]['working']=False
-#RoadGrid[16][17]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[18][20]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[19][23]['working']=False
-#RoadGrid[22][26]['working']=False
-#RoadGrid[23][27]['working']=False
-#RoadGrid[25][26]['working']=False
+RoadGrid[0][3]['working']=False
+RoadGrid[3][4]['working']=False
+RoadGrid[3][6]['working']=False
+RoadGrid[4][5]['working']=False
+RoadGrid[5][13]['working']=False
+RoadGrid[7][21]['working']=False
+RoadGrid[9][10]['working']=False
+RoadGrid[9][15]['working']=False
+RoadGrid[10][11]['working']=False
+RoadGrid[10][12]['working']=False
+RoadGrid[10][17]['working']=False
+RoadGrid[12][13]['working']=False
+RoadGrid[14][28]['working']=False
+RoadGrid[14][29]['working']=False
+RoadGrid[16][17]['working']=False
+RoadGrid[17][22]['working']=False
+RoadGrid[18][20]['working']=False
+RoadGrid[18][21]['working']=False
+RoadGrid[19][23]['working']=False
+RoadGrid[22][26]['working']=False
+RoadGrid[23][27]['working']=False
+RoadGrid[25][26]['working']=False
 ##Random Generator
 #for i in RoadGrid.nodes():
 #    for j in range(i,len(RoadGrid.nodes())):
@@ -412,14 +412,16 @@ obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Node
 M=10000
 for t in Time:
     model.addConstr(Theta[0,t] == 0)
-#for i in Nodes:
-#    for j in Nodes:
-#        for t in Time:
-#         for k in range(0,len(EdgeTracker)):
-#            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-#                    model.addConstr(PowerIJ[k,t] == Grid[i][j][0]['Sus']*(Theta[i,t]-Theta[j,t]))
-#         model.addConstr(Theta[i,t]<=3.14)
-#         model.addConstr(Theta[j,t]>=0)
+for i in Nodes:
+    for j in Nodes:
+        for t in Time:
+         for k in range(0,len(EdgeTracker)):
+            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
+#                    print([i,j])
+                    model.addConstr(PowerIJ[k,t] >= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])-5*M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
+#                    model.addConstr(PowerIJ[k,t] <= 1.05*500*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])*W_l[k,t])
 #impose power balance constraints
 for i in Nodes:
     for t in Time:
