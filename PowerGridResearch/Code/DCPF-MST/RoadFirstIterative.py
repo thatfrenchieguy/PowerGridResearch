@@ -30,7 +30,7 @@ Grid = nx.read_gml("Bus30WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 6 #this is measured in shifts
+PlanningHorizon = 8 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 Nodes = list(range(0,len(Grid.nodes)))
@@ -54,31 +54,31 @@ for i in Nodes:
                 RoadGrid[i][j]['working']=True
         else:
             RoadGrid[i][j]['working']=True
-            
+setParam("MIPGap", .005)            
 ###Random Scenario###
-#RoadGrid[0][3]['working']=False
-#RoadGrid[1][2]['working']=False
-#RoadGrid[1][26]['working']=False
-#RoadGrid[4][5]['working']=False
-#RoadGrid[5][13]['working']=False
-#RoadGrid[9][10]['working']=False
-#RoadGrid[9][13]['working']=False
-#RoadGrid[10][11]['working']=False
-#RoadGrid[10][12]['working']=False
-#RoadGrid[13][15]['working']=False
-#RoadGrid[14][16]['working']=False
-#RoadGrid[14][28]['working']=False
-#RoadGrid[16][17]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[19][21]['working']=False
-#RoadGrid[19][23]['working']=False
-#RoadGrid[22][24]['working']=False
-#RoadGrid[22][25]['working']=False
-#RoadGrid[22][26]['working']=False
-#RoadGrid[24][27]['working']=False
-#RoadGrid[25][27]['working']=False
-###Geographically oriented Scenario
+RoadGrid[0][3]['working']=False
+RoadGrid[1][2]['working']=False
+RoadGrid[1][26]['working']=False
+RoadGrid[4][5]['working']=False
+RoadGrid[5][13]['working']=False
+RoadGrid[9][10]['working']=False
+RoadGrid[9][13]['working']=False
+RoadGrid[10][11]['working']=False
+RoadGrid[10][12]['working']=False
+RoadGrid[13][15]['working']=False
+RoadGrid[14][16]['working']=False
+RoadGrid[14][28]['working']=False
+RoadGrid[16][17]['working']=False
+RoadGrid[17][22]['working']=False
+RoadGrid[18][21]['working']=False
+RoadGrid[19][21]['working']=False
+RoadGrid[19][23]['working']=False
+RoadGrid[22][24]['working']=False
+RoadGrid[22][25]['working']=False
+RoadGrid[22][26]['working']=False
+RoadGrid[24][27]['working']=False
+RoadGrid[25][27]['working']=False
+##Geographically oriented Scenario
 #RoadGrid[20][21]['working']=False
 #RoadGrid[18][23]['working']=False            
 #RoadGrid[14][28]['working']=False
@@ -93,28 +93,28 @@ for i in Nodes:
 #RoadGrid[12][10]['working']=False     
 #RoadGrid[9][13]['working']=False       
 ##IISE SCENARIO 2
-RoadGrid[0][3]['working']=False
-RoadGrid[3][4]['working']=False
-RoadGrid[3][6]['working']=False
-RoadGrid[4][5]['working']=False
-RoadGrid[5][13]['working']=False
-RoadGrid[7][21]['working']=False
-RoadGrid[9][10]['working']=False
-RoadGrid[9][15]['working']=False
-RoadGrid[10][11]['working']=False
-RoadGrid[10][12]['working']=False
-RoadGrid[10][17]['working']=False
-RoadGrid[12][13]['working']=False
-RoadGrid[14][28]['working']=False
-RoadGrid[14][29]['working']=False
-RoadGrid[16][17]['working']=False
-RoadGrid[17][22]['working']=False
-RoadGrid[18][20]['working']=False
-RoadGrid[18][21]['working']=False
-RoadGrid[19][23]['working']=False
-RoadGrid[22][26]['working']=False
-RoadGrid[23][27]['working']=False
-RoadGrid[25][26]['working']=False
+#RoadGrid[0][3]['working']=False
+#RoadGrid[3][4]['working']=False
+#RoadGrid[3][6]['working']=False
+#RoadGrid[4][5]['working']=False
+#RoadGrid[5][13]['working']=False
+#RoadGrid[7][21]['working']=False
+#RoadGrid[9][10]['working']=False
+#RoadGrid[9][15]['working']=False
+#RoadGrid[10][11]['working']=False
+#RoadGrid[10][12]['working']=False
+#RoadGrid[10][17]['working']=False
+#RoadGrid[12][13]['working']=False
+#RoadGrid[14][28]['working']=False
+#RoadGrid[14][29]['working']=False
+#RoadGrid[16][17]['working']=False
+#RoadGrid[17][22]['working']=False
+#RoadGrid[18][20]['working']=False
+#RoadGrid[18][21]['working']=False
+#RoadGrid[19][23]['working']=False
+#RoadGrid[22][26]['working']=False
+#RoadGrid[23][27]['working']=False
+#RoadGrid[25][26]['working']=False
 ##Random Generator
 #for i in RoadGrid.nodes():
 #    for j in range(i,len(RoadGrid.nodes())):
@@ -213,7 +213,7 @@ for i in Nodes:
 
 
 SteadyStatePower = 255 #in MW--the PU Basis
-PlanningHorizon = 6 #this is measured in shifts
+PlanningHorizon = 8 #this is measured in shifts
 ShiftLength = 8 #in Hours
 #Define sets to be used in optimiation
 PowerSub = nx.read_gml("Bus30WithData.gml")
@@ -284,7 +284,7 @@ plt.show()
 #Grid.node[4]['working']=False
 #Grid.node[7]['working']=False
 #Grid.node[24]['working']=False
-##Grid.node[15]['working']=False
+#Grid.node[15]['working']=False
 #Grid[1][4][0]['working']=False
 #Grid[4][6][0]['working']=False
 #Grid[7][27][0]['working']=False
@@ -295,63 +295,69 @@ plt.show()
 #Grid[9][22][0]['working']=False
 #Grid[9][19][0]['working']=False
 
-####END SCENARIO###            
-####Geographic Scenario###
-#Grid.node[4]['working']=False
-#
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[11][14][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
+###END SCENARIO###            
+###Geographic Scenario###
+Grid.node[4]['working']=False
+
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
+Grid[11][15][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[17][18][0]['working']=False
+Grid[9][16][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][13][0]['working']=False
+Grid[11][14][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[1][3][0]['working']=False
+Grid[19][18][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
-Grid.node[5]['working']=False
-Grid.node[14]['working']=False
-Grid.node[16]['working']=False
-Grid.node[18]['working']=False
-Grid.node[19]['working']=False
-Grid.node[21]['working']=False
-Grid.node[22]['working']=False
-Grid.node[23]['working']=False
-Grid.node[24]['working']=False
-Grid.node[26]['working']=False
-Grid[0][1][0]['working']=False
-Grid[1][4][0]['working']=False
-Grid[1][5][0]['working']=False
-Grid[3][5][0]['working']=False
-Grid[3][11][0]['working']=False
-Grid[5][6][0]['working']=False
-Grid[5][7][0]['working']=False
-Grid[5][9][0]['working']=False
-Grid[8][10][0]['working']=False
-Grid[9][19][0]['working']=False
-Grid[9][22][0]['working']=False
-Grid[11][12][0]['working']=False
-Grid[11][14][0]['working']=False
-Grid[14][17][0]['working']=False
-Grid[14][22][0]['working']=False
-Grid[17][18][0]['working']=False
-Grid[18][19][0]['working']=False
-Grid[20][21][0]['working']=False
-Grid[21][23][0]['working']=False
-Grid[23][24][0]['working']=False
-Grid[24][25][0]['working']=False
-Grid[24][26][0]['working']=False
-Grid[26][27][0]['working']=False
-Grid[28][29][0]['working']=False
+#Grid.node[5]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[16]['working']=False
+#Grid.node[18]['working']=False
+#Grid.node[19]['working']=False
+#Grid.node[21]['working']=False
+#Grid.node[22]['working']=False
+#Grid.node[23]['working']=False
+#Grid.node[24]['working']=False
+#Grid.node[26]['working']=False
+#Grid[0][1][0]['working']=False
+#Grid[1][4][0]['working']=False
+#Grid[1][5][0]['working']=False
+#Grid[3][5][0]['working']=False
+#Grid[3][11][0]['working']=False
+#Grid[5][6][0]['working']=False
+#Grid[5][7][0]['working']=False
+#Grid[5][9][0]['working']=False
+#Grid[8][10][0]['working']=False
+#Grid[9][19][0]['working']=False
+#Grid[9][22][0]['working']=False
+#Grid[11][12][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][22][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[18][19][0]['working']=False
+#Grid[20][21][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[23][24][0]['working']=False
+#Grid[24][25][0]['working']=False
+#Grid[24][26][0]['working']=False
+#Grid[26][27][0]['working']=False
+#Grid[28][29][0]['working']=False
 
+
+##acounting for resilience 
+Grid.node[4]['working']=True
+Grid[1][5][0]['working']=True
+Grid[22][23][0]['working']=True
+Grid[0][1][0]['working']=True
 
 ###random generator
 #for i in Grid.nodes():
@@ -441,12 +447,12 @@ for i in Nodes:
 #constrain line limits
 for e in Edges:
         for t in Time:
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*22)     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*22)     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*22)
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*22)     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*22)     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*22)                
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*1.2)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*1.2)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*1.2)
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*1.2)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*1.2)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*1.2)                
            
 
 #define workingness

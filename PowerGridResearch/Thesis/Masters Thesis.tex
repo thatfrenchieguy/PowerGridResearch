@@ -8,6 +8,7 @@
 \usepackage[dvips,xetex]{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[linesnumbered,ruled]{algorithm2e}
 \begin{document}
 	\title{Multi-actor network repair problems}
 	\author{Brian French}
@@ -19,9 +20,12 @@
 	This thesis explores the gap in existing literature where previous efforts have not explicitly considered how multiple networks depended on each other, especially the post-disaster infrastructure recovery interactions between power grid and road networks. For example, to repair a damaged power grid element, the element must be accessible to the crew attempting to repair it. Moreover, the crew will take time to go from one element to the next to repair, affecting the power grid's performance during recovery. This implies that the road network (how damaged it is and how its recovery is planned) becomes part of the overall recovery efforts. During a hurricane, the road network will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs/clearance as well. To handle the issues of repairing power grids efficiently, both types of repairs (road network and power grid) should be considered jointly. Previous literature does not study this specific interaction as discussed in the section below.
 
 	\section{Literature Review}
-	\subsection{Existing Power Grid Repair Modeling}
-	\subsection{Existing Road Grid Repair Modling}
 	\subsection{Hurricane Damage Modeling}
+		When delving into the background literature, no discussion of modeling repair after a hurricane can happen before looking at the literature on damage to power grids from hurricanes. \cite{GuikemaEA2010} use a model based on negative binomial regression to estimate the number of downed power lines in combination with a classification tree handling flooding and wind speed over/under 100 miles per hour. \cite{ScherbEA2015} on the other hand takes an approach more rooted in scenario generation and tries to use the peak windspeed and proximity to the eye wall of a hurricane to construct a loss function for power lines. \cite{WinklerEA2010} Provides the most thorough analysis using real world topographies from various small regions of Texas and coming up with loss functions for both lines and substations. Worth noting in all three of these examples is that lines and substations sustain the most damage, but generators themselves are robust enough that a hurricane is unlikely to damage them. This means they can be ignored in the repair modeling later on.
+	\subsection{Existing Power Grid Repair Modeling}
+
+	\subsection{Existing Road Grid Repair Modeling}
+	
 	\subsection{Resilience}
 	\subsection{Scenario Generation}
 	\section{Repair Problem}
@@ -42,6 +46,20 @@
 	\subsection{Introduction}
 	Given that we've constructed a model for response to a scenario of a hurricane strike on a grid, we can use this to look at how different methods of resilience. By generating test cases and then making the grid resilient through either traditional hardening or by forming microgrids as has become popular in electrical engineering literature.
 	\subsection{Hardening}
+	
+	Hardening is one of the approaches to resilience by fortifying a subset of nodes and edges in a network to make it harder to damage. Traditionally this is looked at in the context of interdiction problems \cite{ChurchEA2007}. To overview the problem solved in hardening: player 1 operates a network, player 2 attacks the network with the objective of minimizing maximum flow, player 1 hardens the network before the attack under the assumption that it's coming. This serves as a max/min/max tri-layer optimization problem.
+	
+	A similar approach can be taken with disaster planning. Unlike in multi-actor interdiction, the attack coming from a hurricane is a random process of nature and not a targeted interdiction by an intelligent actor. When solving this problem, finding a fixed quantity of damage equal to the ability to fortify under budget constraints that minimizes maximum flow allows for planning of network hardening. Solving this to optimality requires a delve into bi-level optimization that is outside the scope of this thesis. We therefor solve the problem heuristically through the following setup.
+	
+	\begin{enumerate}
+		
+	\item Solve baseline DC-OPF for the grid
+	\item identify how many nodes (n) and edges (e) to be fortified
+	\item select the 2n highest demand nodes and the 2e highest utilization edges
+	\item for each subset of nodes/edges of the correct size, solve DC-OPF with those elements damaged
+	\item find the minimum demand satisfied and use those damaged elements as the fortified elements when analyzing resilience 
+	\end{enumerate}
+		
 	\subsection{Microgriding/Islanding}
 	\section{Conclusions}
 	\subsection{Results}

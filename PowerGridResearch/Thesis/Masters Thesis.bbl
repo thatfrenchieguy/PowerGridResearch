@@ -1,8 +1,30 @@
 \begin{thebibliography}{1}
 
+\bibitem{ChurchEA2007}
+{\sc R.~L. Church and M.~P. Scaparra}, {\em Protecting critical assets: The
+  r-interdiction median problem with fortification}, Geographical Analysis, 39
+  (2007), pp.~129--146.
+
+\bibitem{GuikemaEA2010}
+{\sc S.~Guikema, S.~Quiring, and S.-R. Han}, {\em Prestorm estimation of
+  hurricane damage to electric power distribution systems}, Risk Analysis, 30
+  (2010), pp.~1744--1752.
+
 \bibitem{MannEA2006}
 {\sc M.~E. Mann and K.~A. Emanuel}, {\em Atlantic hurricane trends linked to
   climate change}, Eos, Transactions American Geophysical Union, 87 (2006),
   pp.~233--241.
+
+\bibitem{ScherbEA2015}
+{\sc A.~Scherb, L.~Garre, and D.~Straub}, {\em Probabilistic risk assessment of
+  infrastructure networks subjected to hurricanes}, Proceedings of
+  International Conference on Applications of Statistics in Civil Engineering,
+  1 (2015), pp.~1--9.
+
+\bibitem{WinklerEA2010}
+{\sc J.~Winkler, L.~Duenas-Osorio, R.~Stein, and D.~Subramanian}, {\em
+  Performance assessment of topologically diverse power systems subjected to
+  hurricane events}, Reliability Engineering and System Safety, 95 (2010),
+  pp.~323--336.
 
 \end{thebibliography}
