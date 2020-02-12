@@ -56,7 +56,7 @@ for i in range(0,len(Grid.nodes)):
             RoadGrid[i][j]['working']=True
     else:
         RoadGrid[i][j]['working']=True
-            
+  
 ###Random Scenario###
         
 #RoadGrid[0][12]['working']=False
