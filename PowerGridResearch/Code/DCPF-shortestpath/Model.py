@@ -59,9 +59,9 @@ for e in Grid.edges:
     if e[2]==1:
         road.append(e)
         
-nx.draw_networkx_nodes(Grid, pos)
+nx.draw_networkx_nodes(Grid, pos, node_size = 70)
 nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
-nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .7)
+#nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .7)
 
 plt.axis('off')
 plt.show()
