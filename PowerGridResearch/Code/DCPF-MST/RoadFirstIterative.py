@@ -56,28 +56,28 @@ for i in Nodes:
             RoadGrid[i][j]['working']=True
 setParam("MIPGap", .005)            
 ###Random Scenario###
-RoadGrid[0][3]['working']=False
-RoadGrid[1][2]['working']=False
-RoadGrid[1][26]['working']=False
-RoadGrid[4][5]['working']=False
-RoadGrid[5][13]['working']=False
-RoadGrid[9][10]['working']=False
-RoadGrid[9][13]['working']=False
-RoadGrid[10][11]['working']=False
-RoadGrid[10][12]['working']=False
-RoadGrid[13][15]['working']=False
-RoadGrid[14][16]['working']=False
-RoadGrid[14][28]['working']=False
-RoadGrid[16][17]['working']=False
-RoadGrid[17][22]['working']=False
-RoadGrid[18][21]['working']=False
-RoadGrid[19][21]['working']=False
-RoadGrid[19][23]['working']=False
-RoadGrid[22][24]['working']=False
-RoadGrid[22][25]['working']=False
-RoadGrid[22][26]['working']=False
-RoadGrid[24][27]['working']=False
-RoadGrid[25][27]['working']=False
+#RoadGrid[0][3]['working']=False
+#RoadGrid[1][2]['working']=False
+#RoadGrid[1][26]['working']=False
+#RoadGrid[4][5]['working']=False
+#RoadGrid[5][13]['working']=False
+#RoadGrid[9][10]['working']=False
+#RoadGrid[9][13]['working']=False
+#RoadGrid[10][11]['working']=False
+#RoadGrid[10][12]['working']=False
+#RoadGrid[13][15]['working']=False
+#RoadGrid[14][16]['working']=False
+#RoadGrid[14][28]['working']=False
+#RoadGrid[16][17]['working']=False
+#RoadGrid[17][22]['working']=False
+#RoadGrid[18][21]['working']=False
+#RoadGrid[19][21]['working']=False
+#RoadGrid[19][23]['working']=False
+#RoadGrid[22][24]['working']=False
+#RoadGrid[22][25]['working']=False
+#RoadGrid[22][26]['working']=False
+#RoadGrid[24][27]['working']=False
+#RoadGrid[25][27]['working']=False
 ##Geographically oriented Scenario
 #RoadGrid[20][21]['working']=False
 #RoadGrid[18][23]['working']=False            
@@ -93,28 +93,28 @@ RoadGrid[25][27]['working']=False
 #RoadGrid[12][10]['working']=False     
 #RoadGrid[9][13]['working']=False       
 ##IISE SCENARIO 2
-#RoadGrid[0][3]['working']=False
-#RoadGrid[3][4]['working']=False
-#RoadGrid[3][6]['working']=False
-#RoadGrid[4][5]['working']=False
-#RoadGrid[5][13]['working']=False
-#RoadGrid[7][21]['working']=False
-#RoadGrid[9][10]['working']=False
-#RoadGrid[9][15]['working']=False
-#RoadGrid[10][11]['working']=False
-#RoadGrid[10][12]['working']=False
-#RoadGrid[10][17]['working']=False
-#RoadGrid[12][13]['working']=False
-#RoadGrid[14][28]['working']=False
-#RoadGrid[14][29]['working']=False
-#RoadGrid[16][17]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[18][20]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[19][23]['working']=False
-#RoadGrid[22][26]['working']=False
-#RoadGrid[23][27]['working']=False
-#RoadGrid[25][26]['working']=False
+RoadGrid[0][3]['working']=False
+RoadGrid[3][4]['working']=False
+RoadGrid[3][6]['working']=False
+RoadGrid[4][5]['working']=False
+RoadGrid[5][13]['working']=False
+RoadGrid[7][21]['working']=False
+RoadGrid[9][10]['working']=False
+RoadGrid[9][15]['working']=False
+RoadGrid[10][11]['working']=False
+RoadGrid[10][12]['working']=False
+RoadGrid[10][17]['working']=False
+RoadGrid[12][13]['working']=False
+RoadGrid[14][28]['working']=False
+RoadGrid[14][29]['working']=False
+RoadGrid[16][17]['working']=False
+RoadGrid[17][22]['working']=False
+RoadGrid[18][20]['working']=False
+RoadGrid[18][21]['working']=False
+RoadGrid[19][23]['working']=False
+RoadGrid[22][26]['working']=False
+RoadGrid[23][27]['working']=False
+RoadGrid[25][26]['working']=False
 ##Random Generator
 #for i in RoadGrid.nodes():
 #    for j in range(i,len(RoadGrid.nodes())):
@@ -317,60 +317,60 @@ plt.show()
 #Grid[19][18][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
-#Grid.node[5]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[16]['working']=False
-#Grid.node[18]['working']=False
-#Grid.node[19]['working']=False
-#Grid.node[21]['working']=False
-#Grid.node[22]['working']=False
-#Grid.node[23]['working']=False
-#Grid.node[24]['working']=False
-#Grid.node[26]['working']=False
-#Grid[0][1][0]['working']=False
-#Grid[1][4][0]['working']=False
-#Grid[1][5][0]['working']=False
-#Grid[3][5][0]['working']=False
-#Grid[3][11][0]['working']=False
-#Grid[5][6][0]['working']=False
-#Grid[5][7][0]['working']=False
-#Grid[5][9][0]['working']=False
-#Grid[8][10][0]['working']=False
-#Grid[9][19][0]['working']=False
-#Grid[9][22][0]['working']=False
-#Grid[11][12][0]['working']=False
-#Grid[11][14][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][22][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[18][19][0]['working']=False
-#Grid[20][21][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[23][24][0]['working']=False
-#Grid[24][25][0]['working']=False
-#Grid[24][26][0]['working']=False
-#Grid[26][27][0]['working']=False
-#Grid[28][29][0]['working']=False
+Grid.node[5]['working']=False
+Grid.node[14]['working']=False
+Grid.node[16]['working']=False
+Grid.node[18]['working']=False
+Grid.node[19]['working']=False
+Grid.node[21]['working']=False
+Grid.node[22]['working']=False
+Grid.node[23]['working']=False
+Grid.node[24]['working']=False
+Grid.node[26]['working']=False
+Grid[0][1][0]['working']=False
+Grid[1][4][0]['working']=False
+Grid[1][5][0]['working']=False
+Grid[3][5][0]['working']=False
+Grid[3][11][0]['working']=False
+Grid[5][6][0]['working']=False
+Grid[5][7][0]['working']=False
+Grid[5][9][0]['working']=False
+Grid[8][10][0]['working']=False
+Grid[9][19][0]['working']=False
+Grid[9][22][0]['working']=False
+Grid[11][12][0]['working']=False
+Grid[11][14][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][22][0]['working']=False
+Grid[17][18][0]['working']=False
+Grid[18][19][0]['working']=False
+Grid[20][21][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[23][24][0]['working']=False
+Grid[24][25][0]['working']=False
+Grid[24][26][0]['working']=False
+Grid[26][27][0]['working']=False
+Grid[28][29][0]['working']=False
 
 
 
 
-##random generator
-for i in Grid.nodes():
-    for j in range(i,len(Grid.nodes())):
-      if Grid.has_edge(i,j,0):
-        randbreak = np.random.uniform()
-        if randbreak <= .65:
-            print([i,j])
-            Grid[i][j][0]['working']=False
-        else: 
-            Grid[i][j][0]['working'] = True
-for i in Grid.nodes():
-    randbreak = np.random.uniform()
-    if randbreak <= .3:
-            Grid.node[i]['working']=False
-    else:
-            Grid.node[i]['working']=True
+###random generator
+#for i in Grid.nodes():
+#    for j in range(i,len(Grid.nodes())):
+#      if Grid.has_edge(i,j,0):
+#        randbreak = np.random.uniform()
+#        if randbreak <= .65:
+#            print([i,j])
+#            Grid[i][j][0]['working']=False
+#        else: 
+#            Grid[i][j][0]['working'] = True
+#for i in Grid.nodes():
+#    randbreak = np.random.uniform()
+#    if randbreak <= .3:
+#            Grid.node[i]['working']=False
+#    else:
+#            Grid.node[i]['working']=True
 
 ##acounting for resilience 
 #Grid.node[4]['working']=True
@@ -542,3 +542,32 @@ for i in Nodes:
 #                print(PowerIJ[i,t].X)              
 for t in Time:          
     print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
+###do a visualization of the shift in flow between 
+for e in Edges:
+    ori = EdgeTracker[e][1][0]
+    dest = EdgeTracker[e][1][1]
+    Grid[ori][dest][0]['firstflow'] = PowerIJ[e,0].X
+    Grid[ori][dest][0]['lastflow'] = PowerIJ[e,4].X
+    
+##artblock for visualizing shifts in power flow
+x  = nx.get_node_attributes(Grid,('xcoord'))
+y = nx.get_node_attributes(Grid,'ycoord')
+pos=[]
+power = []
+road = []
+for i in x:
+    pos.append((x[i],y[i]))
+for e in Grid.edges:
+    if e[2]==0:
+        power.append(e)
+    if e[2]==1:
+        road.append(e)
+for t in tour:
+    tourdraw.append((t[0],t[1],1))
+        
+nx.draw_networkx_nodes(Grid, pos, label=True)
+nx.draw_networkx_labels(Grid, pos)
+nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
+#nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .3)
+nx.draw_networkx_edges(Grid, pos, edgelist = tourdraw, edge_color = 'b', width = 4, alpha = 1)
+#    

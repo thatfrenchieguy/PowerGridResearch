@@ -1,25 +1,72 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{NPSMasters}
+{\sc C.~C. Ang}, {\em Optimized recovery of damaged electrial power grids},
+  Master's thesis, Naval Postgraduate School, 3 2006.
+\newblock Found online.
+
+\bibitem{ArabEA2015}
+{\sc A.~Arab, A.~Khodaei, S.~Khator, K.~Ding, V.~Emesih, and Z.~Han}, {\em
+  Stochastic pre-hurricane restoration planning for electric power systems
+  infrastructure}, IEEE Transactions on Smart Grid, 6 (2015), pp.~1046--1054.
+
+\bibitem{ChanEA2011}
+{\sc S.~Chan, R.~Donner, and S.~Lammer}, {\em Urban road networks -- spatial
+  networks with universal geometric features}, European Physics Journal B, 84
+  (2011), pp.~563--577.
 
 \bibitem{ChurchEA2007}
 {\sc R.~L. Church and M.~P. Scaparra}, {\em Protecting critical assets: The
   r-interdiction median problem with fortification}, Geographical Analysis, 39
   (2007), pp.~129--146.
 
+\bibitem{FEMASandyAAR}
+{\sc FEMA}, {\em Hurricane sandy after-action report}, tech. rep., July 2013.
+
+\bibitem{FEMA2017AAR}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em 2017 hurricane
+  season after-action report}, tech. rep., July 2018.
+
+\bibitem{Frank2016}
+{\sc S.~Frank and S.~Rebennack}, {\em An introduction to optimal power flow:
+  Theory, formulation, and examples}, IIE Transactions, 48 (2016),
+  pp.~1172--1197.
+
+\bibitem{GolariEA2014}
+{\sc M.~Golari, N.~Fan, and J.~Wang}, {\em Two-stage stochastic optimal
+  islanding operations under severe multiple contingencies in power grids},
+  Electric Power Systems Research, 114 (2014), pp.~68--77.
+
 \bibitem{GuikemaEA2010}
 {\sc S.~Guikema, S.~Quiring, and S.-R. Han}, {\em Prestorm estimation of
   hurricane damage to electric power distribution systems}, Risk Analysis, 30
   (2010), pp.~1744--1752.
+
+\bibitem{LammerEA2006}
+{\sc S.~Lämmer, B.~Gehlsen, and D.~Helbing}, {\em Scaling laws in the spatial
+  structure of urban road networks}, Physica A: Statistical Mechanics and its
+  Applications, 363 (2006), pp.~89 -- 95.
+\newblock Information and Material Flows in Complex Networks.
 
 \bibitem{MannEA2006}
 {\sc M.~E. Mann and K.~A. Emanuel}, {\em Atlantic hurricane trends linked to
   climate change}, Eos, Transactions American Geophysical Union, 87 (2006),
   pp.~233--241.
 
+\bibitem{OuyangEA2014}
+{\sc M.~Ouyang and L.~Duenas-Osorio}, {\em Multi-dimensional hurricane
+  resilience assessment of electric power systems}, Structural Safety, 48
+  (2014), pp.~15--24.
+
 \bibitem{ScherbEA2015}
 {\sc A.~Scherb, L.~Garre, and D.~Straub}, {\em Probabilistic risk assessment of
   infrastructure networks subjected to hurricanes}, Proceedings of
   International Conference on Applications of Statistics in Civil Engineering,
   1 (2015), pp.~1--9.
+
+\bibitem{StottEA2009}
+{\sc B.~{Stott}, J.~{Jardim}, and O.~{Alsac}}, {\em Dc power flow revisited},
+  IEEE Transactions on Power Systems, 24 (2009), pp.~1290--1300.
 
 \bibitem{WinklerEA2010}
 {\sc J.~Winkler, L.~Duenas-Osorio, R.~Stein, and D.~Subramanian}, {\em
