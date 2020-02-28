@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  17 FEB 2020 21:11
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  27 FEB 2020 22:26
 entering extended mode
 **"./Masters Thesis.tex"
 ("Masters Thesis.tex"
@@ -288,29 +288,33 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 15.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [2] [3] [4]
-Overfull \hbox (105.42154pt too wide) detected at line 117
-[]
- []
-
+] [2] [3]
+File: DCvsPipeflow.PNG Graphic file (type bmp)
+<DCvsPipeflow.PNG>
+ [4]
 [5]
-
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 155.
-
-
-
-Overfull \hbox (132.98943pt too wide) detected at line 156
+Overfull \hbox (105.42154pt too wide) detected at line 132
 []
  []
 
-[6] [7] [8] ("Masters Thesis.bbl" [9] [10]) [11] ("Masters Thesis.aux") ) 
+[6]
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 170.
+
+
+
+Overfull \hbox (132.98943pt too wide) detected at line 171
+[]
+ []
+
+[7] [8] [9] [10] ("Masters Thesis.bbl" [11]) [12] ("Masters Thesis.aux") ) 
 Here is how much of TeX's memory you used:
- 4642 strings out of 427796
- 69323 string characters out of 3151769
- 160086 words of memory out of 3000000
- 8599 multiletter control sequences out of 15000+200000
+ 4657 strings out of 427796
+ 69556 string characters out of 3151769
+ 163086 words of memory out of 3000000
+ 8611 multiletter control sequences out of 15000+200000
  11617 words of font info for 57 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,7n,38p,1079b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,7n,39p,1079b,277s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Masters Thesis.pdf (11 pages).
+Output written on Masters Thesis.pdf (12 pages).

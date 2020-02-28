@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{AksuEA2014}
+{\sc D.~Aksu and L.~Ozdamar}, {\em A mathematical model for post-disaster road
+  restoration: Enabling accessibility and evacuation}, Transportation Research
+  Part E, 61 (2014), pp.~56--67.
+
 \bibitem{NPSMasters}
 {\sc C.~C. Ang}, {\em Optimized recovery of damaged electrial power grids},
   Master's thesis, Naval Postgraduate School, 3 2006.
@@ -20,12 +25,22 @@
   r-interdiction median problem with fortification}, Geographical Analysis, 39
   (2007), pp.~129--146.
 
+\bibitem{DuqueEA2016}
+{\sc P.~Duque, I.~Dolinskaya, and K.~Sorensen}, {\em Network repair crew
+  scheduling and routing for emergency relief distribution problem}, European
+  Journal of Operational Research, 248 (2016), pp.~272--285.
+
 \bibitem{FEMASandyAAR}
 {\sc FEMA}, {\em Hurricane sandy after-action report}, tech. rep., July 2013.
 
 \bibitem{FEMA2017AAR}
 \leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em 2017 hurricane
   season after-action report}, tech. rep., July 2018.
+
+\bibitem{FlemingEA2013}
+{\sc C.~L. Fleming, S.~E. Griffis, and J.~E. Bell}, {\em The effects of
+  triangle inequality on the vehicle routing problem}, European Journal of
+  Operational Research, 224 (2013), pp.~1 -- 7.
 
 \bibitem{Frank2016}
 {\sc S.~Frank and S.~Rebennack}, {\em An introduction to optimal power flow:
@@ -57,6 +72,12 @@
 {\sc M.~Ouyang and L.~Duenas-Osorio}, {\em Multi-dimensional hurricane
   resilience assessment of electric power systems}, Structural Safety, 48
   (2014), pp.~15--24.
+
+\bibitem{PregnolatoEA2017}
+{\sc M.~Pregnolato, A.~Ford, S.~M. Wilkinson, and R.~J. Dawson}, {\em The
+  impact of flooding on road transport: A depth-disruption function},
+  Transportation Research Part D: Transport and Environment, 55 (2017), pp.~67
+  -- 81.
 
 \bibitem{ScherbEA2015}
 {\sc A.~Scherb, L.~Garre, and D.~Straub}, {\em Probabilistic risk assessment of

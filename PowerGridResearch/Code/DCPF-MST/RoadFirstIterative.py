@@ -536,38 +536,10 @@ for i in Nodes:
 #        for t in Time:
         if Z[i,j,t].X != 0:
                 print([i,j,Z[i,j,t].X])
-#for i in Edges:
-#        for t in Time:
-#            if PowerIJ[i,t].X != 0:
-#                print(PowerIJ[i,t].X)              
+t=4
+for i in Edges:
+                print(PowerIJ[i,t].X)              
 for t in Time:          
     print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
-###do a visualization of the shift in flow between 
-for e in Edges:
-    ori = EdgeTracker[e][1][0]
-    dest = EdgeTracker[e][1][1]
-    Grid[ori][dest][0]['firstflow'] = PowerIJ[e,0].X
-    Grid[ori][dest][0]['lastflow'] = PowerIJ[e,4].X
-    
-##artblock for visualizing shifts in power flow
-x  = nx.get_node_attributes(Grid,('xcoord'))
-y = nx.get_node_attributes(Grid,'ycoord')
-pos=[]
-power = []
-road = []
-for i in x:
-    pos.append((x[i],y[i]))
-for e in Grid.edges:
-    if e[2]==0:
-        power.append(e)
-    if e[2]==1:
-        road.append(e)
-for t in tour:
-    tourdraw.append((t[0],t[1],1))
-        
-nx.draw_networkx_nodes(Grid, pos, label=True)
-nx.draw_networkx_labels(Grid, pos)
-nx.draw_networkx_edges(Grid, pos, edgelist = power, edge_color = "g", width = 2, alpha =.7)
-#nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .3)
-nx.draw_networkx_edges(Grid, pos, edgelist = tourdraw, edge_color = 'b', width = 4, alpha = 1)
+
 #    
