@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  27 FEB 2020 22:26
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  3 MAR 2020 16:31
 entering extended mode
 **"./Masters Thesis.tex"
 ("Masters Thesis.tex"
@@ -258,7 +258,11 @@ Package: relsize 2013/03/29 ver 4.1
 \c@algocf=\count114
 \algocf@algoframe=\box37
 \algocf@algobox=\box38
-) ("Masters Thesis.aux")
+) ("Masters Thesis.aux"
+
+LaTeX Warning: Label `fig:sub1' multiply defined.
+
+)
 \openout1 = `"Masters Thesis.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -278,8 +282,7 @@ LaTeX Font Info:    ... okay on input line 12.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Try loading font information for U+msa on input line 15.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 15.
@@ -288,33 +291,41 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 15.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [2] [3]
+] [2] [3] [4]
 File: DCvsPipeflow.PNG Graphic file (type bmp)
 <DCvsPipeflow.PNG>
- [4]
+
 [5]
-Overfull \hbox (105.42154pt too wide) detected at line 132
+Overfull \hbox (105.42154pt too wide) detected at line 138
 []
  []
 
 [6]
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 170.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 186.
 
 
+[7] [8] [9] [10]
+File: Rplot37.png Graphic file (type bmp)
+<Rplot37.png>
+File: Rplot57.png Graphic file (type bmp)
+<Rplot57.png>
+ [11]
+File: Rplot30scenario2.png Graphic file (type bmp)
+<Rplot30scenario2.png>
+ [12] [13] ("Masters Thesis.bbl" [14]) [15]
+("Masters Thesis.aux")
 
-Overfull \hbox (132.98943pt too wide) detected at line 171
-[]
- []
+LaTeX Warning: There were multiply-defined labels.
 
-[7] [8] [9] [10] ("Masters Thesis.bbl" [11]) [12] ("Masters Thesis.aux") ) 
+ ) 
 Here is how much of TeX's memory you used:
- 4657 strings out of 427796
- 69556 string characters out of 3151769
- 163086 words of memory out of 3000000
- 8611 multiletter control sequences out of 15000+200000
+ 4675 strings out of 427796
+ 69827 string characters out of 3151769
+ 160086 words of memory out of 3000000
+ 8625 multiletter control sequences out of 15000+200000
  11617 words of font info for 57 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,7n,39p,1079b,277s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,7n,39p,1079b,283s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Masters Thesis.pdf (12 pages).
+Output written on Masters Thesis.pdf (15 pages).

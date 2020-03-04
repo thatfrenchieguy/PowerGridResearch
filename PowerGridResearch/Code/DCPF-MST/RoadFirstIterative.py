@@ -317,66 +317,66 @@ plt.show()
 #Grid[19][18][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
-Grid.node[5]['working']=False
-Grid.node[14]['working']=False
-Grid.node[16]['working']=False
-Grid.node[18]['working']=False
-Grid.node[19]['working']=False
-Grid.node[21]['working']=False
-Grid.node[22]['working']=False
-Grid.node[23]['working']=False
-Grid.node[24]['working']=False
-Grid.node[26]['working']=False
-Grid[0][1][0]['working']=False
-Grid[1][4][0]['working']=False
-Grid[1][5][0]['working']=False
-Grid[3][5][0]['working']=False
-Grid[3][11][0]['working']=False
-Grid[5][6][0]['working']=False
-Grid[5][7][0]['working']=False
-Grid[5][9][0]['working']=False
-Grid[8][10][0]['working']=False
-Grid[9][19][0]['working']=False
-Grid[9][22][0]['working']=False
-Grid[11][12][0]['working']=False
-Grid[11][14][0]['working']=False
-Grid[14][17][0]['working']=False
-Grid[14][22][0]['working']=False
-Grid[17][18][0]['working']=False
-Grid[18][19][0]['working']=False
-Grid[20][21][0]['working']=False
-Grid[21][23][0]['working']=False
-Grid[23][24][0]['working']=False
-Grid[24][25][0]['working']=False
-Grid[24][26][0]['working']=False
-Grid[26][27][0]['working']=False
-Grid[28][29][0]['working']=False
+#Grid.node[5]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[16]['working']=False
+#Grid.node[18]['working']=False
+#Grid.node[19]['working']=False
+#Grid.node[21]['working']=False
+#Grid.node[22]['working']=False
+#Grid.node[23]['working']=False
+#Grid.node[24]['working']=False
+#Grid.node[26]['working']=False
+#Grid[0][1][0]['working']=False
+#Grid[1][4][0]['working']=False
+#Grid[1][5][0]['working']=False
+#Grid[3][5][0]['working']=False
+#Grid[3][11][0]['working']=False
+#Grid[5][6][0]['working']=False
+#Grid[5][7][0]['working']=False
+#Grid[5][9][0]['working']=False
+#Grid[8][10][0]['working']=False
+#Grid[9][19][0]['working']=False
+#Grid[9][22][0]['working']=False
+#Grid[11][12][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][22][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[18][19][0]['working']=False
+#Grid[20][21][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[23][24][0]['working']=False
+#Grid[24][25][0]['working']=False
+#Grid[24][26][0]['working']=False
+#Grid[26][27][0]['working']=False
+#Grid[28][29][0]['working']=False
+#
+#
 
 
+#random generator
+for i in Grid.nodes():
+    for j in range(i,len(Grid.nodes())):
+      if Grid.has_edge(i,j,0):
+        randbreak = np.random.uniform()
+        if randbreak <= .5:
+            print([i,j])
+            Grid[i][j][0]['working']=False
+        else: 
+            Grid[i][j][0]['working'] = True
+for i in Grid.nodes():
+    randbreak = np.random.uniform()
+    if randbreak <= .25:
+            Grid.node[i]['working']=False
+    else:
+            Grid.node[i]['working']=True
 
-
-###random generator
-#for i in Grid.nodes():
-#    for j in range(i,len(Grid.nodes())):
-#      if Grid.has_edge(i,j,0):
-#        randbreak = np.random.uniform()
-#        if randbreak <= .65:
-#            print([i,j])
-#            Grid[i][j][0]['working']=False
-#        else: 
-#            Grid[i][j][0]['working'] = True
-#for i in Grid.nodes():
-#    randbreak = np.random.uniform()
-#    if randbreak <= .3:
-#            Grid.node[i]['working']=False
-#    else:
-#            Grid.node[i]['working']=True
-
-##acounting for resilience 
-#Grid.node[4]['working']=True
-#Grid[1][5][0]['working']=True
-#Grid[22][23][0]['working']=True
-#Grid[0][1][0]['working']=True
+#acounting for resilience 
+Grid.node[4]['working']=True
+Grid[1][5][0]['working']=True
+Grid[22][23][0]['working']=True
+Grid[0][1][0]['working']=True
 
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
@@ -536,9 +536,9 @@ for i in Nodes:
 #        for t in Time:
         if Z[i,j,t].X != 0:
                 print([i,j,Z[i,j,t].X])
-t=4
-for i in Edges:
-                print(PowerIJ[i,t].X)              
+#t=4
+#for i in Edges:
+#                print(PowerIJ[i,t].X)              
 for t in Time:          
     print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes ))
 
