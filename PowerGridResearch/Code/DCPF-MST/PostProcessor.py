@@ -46,23 +46,23 @@ EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
 ###schedule of nodes to be fixed from the pure scheduling solver
-InputNodes = [[14,0,'node'],
-              [5,1,'node'],
+InputNodes = [[4,0,'node'],
+              [7,0,'node'],
+              [23,1,'node'],
+              [24,1,'node'],
               [18,2,'node'],
-              [16,3,'node'],
-              [22,4,'node']
+              [15,3,'node']
               ]
 ###schedule of edges to be fixed from the pure scheduling solver
-InputEdges = [[0,0,'edge'],
-              [3,0,'edge'],
-              [7,0,'edge'],
-              [6,1,'edge'],
-              [9,1,'edge'],
-              [26,1,'edge'],
-              [4,2,'edge'],
-              [23,2,'edge'],
-              [29,2,'edge'],
-              [20,4,'edge']
+InputEdges = [[3,0,'edge'],
+              [17,0,'edge'],
+              [35,1,'edge'],
+              [2,2,'edge'],
+              [8,2,'edge'],
+              [20,2,'edge'],
+              [24,2,'edge'],
+              [30,2,'edge'],
+              [14,3,'edge']
               ]
 RoadData = []
 SP = np.zeros((len(Nodes),len(Nodes)))
@@ -76,7 +76,7 @@ priorityLoadNodes = []
 priorityLoadEdges = []
 EdgeRepairTime = 1
 NodeRepairTime = 5
-ShiftLength = 8
+ShiftLength = 12
 shiftBuildNumber = 0
 while len(InputNodes)!= 0 and len(InputEdges)!=0:
     print('startingmain')
@@ -98,7 +98,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
             plausibleListEdges.append(i)
     ShiftCost = 0
     ShiftUnderConstruction = []
-    while ShiftCost<=8:
+    while ShiftCost<=12:
         flag = False
         if len(priorityLoadNodes) != 0:
             print('inPriorityNodes')
@@ -109,7 +109,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
             MinNodeCost = min(NodeCosts)
             WhichNode = NodeCosts.index(MinNodeCost)
             CheapestNode = priorityLoadNodes[WhichNode] 
-            if MinNodeCost < 8-ShiftCost:
+            if MinNodeCost < 12-ShiftCost:
                 ShiftUnderConstruction.append([CheapestNode])
                 for j in priorityLoadNodes:
                     if j == CheapestNode:
@@ -135,7 +135,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
             MinEdgeCost = min(EdgeCosts, key=lambda x: x[0])
             WhichEdge = EdgeCosts.index(MinEdgeCost)
             CheapestEdge = priorityLoadEdges[WhichEdge] 
-            if MinEdgeCost[0] < 8-ShiftCost:
+            if MinEdgeCost[0] < 12-ShiftCost:
                 ShiftUnderConstruction.append([CheapestEdge])
                 for j in priorityLoadEdges:
                     if j == CheapestEdge:
@@ -155,7 +155,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
                 MinNodeCost = min(NodeCosts)
                 WhichNode = NodeCosts.index(MinNodeCost)
                 CheapestNode = plausibleListNodes[WhichNode] 
-                if MinNodeCost < 8-ShiftCost:
+                if MinNodeCost < 12-ShiftCost:
                     ShiftUnderConstruction.append([CheapestNode])
                     for j in plausibleListNodes:
                         if j == CheapestNode:
@@ -179,7 +179,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
                 MinEdgeCost = min(EdgeCosts, key=lambda x: x[0])
                 WhichEdge = EdgeCosts.index(MinEdgeCost)
                 CheapestEdge = plausibleListEdges[WhichEdge] 
-                if MinEdgeCost[0] < 8-ShiftCost:
+                if MinEdgeCost[0] < 12-ShiftCost:
                     ShiftUnderConstruction.append([CheapestEdge])
                     for j in plausibleListEdges:
                         if j == CheapestEdge:

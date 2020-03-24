@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  5 MAR 2020 16:39
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  21 MAR 2020 18:22
 entering extended mode
 **"./Masters Thesis.tex"
 ("Masters Thesis.tex"
@@ -258,74 +258,100 @@ Package: relsize 2013/03/29 ver 4.1
 \c@algocf=\count114
 \algocf@algoframe=\box37
 \algocf@algobox=\box38
-) ("Masters Thesis.aux"
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+("Masters Thesis.aux"
 
 LaTeX Warning: Label `fig:sub1' multiply defined.
 
 )
 \openout1 = `"Masters Thesis.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 15.
+LaTeX Font Info:    Try loading font information for U+msa on input line 16.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 15.
+LaTeX Font Info:    Try loading font information for U+msb on input line 16.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ] [2] [3] [4]
+[5]
 File: DCvsPipeflow.PNG Graphic file (type bmp)
 <DCvsPipeflow.PNG>
-
-[5]
-Overfull \hbox (105.42154pt too wide) detected at line 138
+ [6] [7]
+Overfull \hbox (71.48572pt too wide) detected at line 146
 []
  []
 
-[6]
+[8]
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 186.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 220.
 
 
-[7] [8] [9] [10]
+[9]
+Overfull \hbox (2.3137pt too wide) in alignment at lines 226--242
+ [][][] []
+ []
+
+[10] [11] [12]
+Overfull \hbox (115.91008pt too wide) in paragraph at lines 282--299
+ [][] 
+ []
+
+[13] [14] [15]
 File: Rplot37.png Graphic file (type bmp)
 <Rplot37.png>
-File: Rplot57.png Graphic file (type bmp)
-<Rplot57.png>
- [11]
+ [16]
+File: Rplot30Rand.png Graphic file (type bmp)
+<Rplot30Rand.png>
 File: Rplot30scenario2.png Graphic file (type bmp)
 <Rplot30scenario2.png>
- [12] [13] ("Masters Thesis.bbl" [14]) [15]
+ [17] [18] ("Masters Thesis.bbl" [19] [20]) [21]
 ("Masters Thesis.aux")
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4675 strings out of 427796
- 69827 string characters out of 3151769
- 160086 words of memory out of 3000000
- 8625 multiletter control sequences out of 15000+200000
- 11617 words of font info for 57 fonts, out of 3000000 for 9000
+ 5132 strings out of 427796
+ 74933 string characters out of 3151769
+ 171429 words of memory out of 3000000
+ 9081 multiletter control sequences out of 15000+200000
+ 10072 words of font info for 51 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,7n,39p,1103b,283s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,39p,1691b,290s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Masters Thesis.pdf (15 pages).
+Output written on Masters Thesis.pdf (21 pages).

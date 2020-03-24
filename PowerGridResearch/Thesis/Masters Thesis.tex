@@ -9,6 +9,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{xcolor}
 \begin{document}
 	\title{Multi-actor network repair problems}
 	\author{Brian French}
@@ -28,33 +29,35 @@
 	
 	This thesis explores the gap in existing literature where previous efforts have not explicitly considered how multiple networks depended on each other, especially the post-disaster infrastructure recovery interactions between power grid and road networks. For example, to repair a damaged power grid element, the element must be accessible to the crew attempting to repair it. Moreover, the crew will take time to go from one element to the next to repair, affecting the power grid's performance during recovery. This implies that the road network (how damaged it is and how its recovery is planned) becomes part of the overall recovery efforts. During a hurricane, the road network will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs/clearance as well. To handle the issues of repairing power grids efficiently, both types of repairs (road network and power grid) should be considered jointly. Previous literature does not study this specific interaction as discussed in the section below.
 
-	Understanding of repair efforts on power grids begins with understanding the basics of power grid topology. We divide the power grid into transmission and distribution networks. Transmission consists of generators, buses/substations, and high voltage connecting lines. Because this side of the grid has multiple sources and sinks, flow is not guaranteed to flow in a certain direction. The distribution side of a network begins at the bus/substation level and connects end users of power to the grid as a whole. Because power flows from the substation to the end user in a single source network, these networks are comparatively simpler to model. For the sake of this thesis, we restrict ourselves to just transmission level power grids as distribution grids are simpler at an electrical level as well as being geographically small enough that ignoring routing time costs doesn't stray from optimality very far. In addition, as distribution level damage happens in routine storms, power utilities have a better understanding of how to handle this damage just due to experience.
+	Understanding of repair efforts on power grids begins with understanding the basics of power grid topology. We divide the power grid into transmission and distribution networks. Transmission consists of generators, buses/substations, and high voltage connecting lines. Because this side of the grid has multiple sources and sinks, flow is not guaranteed to flow in a certain direction. The distribution side of a network begins at the bus/substation level and connects end users of power to the grid as a whole. Because power flows from the substation to the end user in a single source network, these networks are comparatively simpler to model. For the sake of this thesis, we restrict ourselves to just transmission level power grids as distribution grids are simpler at an electrical level as well as being geographically small enough that ignoring routing time costs doesn't stray from optimality very far. In addition, as distribution level damage happens in routine storms, power utilities have a better understanding of how to handle this damage due to experience. In addition to the practical concerns of how these power grid levels differ, the scale of service loss is dramatically different. Loss of distribution power lines can lead to loss of power service to small segments of a neighborhood while loss of a substation or set of transmission lines can knock out power to several neighborhoods or entire towns.
 	
 	
 	\section{Literature Review}
 	\subsection{Hurricane Damage Modeling}
-		When delving into the background literature, no discussion of modeling repair after a hurricane can happen before looking at the literature on damage to power grids from hurricanes. \cite{GuikemaEA2010} use a model based on negative binomial regression to estimate the number of downed power lines in combination with a classification tree handling flooding and wind speed over/under 100 miles per hour. \cite{ScherbEA2015} on the other hand takes an approach more rooted in scenario generation and tries to use the peak windspeed and proximity to the eye wall of a hurricane to construct a loss function for power lines. Both of these papers come to the similar conclusion that damage to 40-70\% of power lines due to wind and thrown debris is common in hurricanes.
+		When delving into the background literature, no discussion of modeling repair after a hurricane can happen before looking at the literature on damage to power grids from hurricanes. \cite{GuikemaEA2010} use a model based on negative binomial regression to estimate the number of downed power lines in combination with a classification tree handling flooding and wind speed over/under 100 miles per hour. \cite{ScherbEA2015} on the other hand takes an approach more rooted in scenario generation and tries to use the peak windspeed and proximity to the eye wall of a hurricane to construct a loss function for power lines. Both of these papers come to the similar conclusion that damage to 40-70\% of power lines due to wind and thrown debris is common in hurricanes. Damage is geographically distributed based on proximity to the eye-wall of a hurricane, but because hurricanes are frequently hundreds of miles across, damage inside of a single city may appear functionally random. 
 		
-		 \cite{WinklerEA2010} Provides the most thorough analysis of these 3 papers using real world topographies from various small regions of Texas and coming up with loss functions for both lines and substations. Worth noting in all three of these examples is that lines and substations sustain the most damage, but generators themselves are robust enough that a hurricane is unlikely to damage them. This means they can be ignored in the repair modeling later on. This validated the later modeling of how damage happens to a power grid in the wake of a hurricane.
+		 \cite{WinklerEA2010} Provides the most thorough analysis of these 3 papers using real world topographies from various small regions of Texas and coming up with loss functions for both lines and substations. Worth noting in all three of these examples is that lines and substations sustain the most damage, but generators themselves are robust enough that a hurricane is unlikely to damage them. This means they can be ignored in the repair modeling later on. This validated the later modeling of how damage happens to a power grid in the wake of a hurricane that neglects to consider the impact on power generation.
 	\subsection{Existing Power Grid Repair Modeling}
-		Power grid repairs in the wake of hurricanes are not an unstudied area of research. \cite{NPSMasters} solves a scheduling problem of power grid repair in the wake of both hurricanes and terrorist attacks. While they don't consider impacts of roads, they do significant work with how to model a damaged power grid. Along similar lines, \cite{ArabEA2015} solve a similar problem under uncertainty by treating the state of each power line and generator as a random Bernoulli variable and solving the ensuing stochastic 
-		optimization problem. 
+		Power grid repairs in the wake of hurricanes are not an unstudied area of research. \cite{NPSMasters} solves a scheduling problem of power grid repair in the wake of both hurricanes and terrorist attacks. While they don't consider impacts of roads, they do significant work with how to model a damaged power grid. Along similar lines, \cite{ArabEA2015} solve a similar problem under uncertainty by treating the state of each power line and generator as a random Bernoulli variable and solving the ensuing stochastic optimization problem. Though it solves the problem as a two stage stochastic program with recourse, . 
 		
-		\cite{OuyangEA2014} Does a statistical analysis of the rate at which damage is recovered in the context of broader power grid resilience. While more descriptive than prescriptive, they do lay out that transmission grid repairs take priority alongside "critical facilities vital to public safety, health, and welfare".
+		\cite{OuyangEA2014} Does a statistical analysis of the rate at which damage is recovered in the context of broader power grid resilience. While more descriptive than prescriptive, they do lay out that transmission grid repairs take priority alongside "critical facilities vital to public safety, health, and welfare". Of note in this paper is that they identify that much of the existing literature on repairs to power grid is based on descriptive studies of statistical repair times rather than model-driven optimization models for how to improve that process.
 		
-		\cite{GolariEA2014} Takes a different approach to ensuring power demand satisfaction in the context of a damaged power network by approaching the problem in the lens of construction of sub-grids (termed "islands" in much of the electrical engineering literature) in order to keep demand satisfied in a post-disaster context.
+		\cite{GolariEA2014} Takes a different approach to ensuring power demand satisfaction in the context of a damaged power network by approaching the problem in the lens of construction of sub-grids (termed "islands" in much of the electrical engineering literature) in order to keep demand satisfied in a post-disaster context. Islanding is an active field of study in power grid engineering for generating tools to minimize the impact of disaster damage. \cite{Panteli2016} studies disaster damage by constructing islanding plans in a way that would minimize load loss subject to severe weather. Though there is no consideration of repair, their modeling warrants the importance of resilience as an area of study.  
 	\subsection{Existing Road Grid Repair Modeling}
 		\cite{PregnolatoEA2017} provides an overview of probability of road damage by location and intensity. They go on to provide a literature review and meta-analysis of existing papers in the subfield. They then go on to summarize a variety of versions of depth-disruption functions for roads based on local rain intensity. Alone this paper doesn't add significant amounts to modeling repair efforts, but it does provide insights into how flooding is addressed at the analysis level.
 		
 		Looking next at how previous papers have addressed modeling flooding and how to interact with it in a repair context, we start with \cite{DuqueEA2016}. This paper focuses on distribution of relief supplies, but in the context of the problem of supply distribution they consider repair of flooded or damaged roads. Though solve the problem with dynamic programming, it is from this paper where we take the idea of repair of roads by traversing them at additional cost.
 		
 		Also of note from the perspective of road repair is \cite{AksuEA2014}. Again not a paper focused focused on direct repair of networks for its own sake, but rather a paper focused on evacuation and accessibility to areas flooded by the a disaster. This provides additional insight and a different treatment of the problem using mixed integer programming rather than the dynamic programming of Duque et al. From this, we draw inspiration for treatment of the road grid in the context of a mixed-integer program.
+		
+		All three of these papers make similar assumptions to what we make later in that minor damage can be repaired in a time horizon relevant to immediate post-disaster response and not the longer months-long repair process following the disaster. 
 	
 	\subsection{Resilience}
 		As this thesis deals partly with resilience, we look to resilience literature for how to define resilience in the context of disaster response for power grids. We first look to \cite{MolyneauxEA2016} as a multi-disciplinary literature review of power grid resilience. They broadly define resilience as "capacity to cope with the unexpected". While they go through multiple measures for resilience they use primarily metrics of price. We then look to \cite{Panteli2017} for more specific resilience definitions in the context of disaster response. They focus on both magnitude of drop in service as well as time dependent total loss of power demand satisfied.
+		
+		Much of the literature on resilience for power grids comes from study of protection from directed attack. Relevant among these is \cite{Deka2018} which provides a study of not just initial damage but potential damage stemming from cascades and identification of elements crucial to construction of resilient power networks. More relevant to this thesis is \cite{Salmeron2004} for their work identifying key resilience elements in the context of mixed integer programming using a DC-powerflow based model of power networks. Their approach to identification of key elements is used in the section on applying repair models to resilience in order to identify elements to harden for the sake of generating faster repairs.
 
-	\subsection{Scenario Generation}
-	
+
 	
 	\section{Repair Problem}
 	
@@ -63,14 +66,16 @@
 	
 	We know from the earlier referenced literature that road repair is a concern in the wake of a hurricane. We assume for the sake of this thesis that all roads can be cleared. Clearing here represents digging out drainage for minor flooding and clearing debris. Severely damaged roads should be treated as completely impassible and dropped from the graph representation of the network.
 	
-	We assume also that the resulting road network made of lightly damaged and functional road segments can be represented with a Watts-Strogatz network. Based on the literature on statistical analyses of road network topologies \cite{LammerEA2006} \cite{ChanEA2011} this is a serviceable but imperfect assumption. Ideally the real topology of a hurricane struck area should be used, but for a computational and modeling effort to draw insight into joint repair efforts, it suffices.
+	We assume also that the resulting road network for the area corresponding to the power network's service area can be represented with a Watts-Strogatz network. Based on the literature on statistical analyses of road network topologies \cite{LammerEA2006} \cite{ChanEA2011} this is a serviceable but imperfect assumption. Ideally the real topology of a hurricane struck area should be used, but for a computational and modeling effort to draw insight into joint repair efforts, it suffices. We then apply damage to this network to allow for the solution of interacted road and power repair problems to better study the impact of considering these two aspects together.
 		
 	We model time in discrete shifts here because it allows for mixed-integer programming to be used as a tool to solve both problems. It additionally allows for easier interaction of both sides (Road and Power) of the problem by operating them on the same time chunks.
 	
-	We also assume that direct current(DC) approximations of power flow can be used to approximate the full alternating current(AC) power flow of a real power grid. We know that representation of DC power flow is more accurate than just a "pipe-flow" representation of a power grid as it captures some of the physics behind electrical flows. DC representation is usually within 5-10\% of the AC power flow solutions \cite{Frank2016} \cite{StottEA2009} meaning that it is good enough here. Because demand at each node/bus is based on pre-hurricane power demand, a somewhat coarse approximation is accurate enough.  
+	We also assume that direct current (DC) approximations of power flow can be used to approximate the full alternating current (AC) power flow of a real power grid. We know that representation of DC power flow is more accurate than just a "pipe-flow" representation of a power grid as it captures some of the physics behind electrical flows. DC representation is usually within 5-10\% of the AC power flow solutions \cite{Frank2016} \cite{StottEA2009} meaning that it suffices for the sake of the power repair problem. As the problem we're considering is one of logistics and not one of power flow management, an approximation in the power flow relaxes numerical accuracy of the power flow but leaves a near optimal schedule that still minimizes load shed over the repair horizon. Because demand at each node/bus is based on pre-hurricane power demand, a somewhat coarse approximation is accurate enough.  
+	
+	With the power grid, we elect to ignore distribution below the substation level. Each substation has a distribution level network that services the local area (e.g plugging the grid into a house), but the wires between substations are considered the transmission level network. Discarding the distribution network in the modeling of repair scheduling stems from two factors. First that it's geographically very co-located damage so that including road networks would provide little benefit, and secondly, flow at the distribution level goes from the substation as a source to the demand sites as a sink. This necessitates different modeling than the transmission grid.
 	\subsubsection{Validating use of DC power flow}
 	
-	DC powerflow models are likely considered to be overkill upon first glance and therefore begs the question of why use it over a traditional network flow model. We define traditional network flow to consist of just flow balance and line limits (analogous to relaxation of constraint (2) in the DCOPF model). To begin with, DC power flow tends to spread power flow out more across lines due to the physics of the grid while a network flow model tends to seek an extreme point solution which leads to fewer lines under use, but heavier loading on those lines. To demonstrate this, we solve DCOPF and it's corresponding relaxation of constraint (2). The results shown below aren't quite as drastic as initially expected, but there is a noticeable difference between flow patterns, and when looking at multiple cases of damage to the power grid, it may become relevant, and as a result is worth including into models.
+	From a review of the literature of earlier power network related operations research problems, many of them relax one step further than DC powerflow all the way to traditional network flow that resembles any abstract network. For these problems, DC powerflow models are likely considered to be overkill upon first glance and therefore begs the question of why use it over a traditional network flow model. We define traditional network flow to consist of just flow balance and line limits (analogous to relaxation of constraint (2) in the DCOPF model). To begin with, DC power flow tends to spread power flow out more across lines due to the physics of the grid while a network flow model tends to seek an extreme point solution which leads to fewer lines under use, but heavier loading on those lines. To demonstrate this, we solve DCOPF and it's corresponding relaxation of constraint (2). The results shown below aren't quite as drastic as initially expected, but there is a noticeable difference between flow patterns, and when looking at multiple cases of damage to the power grid, it may become relevant, and as a result is worth including into models.
 	
 	\begin{figure}
 		\centering
@@ -80,31 +85,36 @@
 	
 	Further, as we extend this model into resilience, use of pipeflow style network models to handle power flow may over-prioritize the resilience of certain lines as a false conclusion. Since DC powerflow is of low computational cost and low model complexity to add and has upside in some limited cases, we find its inclusion to be warranted.
 	\subsubsection{DCOPF}
-		To begin looking at methods of studying repair of damaged power grids, we first must understand the Direct Current-Optimal Power Flow (DC-OPF) model as it forms the basis of all more complex power models used in this thesis.
+		To begin looking at methods of studying repair of damaged power grids, we first must understand the Direct Current-Optimal Power Flow (DC-OPF) model as it forms the basis of all more complex power models used in this thesis. The power grid can be represented as a mathematical graph with edges representing power lines and the nodes of the graph corresponding to substations that service a distribution area
 		
-	We define the following variables and sets
-	\begin{itemize}
-		\item $C_i$ is the cost of producing one unit of power at node i
-		\item $P_i$ is the maximum power generation for node i
-		\item $G_i$ is the power generated at node i
-		\item $\theta_i$ is the phase angle for power flow at node i 
-		\item $D_i$ is the demand for power at node i
-		\item $B_e$ is the line susceptance for power line e
-		\item $X_e$ is the power flow on line e
-		\item $\underline{L_e}$ is the maximum amount of flow on line e
-		\item $i \in N$ is the set and indexer for nodes
-		\item $e \in E$ is the set and indexer for edges
-	\end{itemize}
-	We also use the following notation for clarity in models
+		
+		We use the following notation for clarity in models
 	\begin{itemize}
 		\item $o(e)$ is the node at the origin of line e
 		\item $d(e)$ is the node at the destination of line e
 		\item $O(i)$ is the set of lines with origin i
 		\item $D(i)$ is the set of lines with destination i
 	\end{itemize}
+	We define the following parameters and sets
+	\begin{itemize}
+		\item $i \in N$ is the set and indexer for nodes
+		\item $e \in E$ is the set and indexer for edges
+		\item $C_i$ is the cost of producing one unit of power at node i
+		\item $P_i$ is the maximum power generation for node i. If there is no generator, maximum production is zero watts.
+		\item $D_i$ is the demand for power at node i
+		\item $B_e$ is the line susceptance for power line e (susceptance is the measure of ease of power flowing along a line)
+		\item $\underline{L_e}$ is the maximum amount of flow on line e
+	
+	\end{itemize}
+	We also have the following decision variables
+	\begin{itemize}
+	\item $X_e$ is the power flow on line e (flow is based on lower indexed node to higher indexed node, so negative flow is allowed and represents flow from the higher indexed node to the lower indexed node)
+	\item $G_i$ is the power generated at node i
+	\item $\theta_i$ is the phase angle for power flow at node i 
+	\end{itemize}
 	The model can then be formulated as 
 	\begin{equation}
-Minimize \sum_{i\in N} C_i G_i
+\textnormal{Minimize} \sum_{i\in N} C_i G_i
 	\end{equation} 
 	subject to
 	\begin{eqnarray}
@@ -114,23 +124,31 @@ Minimize \sum_{i\in N} C_i G_i
 	  -\underline{L_e} \leq X_e \leq \underline{L_e}
 \end{eqnarray}
 
-To explain, the problem is how to generate power at the minimum cost in a way that satisfies all of the demand subject to the physics of how power grids operate. Constraint $1)$ is part of the DC approximation to AC power flow where we assume $sin(x) = x$ for small values of x and reduce power flow to just its real component and the aforementioned linear approximation of phase angle. Constraint $2)$ is a standard flow balance constraint. Constraint $3)$ restricts generation to the maximum for the generator. Constraint $4)$ is a flow capacity constraint on each power line. While overall a simple problem, it serves as the building block for most of the power grid models used for the rest of this thesis.
+To explain, the problem is how to generate power at the minimum cost in a way that satisfies all of the demand subject to the physics of how power grids operate. As a byproduct, this problem also solves out line flow amounts and phase angles for each node. Constraint $2)$ is part of the DC approximation to AC power flow where we assume $sin(x) = x$ for small values of x and reduce power flow to just its real component and the aforementioned linear approximation of phase angle. Constraint $3)$ is a standard flow balance constraint. Constraint $4)$ restricts generation to the maximum for the generator. Constraint $5)$ is a flow capacity constraint on each power line. While overall a simple problem, DCOPF serves as the building block for most of the power grid models used for the rest of this thesis as well as being used in practice for controlling power grid generation and dispatch. \cite{LiBo2007}. 
 	
 	
 	\subsection{Road Repair Problem}
-	When dealing with repairs on the power grid, we need a framework for solving problems based on the damage to the road network. We elect to solve this as a routing problem to plot the tour of a repair crew assigned to clearing debris and dig out minor flooding. 
+	When dealing with repairs on the power grid, we need a framework for solving problems based on the damage to the road network. We elect to solve this a problem as a scheduling/routing problem for a crew tasked with clearing debris and/or digging out minor flooding. This takes the form of constructing a series of roads to traverse as tour that begins and ends at a depot.
 	
 	We model this as per the following:
 	
+	Parameters and Sets:
+	\begin{displaymath}
+	\begin{array}{ll}
+	T & \mbox{the set of time periods (shifts) over the time horizon, indexed by $t$}\\
+	N & \mbox{the set of nodes in the graph, representing the intersections of road segments}\\
+	c_{ij}^t & \mbox{measure of the value of the road segment from node $i$ to node $j$ during period $t$}\\
+	l_{ij} & \mbox{is the transit time of the road segment between nodes $i$ and $j$ under nominal conditions}\\
+	r_{ij} & \mbox{time to repair the road segment between nodes $i$ and $j$ (hours), including travel time}\\
+	s^t & \mbox{the length of period $t$ in time units (hours)}\\
+	o_{ij} & \mbox{initial condition of the road segment between nodes $i$ and $j$}\\
+	\end{array}
+	\end{displaymath}
+	
+	and Decision Variables
+	
 \begin{displaymath}
 \begin{array}{ll}
-T & \mbox{the set of time periods (shifts) over the time horizon, indexed by $t$}\\
-N & \mbox{the set of nodes in the graph, representing the intersections of road segments}\\
-c_{ij}^t & \mbox{measure of the value of the road segment from node $i$ to node $j$ during period $t$}\\
-l_{ij} & \mbox{is the length of the road segment between nodes $i$ and $j$ when everything is working as normal}\\
-r_{ij} & \mbox{time to repair the road segment between nodes $i$ and $j$ (hours), including travel time}\\
-s^t & \mbox{the length of period $t$ in time units (hours)}\\
-o_{ij} & \mbox{initial condition of the road segment between nodes $i$ and $j$}\\
 X_{ij}^t & \mbox{binary variable for road segment $ij$ being operational in time $t$}\\
 K_{ij}^t & \mbox{binary variable for travel from $i$ to $j$ being in the tour at time $t$}\\
 S_{ij}^t & \mbox{length of travel for road segment $ij$ at time $t$}\\
@@ -148,12 +166,27 @@ X_{ij}^t \le \sum_{t'=0}^{t-1} K_{ij}^{t'} + o_{ij} , \hspace{6pt} \forall t\in 
 \sum_{i,j \in S; i\neq j} X_{ij}^t \leq |S|-1, \hspace{6pt} \forall S \subset N, \hspace{2pt} S \neq \emptyset, \hspace{5pt} \forall t\in T.
 \end{eqnarray}
 
-To explain the modeling, the objective is to maximize the length of in-service road. Without loss of generality, this can be substituted with a set of priority weights from another agency that cares about the road grid's operation.
+Of note is that constraint 7) is nonlinear as intuitively expressed. We linearize it by rewriting constraints 7) and 8) as the following:
 
-Constraint 7) provides a scheduling constraint limiting the tour's length to the length of the shift. Constraint 8) is a nonlinear but linearizable constraint that sets the length of a road to either its nominal operation time or its repair time depending on whether or not it's marked as working ($X_{ij}$ = 1). Constraint 9) is a standard path connectivity constraint. Constraint 10) restricts each road segment to only be working if it started working or has been repaired, and Constraint 11) is a standard set of subtour elimination constraints.
+\begin{eqnarray}
+\sum_{i,j \in N} S_{ij}^t \leq s^t, \hspace{6pt} \forall t\in T \\
+S_{ij}^t \leq M*K_{ij}^t \hspace{6pt} \forall t\in T, \hspace{5pt} \forall i,j \in N\\
+S_{ij}^t \geq l_{ij}K_{ij}^t \hspace{6pt} \forall t\in T, \hspace{5pt} \forall i,j \in N\\
+S_{ij}^t \geq (1-X_{ij}^t)r_{ij} - (1-K_{ij}^t)M \hspace{6pt} \forall t\in T, \hspace{5pt} \forall i,j \in N
+\end{eqnarray}
+
+To explain the modeling, the objective is to minimize the value of out-of-service road. Without loss of generality, this can be substituted with a set of priority weights from another agency that cares about the road network's operation. For example, the value of given road segments to an agency like the Red Cross or FEMA that is tasked with bringing relief supplies in to a disaster-stricken area
+
+Constraint 7) provides a scheduling constraint limiting the tour's length to the length of the shift. Constraint 8) is a nonlinear but linearizable constraint that sets the length of a road to either its nominal operation time or its repair time depending on whether or not it is marked as working (e.g $X_{ij}^t$ = 1). Constraint 9) is a standard path connectivity constraint. Constraint 10) restricts each road segment to only be working if it started working or has been repaired, and Constraint 11) is a standard set of subtour elimination constraints.
 	\subsection{Power Grid Repair Problem}
-	When looking at repair of the power grid, we formulate a discrete time mixed integer program that captures both the planning/scheduling/movement of repair crews as well as the DC power flow model. We pose the model as follows
-	\small
+	When looking at repair of the power grid, we formulate a discrete time mixed integer program that captures both the planning/scheduling/movement of repair crews as well as the DC power flow model. We assume the following:
+	\begin{itemize}
+		\item Repair of a power line can be started from either end of that power line.
+		\item Minimum spanning tree's lower bound provides a usable approximation for the sake of keeping model runtime down 
+		\item Load shedding can be modeled as a continuous loss even though on real power grids it's a series of discrete decisions that allows small increments of load shed, though not truly continuous power shedding.
+	\end{itemize}
+	We pose the model as follows:
+
 	\begin{displaymath}
 	\begin{array}{llll}
 	N & \mbox{set of nodes, indexed by $i$} \\
@@ -174,6 +207,7 @@ Constraint 7) provides a scheduling constraint limiting the tour's length to the
 	I_e, I_i & \mbox{initial condition of line $e$ and node $i$, respectively}\\
 	X_{e}^{t} & \mbox{power flow on line $e$ at time $t$}\\
 	G_{k}^t & \mbox{production from generator $k$ at time $t$}\\
+	Y_{n}^t & \mbox{Load shed from bus $n$ at time $t$}\\ 
 	V_i^t & \mbox{indicator for node $i$ functioning at time $t$}\\
 	W_{e}^t & \mbox{indicator for line $e$ functioning at time $t$}\\
 	S_{e}^t & \mbox{indicator for line $e$ serviced at time $t$}\\
@@ -191,8 +225,10 @@ Constraint 7) provides a scheduling constraint limiting the tour's length to the
 	subject to:
 	\begin{eqnarray}
 	X_e^t = B_e (\theta_{o(e)}^t - \theta_{d(e)}^t), \hspace{5pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
-	G_i^t - \sum_{e \in O(i)} X_e^t + \sum_{e \in D(i)} X_e^t = D_iV_i^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
+	G_i^t - \sum_{e \in O(i)} X_e^t + \sum_{e \in D(i)} X_e^t = D_i-Y_i^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
 	G_k^t \leq P_{k} V_{k}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall k \in N\\
+	0\leq S_i^t \leq D_i \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
+	D_i (1-V_i^t) \leq S_i^t \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
 	\underline{L_e}W_{e}^t \leq X_{e}^t \leq \overline{L_e}W_{e}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
 	\underline{L_e}V_{o(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{o(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
 	\underline{L_e}V_{d(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{d(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
@@ -205,9 +241,67 @@ Constraint 7) provides a scheduling constraint limiting the tour's length to the
 	W_{e}^t \leq \sum_{t'=0}^{t-1} S_{e}^{t'}+I_e, \hspace{4pt} \forall e \in E
 	\end{eqnarray}
 	
-	Constraint 13) is the same constraint from the DCOPF model above to handle line susceptance and phase angle related power flow. Constraint 14) is the flow balance constraint from DCOPF with the alteration that demand can be switched on and off at penalty to the objective. Constraint 15) is a generation capacity constraint where generation of power can only flow into the grid if the bus that the generator connects to is intact. Constraints 16-18) are flow limit constraints subject to functioning of the line and buses on both sides of the line.
+	Constraint 13) is the same constraint from the DCOPF model above to handle line susceptance and phase angle related power flow. Constraint 14) is the flow balance constraint from DCOPF with the alteration that demand can be switched on and off at penalty to the objective. Constraint 15) is a generation capacity constraint where generation of power can only flow into the grid if the bus that the generator connects to is intact. Constraints 16-17) handle load shedding from each bus. Constraints 18-20) are flow limit constraints subject to functioning of the line and buses on both sides of the corresponding line.
 	
-	Constraint 19) defines the length of a minimum spanning tree based on what elements are put in. Constraint 20) is a quadratic constraint that counts how many elements need to be inserted into the minimum spanning tree. Constraint 21) is a standard subtree elimination constraint. Constraint 22) restricts the inclusion of elements in the tree to only nodes that have a repair at them. Constraint 23) is a scheduling constraint that matches the one seen in the road repair model, and constraints 24-25) are functionality constraints that restrict operation to things that either started working or have been repaired.
+	Constraint 21) defines the length of a minimum spanning tree based on what elements are put in. Constraint 22) is a quadratic constraint that counts how many elements need to be inserted into the minimum spanning tree. As we're modeling that a line can be repaired from either endpoint, we need to account for the cases where a bus and it's attached node are repaired in the same shift. Constraint 23) is a standard subtree elimination constraint. Constraint 24) restricts the inclusion of elements in the tree to only nodes that have a repair at them. Constraint 25) is a scheduling constraint that matches the one seen in the road repair model, and constraints 26-27) are functionality constraints that restrict operation to things that either started working or have been repaired.
+	
+	Tying the model in to the operation of power grids, we model loss shedding as a continuous loss to capture the ability of a power utility to disconnect portions of the distribution network in order to reduce the demand on the grid to what can be serviced. In practice, it would be a set of discrete decisions about which parts to disconnect, but relaxing to a single continuous variable captures most of that decision making while not complicating the model to an unreasonable degree.
+	
+	\subsection{Justifying the use of a Minimum spanning tree approximation}
+	The minimum spanning tree usage in the above model we discuss the use of the tree to approximate the route of a repair crew to reduce computational time. We demonstrate this by first formulating the routing version of the problem, then running a pair of scenarios to find first if we get the same (or at least a very similar) answer, and secondly to show the difference in runtime.
+	
+	We begin by defining our sets and variables as above with the addition of $K_ij^t$ to represent the inclusion of path from $i$ to $j$ in the tour at time $t$. The routing model is then as follows:
+	
+		\begin{equation}
+	\min \sum_{i \in N} \sum_{t \in T} (1-V_i^t)D_i
+	\end{equation}
+	subject to:
+	\begin{eqnarray}
+	X_e^t = B_e (\theta_{o(e)}^t - \theta_{d(e)}^t), \hspace{5pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+	G_i^t - \sum_{e \in O(i)} X_e^t + \sum_{e \in D(i)} X_e^t = D_i-S_i^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
+	G_k^t \leq P_{k} V_{k}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall k \in N\\
+	0\leq S_i^t \leq D_i \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
+	D_i (1-V_i^t) \leq S_i^t \hspace{4pt} \forall t \in T, \hspace{4pt} \forall i \in N\\
+	\underline{L_e}W_{e}^t \leq X_{e}^t \leq \overline{L_e}W_{e}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+	\underline{L_e}V_{o(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{o(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+	\underline{L_e}V_{d(e)}^t \leq X_{e}^t \leq \overline{L_e}V_{d(e)}^t, \hspace{4pt} \forall t \in T, \hspace{4pt} \forall e \in E\\
+	Route^t = \sum_{i \in N} \sum_{j \in N} SP_{ij}^t K_{ij}^{t},  \hspace{4pt} \forall t \in T\\
+	\sum_{j \in N} K_{ij}^t \geq F_i^t \hspace{4pt} \forall i \in N \hspace{4pt} \forall t \in T\\
+	\sum_{j \in N} K_{o(e)j}^t + \sum_{j \in N} K_{d(e)j}^t > S_e^t \forall e \in E \hspace{4pt} \forall t \in T\\
+	\sum_{j \in N} K_{ij}^t - \sum_{j \in N} K_{ji}^t = 0 \hspace{4pt} \forall i \in N \hspace{4pt} \forall t \in T\\
+	\sum_{i,j \in S} K_{ij}^t \leq |S|-1 \hspace{4pt} \forall S \subset N \hspace{4pt} \forall t \in T\\
+	\sum_{j \in N} Z_{ij}^t \leq F_i^t + \sum_{e \in O(i) \cup D(i)} S_{e}^t, \hspace{6pt} \forall t \in T, \hspace{4pt} \forall i \in N \\
+	\sum_{e \in E} \delta_{e}S_e^t + \sum_{i \in N}\Delta_{i}F_i^t + Route^t \le s^t, \hspace{6pt} \forall t \in T\\
+	V_i^t \leq \sum_{t'=0}^{t-1} F_i^{t'}+I_i, \hspace{4pt} \forall i \in N\\
+	W_{e}^t \leq \sum_{t'=0}^{t-1} S_{e}^{t'}+I_e, \hspace{4pt} \forall e \in E
+	\end{eqnarray}
+	
+	We then solve a pair of scenarios that will be discussed more fully later in the thesis to check the validity of the minimum spanning tree assumption. Shown in the table below (Table 1) is objective values and processing times. \textcolor{red}{Should I put the full schedules in for comparison, or just the summary for justification }
+ \begin{table}[htbp]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\cline{2-3}
+		\multicolumn{1}{c|}{} & MST  & Routing \\
+		\hline
+		Scenario 1 Objective                & $345.2$   & $369.6$   \\
+		\hline
+		Scenario 1 Runtime                & $25$ seconds   & $639$ seconds \\
+		\hline
+		Scenario 2 Objectives               & $357.5$   & $406$  \\
+		\hline
+		Scenario 2 Runtimes              & $15$ seconds   & $488$ seconds \\
+		\hline
+		Scenario 3 Runtimes (57 bus) & $4328$ seconds & $5400^*$ seconds\\
+		\hline
+		Scenario 3 Objectives	& $2748$ & No solution due to time limit (22\% gap at 90 minutes)\\
+		\hline
+	\end{tabular}
+	\caption{Runtime and Objective values for MST and Routing versions of the power repair problem}
+	\label{time}
+\end{table}
+
+From this, we can see that the minimum spanning tree version of the model runs significantly faster and comes to a similar objective. The difference is from one or two elements being scheduled for an earlier shift.
+
 	\subsection{Lower Bounding and Post Processing Heuristic}
 	
 	From the above models, we also recognize that we can generate a lower bound using these models. By setting all road lengths to zero, we can then generate a schedule for repairs that would satisfy flow constraints and minimize shed demand. This can be post processed into a feasible schedule by starting with the lower bound schedule and then repacking it into shifts using the following algorithm:
@@ -236,12 +330,14 @@ Constraint 7) provides a scheduling constraint limiting the tour's length to the
 	\end{itemize}
 	\section{Results on Standard test systems}
 	\subsection{Introduction to Results}
-	To validate the model outlined as more than just a theoretical exercise in modeling, we engineer test cases based on standard IEEE power grids. We choose to use the 30 bus and 57 bus systems \$CITATION GOES HERE in order to capture things on a large enough scale to demonstrate applications for extension into practical uses later on. To convert these from standard test grids to DC versions for use in this model, reactive/imaginary power flow is dropped leaving only real power flow. We then overlay a Watts-Strogatz graph as mentioned earlier based on fitting power buses to a grid. The key reason for this is to maintain triangle inequalities where having a network that violates triangle inequalities is both unrealistic to "real world" situation as well as altering the solutions of routing problems \cite{FlemingEA2013}. We plan this so that travel time between opposite sides of the network are about 3 hours so that routing times are not trivial compared to repair times.
+	To validate the model outlined as more than just a theoretical exercise in modeling, we engineer test cases based on standard IEEE power grids. We choose to use the 30 bus and 57 bus systems \$CITATION GOES HERE in order to capture things on a large enough scale to demonstrate applications for extension into practical uses later on. To convert these from standard test grids to DC versions for use in this model, reactive/imaginary power flow is dropped leaving only real power flow. We then overlay a Watts-Strogatz graph as mentioned earlier based on fitting power buses to a grid. The key reason for this is to maintain triangle inequalities where having a network that violates triangle inequalities is both unrealistic to "real world" situation as well as altering the solutions of routing problems \cite{FlemingEA2013}. We plan this so that travel time between opposite sides of the network are about 3 hours so that routing times are not trivial compared to repair times. We arbitrarily define repair times to be 5 hours for damaged nodes representing replacement of easy to fix components like breakers and downed lines inside the substation. More severe damage resulting from flooding and/or corrosion can take months to repair \$CITATION and is therefore outside the scope of immediate post-disaster response. We assume lines have a repair time of 1 hour plus a variable amount based on the geographical distance of the line. We acknowledge these times are somewhat arbitrary, but without loss of generality, data from a power utility can be fed in, so these arbitrary repair times suffice to warrant the utility of the underlying model.
 	
 	To show validity, we first solve out a base damage scenario for both grid topologies, then conduct perturbations of respectively weather damage, road topology, and damage intensity to show that the model is valid for a large variety of inputs. 
 	
 	\subsubsection{Base Case}
-	Looking at our first case to validate the model, we apply geographically clustered damage to both road and power network. 
+	Looking at our first case to validate the model, we apply geographically clustered damage to both road and power network. By this, the damage is concentrated where several damaged elements are next to each other in varying locations around the power grid. 
+	
+	For the base case on the 30 bus network, damage is applied to approximately one third of road segments, one sixth of power buses, and one quarter of power lines. The following repair curves are generated from the model as stated earlier. 
 	
 	\begin{figure}[H]
 		\centering
@@ -252,19 +348,20 @@ Constraint 7) provides a scheduling constraint limiting the tour's length to the
 			\label{fig:sub1}
 		\end{figure}
 	
-	\begin{figure}[H]
+	We conclude from this that changes in processing and interaction between models has meaningful impact on outcomes. For this case, we find that solving the roads and then conditioning the power repairs on that road schedule yields the outcome closest to the lower bound. This is predicated on the assumption that the road repair crews would need one full shift to get ahead of what roads are needed. If that delay can be reduced, letting the power utility dictate the road repair schedule may become the best schedule.
+	
+	\subsubsection{Varied Damage location}
+	Looking at our next case to validate the mode, we apply randomly distributed damage to both road and power network of similar intensity to the base case.
+		\begin{figure}[H]
 		\centering
 		
 		\centering
-		\includegraphics[width=.9\linewidth]{Rplot57.png}9
-		\caption{Load Shed by shift in the 57 bus base scenario}
+		\includegraphics[width=.9\linewidth]{Rplot30Rand.png}9
+		\caption{Load Shed by shift in the 30 bus randomized damage scenario}
 		\label{fig:sub1}
 	\end{figure}
 
-	
-	\subsubsection{Varied Damage location}
-	Looking at our next case to validate the mode, we apply geographically distributed damage to both road and power network of similar intensity to the base case.
-	
+	We can draw comparable conclusions to the the geographically distributed base case, but for this scenario, the post-processing heuristic suggests a lower total load shed. This seems to be due to the 
 	\subsubsection{Varied Roads}
 	We now perturb the road topology of the network case and solve a slight variation of the base case on the new topology.
 	
@@ -292,12 +389,12 @@ Constraint 7) provides a scheduling constraint limiting the tour's length to the
 		
 	\item Solve baseline DC-OPF for the grid
 	\item identify how many nodes (n) and edges (e) to be fortified
-	\item select the 2n highest demand nodes and the 2e highest utilization edges
+	\item select the 2n highest demand nodes and the 2e highest utilization edges when solving heuristically or all possible subsets when solving to guaranteed optimality.
 	\item for each subset of nodes/edges of the correct size, solve DC-OPF with those elements damaged
 	\item find the minimum demand satisfied and use those damaged elements as the fortified elements when analyzing resilience 
 	\end{enumerate}
 	\subsection{Results}
-	We elect to use the 30 bus network to demonstrate the effectiveness of targeted fortification vs untargeted resilience. We construct a basket of scenarios randomly where each scenario reflects 50\% line loss and 25\% bus loss in the power grid and a standardized road damage of 50\%. Each scenario is then solved twice. Once with a set of resilient elements as chosen above with the heuristic approximation of interdiction, and once with a set of equivalent size of randomly selected elements to account for the impact of fewer damaged elements.
+	We elect to use the 30 bus network to demonstrate the effectiveness of targeted fortification vs untargeted resilience. We construct a basket of scenarios randomly where each scenario reflects 50\% line loss and 25\% bus loss in the power grid and a standardized road damage of 50\%. Each scenario is then solved thrice. Once with a set of resilient elements as chosen above with the interdiction problem solved, once with fortification chosen based on highest demand buses and highest use edges as a plausible approximation that a power utility would use, and then again without any hardening to provide a base case for comparison.
 	
 	
 	\section{Conclusions}

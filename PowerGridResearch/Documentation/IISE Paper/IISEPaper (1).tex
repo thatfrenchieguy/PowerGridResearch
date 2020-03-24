@@ -49,7 +49,7 @@
 \begin{center}
 {\large \bf Abstract}
 \end{center}
-Both power and road networks sustain major damage in the wake of hurricanes and other natural disasters. Recovery efforts (involving mainly repair of network elements)  should therefore consider the interactions between the two networks. We introduce several coordination frameworks based on the models for both power and road repair and use them to demonstrate the impacts of coordinating repairs. These models are run on several example networks and damage scenarios using IEEE power grid standards to provide computational examples. Results show that a rather simple coordination scheme between two repair agencies based on solving the two model sequentially is quite effective producing repair schedules close to a theoretical lower bound.
+Both power and road networks sustain major damage in the wake of hurricanes and other natural disasters. Recovery efforts (involving mainly repair of network elements)  should therefore consider the interactions between the two networks. We introduce several coordination frameworks based on the models for both power and road repair and use them to demonstrate the impacts of coordinating repairs. These models are run on several example networks and damage scenarios using IEEE power grid standards to provide computational examples. Results show that a rather simple coordination scheme between two repair agencies based on solving the two models sequentially is quite effective producing repair schedules close to a theoretical lower bound.
 
 
 {\large \bf Keywords}\\
@@ -60,13 +60,13 @@ Both power and road networks sustain major damage in the wake of hurricanes and 
 \label{sec:ic:intro}
 \vspace*{-12pt}
 
-Hurricanes are a growing concern in the operation of power grids in coastal areas. This paper addresses the gap in the literature where previous efforts have not explicitly considered how multiple networks depended on each other, especially the post-disaster infrastructure recovery interactions between power grid and road networks. For example, to repair a damaged power grid element, the element must be accessible to the crew attempting to repair it. Moreover, the crew will take time to go from one element to the next to repair, affecting the power grid's performance during recovery. This implies that the road network (how damaged it is and how its recovery is planned) becomes part of the overall recovery efforts. During a hurricane, the road network will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs/clearance as well. To handle the issues of repairing power grids efficiently, both types of repairs (road network and power grid) should be considered jointly. Previous literature does not study this specific interaction as discussed below.
+Hurricanes are a growing concern in the operation of power grids in coastal areas. This paper addresses the gap in the literature where previous efforts have not explicitly considered how multiple networks depended on each other. Most notably the post-disaster infrastructure recovery interactions between power grid and road networks. For example, to repair a damaged power grid element, the element must be accessible to the crew attempting to repair it. Moreover, the crew will take time to go from one element to the next to repair, affecting the power grid's performance during recovery. This implies that the road network (how damaged it is and how its recovery is planned) becomes part of the overall recovery efforts. During a hurricane, the road network will sustain substantial damage from flooding and debris on the road surface, which necessitates road grid repairs/clearance as well. To handle the issues of repairing power grids efficiently, both types of repairs (road network and power grid) should be considered jointly. Previous literature does not study this specific interaction as discussed below.
 \vspace*{-12pt}
 \subsection{\large Existing Literature}
 \vspace*{-12pt}
 Damage from hurricanes on infrastructure elements is well studied. Both of \cite{WinklerEA2010} and \cite{GuikemaEA2010} have looked at the damage to power grids in varying capacities and methodologies. Damage to the road network is studied more in the context of repairs. \cite{AksuEA2014} addresses concerns of accessibility to locations in the wake of road damage. \cite{DuqueEA2016} focuses their work on the ability to move disaster supplies around.
 
-In the context of power grid repair, it comes from two major areas: Network interdiction and work similar to this paper, natural disasters. \cite{SalmeronEA2010} is a paper emblematic of work on interdiction and provides the basis for the linear programming formulation of DC power flow used in this paper.  \cite{NPSMasters} addresses a problem similar to this work, though without addressing travel times. \cite{ArabEA2015} addresses repairs to power grids in the context of resilience. Most similar to this paper is \cite{BentEA2011} in that they consider DC power flow and repair with travel times jointly. The key distinction is that they presume that the road operates under nominal conditions rather than including the repairs of the road elements into the problem.
+In the context of power grid repair, literature on this topic comes from two major areas: Network interdiction and work similar to this paper, natural disasters. \cite{SalmeronEA2010} is a paper emblematic of work on interdiction and provides the basis for the linear programming formulation of DC power flow used in this paper.  \cite{NPSMasters} addresses a problem similar to this work, though without addressing travel times. \cite{ArabEA2015} addresses repairs to power grids in the context of resilience. Most similar to this paper is \cite{BentEA2011} in that they consider DC power flow and repair with travel times jointly. The key distinction is that they presume that the road operates under nominal conditions rather than including the repairs of the road elements into the problem.
 \vspace*{-12pt}
 \section{\large{Model}}
 \vspace*{-12pt}
@@ -77,7 +77,7 @@ The problem we consider is how to handle interactions between road and power net
 While considering coordinated repairs of road and power networks using the mixed-integer programs below, we assume complete information about infrastructure damage to both networks, complete information about repair times, and no variation in repair times. In the course of modeling the power grid repair problem, we assume that a DC-flow model of operation is close enough to real network behavior to draw useful insights \cite{QiEA2012}. We also assume in the power grid repair model that a minimum spanning tree can approximate the road-network routing between power elements. Here, we take advantage of the fact that the minimum spanning tree provides a lower bound on the traveling salesman problem and therefore the routing portion of the back-to-back repairs of multiple power elements .
 \subsection{Road Network Repair Model}
 \vspace*{-12pt}
-To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. In doing this, damaged roads are not assumed to be totally blocked, but their lengths are merely increased to account for the difficulty traversing them while clearing debris, minor flooding, and the like. This problem is handled by solving a variation of the prize collecting rural postman problem at each time step, representing the shifts that the crew uses during post-disaster recovery. The discrete time here is done to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid repairs. 
+To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. In doing this, damaged roads are not assumed to be totally blocked, but their lengths are merely increased to account for the difficulty traversing them while clearing debris, minor flooding, and the like. This problem is handled by solving a variation of the prize collecting rural postman problem at each time step, representing the shifts that the crew uses during post-disaster recovery. The discrete time based modeling is chosen to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid repairs. 
 
 We use the following notation, starting with sets and parameters, followed by decision variables:
 \begin{displaymath}
@@ -85,7 +85,7 @@ We use the following notation, starting with sets and parameters, followed by de
 T & \mbox{the set of time periods (shifts) over the time horizon, indexed by $t$}\\
 N & \mbox{the set of nodes in the graph, representing the intersections of road segments}\\
 c_{ij}^t & \mbox{measure of the value of the road segment from node $i$ to node $j$ during period $t$}\\
-l_{ij} & \mbox{is the length of the road segment between nodes $i$ and $j$ when everything is working as normal}\\
+l_{ij} & \mbox{is the time to traverse the road segment between nodes $i$ and $j$ when everything is working as normal}\\
 r_{ij} & \mbox{time to repair the road segment between nodes $i$ and $j$ (hours), including travel time}\\
 s^t & \mbox{the length of period $t$ in time units (hours)}\\
 o_{ij} & \mbox{initial condition of the road segment between nodes $i$ and $j$}\\
@@ -112,7 +112,7 @@ Constraint (2) restricts the total tour length for shift scheduling, say, within
 
 \subsection{Power Grid Repair Model}
 \vspace*{-12pt}
-To model the power grid repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift's performance in satisfying the demand for power. Traditional routing problems are computationally intractable with commercial solvers at this scale, especially when they are included as part of the larger problem. Therefore, to keep runtime in check, a spanning tree approximation for routing is used since it provides a lower bound on routing and therefore captures most of the tradeoffs. We model this in discrete time periods for the sake of allowing easier interaction between the two related problems, but also for handling DC power flow on a power grid as there is no simple way to implement continuous runtime DC power grids with binary repair decisions.
+To model the power grid repair aspect of the problem, we treat it primarily as a scheduling problem. This repair schedule is subject to travel time and shift length constraints, which complicate things as well as an embedded DC power-flow model to evaluate each shift's performance in satisfying the demand for power. Traditional routing problems are computationally intractable with commercial solvers at this scale, especially when they are included as part of the larger problem. Therefore, to keep runtime in check, a spanning tree approximation for routing is used since it provides a lower bound on the tour length for a route between selected nodes and therefore captures most of the tradeoffs. We model this in discrete time periods for the sake of allowing easier interaction between the two related problems, but also for handling DC power flow on a power grid as there is no simple way to implement continuous runtime DC power grids with binary repair decisions.
 
 We begin modeling the power half of the problem by defining the relevant parameters, sets, and design variables:
 
@@ -176,14 +176,14 @@ To demonstrate both validity and utility of the model, we generate two test case
  	\item Solve the power repair problem without travel time (i.e., instantaneous travel between power elements) and post process the schedule into a feasible repair schedule. Post processing is done by solving a knapsack problem heuristically by adding the lowest cost repair including travel time with the requirement that the repair cannot occur before it does in the no-travel time solution.
  \end{enumerate}
 \vspace{-8pt}
-As part of the last method, the schedule without travel times provides a lower bound for both the total repair time as well as the minimum load shed (i.e., total lost demand during the horizon). The repair model with statically damaged roads (no repairs on the roads) provides an upper bound on the lost demand over the planning horizon.
+As part of the last method, the schedule generated from solving without travel times provides a lower bound for both the total repair time as well as the minimum load shed (i.e., total lost demand during the horizon). The repair model with statically damaged roads (no repairs on the roads) provides an upper bound on the lost demand over the planning horizon.
 %%frameworks?
 %%lower bound with schedule
 %%upper bound with non-interacting road damage
 %%iterative
 \subsection{IEEE 30 Bus Network}
  \vspace*{-12pt}
-The IEEE 30 bus network is a standard test/example power grid that is based on the power grid in southern Illinois in the 1960s . More importantly, it has been a well understood standard test grid since its inception. We create two 30-Bus recovery scenarios: (1) We mark approximately 50\% of the road and power edge elements as damaged and about 25\% of the nodes corresponding to power grid substations and demand nodes as damaged. (2) For a second instance, we mark 75\% of edges and 40\% of nodes as damaged to show that the results hold regardless of the damage level.
+The IEEE 30 bus network is a standard test/example power grid that is based on the power grid in southern Illinois in the 1960s . More importantly, it has been a well understood standard test grid since its inception. We create two 30 Bus based recovery scenarios: (1) We mark approximately 50\% of the road and power edge elements as damaged and about 25\% of the nodes corresponding to power grid substations and demand nodes as damaged. (2) For a second instance, we mark 75\% of edges and 40\% of nodes as damaged to show that the results hold regardless of the damage level.
 %\begin{figure}[H]
 %	\centering
 %	\caption{Load Shed by shift in the 30 bus case, recovery scenario 1}
@@ -202,19 +202,19 @@ The IEEE 30 bus network is a standard test/example power grid that is based on t
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{Rplot30Scenario2.png}9
+		\includegraphics[width=.9\linewidth]{Rplot30Scenario2Fixed.png}
 		\caption{Load Shed by shift in the 30 bus case\newline recovery scenario 2}
 		\label{fig:sub1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{Rplot37.png}
+		\includegraphics[width=.9\linewidth]{Rplot37Fixed.png}
 		\caption{Load Shed by shift in the 30 bus case\newline recovery scenario 1}
 		\label{fig:sub2}
 	\end{subfigure}
-
+	\caption{Comparisons of recovery on both 30 bus scenarios}
 \end{figure}
-The figures suggest that increased coordination between repair agencies improves the rate at which power can be restored. This is largely intuitive, but suggests that revision in processes for handling post-disaster relief can be improved. The repair schedule generated from conditioning is closest to the lower bound in both scenarios (357.7 MW-shifts of unserviced demand vs 345.4 in the first scenario, 559.4 vs 444 in the higher damage scenario). The post-processed schedule presumes nominal road operation which would in practice mean that the power utility can dictate the road repair schedule and road clearing starts far enough ahead that any road needed by the power utility to affect repairs is traversable at its nominal runtime by the time it is needed. Given this, we conclude that coordinated repair is better than a best-case post processed schedule and is closer to the optimal way to treat the problem.
+The figures suggest that increased coordination between repair agencies improves the rate at which power can be restored. This is largely intuitive, but suggests that a revision in governmental or utility processes for handling post-disaster relief can result in more efficient recovery. The repair schedule generated from conditioning is closest to the lower bound in both scenarios (357.7 MW-shifts of unserviced demand vs 345.4 in the first scenario, 559.4 vs 444 in the higher damage scenario). The post-processed schedule presumes nominal road operation which would in practice mean that the power utility can dictate the road repair schedule and road clearing starts far enough ahead that any road needed by the power utility to affect repairs is traversable at its nominal runtime by the time it is needed. Given this, we conclude that coordinated repair is better than a best-case post processed schedule and is closer to the optimal way to treat the problem.
 \subsection{IEEE 57 Bus Network}
  \vspace*{-12pt}
 The setup for this case is nearly identical to the setup for the 30 bus case above, but with a different power grid in order to demonstrate that differences in repair schedules are not due to overfitting to a topology. The IEEE 57 bus network topology is another standard test network based on part of the American Electric Power System in the Midwestern US. Similar amounts of damage is applied to this network before the models were solved.
@@ -222,16 +222,16 @@ The setup for this case is nearly identical to the setup for the 30 bus case abo
 \begin{figure}[]
 	\centering
 	\caption{Load Shed by shift in the 57 bus case}
-	\includegraphics[width=.5\textwidth, height=0.5\textheight,keepaspectratio]{RPlot57.png}
+	\includegraphics[width=.5\textwidth, height=0.5\textheight,keepaspectratio]{RPlot57Fixed.png}
 	
 \end{figure}
 
-Again we draw similar conclusions: More coordination once more leads to faster repairs of the power grid leading to lower total load shedding. The difference here is that the post-processed schedule with nominal condition roads is better than the conditioned solution method for one shift rather than being always better. That said, the iterated repair method still has a lower total demand loss over its planning horizon than the best possible case of the post processed schedule (936.8 vs 943.1 MW-shifts of unsatisfied power demand). These results are similar to both scenarios from the 30 bus case allowing us to conclude that solving road and power repair iteratively is better than trying to handle the power problem alone and the post-process into a valid repair schedule.
+Again we draw similar conclusions: More coordination once more leads to faster repairs of the power grid leading to lower total load shedding. The difference here is that the post-processed schedule with nominal condition roads is better than the conditioned solution method for one shift rather than being always better. That said, the iterated repair method still has a lower total demand loss over its planning horizon than the best possible case of the post processed schedule (936.8 vs 943.1 MW-shifts of unsatisfied power demand). These results are similar to both scenarios from the 30 bus case allowing us to conclude that solving road and power repair iteratively is better than trying to handle the power repair problem alone and the post-process into a valid repair schedule.
 \section{\large{Conclusions and Future Research Directions}}
 \label{sec:issues}
 \vspace*{-12pt}
 
-From this preliminary study, we draw the conclusion that increasing levels of model complexity representing an improved fidelity to fully coordinate operations yields lower levels of power load shedding. This suggests that at a practical level the agency responsible for restoration of the road grid should keep the agency responsible for the power grid informed of their plans as well as the state of the road network in order to more quickly restore power after a disaster.
+From this preliminary study, we draw the conclusion that increasing levels of model complexity which represent improved fidelity to fully coordinated operations yields lower levels of power load shedding. This suggests that at a practical level the agency responsible for restoration of the road grid should keep the agency responsible for the power grid informed of their plans as well as the state of the road network in order to more quickly restore power after a disaster.
 
 Given these initial observations, we think that larger grids should be tackled in a future study to see if the results can be generalized to larger, more realistic size networks. Moreover, one can combine the preparedness and recovery phases of coordinated disaster logistics in a two-stage stochastic program to further optimize the disaster operations across road and power infrastructures.
 

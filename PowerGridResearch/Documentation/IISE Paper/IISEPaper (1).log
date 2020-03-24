@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  17 FEB 2020 20:11
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  8 MAR 2020 16:34
 entering extended mode
 **"./IISEPaper (1).tex"
 ("IISEPaper (1).tex"
@@ -110,7 +110,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 83.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 83.
- [2]
+
+Overfull \hbox (11.30656pt too wide) detected at line 96
+[]
+ []
+
+[2]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 120.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -121,25 +126,25 @@ Overfull \hbox (8.23444pt too wide) detected at line 139
  []
 
 [3] [4]
-File: Rplot30Scenario2.png Graphic file (type bmp)
-<Rplot30Scenario2.png>
-File: Rplot37.png Graphic file (type bmp)
-<Rplot37.png>
+File: Rplot30Scenario2Fixed.png Graphic file (type bmp)
+<Rplot30Scenario2Fixed.png>
+File: Rplot37Fixed.png Graphic file (type bmp)
+<Rplot37Fixed.png>
 
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 222.
 
-File: RPlot57.png Graphic file (type bmp)
-<RPlot57.png>
-[5] ("IISEPaper (1).bbl") [6] ("IISEPaper (1).aux") ) 
+File: RPlot57Fixed.png Graphic file (type bmp)
+<RPlot57Fixed.png>
+[5] ("IISEPaper (1).bbl" [6]) [7] ("IISEPaper (1).aux") ) 
 Here is how much of TeX's memory you used:
  1901 strings out of 427796
- 29676 string characters out of 3151769
+ 29736 string characters out of 3151769
  112532 words of memory out of 3000000
  5929 multiletter control sequences out of 15000+200000
  5527 words of font info for 28 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,7n,39p,1140b,452s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,7n,39p,1142b,452s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on IISEPaper (1).pdf (6 pages).
+Output written on IISEPaper (1).pdf (7 pages).

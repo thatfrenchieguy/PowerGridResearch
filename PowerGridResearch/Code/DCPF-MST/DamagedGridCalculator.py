@@ -29,7 +29,7 @@ W_l = model.addVars(Edges, vtype = GRB.BINARY, name = "W_l")
 W_n = model.addVars(Nodes, vtype = GRB.BINARY, lb = 0, ub=1, name = "W_n")
 Theta = model.addVars(Nodes, vtype = GRB.CONTINUOUS, name = "Theta")
 PowerIJ = model.addVars(Edges, vtype = GRB.CONTINUOUS, name = "PowerIJ")
-
+Shed = model.addVars(Nodes, vtype = GRB.CONTINUOUS, name = "Shed")
 #default everything to working
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
@@ -46,17 +46,51 @@ for i in Grid.nodes:
         if Grid.has_edge(i,j,0):
             Grid[i][j][0]['working']=True
 ####END SCENARIO###            
-####Geographic Scenario###
-
+###Random Scenario####
+Grid.node[27]['working']=False
+#Grid.node[23]['working']=False
+#Grid.node[18]['working']=False
+#Grid.node[4]['working']=False
+#Grid.node[7]['working']=False
+#Grid.node[24]['working']=False
+Grid.node[15]['working']=False
+#Grid[1][4][0]['working']=False
+#Grid[4][6][0]['working']=False
+Grid[7][27][0]['working']=False
+#Grid[24][25][0]['working']=False
+Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
+#Grid[9][22][0]['working']=False
+#Grid[9][19][0]['working']=False
+###Geographic Scenario###
+#Grid.node[4]['working']=False
+#
+#Grid.node[21]['working']=False
+#Grid.node[20]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[29]['working']=False
+#Grid.node[9]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[9][16][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][13][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
 ####IISE PAPER SCENARIO 2
-Grid.node[5]['working']=False
+#Grid.node[5]['working']=False
 #Grid.node[14]['working']=False
 #Grid.node[16]['working']=False
 #Grid.node[18]['working']=False
 #Grid.node[19]['working']=False
 #Grid.node[21]['working']=False
 #Grid.node[22]['working']=False
-Grid.node[23]['working']=False
+#Grid.node[23]['working']=False
 #Grid.node[24]['working']=False
 #Grid.node[26]['working']=False
 #Grid[0][1][0]['working']=False
@@ -78,11 +112,11 @@ Grid.node[23]['working']=False
 #Grid[18][19][0]['working']=False
 #Grid[20][21][0]['working']=False
 #Grid[21][23][0]['working']=False
-Grid[23][24][0]['working']=False
-Grid[24][25][0]['working']=False
+#Grid[23][24][0]['working']=False
+#Grid[24][25][0]['working']=False
 #Grid[24][26][0]['working']=False
 #Grid[26][27][0]['working']=False
-Grid[28][29][0]['working']=False
+#Grid[28][29][0]['working']=False
 
 setParam("MIPGap", .005)
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
@@ -118,24 +152,25 @@ for j in range(len(EdgeStartingStatus)):
 ###End STE building###
 
 
-obj = model.setObjective(sum((1-W_n[i])*Grid.node[i]['load'] for i in Nodes),GRB.MINIMIZE)
+obj = model.setObjective(sum(Shed[i] for i in Nodes),GRB.MINIMIZE)
 
 
 #impose phase angle constraints
 
 M=10000
 
-#model.addConstr(Theta[0] == 0)
-#for i in Nodes:
-#    for j in Nodes:
-#         for k in range(0,len(EdgeTracker)):
-#            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-##                    print([i,j])
-#                    model.addConstr(PowerIJ[k] >= 250*Grid[i][j][0]['Sus']*(Theta[j]-Theta[i])-50*M*W_l[k])
-#                    model.addConstr(PowerIJ[k] <= M*W_l[k])
-#                    model.addConstr(PowerIJ[k] <= 250*Grid[i][j][0]['Sus']*(Theta[j]-Theta[i]))
+model.addConstr(Theta[0] == 0)
+for i in Nodes:
+    for j in Nodes:
+         for k in range(0,len(EdgeTracker)):
+            if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
+#                    print([i,j])
+                    model.addConstr(PowerIJ[k] >= 250*Grid[i][j][0]['Sus']*(Theta[j]-Theta[i])-50*M*W_l[k])
+                    model.addConstr(PowerIJ[k] <= M*W_l[k])
+                    model.addConstr(PowerIJ[k] <= 250*Grid[i][j][0]['Sus']*(Theta[j]-Theta[i]))
 
 for i in Nodes:
+
       originadj = []
       destadj = []
       for k in Edges:
@@ -143,10 +178,13 @@ for i in Nodes:
               originadj.append(k)
           if EdgeTracker[k][1][1]==i:
               destadj.append(k)
-      model.addConstr(PG[i]-sum(PowerIJ[j] for j in originadj)+sum(PowerIJ[k] for k in destadj) == Grid.node[i]['load']*W_n[i])
+      model.addConstr(PG[i]-sum(PowerIJ[j] for j in originadj)+sum(PowerIJ[k] for k in destadj) == Grid.node[i]['load']-Shed[i])
 #constrain maximum power generation and handle functionality of the node
 for i in Nodes:
-        model.addConstr(PG[i]<=Grid.node[i]['productionmax']*W_n[i]*2)
+
+        model.addConstr(PG[i]<=Grid.node[i]['productionmax']*W_n[i])
+        model.addConstr(Shed[i]<=Grid.node[i]['load'])
+        model.addConstr(Shed[i]>=0)
         model.addConstr(PG[i]>=0)
 #constrain line limits
 for e in Edges:

@@ -103,37 +103,37 @@ Grid.add_edge(5,27,key=0, capacity = int(32), Type = "Power", Sus = float(15.46)
 
 #code below was run once to generate a standard road network, then saved to file and commented out
 #apply newman-watts-strogatz connectivity
-#NWS_k = 3
-#NWS_p=.03
-#DistanceDF = pd.DataFrame(columns = ['From', 'To', 'Distance'])
-#for i in range(0,30):
-#    for j in range(0,30):
-#        SquareX = (Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2
-#        SquareY = (Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2
-#        DistanceDF.loc[j+(i*30)] = [i,j, math.sqrt(SquareX+SquareY)]
-##k connections        
-#for i in range(0,30):
-#    Subframe = DistanceDF.loc[DistanceDF['From']==i]
-#    Subframe = Subframe[Subframe.To != i]
-#    Subframe = Subframe[Subframe.To <=29]
-#    Connect = Subframe.nsmallest(NWS_k,'Distance')
-#    for index, row in Connect.iterrows():
-#        if (int(row['To']) != i) and (Grid.has_edge(i, int(row['To']))==False):
-#            Grid.add_edge(i, int(row['To']), key=1, length = float(row['Distance']), Type = "Road")
-##p connections
-#for i in range(0,30):
-#    j=i
-#    while j < 30:
-#        rand = np.random.uniform(0,1)  
-#        if (rand <= NWS_p) and (i!=j) and (Grid.has_edge(i,j)==False):
-#            Grid.add_edge(i,j,key=1, length=float(math.sqrt((Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2+(Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2)), Type="Road")
-#        j=j+1
-##connecting generators
-#for i in range(0,len(Grid.nodes)):
-#    if 'gen' in Grid.node[i]['name']:
-#        Grid.add_edge(i, list(Grid.neighbors(i))[0],key=1, length = 0, Type="Road")
+NWS_k = 2
+NWS_p=.03
+DistanceDF = pd.DataFrame(columns = ['From', 'To', 'Distance'])
+for i in range(0,30):
+    for j in range(0,30):
+        SquareX = (Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2
+        SquareY = (Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2
+        DistanceDF.loc[j+(i*30)] = [i,j, math.sqrt(SquareX+SquareY)]
+#k connections        
+for i in range(0,30):
+    Subframe = DistanceDF.loc[DistanceDF['From']==i]
+    Subframe = Subframe[Subframe.To != i]
+    Subframe = Subframe[Subframe.To <=29]
+    Connect = Subframe.nsmallest(NWS_k,'Distance')
+    for index, row in Connect.iterrows():
+        if (int(row['To']) != i) and (Grid.has_edge(i, int(row['To']))==False):
+            Grid.add_edge(i, int(row['To']), key=1, length = float(row['Distance']), Type = "Road")
+#p connections
+for i in range(0,30):
+    j=i
+    while j < 30:
+        rand = np.random.uniform(0,1)  
+        if (rand <= NWS_p) and (i!=j) and (Grid.has_edge(i,j)==False):
+            Grid.add_edge(i,j,key=1, length=float(math.sqrt((Grid.node[i]['xcoord']-Grid.node[j]['xcoord'])**2+(Grid.node[i]['ycoord']-Grid.node[j]['ycoord'])**2)), Type="Road")
+        j=j+1
+#connecting generators
+for i in range(0,len(Grid.nodes)):
+    if 'gen' in Grid.node[i]['name']:
+        Grid.add_edge(i, list(Grid.neighbors(i))[0],key=1, length = 0, Type="Road")
 nx.draw(Grid)
 selected_edges = [(u,v) for u,v,e in Grid.edges(data=True) if e['Type'] == 'Road']
 H = nx.Graph(selected_edges)
-#nx.draw(H)
-#nx.write_gml(Grid, "Bus30WithData.gml")
+nx.draw(H)
+nx.write_gml(Grid, "Bus30WithDataMK2.gml")

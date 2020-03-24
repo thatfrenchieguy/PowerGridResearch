@@ -51,6 +51,7 @@ Theta = model.addVars(Nodes,Time, vtype = GRB.CONTINUOUS, name = "Theta")
 PowerIJ = model.addVars(Edges,Time, vtype = GRB.CONTINUOUS, name = "PowerIJ")
 MST = model.addVars(Time, vtype = GRB.CONTINUOUS, lb=0, name = "MST")
 Delta = model.addVars(Time, vtype = GRB.CONTINUOUS, lb =0, name = "Delta")
+Shed = model.addVars(Nodes,Time, vtype = GRB.CONTINUOUS, name = "Shed")
 #default everything to working
 for i in Nodes:
     nx.set_node_attributes(Grid, {i:True},'working')
@@ -89,7 +90,7 @@ plt.show()
 #Grid.node[4]['working']=False
 #Grid.node[7]['working']=False
 #Grid.node[24]['working']=False
-##Grid.node[15]['working']=False
+#Grid.node[15]['working']=False
 #Grid[1][4][0]['working']=False
 #Grid[4][6][0]['working']=False
 #Grid[7][27][0]['working']=False
@@ -102,24 +103,24 @@ plt.show()
 
 ####END SCENARIO###            
 ######Geographic Scenario###
-#Grid.node[4]['working']=False
-#
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[11][14][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
+Grid.node[4]['working']=False
+
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
+Grid[11][15][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[17][18][0]['working']=False
+Grid[9][16][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][13][0]['working']=False
+Grid[11][14][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[1][3][0]['working']=False
+Grid[19][18][0]['working']=False
 
 
 ####IISE PAPER SCENARIO 2
@@ -190,26 +191,25 @@ for j in range(len(EdgeStartingStatus)):
         STE.append(EdgeTracker[j][1][1])
 ###End STE building###
 
-
-obj = model.setObjective(sum(sum((1-W_n[i,t])*Grid.node[i]['load'] for i in Nodes)+20*Delta[t] for t in Time),GRB.MINIMIZE)
+obj = model.setObjective(sum(sum(Shed[i,t] for i in Nodes) for t in Time),GRB.MINIMIZE)
 
 
 #impose phase angle constraints
+
 
 M=10000
 for t in Time:
     model.addConstr(Theta[0,t] == 0)
 for i in Nodes:
     for j in Nodes:
-#        for t in Time:
+        for t in Time:
          for k in range(0,len(EdgeTracker)):
             if EdgeTracker[k][1][0] == i and EdgeTracker[k][1][1]==j:
-                    print([i,j])
-                    model.addConstr(PowerIJ[k,t] >= W_l[k,t]*.5*284*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
-                    model.addConstr(PowerIJ[k,t] <= W_l[k,t]*1.5*284*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
-                    
-#         model.addConstr(Theta[i,t]<=3.14)
-#         model.addConstr(Theta[j,t]>=0)
+#                    print([i,j])
+                    model.addConstr(PowerIJ[k,t] >= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])-5*M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= M*W_l[k,t])
+                    model.addConstr(PowerIJ[k,t] <= 250*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t]))
+#                    model.addConstr(PowerIJ[k,t] <= 1.05*500*Grid[i][j][0]['Sus']*(Theta[j,t]-Theta[i,t])*W_l[k,t])
 #impose power balance constraints
 for i in Nodes:
     for t in Time:
@@ -220,23 +220,24 @@ for i in Nodes:
               originadj.append(k)
           if EdgeTracker[k][1][1]==i:
               destadj.append(k)
-      model.addConstr(PG[i,t]-sum(PowerIJ[j,t] for j in originadj)+sum(PowerIJ[k,t] for k in destadj) == Grid.node[i]['load']*W_n[i,t])
+      model.addConstr(PG[i,t]-sum(PowerIJ[j,t] for j in originadj)+sum(PowerIJ[k,t] for k in destadj) == Grid.node[i]['load']-Shed[i,t])
 #constrain maximum power generation and handle functionality of the node
 for i in Nodes:
     for t in Time:
         model.addConstr(PG[i,t]<=Grid.node[i]['productionmax']*W_n[i,t])
+        model.addConstr(Shed[i,t]<=Grid.node[i]['load'])
+        model.addConstr(Shed[i,t]>=0)
         model.addConstr(PG[i,t]>=0)
 #constrain line limits
 for e in Edges:
         for t in Time:
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t])     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t])     
-                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t])
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t])     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t])     
-                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t])                
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*1.2)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*1.2)     
+                model.addConstr(PowerIJ[e,t]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*1.2)
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e,t]*1.2)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0],t]*1.2)     
+                model.addConstr(PowerIJ[e,t]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1],t]*1.2)                
            
-
 #define workingness
 for i in Nodes:
     model.addConstr(W_n[i,0] <= Grid.node[i]['working'])
@@ -266,7 +267,7 @@ for e in Edges:
 
 for t in Time:
 
-    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)<=8+Delta[t])
+    model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)<=12)
     model.addConstr(Delta[t]<=1.5)
 
 model.optimize()
@@ -304,5 +305,5 @@ for i in Nodes:
     print([i,W_n[i,t].X])
     
 for t in Time:
-    print(sum((1-W_n[i,t].X)*Grid.node[i]['load'] for i in Nodes))
+    print(sum(Shed[i,t].X for i in Nodes))
 print(sum(Grid.node[n]['load'] for n in Grid.nodes))

@@ -25,6 +25,11 @@
   r-interdiction median problem with fortification}, Geographical Analysis, 39
   (2007), pp.~129--146.
 
+\bibitem{Deka2018}
+{\sc D.~Deka, S.~Vishwanath, and R.~Baldick}, {\em Topological vulnerability of
+  power grids to disasters: Bounds, adversarial attacks and reinforcement},
+  PLOS ONE, 13 (2018), pp.~1--18.
+
 \bibitem{DuqueEA2016}
 {\sc P.~Duque, I.~Dolinskaya, and K.~Sorensen}, {\em Network repair crew
   scheduling and routing for emergency relief distribution problem}, European
@@ -57,6 +62,11 @@
   hurricane damage to electric power distribution systems}, Risk Analysis, 30
   (2010), pp.~1744--1752.
 
+\bibitem{LiBo2007}
+{\sc F.~{Li} and R.~{Bo}}, {\em Dcopf-based lmp simulation: Algorithm,
+  comparison with acopf, and sensitivity}, IEEE Transactions on Power Systems,
+  22 (2007), pp.~1475--1485.
+
 \bibitem{LammerEA2006}
 {\sc S.~Lämmer, B.~Gehlsen, and D.~Helbing}, {\em Scaling laws in the spatial
   structure of urban road networks}, Physica A: Statistical Mechanics and its
@@ -83,11 +93,22 @@
   resilience of critical electrical power infrastructure to extreme weather
   events}, IEEE Systems Journal, 11 (2017), pp.~1733--1742.
 
+\bibitem{Panteli2016}
+{\sc M.~{Panteli}, D.~N. {Trakas}, P.~{Mancarella}, and N.~D. {Hatziargyriou}},
+  {\em Boosting the power grid resilience to extreme weather events using
+  defensive islanding}, IEEE Transactions on Smart Grid, 7 (2016),
+  pp.~2913--2922.
+
 \bibitem{PregnolatoEA2017}
 {\sc M.~Pregnolato, A.~Ford, S.~M. Wilkinson, and R.~J. Dawson}, {\em The
   impact of flooding on road transport: A depth-disruption function},
   Transportation Research Part D: Transport and Environment, 55 (2017), pp.~67
   -- 81.
+
+\bibitem{Salmeron2004}
+{\sc J.~{Salmeron}, K.~{Wood}, and R.~{Baldick}}, {\em Analysis of electric
+  grid security under terrorist threat}, IEEE Transactions on Power Systems, 19
+  (2004), pp.~905--912.
 
 \bibitem{ScherbEA2015}
 {\sc A.~Scherb, L.~Garre, and D.~Straub}, {\em Probabilistic risk assessment of
