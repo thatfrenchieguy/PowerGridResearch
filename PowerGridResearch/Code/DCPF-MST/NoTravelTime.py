@@ -84,22 +84,22 @@ plt.show()
 #######            
 #######   RANDOM SCENARIO         
 #####SCENARIO OF BROKEN THINGS###
-#Grid.node[27]['working']=False
-#Grid.node[23]['working']=False
-#Grid.node[18]['working']=False
-#Grid.node[4]['working']=False
-#Grid.node[7]['working']=False
-#Grid.node[24]['working']=False
-#Grid.node[15]['working']=False
-#Grid[1][4][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[7][27][0]['working']=False
-#Grid[24][25][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
-#Grid[9][22][0]['working']=False
-#Grid[9][19][0]['working']=False
+Grid.node[27]['working']=False
+Grid.node[23]['working']=False
+Grid.node[18]['working']=False
+Grid.node[4]['working']=False
+Grid.node[7]['working']=False
+Grid.node[24]['working']=False
+Grid.node[15]['working']=False
+Grid[1][4][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[7][27][0]['working']=False
+Grid[24][25][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[1][3][0]['working']=False
+Grid[19][18][0]['working']=False
+Grid[9][22][0]['working']=False
+Grid[9][19][0]['working']=False
 
 ####END SCENARIO###            
 ######Geographic Scenario###

@@ -1,129 +1,151 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{}
 
-\bibitem{AksuEA2014}
-{\sc D.~Aksu and L.~Ozdamar}, {\em A mathematical model for post-disaster road
-  restoration: Enabling accessibility and evacuation}, Transportation Research
-  Part E, 61 (2014), pp.~56--67.
+\bibitem[Aksu and Ozdamar, 2014]{AksuEA2014}
+Aksu, D. and Ozdamar, L. (2014).
+\newblock A mathematical model for post-disaster road restoration: Enabling
+  accessibility and evacuation.
+\newblock {\em Transportation Research Part E}, 61:56--67.
 
-\bibitem{NPSMasters}
-{\sc C.~C. Ang}, {\em Optimized recovery of damaged electrial power grids},
-  Master's thesis, Naval Postgraduate School, 3 2006.
+\bibitem[Ang, 2006]{NPSMasters}
+Ang, C.~C. (2006).
+\newblock Optimized recovery of damaged electrial power grids.
+\newblock Master's thesis, Naval Postgraduate School.
 \newblock Found online.
 
-\bibitem{ArabEA2015}
-{\sc A.~Arab, A.~Khodaei, S.~Khator, K.~Ding, V.~Emesih, and Z.~Han}, {\em
-  Stochastic pre-hurricane restoration planning for electric power systems
-  infrastructure}, IEEE Transactions on Smart Grid, 6 (2015), pp.~1046--1054.
+\bibitem[Arab et~al., 2015]{ArabEA2015}
+Arab, A., Khodaei, A., Khator, S., Ding, K., Emesih, V., and Han, Z. (2015).
+\newblock Stochastic pre-hurricane restoration planning for electric power
+  systems infrastructure.
+\newblock {\em IEEE Transactions on Smart Grid}, 6:1046--1054.
 
-\bibitem{ChanEA2011}
-{\sc S.~Chan, R.~Donner, and S.~Lammer}, {\em Urban road networks -- spatial
-  networks with universal geometric features}, European Physics Journal B, 84
-  (2011), pp.~563--577.
+\bibitem[Chan et~al., 2011]{ChanEA2011}
+Chan, S., Donner, R., and Lammer, S. (2011).
+\newblock Urban road networks -- spatial networks with universal geometric
+  features.
+\newblock {\em European Physics Journal B}, 84:563--577.
 
-\bibitem{ChurchEA2007}
-{\sc R.~L. Church and M.~P. Scaparra}, {\em Protecting critical assets: The
-  r-interdiction median problem with fortification}, Geographical Analysis, 39
-  (2007), pp.~129--146.
+\bibitem[Church and Scaparra, 2007]{ChurchEA2007}
+Church, R.~L. and Scaparra, M.~P. (2007).
+\newblock Protecting critical assets: The r-interdiction median problem with
+  fortification.
+\newblock {\em Geographical Analysis}, 39(2):129--146.
 
-\bibitem{Deka2018}
-{\sc D.~Deka, S.~Vishwanath, and R.~Baldick}, {\em Topological vulnerability of
-  power grids to disasters: Bounds, adversarial attacks and reinforcement},
-  PLOS ONE, 13 (2018), pp.~1--18.
+\bibitem[Deka et~al., 2018]{Deka2018}
+Deka, D., Vishwanath, S., and Baldick, R. (2018).
+\newblock Topological vulnerability of power grids to disasters: Bounds,
+  adversarial attacks and reinforcement.
+\newblock {\em PLOS ONE}, 13(10):1--18.
 
-\bibitem{DuqueEA2016}
-{\sc P.~Duque, I.~Dolinskaya, and K.~Sorensen}, {\em Network repair crew
-  scheduling and routing for emergency relief distribution problem}, European
-  Journal of Operational Research, 248 (2016), pp.~272--285.
+\bibitem[Duque et~al., 2016]{DuqueEA2016}
+Duque, P., Dolinskaya, I., and Sorensen, K. (2016).
+\newblock Network repair crew scheduling and routing for emergency relief
+  distribution problem.
+\newblock {\em European Journal of Operational Research}, 248:272--285.
 
-\bibitem{FEMASandyAAR}
-{\sc FEMA}, {\em Hurricane sandy after-action report}, tech. rep., July 2013.
+\bibitem[FEMA, 2013]{FEMASandyAAR}
+FEMA (2013).
+\newblock Hurricane sandy after-action report.
+\newblock Technical report.
 
-\bibitem{FEMA2017AAR}
-\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em 2017 hurricane
-  season after-action report}, tech. rep., July 2018.
+\bibitem[FEMA, 2018]{FEMA2017AAR}
+FEMA (2018).
+\newblock 2017 hurricane season after-action report.
+\newblock Technical report.
 
-\bibitem{FlemingEA2013}
-{\sc C.~L. Fleming, S.~E. Griffis, and J.~E. Bell}, {\em The effects of
-  triangle inequality on the vehicle routing problem}, European Journal of
-  Operational Research, 224 (2013), pp.~1 -- 7.
+\bibitem[Fleming et~al., 2013]{FlemingEA2013}
+Fleming, C.~L., Griffis, S.~E., and Bell, J.~E. (2013).
+\newblock The effects of triangle inequality on the vehicle routing problem.
+\newblock {\em European Journal of Operational Research}, 224(1):1 -- 7.
 
-\bibitem{Frank2016}
-{\sc S.~Frank and S.~Rebennack}, {\em An introduction to optimal power flow:
-  Theory, formulation, and examples}, IIE Transactions, 48 (2016),
-  pp.~1172--1197.
+\bibitem[Frank and Rebennack, 2016]{Frank2016}
+Frank, S. and Rebennack, S. (2016).
+\newblock An introduction to optimal power flow: Theory, formulation, and
+  examples.
+\newblock {\em IIE Transactions}, 48(12):1172--1197.
 
-\bibitem{GolariEA2014}
-{\sc M.~Golari, N.~Fan, and J.~Wang}, {\em Two-stage stochastic optimal
-  islanding operations under severe multiple contingencies in power grids},
-  Electric Power Systems Research, 114 (2014), pp.~68--77.
+\bibitem[Golari et~al., 2014]{GolariEA2014}
+Golari, M., Fan, N., and Wang, J. (2014).
+\newblock Two-stage stochastic optimal islanding operations under severe
+  multiple contingencies in power grids.
+\newblock {\em Electric Power Systems Research}, 114:68--77.
 
-\bibitem{GuikemaEA2010}
-{\sc S.~Guikema, S.~Quiring, and S.-R. Han}, {\em Prestorm estimation of
-  hurricane damage to electric power distribution systems}, Risk Analysis, 30
-  (2010), pp.~1744--1752.
+\bibitem[Guikema et~al., 2010]{GuikemaEA2010}
+Guikema, S., Quiring, S., and Han, S.-R. (2010).
+\newblock Prestorm estimation of hurricane damage to electric power
+  distribution systems.
+\newblock {\em Risk Analysis}, 30:1744--1752.
 
-\bibitem{LiBo2007}
-{\sc F.~{Li} and R.~{Bo}}, {\em Dcopf-based lmp simulation: Algorithm,
-  comparison with acopf, and sensitivity}, IEEE Transactions on Power Systems,
-  22 (2007), pp.~1475--1485.
+\bibitem[{Li} and {Bo}, 2007]{LiBo2007}
+{Li}, F. and {Bo}, R. (2007).
+\newblock Dcopf-based lmp simulation: Algorithm, comparison with acopf, and
+  sensitivity.
+\newblock {\em IEEE Transactions on Power Systems}, 22(4):1475--1485.
 
-\bibitem{LammerEA2006}
-{\sc S.~Lämmer, B.~Gehlsen, and D.~Helbing}, {\em Scaling laws in the spatial
-  structure of urban road networks}, Physica A: Statistical Mechanics and its
-  Applications, 363 (2006), pp.~89 -- 95.
+\bibitem[Lämmer et~al., 2006]{LammerEA2006}
+Lämmer, S., Gehlsen, B., and Helbing, D. (2006).
+\newblock Scaling laws in the spatial structure of urban road networks.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  363(1):89 -- 95.
 \newblock Information and Material Flows in Complex Networks.
 
-\bibitem{MannEA2006}
-{\sc M.~E. Mann and K.~A. Emanuel}, {\em Atlantic hurricane trends linked to
-  climate change}, Eos, Transactions American Geophysical Union, 87 (2006),
-  pp.~233--241.
+\bibitem[Mann and Emanuel, 2006]{MannEA2006}
+Mann, M.~E. and Emanuel, K.~A. (2006).
+\newblock Atlantic hurricane trends linked to climate change.
+\newblock {\em Eos, Transactions American Geophysical Union}, 87(24):233--241.
 
-\bibitem{MolyneauxEA2016}
-{\sc L.~Molyneaux, C.~Brown, L.~Wagner, and J.~Foster}, {\em Measuring
-  resilience in energy systems: Insights from a range of disciplines},
-  Renewable and Sustainable Energy Reviews, 59 (2016), pp.~1068 -- 1079.
+\bibitem[Molyneaux et~al., 2016]{MolyneauxEA2016}
+Molyneaux, L., Brown, C., Wagner, L., and Foster, J. (2016).
+\newblock Measuring resilience in energy systems: Insights from a range of
+  disciplines.
+\newblock {\em Renewable and Sustainable Energy Reviews}, 59:1068 -- 1079.
 
-\bibitem{OuyangEA2014}
-{\sc M.~Ouyang and L.~Duenas-Osorio}, {\em Multi-dimensional hurricane
-  resilience assessment of electric power systems}, Structural Safety, 48
-  (2014), pp.~15--24.
+\bibitem[Ouyang and Duenas-Osorio, 2014]{OuyangEA2014}
+Ouyang, M. and Duenas-Osorio, L. (2014).
+\newblock Multi-dimensional hurricane resilience assessment of electric power
+  systems.
+\newblock {\em Structural Safety}, 48:15--24.
 
-\bibitem{Panteli2017}
-{\sc M.~{Panteli} and P.~{Mancarella}}, {\em Modeling and evaluating the
-  resilience of critical electrical power infrastructure to extreme weather
-  events}, IEEE Systems Journal, 11 (2017), pp.~1733--1742.
+\bibitem[{Panteli} and {Mancarella}, 2017]{Panteli2017}
+{Panteli}, M. and {Mancarella}, P. (2017).
+\newblock Modeling and evaluating the resilience of critical electrical power
+  infrastructure to extreme weather events.
+\newblock {\em IEEE Systems Journal}, 11(3):1733--1742.
 
-\bibitem{Panteli2016}
-{\sc M.~{Panteli}, D.~N. {Trakas}, P.~{Mancarella}, and N.~D. {Hatziargyriou}},
-  {\em Boosting the power grid resilience to extreme weather events using
-  defensive islanding}, IEEE Transactions on Smart Grid, 7 (2016),
-  pp.~2913--2922.
+\bibitem[{Panteli} et~al., 2016]{Panteli2016}
+{Panteli}, M., {Trakas}, D.~N., {Mancarella}, P., and {Hatziargyriou}, N.~D.
+  (2016).
+\newblock Boosting the power grid resilience to extreme weather events using
+  defensive islanding.
+\newblock {\em IEEE Transactions on Smart Grid}, 7(6):2913--2922.
 
-\bibitem{PregnolatoEA2017}
-{\sc M.~Pregnolato, A.~Ford, S.~M. Wilkinson, and R.~J. Dawson}, {\em The
-  impact of flooding on road transport: A depth-disruption function},
-  Transportation Research Part D: Transport and Environment, 55 (2017), pp.~67
-  -- 81.
+\bibitem[Pregnolato et~al., 2017]{PregnolatoEA2017}
+Pregnolato, M., Ford, A., Wilkinson, S.~M., and Dawson, R.~J. (2017).
+\newblock The impact of flooding on road transport: A depth-disruption
+  function.
+\newblock {\em Transportation Research Part D: Transport and Environment},
+  55:67 -- 81.
 
-\bibitem{Salmeron2004}
-{\sc J.~{Salmeron}, K.~{Wood}, and R.~{Baldick}}, {\em Analysis of electric
-  grid security under terrorist threat}, IEEE Transactions on Power Systems, 19
-  (2004), pp.~905--912.
+\bibitem[{Salmeron} et~al., 2004]{Salmeron2004}
+{Salmeron}, J., {Wood}, K., and {Baldick}, R. (2004).
+\newblock Analysis of electric grid security under terrorist threat.
+\newblock {\em IEEE Transactions on Power Systems}, 19(2):905--912.
 
-\bibitem{ScherbEA2015}
-{\sc A.~Scherb, L.~Garre, and D.~Straub}, {\em Probabilistic risk assessment of
-  infrastructure networks subjected to hurricanes}, Proceedings of
-  International Conference on Applications of Statistics in Civil Engineering,
-  1 (2015), pp.~1--9.
+\bibitem[Scherb et~al., 2015]{ScherbEA2015}
+Scherb, A., Garre, L., and Straub, D. (2015).
+\newblock Probabilistic risk assessment of infrastructure networks subjected to
+  hurricanes.
+\newblock {\em Proceedings of International Conference on Applications of
+  Statistics in Civil Engineering}, 1:1--9.
 
-\bibitem{StottEA2009}
-{\sc B.~{Stott}, J.~{Jardim}, and O.~{Alsac}}, {\em Dc power flow revisited},
-  IEEE Transactions on Power Systems, 24 (2009), pp.~1290--1300.
+\bibitem[{Stott} et~al., 2009]{StottEA2009}
+{Stott}, B., {Jardim}, J., and {Alsac}, O. (2009).
+\newblock Dc power flow revisited.
+\newblock {\em IEEE Transactions on Power Systems}, 24(3):1290--1300.
 
-\bibitem{WinklerEA2010}
-{\sc J.~Winkler, L.~Duenas-Osorio, R.~Stein, and D.~Subramanian}, {\em
-  Performance assessment of topologically diverse power systems subjected to
-  hurricane events}, Reliability Engineering and System Safety, 95 (2010),
-  pp.~323--336.
+\bibitem[Winkler et~al., 2010]{WinklerEA2010}
+Winkler, J., Duenas-Osorio, L., Stein, R., and Subramanian, D. (2010).
+\newblock Performance assessment of topologically diverse power systems
+  subjected to hurricane events.
+\newblock {\em Reliability Engineering and System Safety}, 95:323--336.
 
 \end{thebibliography}

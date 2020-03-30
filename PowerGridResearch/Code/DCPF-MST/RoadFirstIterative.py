@@ -64,32 +64,32 @@ for i in Nodes:
             RoadGrid[i][j]['working']=True
 setParam("MIPGap", .005)            
 ###Random Scenario###
-RoadGrid[0][3]['working']=False
-RoadGrid[1][2]['working']=False
-RoadGrid[1][26]['working']=False
-RoadGrid[4][5]['working']=False
-RoadGrid[5][13]['working']=False
-RoadGrid[9][10]['working']=False
-RoadGrid[9][13]['working']=False
-RoadGrid[10][11]['working']=False
-RoadGrid[10][12]['working']=False
-RoadGrid[13][15]['working']=False
-RoadGrid[14][16]['working']=False
-RoadGrid[14][28]['working']=False
-RoadGrid[16][17]['working']=False
-RoadGrid[17][22]['working']=False
-RoadGrid[18][21]['working']=False
-RoadGrid[19][21]['working']=False
-RoadGrid[19][23]['working']=False
-RoadGrid[22][24]['working']=False
-RoadGrid[22][25]['working']=False
-RoadGrid[22][26]['working']=False
-RoadGrid[24][27]['working']=False
-RoadGrid[25][27]['working']=False
-RoadGrid[17][29]['working']=False
-RoadGrid[18][23]['working']=False 
-RoadGrid[20][21]['working']=False
-##Geographically oriented Scenario
+#RoadGrid[0][3]['working']=False
+#RoadGrid[1][2]['working']=False
+#RoadGrid[1][26]['working']=False
+#RoadGrid[4][5]['working']=False
+#RoadGrid[5][13]['working']=False
+#RoadGrid[9][10]['working']=False
+#RoadGrid[9][13]['working']=False
+#RoadGrid[10][11]['working']=False
+#RoadGrid[10][12]['working']=False
+#RoadGrid[13][15]['working']=False
+#RoadGrid[14][16]['working']=False
+#RoadGrid[14][28]['working']=False
+#RoadGrid[16][17]['working']=False
+#RoadGrid[17][22]['working']=False
+#RoadGrid[18][21]['working']=False
+#RoadGrid[19][21]['working']=False
+#RoadGrid[19][23]['working']=False
+#RoadGrid[22][24]['working']=False
+#RoadGrid[22][25]['working']=False
+#RoadGrid[22][26]['working']=False
+#RoadGrid[24][27]['working']=False
+#RoadGrid[25][27]['working']=False
+#RoadGrid[17][29]['working']=False
+#RoadGrid[18][23]['working']=False 
+#RoadGrid[20][21]['working']=False
+###Geographically oriented Scenario
 #RoadGrid[20][21]['working']=False
 #RoadGrid[18][23]['working']=False            
 #RoadGrid[14][28]['working']=False
@@ -164,7 +164,7 @@ for t in Time:
             model.addConstr(S[i,j,t] <= M*K[i,j,t]) 
             model.addConstr(S[i,j,t] >= RoadGrid[i][j]['weight']*speed*K[i,j,t])
             model.addConstr(S[i,j,t] >= (1-X[i,j,t])*8*RoadGrid[i][j]['weight']*speed - (1-K[i,j,t])*M)
-    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=8)
+    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=12)
 #    model.addConstr(D[t]<=3)
     for i in Nodes:
         model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)
@@ -308,24 +308,24 @@ Grid[9][19][0]['working']=False
 
 ###END SCENARIO###            
 ###Geographic Scenario###
-#Grid.node[4]['working']=False
-##
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[11][14][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
+Grid.node[4]['working']=False
+#
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
+Grid[11][15][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[17][18][0]['working']=False
+Grid[9][16][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][13][0]['working']=False
+Grid[11][14][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[1][3][0]['working']=False
+Grid[19][18][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
 #Grid.node[5]['working']=False

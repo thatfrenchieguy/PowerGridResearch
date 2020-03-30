@@ -10,20 +10,22 @@
 \usepackage{subcaption}
 \usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{xcolor}
+\usepackage{setspace}
+
 \begin{document}
 	\title{Multi-actor network repair problems}
 	\author{Brian French}
 	\maketitle
 	\section{Status Tracker}
 	\begin{itemize}
-		\item Introduction -- started
-		\item Literature Review - started
-		\item Modeling - drafted
-		\item Results/conclusions -started
+		\item Introduction -- drafted
+		\item Literature Review - drafted
+		\item Modeling - drafted+1 set of revisions
+		\item Results/conclusions -drafted
 		\item Resilience -- started
 		\item Conclusions -- thought about
 	\end{itemize}
-	
+	\onehalfspacing
 	\section{Introduction and Motivation}
 	Hurricanes are a growing concern in the operation of power grids in coastal areas. This is due partly to the increasing density of cities in coastal areas, but the impacts of climate change are causing both rising sea levels making flooding worse, but also more frequent and more severe hurricanes \cite{MannEA2006}. This phenomenon suggests that repair procedures and resilience planning will be of increased importance in the coming years.
 	
@@ -66,7 +68,7 @@
 	
 	We know from the earlier referenced literature that road repair is a concern in the wake of a hurricane. We assume for the sake of this thesis that all roads can be cleared. Clearing here represents digging out drainage for minor flooding and clearing debris. Severely damaged roads should be treated as completely impassible and dropped from the graph representation of the network.
 	
-	We assume also that the resulting road network for the area corresponding to the power network's service area can be represented with a Watts-Strogatz network. Based on the literature on statistical analyses of road network topologies \cite{LammerEA2006} \cite{ChanEA2011} this is a serviceable but imperfect assumption. Ideally the real topology of a hurricane struck area should be used, but for a computational and modeling effort to draw insight into joint repair efforts, it suffices. We then apply damage to this network to allow for the solution of interacted road and power repair problems to better study the impact of considering these two aspects together.
+	We assume also that the resulting road network for the area corresponding to the power network's service area can be represented with a Watts-Strogatz network, which is a network that connects each node of a graph to the $k$ nearest neighbors and then has probability $p$ of connecting any two nodes chosen. These networks exhibit "small world" property where any two arbitrarily distant nodes can be connected using only a small number of edges. Based on the literature on statistical analyses of road network topologies \cite{LammerEA2006} \cite{ChanEA2011} this is a serviceable but imperfect assumption. Ideally the real topology of a hurricane struck area should be used, but for a computational and modeling effort to draw insight into joint repair efforts, the contrived Watts-Strogatz based network suffices. We then apply damage to this network to allow for the solution of interacted road and power repair problems to better study the impact of considering these two aspects together.
 		
 	We model time in discrete shifts here because it allows for mixed-integer programming to be used as a tool to solve both problems. It additionally allows for easier interaction of both sides (Road and Power) of the problem by operating them on the same time chunks.
 	
@@ -330,7 +332,7 @@ From this, we can see that the minimum spanning tree version of the model runs s
 	\end{itemize}
 	\section{Results on Standard test systems}
 	\subsection{Introduction to Results}
-	To validate the model outlined as more than just a theoretical exercise in modeling, we engineer test cases based on standard IEEE power grids. We choose to use the 30 bus and 57 bus systems \$CITATION GOES HERE in order to capture things on a large enough scale to demonstrate applications for extension into practical uses later on. To convert these from standard test grids to DC versions for use in this model, reactive/imaginary power flow is dropped leaving only real power flow. We then overlay a Watts-Strogatz graph as mentioned earlier based on fitting power buses to a grid. The key reason for this is to maintain triangle inequalities where having a network that violates triangle inequalities is both unrealistic to "real world" situation as well as altering the solutions of routing problems \cite{FlemingEA2013}. We plan this so that travel time between opposite sides of the network are about 3 hours so that routing times are not trivial compared to repair times. We arbitrarily define repair times to be 5 hours for damaged nodes representing replacement of easy to fix components like breakers and downed lines inside the substation. More severe damage resulting from flooding and/or corrosion can take months to repair \$CITATION and is therefore outside the scope of immediate post-disaster response. We assume lines have a repair time of 1 hour plus a variable amount based on the geographical distance of the line. We acknowledge these times are somewhat arbitrary, but without loss of generality, data from a power utility can be fed in, so these arbitrary repair times suffice to warrant the utility of the underlying model.
+	To validate the model outlined as more than just a theoretical exercise in modeling, we engineer test cases based on standard IEEE power grids. We choose to use the 30 bus and 57 bus systems \$CITATION GOES HERE in order to capture things on a large enough scale to demonstrate applications for extension into practical uses later on. To convert these from standard test grids to DC versions for use in this model, reactive/imaginary power flow is dropped leaving only real power flow. We then overlay a Watts-Strogatz graph with connection to the 3 nearest neighbor nodes and .03 global connectivity (i.e each node has a 3\% chance of being connected to any other node)as mentioned earlier based on fitting power buses to a grid. The key reason for this is to maintain triangle inequalities where having a network that violates triangle inequalities is both unrealistic to "real world" situation as well as altering the solutions of routing problems \cite{FlemingEA2013}. We plan this so that travel time between opposite sides of the network are about 3 hours so that routing times are not trivial compared to repair times. We arbitrarily define repair times to be 5 hours for damaged nodes representing replacement of easy to fix components like breakers and downed lines inside the substation. More severe damage resulting from flooding and/or corrosion can take months to repair \$CITATION and is therefore outside the scope of immediate post-disaster response. We assume lines have a repair time of 1 hour plus a variable amount based on the geographical distance of the line. We acknowledge these times are somewhat arbitrary, but without loss of generality, data from a power utility can be fed in, so these arbitrary repair times suffice to warrant the utility of the underlying model.
 	
 	To show validity, we first solve out a base damage scenario for both grid topologies, then conduct perturbations of respectively weather damage, road topology, and damage intensity to show that the model is valid for a large variety of inputs. 
 	
@@ -363,7 +365,26 @@ From this, we can see that the minimum spanning tree version of the model runs s
 
 	We can draw comparable conclusions to the the geographically distributed base case, but for this scenario, the post-processing heuristic suggests a lower total load shed. This seems to be due to the 
 	\subsubsection{Varied Roads}
-	We now perturb the road topology of the network case and solve a slight variation of the base case on the new topology.
+	We now perturb the road topology of the network case and solve a slight variation of the base case on the new topology. The base-case road network was constructed with a Watts-Strogatz graph with neighbor connectivity 3 and global connectivity .03 as discussed earlier. To show the model as written is valid for all topologies, we permute the road network while keeping the power grid static. The replacement topology is another Watts-Strogatz graph with neightbor connectivity 2 and global connectivity .015 and distances between nodes increased by 25\%. This simulates the effect of the power grid in a more rural area or more distributed population clusters in a hurricane effected area.
+	
+	The solutions are as follows for first the unperturbed road network and then the perturbed road network.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.9\linewidth]{Rplot30Unperturbed.png}
+		\caption{Load Shed by shift and method in the 30 bus scenario before road perturbation}
+		\label{fig:sub2}
+		
+		
+	\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{Rplot30Perturbed.png}
+	\caption{Load Shed by shift and method in the 30 bus scenario after road perturbation}
+	\label{fig:sub2}
+	
+	
+	\end{figure}
 	
 	\subsubsection{Varied Damage Intensity}
 	We now perturb the base case for both lower and higher damage scenarios in order to show model effectiveness for varying levels of damage.
@@ -375,7 +396,9 @@ From this, we can see that the minimum spanning tree version of the model runs s
 		
 		
 	\end{figure}
-
+	We get largely intuitive changes here. Interaction frameworks that are on-face more sensitive to road changes have larger magnitudes of change in performance under perturbation of the road network. When the road network is expanded, the framework where road repair is ignored and the roads are treated as statically damaged performs worse by comparison to other frameworks.
+	
+	Of note here is that the heuristically solved version of the model without travel time and use of a post-processor performs much better (i.e closer to the lower bound) in the case with the road network perturbed to be more distant. This is likely to be because the heuristic ignores road repair entirely in the name of not having to solve a mixed integer programming model.
 	\section{Resilience}
 	\subsection{Introduction}
 	Given that we've constructed a model for response to a scenario of a hurricane strike on a grid, we can use this to look at how different methods of resilience. By generating test cases and then making the grid resilient through either traditional hardening or by forming microgrids as has become popular in electrical engineering literature.
@@ -383,16 +406,18 @@ From this, we can see that the minimum spanning tree version of the model runs s
 	
 	Hardening is one of the approaches to resilience by fortifying a subset of nodes and edges in a network to make it harder to damage. Traditionally this is looked at in the context of interdiction problems \cite{ChurchEA2007}. To overview the problem solved in hardening: player 1 operates a network, player 2 attacks the network with the objective of minimizing maximum flow, player 1 hardens the network before the attack under the assumption that it's coming. This serves as a max/min/max tri-layer optimization problem.
 	
-	A similar approach can be taken with disaster planning. Unlike in multi-actor interdiction, the attack coming from a hurricane is a random process of nature and not a targeted interdiction by an intelligent actor. When solving this problem, finding a fixed quantity of damage equal to the ability to fortify under budget constraints that minimizes maximum flow allows for planning of network hardening. Solving this to optimality requires a delve into bi-level optimization that is outside the scope of this thesis. We therefor solve the problem heuristically through the following setup.
+	A similar approach can be taken with disaster planning. Unlike in multi-actor interdiction, the attack coming from a hurricane is a random process of nature and not a targeted interdiction by an intelligent actor. When solving this problem, finding a fixed quantity of damage equal to the ability to fortify under budget constraints that minimizes maximum flow allows for planning of network hardening. Solving this to optimality with best practices requires a delve into bi-level optimization that is outside the scope of this thesis. \textcolor{red}{Should I write out the full optimization problem as it's MIP formatting, or would a summary be good enough?} We therefor solve the problem heuristically through the following setup.
 	
 	\begin{enumerate}
 		
 	\item Solve baseline DC-OPF for the grid
 	\item identify how many nodes (n) and edges (e) to be fortified
-	\item select the 2n highest demand nodes and the 2e highest utilization edges when solving heuristically or all possible subsets when solving to guaranteed optimality.
+	\item select at least the 2n highest demand nodes and the 2e highest utilization edges
 	\item for each subset of nodes/edges of the correct size, solve DC-OPF with those elements damaged
 	\item find the minimum demand satisfied and use those damaged elements as the fortified elements when analyzing resilience 
 	\end{enumerate}
+
+	This is heuristic rather than, but in the limit where all possible subsets are considered, this is a full solution of the bilayer optimization problem. 
 	\subsection{Results}
 	We elect to use the 30 bus network to demonstrate the effectiveness of targeted fortification vs untargeted resilience. We construct a basket of scenarios randomly where each scenario reflects 50\% line loss and 25\% bus loss in the power grid and a standardized road damage of 50\%. Each scenario is then solved thrice. Once with a set of resilient elements as chosen above with the interdiction problem solved, once with fortification chosen based on highest demand buses and highest use edges as a plausible approximation that a power utility would use, and then again without any hardening to provide a base case for comparison.
 	
@@ -401,6 +426,6 @@ From this, we can see that the minimum spanning tree version of the model runs s
 	\subsection{Results}
 	\subsection{Future Research Direction}
 	\section{Bibliography}
-	\bibliographystyle{siam}
+	\bibliographystyle{apalike}
 	\bibliography{sources}
 \end{document}

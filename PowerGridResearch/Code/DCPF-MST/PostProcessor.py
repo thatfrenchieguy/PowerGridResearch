@@ -19,7 +19,7 @@ def powerset(iterable):
 
 #done as node, shift
 ###import the edge tracker
-PowerSub = nx.read_gml("Bus30WithData.gml")
+PowerSub = nx.read_gml("Bus30WithDatamk2.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
 for i in PowerSub.nodes:
   for j in PowerSub.nodes:
@@ -28,7 +28,7 @@ for i in PowerSub.nodes:
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
-Grid = nx.read_gml("Bus57WithData.gml")
+Grid = nx.read_gml("Bus30WithDatamk2.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 RoadGrid = nx.Graph()
 RoadGrid.add_nodes_from(Grid.nodes)
@@ -48,21 +48,25 @@ for i,e in enumerate(PowerSub.edges):
 ###schedule of nodes to be fixed from the pure scheduling solver
 InputNodes = [[4,0,'node'],
               [7,0,'node'],
-              [23,1,'node'],
-              [24,1,'node'],
-              [18,2,'node'],
-              [15,3,'node']
+              [9,1,'node'],
+              [20,1,'node'],
+              [14,2,'node'],
+              [23,2,'node'],
+              [18,3,'node'],
+              [24,3,'node'],
+              [21,4,'node'],
+              [29,4,'node']
               ]
 ###schedule of edges to be fixed from the pure scheduling solver
 InputEdges = [[3,0,'edge'],
-              [17,0,'edge'],
-              [35,1,'edge'],
-              [2,2,'edge'],
-              [8,2,'edge'],
-              [20,2,'edge'],
-              [24,2,'edge'],
-              [30,2,'edge'],
-              [14,3,'edge']
+              [20,0,'edge'],
+              [17,1,'edge'],
+              [18,1,'edge'],
+              [23,2,'edge'],
+              [26,2,'edge'],
+              [29,3,'edge'],
+              [25,4,'edge'],
+              [32,4,'edge']
               ]
 RoadData = []
 SP = np.zeros((len(Nodes),len(Nodes)))
@@ -146,7 +150,7 @@ while len(InputNodes)!= 0 and len(InputEdges)!=0:
                 ShiftCost+=MinEdgeCost[0]
         NodeCosts = []
         EdgeCosts = []
-        if len(priorityLoadNodes) == 0 and len(priorityLoadEdges)==0:
+        if len(priorityLoadNodes) == 0 or len(priorityLoadEdges)==0:
             print('inPlausibleNodes')
             if len(plausibleListNodes)!=0:
                 for n in plausibleListNodes:

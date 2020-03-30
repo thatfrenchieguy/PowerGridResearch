@@ -26,7 +26,7 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 #initialize graph from file
-Grid = nx.read_gml("Bus30WithData.gml")
+Grid = nx.read_gml("Bus30WithDatamk2.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
 #declare needed constants
 SteadyStatePower = 255 #in MW--the PU Basis
@@ -62,77 +62,40 @@ for i in Nodes:
                 RoadGrid[i][j]['working']=True
         else:
             RoadGrid[i][j]['working']=True
-setParam("MIPGap", .005)            
-###Random Scenario###
-RoadGrid[0][3]['working']=False
-RoadGrid[1][2]['working']=False
-RoadGrid[1][26]['working']=False
-RoadGrid[4][5]['working']=False
-RoadGrid[5][13]['working']=False
-RoadGrid[9][10]['working']=False
-RoadGrid[9][13]['working']=False
-RoadGrid[10][11]['working']=False
-RoadGrid[10][12]['working']=False
-RoadGrid[13][15]['working']=False
-RoadGrid[14][16]['working']=False
-RoadGrid[14][28]['working']=False
-RoadGrid[16][17]['working']=False
-RoadGrid[17][22]['working']=False
-RoadGrid[18][21]['working']=False
-RoadGrid[19][21]['working']=False
-RoadGrid[19][23]['working']=False
-RoadGrid[22][24]['working']=False
-RoadGrid[22][25]['working']=False
-RoadGrid[22][26]['working']=False
-RoadGrid[24][27]['working']=False
-RoadGrid[25][27]['working']=False
-RoadGrid[17][29]['working']=False
-RoadGrid[18][23]['working']=False 
-RoadGrid[20][21]['working']=False
-##Geographically oriented Scenario
-#RoadGrid[20][21]['working']=False
-#RoadGrid[18][23]['working']=False            
-#RoadGrid[14][28]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[17][22]['working']=False
-#RoadGrid[25][27]['working']=False
-#RoadGrid[29][17]['working']=False
-#RoadGrid[6][7]['working']=False
-#RoadGrid[1][21]['working']=False
-#RoadGrid[17][29]['working']=False
-#RoadGrid[13][15]['working']=False
-#RoadGrid[12][10]['working']=False     
-#RoadGrid[9][13]['working']=False       
-##IISE SCENARIO 2
-#RoadGrid[0][3]['working']=False
-#RoadGrid[3][4]['working']=False
-#RoadGrid[3][6]['working']=False
+#MK2 topology            
+#RoadGrid[1][2]['working']=False
+#RoadGrid[1][12]['working']=False
+#RoadGrid[1][15]['working']=False
+#RoadGrid[2][4]['working']=False
+#RoadGrid[3][10]['working']=False
+#RoadGrid[3][13]['working']=False
 #RoadGrid[4][5]['working']=False
-#RoadGrid[5][13]['working']=False
+#RoadGrid[6][26]['working']=False
 #RoadGrid[7][21]['working']=False
+#RoadGrid[8][25]['working']=False
 #RoadGrid[9][10]['working']=False
 #RoadGrid[9][15]['working']=False
-#RoadGrid[10][11]['working']=False
-#RoadGrid[10][12]['working']=False
-#RoadGrid[10][17]['working']=False
+#RoadGrid[10][24]['working']=False
 #RoadGrid[12][13]['working']=False
-#RoadGrid[14][28]['working']=False
+#RoadGrid[14][16]['working']=False
 #RoadGrid[14][29]['working']=False
 #RoadGrid[16][17]['working']=False
 #RoadGrid[17][22]['working']=False
 #RoadGrid[18][20]['working']=False
-#RoadGrid[18][21]['working']=False
-#RoadGrid[19][23]['working']=False
-#RoadGrid[22][26]['working']=False
-#RoadGrid[23][27]['working']=False
+#RoadGrid[18][23]['working']=False
+#RoadGrid[19][21]['working']=False
+#RoadGrid[22][24]['working']=False
+#RoadGrid[22][25]['working']=False
+#RoadGrid[24][27]['working']=False
 #RoadGrid[25][26]['working']=False
-##Random Generator
+#RoadGrid[25][27]['working']=False
+setParam("MIPGap", .005)            
 #for i in RoadGrid.nodes():
 #    for j in range(i,len(RoadGrid.nodes())):
 #      if RoadGrid.has_edge(i,j):
 #       if RoadGrid[i][j]['weight'] <9000:
 #        randbreak = np.random.uniform()
-#        if randbreak <= .55:
+#        if randbreak <= .85:
 #            print([i,j])
 #            RoadGrid[i][j]['working']=False
 #        else: 
@@ -150,25 +113,25 @@ for i in Nodes:
     for j in Nodes:
         if RoadGrid[i][j]['weight']<9000:
             C[i][j] = RoadGrid[i][j]['weight']
-speed = 1/20
+speed = 1/30
 model = Model("mip1")
 X = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "X")
 K = model.addVars(Nodes,Nodes,Time,vtype=GRB.BINARY, name = "K")
 S = model.addVars(Nodes,Nodes,Time,vtype=GRB.CONTINUOUS, name = "S")
 D = model.addVars(Time, vtype = GRB.CONTINUOUS, name = "D")
-M=50000
-obj = model.setObjective(sum(t*sum(C[i][j]*(1-X[i,j,t]) for i in Nodes for j in Nodes) for t in Time),GRB.MINIMIZE)
+M=500000
+obj = model.setObjective(sum(sum(C[i][j]*(1-X[i,j,t]) for i in Nodes for j in Nodes) for t in Time),GRB.MINIMIZE)
 for t in Time:
     for i in Nodes:
         for j in Nodes:
             model.addConstr(S[i,j,t] <= M*K[i,j,t]) 
             model.addConstr(S[i,j,t] >= RoadGrid[i][j]['weight']*speed*K[i,j,t])
             model.addConstr(S[i,j,t] >= (1-X[i,j,t])*8*RoadGrid[i][j]['weight']*speed - (1-K[i,j,t])*M)
-    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=8)
+    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=0)
 #    model.addConstr(D[t]<=3)
     for i in Nodes:
         model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)
-    model.addConstr(sum(K[13,j,t] for j in Nodes)==1)
+#    model.addConstr(sum(K[22,j,t] for j in Nodes)==1)
     PS = powerset(Nodes)
 for s in PS:
  if len(s)>5:
@@ -212,7 +175,7 @@ for t in range(1,len(Time)):
 for t in Time:
     for i in Nodes:
         for j in Nodes:
-            if K[i,j,t].X >0 and RoadGrid[i][j]['working'] ==False:
+            if K[i,j,t].X >0:
                 print([i,j,t,K[i,j,t].X])
 t=5                
 sum(C[i][j]*(1-X[i,j,t].X) for i in Nodes for j in Nodes)
@@ -308,24 +271,24 @@ Grid[9][19][0]['working']=False
 
 ###END SCENARIO###            
 ###Geographic Scenario###
-#Grid.node[4]['working']=False
-##
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[4][6][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[11][14][0]['working']=False
-#Grid[11][15][0]['working']=False
-#Grid[1][3][0]['working']=False
-#Grid[19][18][0]['working']=False
+Grid.node[4]['working']=False
+#
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
+Grid[11][15][0]['working']=False
+Grid[4][6][0]['working']=False
+Grid[21][23][0]['working']=False
+Grid[17][18][0]['working']=False
+Grid[9][16][0]['working']=False
+Grid[14][17][0]['working']=False
+Grid[14][13][0]['working']=False
+Grid[11][14][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[1][3][0]['working']=False
+Grid[19][18][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
 #Grid.node[5]['working']=False
@@ -501,7 +464,7 @@ for i in Nodes:
      for t in Time:
         SP[i][j][t] = nx.shortest_path_length(ArrayOfRoadGrids[t], source = i, target = j, weight='weight')
 for t in Time:
-    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/10 for i in Nodes for j in Nodes))
+    model.addConstr(MST[t] >= sum(SP[i][j][t]*Z[i,j,t]*1/7.5 for i in Nodes for j in Nodes))
     model.addConstr(sum(Z[i,j,t] for i in Nodes for j in Nodes) >= sum(F_n[i,t]for i in Nodes)+sum(F_l[e,t] for e in Edges)-sum(F_n[i,t]*sum(F_l[e,t]*EdgeIncidence[n][e] for e in Edges) for i in Nodes)-1)
     for s in powerset(Nodes):
         if len(s)>=7:
@@ -531,7 +494,7 @@ for t in Time:
 for t in Time:
     model.addConstr(sum(F_n[i,t]*5 for i in Nodes)+sum(F_l[e,t]*1 for e in Edges)+MST[t]<=12)
 #    model.addConstr(Delta[t]<=3)
-setParam("MIPGap", .03)
+setParam("MIPGap", .01)
 model.optimize()
 for t in Time:
     for n in Nodes:
