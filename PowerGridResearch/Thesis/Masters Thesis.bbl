@@ -88,6 +88,17 @@ Lämmer, S., Gehlsen, B., and Helbing, D. (2006).
   363(1):89 -- 95.
 \newblock Information and Material Flows in Complex Networks.
 
+\bibitem[Madni et~al., 2020]{Madni2020}
+Madni, A., Erwin, and Sievers (2020).
+\newblock Constructing models for systems resilience: Challenges, concepts, and
+  formal methods.
+
+\bibitem[Mahmoodjanloo et~al., 2016]{Mahmoo2016}
+Mahmoodjanloo, M., Parvasi, S.~P., and Ramezanian, R. (2016).
+\newblock A tri-level covering fortification model for facility protection
+  against disturbance in r-interdiction median problem.
+\newblock {\em Computers \& Industrial Engineering}, 102:219 -- 232.
+
 \bibitem[Mann and Emanuel, 2006]{MannEA2006}
 Mann, M.~E. and Emanuel, K.~A. (2006).
 \newblock Atlantic hurricane trends linked to climate change.
@@ -124,6 +135,12 @@ Pregnolato, M., Ford, A., Wilkinson, S.~M., and Dawson, R.~J. (2017).
   function.
 \newblock {\em Transportation Research Part D: Transport and Environment},
   55:67 -- 81.
+
+\bibitem[Ramirez-Marquez and Rocco, 2009]{Ramirez2009}
+Ramirez-Marquez, J. and Rocco, C. (2009).
+\newblock Stochastic network interdiction optimization via capacitated network
+  reliability modeling and probabilistic solution discovery.
+\newblock {\em Reliability Engineering \& System Safety}, 94:913--921.
 
 \bibitem[{Salmeron} et~al., 2004]{Salmeron2004}
 {Salmeron}, J., {Wood}, K., and {Baldick}, R. (2004).

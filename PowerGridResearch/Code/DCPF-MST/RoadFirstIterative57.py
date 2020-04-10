@@ -150,7 +150,7 @@ for t in Time:
             model.addConstr(S[i,j,t] <= M*K[i,j,t]) 
             model.addConstr(S[i,j,t] >= RoadGrid[i][j]['weight']*speed*K[i,j,t])
             model.addConstr(S[i,j,t] >= (1-X[i,j,t])*8*RoadGrid[i][j]['weight']*speed - (1-K[i,j,t])*M)
-    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=1.65)
+    model.addConstr(sum(S[i,j,t] for i in Nodes for j in Nodes)<=12)
 
     for i in Nodes:
         model.addConstr(sum(K[i,j,t]for j in Nodes)-sum(K[j,i,t]for j in Nodes)==0)

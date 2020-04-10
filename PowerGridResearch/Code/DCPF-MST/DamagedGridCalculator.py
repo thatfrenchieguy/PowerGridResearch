@@ -10,9 +10,9 @@ import numpy as np
 import pandas as pd
 import math
 from gurobipy import *
-Grid = nx.read_gml("Bus30WithData.gml")
+Grid = nx.read_gml("Bus57WithData.gml")
 Grid = nx.convert_node_labels_to_integers(Grid)
-PowerSub = nx.read_gml("Bus30WithData.gml")
+PowerSub = nx.read_gml("Bus57WithData.gml")
 PowerSub = nx.convert_node_labels_to_integers(PowerSub)
 for i in PowerSub.nodes:
   for j in PowerSub.nodes:
@@ -47,39 +47,39 @@ for i in Grid.nodes:
             Grid[i][j][0]['working']=True
 ####END SCENARIO###            
 ###Random Scenario####
-Grid.node[27]['working']=False
+#Grid.node[27]['working']=False
 #Grid.node[23]['working']=False
-Grid.node[18]['working']=False
+#Grid.node[18]['working']=False
 #Grid.node[4]['working']=False
 #Grid.node[7]['working']=False
 #Grid.node[24]['working']=False
-Grid.node[15]['working']=False
+#Grid.node[15]['working']=False
 #Grid[1][4][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[7][27][0]['working']=False
-Grid[24][25][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[7][27][0]['working']=False
+#Grid[24][25][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
 #Grid[9][22][0]['working']=False
-Grid[9][19][0]['working']=False
+#Grid[9][19][0]['working']=False
 ##Geographic Scenario###
 #Grid.node[4]['working']=False
-Grid.node[21]['working']=False
-Grid.node[20]['working']=False
+#Grid.node[21]['working']=False
+#Grid.node[20]['working']=False
 #Grid.node[14]['working']=False
 #Grid.node[29]['working']=False
 #Grid.node[9]['working']=False
-Grid[4][6][0]['working']=False
-Grid[21][23][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[21][23][0]['working']=False
 #Grid[17][18][0]['working']=False
 #Grid[9][16][0]['working']=False
 #Grid[14][17][0]['working']=False
-Grid[14][13][0]['working']=False
+#Grid[14][13][0]['working']=False
 #Grid[11][14][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
 ####IISE PAPER SCENARIO 2
 #Grid.node[5]['working']=False
 #Grid.node[14]['working']=False
@@ -115,7 +115,31 @@ Grid[19][18][0]['working']=False
 #Grid[24][26][0]['working']=False
 #Grid[26][27][0]['working']=False
 #Grid[28][29][0]['working']=False
+######Geographic Scenario for 57 bus###
+Grid.node[4]['working']=False
+Grid.node[11]['working']=False
+Grid.node[28]['working']=False
+Grid.node[21]['working']=False
+Grid.node[20]['working']=False
+Grid.node[14]['working']=False
+Grid.node[29]['working']=False
+Grid.node[9]['working']=False
+Grid.node[31]['working']=False
+Grid[3][4][0]['working']=False ###
+Grid[5][7][0]['working']=False
+Grid[34][35][0]['working']=False ###
+Grid[54][8][0]['working']=False
+Grid[38][56][0]['working']=False
 
+Grid[12][48][0]['working']=False
+Grid[39][55][0]['working']=False
+Grid[22][23][0]['working']=False
+Grid[8][11][0]['working']=False
+Grid[11][15][0]['working']=False
+Grid[21][37][0]['working']=False
+Grid[23][24][0]['working']=False
+Grid[24][29][0]['working']=False
+Grid[31][33][0]['working']=False
 setParam("MIPGap", .005)
 EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the origin and element 2 is the destination
 for i,e in enumerate(PowerSub.edges):
@@ -180,18 +204,18 @@ for i in Nodes:
 #constrain maximum power generation and handle functionality of the node
 for i in Nodes:
 
-        model.addConstr(PG[i]<=Grid.node[i]['productionmax']*W_n[i])
+        model.addConstr(PG[i]<=Grid.node[i]['productionmax']*W_n[i]*1.5)
         model.addConstr(Shed[i]<=Grid.node[i]['load'])
         model.addConstr(Shed[i]>=0)
         model.addConstr(PG[i]>=0)
 #constrain line limits
 for e in Edges:
-                model.addConstr(PowerIJ[e]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e]*1.2)     
-                model.addConstr(PowerIJ[e]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0]]*1.2)     
-                model.addConstr(PowerIJ[e]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1]]*1.2)
-                model.addConstr(PowerIJ[e]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e]*1.2)     
-                model.addConstr(PowerIJ[e]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0]]*1.2)     
-                model.addConstr(PowerIJ[e]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1]]*1.2)                
+                model.addConstr(PowerIJ[e]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e]*1.61)     
+                model.addConstr(PowerIJ[e]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0]]*1.61)     
+                model.addConstr(PowerIJ[e]<=Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1]]*1.61)
+                model.addConstr(PowerIJ[e]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_l[e]*1.61)     
+                model.addConstr(PowerIJ[e]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][0]]*1.61)     
+                model.addConstr(PowerIJ[e]>=-1*Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['capacity']*W_n[EdgeTracker[e][1][1]]*1.61)                
            
 
 #define workingness
@@ -200,6 +224,6 @@ for i in Nodes:
 for e in Edges:
         model.addConstr(W_l[e]<=int(EdgeStartingStatus[e]))
 model.optimize()
-
-for i in Edges:
-                print(PowerIJ[i].X)  
+#
+#for i in Edges:
+#                print(PowerIJ[i].X)  

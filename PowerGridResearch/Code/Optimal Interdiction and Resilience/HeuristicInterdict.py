@@ -135,8 +135,8 @@ SortedNodes.reverse()
 
 
 ### time to interdict
-NumberNodesInterdict = 1
-NumberEdgesInterdict = 3
+NumberNodesInterdict = 2
+NumberEdgesInterdict = 4
 
 TrimmedNodes = SortedNodes[:3*NumberNodesInterdict]
 TrimmedEdges = SortedFlowRatio[:3*NumberEdgesInterdict]

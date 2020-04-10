@@ -5,8 +5,8 @@
 \textwidth  6.5in
 %\footheight 0.0cm
 \topmargin  0pt
-\headheight 0in
-\headsep 0in
+%\headheight 0in
+%\headsep 0in
 \leftmargin 0.0cm
 \oddsidemargin  0cm
 \def\baselinestretch{1.0}
@@ -31,6 +31,19 @@
 \usepackage[dvips,xetex]{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fancyhdr}
+\setlength{\headheight}{13pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[C]{\textit{French and Kutanoglu}}
+\fancypagestyle{empty}{%
+	\fancyhf{}% Clear header/footer
+	\fancyhead[L]{\textit{Proceedings of the 2020 IISE Annual Conference\newline L.Cromarty, R. Shirwaiker, P.Wang, eds.}}% Your journal/note
+}
+
 \begin{document}
 
 \newpage
@@ -38,11 +51,10 @@
 \begin{center}
 {\Large \textbf{Post-Disaster Recovery of Multiple Infrastructures: \\ Coordinating Road and Power Grid Repairs}} \\
 \vspace*{0.2cm}
-%{\large \textbf{Brian French and Erhan Kutanoglu}} \\
-%{\large \textbf{Operations Research and Industrial Engineering Program}} \\
-%{\large \textbf{The University of Texas at Austin}} \\
-%{\large \textbf{Austin, TX 78712, USA}} \\
-%{\large \textbf{BCFrench@utexas.edu, erhank@mail.utexas.edu}} \\
+{\large \textbf{Brian French and Erhan Kutanoglu}} \\
+{\large \textbf{Operations Research and Industrial Engineering Program}} \\
+{\large \textbf{The University of Texas at Austin}} \\
+{\large \textbf{Austin, TX 78712, USA}} \\
 \end{center}
 
 \thispagestyle{empty}
@@ -54,7 +66,7 @@ Both power and road networks sustain major damage in the wake of hurricanes and 
 
 {\large \bf Keywords}\\
 \vspace*{-12pt}
-
+Power Repair, humanitarian logistics, hurricanes, mixed integer programming, 
 \vspace*{-12pt}
 \section{{\large Introduction}}
 \label{sec:ic:intro}
@@ -80,6 +92,7 @@ While considering coordinated repairs of road and power networks using the mixed
 To model the road repair aspect of the problem, we choose to treat it as a problem of routing a crew tasked with clearing debris and flooding from roads. In doing this, damaged roads are not assumed to be totally blocked, but their lengths are merely increased to account for the difficulty traversing them while clearing debris, minor flooding, and the like. This problem is handled by solving a variation of the prize collecting rural postman problem at each time step, representing the shifts that the crew uses during post-disaster recovery. The discrete time based modeling is chosen to match up with both standard shift lengths and the discrete time requirement of the DC power flow based model for the power grid repairs. 
 
 We use the following notation, starting with sets and parameters, followed by decision variables:
+\small
 \begin{displaymath}
 \begin{array}{ll}
 T & \mbox{the set of time periods (shifts) over the time horizon, indexed by $t$}\\
@@ -94,7 +107,7 @@ K_{ij}^t & \mbox{binary variable for travel from $i$ to $j$ being in the tour at
 S_{ij}^t & \mbox{length of travel for road segment $ij$ at time $t$}\\
 \end{array}
 \end{displaymath}
-
+\normalsize
 We minimize the total value of non-functioning road segments over the repair horizon. Without loss of generality the objective can be replaced with the repair priority weights for an agency of choice, by modifying the $c_{ij}$s. Then, the road repair model is as follows:
 \begin{equation}
 	\min \sum_{t \in T}  \sum_{i,j \in N} c_{ij}(1-X_{ij}^t) 
@@ -116,7 +129,7 @@ To model the power grid repair aspect of the problem, we treat it primarily as a
 
 We begin modeling the power half of the problem by defining the relevant parameters, sets, and design variables:
 
-\small
+
 \begin{displaymath}
 \begin{array}{llll}
 	 N & \mbox{set of nodes, indexed by $i$} & X_{e}^{t} & \mbox{power flow on line $e$ at time $t$}\\
@@ -202,13 +215,13 @@ The IEEE 30 bus network is a standard test/example power grid that is based on t
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{Rplot30Scenario2Fixed.png}
+		\includegraphics[width=\linewidth]{Rplot30Scenario2Fixed.png}
 		\caption{Load Shed by shift in the 30 bus case\newline recovery scenario 2}
 		\label{fig:sub1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{Rplot37Fixed.png}
+		\includegraphics[width=\linewidth]{Rplot37Fixed.png}
 		\caption{Load Shed by shift in the 30 bus case\newline recovery scenario 1}
 		\label{fig:sub2}
 	\end{subfigure}
@@ -219,10 +232,10 @@ The figures suggest that increased coordination between repair agencies improves
  \vspace*{-12pt}
 The setup for this case is nearly identical to the setup for the 30 bus case above, but with a different power grid in order to demonstrate that differences in repair schedules are not due to overfitting to a topology. The IEEE 57 bus network topology is another standard test network based on part of the American Electric Power System in the Midwestern US. Similar amounts of damage is applied to this network before the models were solved.
 
-\begin{figure}[]
+\begin{figure}[htbp]
 	\centering
 	\caption{Load Shed by shift in the 57 bus case}
-	\includegraphics[width=.5\textwidth, height=0.5\textheight,keepaspectratio]{RPlot57Fixed.png}
+	\includegraphics[width=.7\textwidth, height=0.5\textheight,keepaspectratio]{RPlot57Fixed.png}
 	
 \end{figure}
 
