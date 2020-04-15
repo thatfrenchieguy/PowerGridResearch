@@ -97,7 +97,7 @@ Madni, A., Erwin, and Sievers (2020).
 Mahmoodjanloo, M., Parvasi, S.~P., and Ramezanian, R. (2016).
 \newblock A tri-level covering fortification model for facility protection
   against disturbance in r-interdiction median problem.
-\newblock {\em Computers \& Industrial Engineering}, 102:219 -- 232.
+\newblock {\em Computers and Industrial Engineering}, 102:219 -- 232.
 
 \bibitem[Mann and Emanuel, 2006]{MannEA2006}
 Mann, M.~E. and Emanuel, K.~A. (2006).
@@ -109,6 +109,12 @@ Molyneaux, L., Brown, C., Wagner, L., and Foster, J. (2016).
 \newblock Measuring resilience in energy systems: Insights from a range of
   disciplines.
 \newblock {\em Renewable and Sustainable Energy Reviews}, 59:1068 -- 1079.
+
+\bibitem[{Noebels} and {Panteli}, 2019]{NobelsEA2019}
+{Noebels}, M. and {Panteli}, M. (2019).
+\newblock Assessing the effect of preventive islanding on power grid
+  resilience.
+\newblock In {\em 2019 IEEE Milan PowerTech}, pages 1--6.
 
 \bibitem[Ouyang and Duenas-Osorio, 2014]{OuyangEA2014}
 Ouyang, M. and Duenas-Osorio, L. (2014).
@@ -140,7 +146,7 @@ Pregnolato, M., Ford, A., Wilkinson, S.~M., and Dawson, R.~J. (2017).
 Ramirez-Marquez, J. and Rocco, C. (2009).
 \newblock Stochastic network interdiction optimization via capacitated network
   reliability modeling and probabilistic solution discovery.
-\newblock {\em Reliability Engineering \& System Safety}, 94:913--921.
+\newblock {\em Reliability Engineering and System Safety}, 94:913--921.
 
 \bibitem[{Salmeron} et~al., 2004]{Salmeron2004}
 {Salmeron}, J., {Wood}, K., and {Baldick}, R. (2004).

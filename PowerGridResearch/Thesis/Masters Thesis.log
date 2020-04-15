@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  10 APR 2020 00:26
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  14 APR 2020 20:37
 entering extended mode
 **"./Masters Thesis.tex"
 ("Masters Thesis.tex"
@@ -309,6 +309,9 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 LaTeX Warning: Label `fig:sub1' multiply defined.
 
 
+LaTeX Warning: Label `time' multiply defined.
+
+
 LaTeX Warning: Label `fig:sub2' multiply defined.
 
 
@@ -381,10 +384,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ] [2] [3] [4]
-[5]
+[5] [6]
 File: DCvsPipeflow.PNG Graphic file (type bmp)
 <DCvsPipeflow.PNG>
- [6] [7] [8] [9] [10]
+ [7] [8] [9] [10]
 
 LaTeX Font Warning: Command \normalsize invalid in math mode on input line 223.
 
@@ -395,33 +398,42 @@ File: Rplot37.png Graphic file (type bmp)
  [18]
 File: Rplot30Rand.png Graphic file (type bmp)
 <Rplot30Rand.png>
- [19]
+ [19] [20]
 File: Rplot30Unperturbed.png Graphic file (type bmp)
 <Rplot30Unperturbed.png>
 File: Rplot30Perturbed.png Graphic file (type bmp)
 <Rplot30Perturbed.png>
- [20]
+ [21]
 File: Rplot30scenario2.png Graphic file (type bmp)
 <Rplot30scenario2.png>
- [21]
+ [22]
 File: Rplot57.png Graphic file (type bmp)
 <Rplot57.png>
- [22]
+ [23]
 File: resiliencecurve.png Graphic file (type bmp)
 <resiliencecurve.png>
- [23] [24] [25]
-("Masters Thesis.bbl" [26] [27] [28]) [29] ("Masters Thesis.aux")
+ [24] [25]
+[26]
+File: OptimalResilienceSpaghetti.png Graphic file (type bmp)
+<OptimalResilienceSpaghetti.png>
+File: HeuristicResilienceSpaghetti.png Graphic file (type bmp)
+<HeuristicResilienceSpaghetti.png>
+File: NoResilienceSpaghetti.png Graphic file (type bmp)
+<NoResilienceSpaghetti.png>
+File: AverageSpaghetti.png Graphic file (type bmp)
+<AverageSpaghetti.png>
+ [27] [28] ("Masters Thesis.bbl" [29] [30] [31]) [32] ("Masters Thesis.aux")
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5679 strings out of 427796
- 82848 string characters out of 3151769
+ 5696 strings out of 427796
+ 83342 string characters out of 3151769
  184241 words of memory out of 3000000
- 9609 multiletter control sequences out of 15000+200000
+ 9622 multiletter control sequences out of 15000+200000
  10064 words of font info for 50 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,10n,39p,1836b,290s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,39p,1825b,292s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Masters Thesis.pdf (29 pages).
+Output written on Masters Thesis.pdf (32 pages).

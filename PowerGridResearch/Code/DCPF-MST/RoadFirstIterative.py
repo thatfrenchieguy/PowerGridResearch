@@ -308,24 +308,24 @@ Grid[9][19][0]['working']=False
 
 ###END SCENARIO###            
 ###Geographic Scenario###
-Grid.node[4]['working']=False
-#
-Grid.node[21]['working']=False
-Grid.node[20]['working']=False
-Grid.node[14]['working']=False
-Grid.node[29]['working']=False
-Grid.node[9]['working']=False
-Grid[11][15][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[21][23][0]['working']=False
-Grid[17][18][0]['working']=False
-Grid[9][16][0]['working']=False
-Grid[14][17][0]['working']=False
-Grid[14][13][0]['working']=False
-Grid[11][14][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
+#Grid.node[4]['working']=False
+##
+#Grid.node[21]['working']=False
+#Grid.node[20]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[29]['working']=False
+#Grid.node[9]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[9][16][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][13][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
 #Grid.node[5]['working']=False
