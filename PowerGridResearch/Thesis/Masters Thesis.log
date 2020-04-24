@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  14 APR 2020 20:37
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  23 APR 2020 21:22
 entering extended mode
 **"./Masters Thesis.tex"
 ("Masters Thesis.tex"
@@ -320,6 +320,12 @@ LaTeX Warning: Label `fig:sub2' multiply defined.
 
 LaTeX Warning: Label `fig:sub2' multiply defined.
 
+
+LaTeX Warning: Label `time' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
 )
 \openout1 = `"Masters Thesis.aux"'.
 
@@ -347,15 +353,15 @@ Package caption Info: End \AtBeginDocument code.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* h-part:(L,W,R)=(90.3375pt, 433.62001pt, 90.3375pt)
+* v-part:(T,H,B)=(90.3375pt, 614.295pt, 90.3375pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \textwidth=433.62001pt
+* \textheight=614.295pt
+* \oddsidemargin=18.0675pt
+* \evensidemargin=18.0675pt
+* \topmargin=-18.9325pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -383,57 +389,83 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 19.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [2] [3] [4]
-[5] [6]
+] [2]
+File: ScherbFigure.PNG Graphic file (type bmp)
+<ScherbFigure.PNG>
+ [3] [4]
+Overfull \hbox (4.36998pt too wide) in paragraph at lines 60--61
+[]\TU/lmr/m/n/10 Also of note from the perspective of road repair is a paper by
+ Aksu et al [[]].
+ []
+
+
+Overfull \hbox (24.86003pt too wide) in paragraph at lines 65--66
+\TU/lmr/m/n/10 silience in the context of disaster response for power grids. Mo
+lyneaux et al provide[[]]
+ []
+
+[5] [6] [7]
 File: DCvsPipeflow.PNG Graphic file (type bmp)
 <DCvsPipeflow.PNG>
- [7] [8] [9] [10]
+ [8] [9] [10] [11] [12]
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 223.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 229.
 
 
-[11] [12] [13] [14] [15] [16] [17]
+[13] [14] [15] [16]
+Overfull \hbox (27.29007pt too wide) in paragraph at lines 291--308
+ [][] 
+ []
+
+[17] [18] [19] [20]
 File: Rplot37.png Graphic file (type bmp)
 <Rplot37.png>
- [18]
 File: Rplot30Rand.png Graphic file (type bmp)
 <Rplot30Rand.png>
- [19] [20]
+ [21] [22]
 File: Rplot30Unperturbed.png Graphic file (type bmp)
 <Rplot30Unperturbed.png>
 File: Rplot30Perturbed.png Graphic file (type bmp)
 <Rplot30Perturbed.png>
- [21]
+ [23]
 File: Rplot30scenario2.png Graphic file (type bmp)
 <Rplot30scenario2.png>
- [22]
+ [24]
 File: Rplot57.png Graphic file (type bmp)
 <Rplot57.png>
- [23]
+ [25] [26]
+Overfull \hbox (8.48003pt too wide) in paragraph at lines 452--453
+[]\TU/lmr/m/n/10 Most approaches to resilience construct a resilience curve lik
+e the following from [[]]
+ []
+
 File: resiliencecurve.png Graphic file (type bmp)
 <resiliencecurve.png>
- [24] [25]
-[26]
+[27] [28]
+File: AverageSpaghetti.png Graphic file (type bmp)
+<AverageSpaghetti.png>
 File: OptimalResilienceSpaghetti.png Graphic file (type bmp)
 <OptimalResilienceSpaghetti.png>
 File: HeuristicResilienceSpaghetti.png Graphic file (type bmp)
 <HeuristicResilienceSpaghetti.png>
 File: NoResilienceSpaghetti.png Graphic file (type bmp)
 <NoResilienceSpaghetti.png>
-File: AverageSpaghetti.png Graphic file (type bmp)
-<AverageSpaghetti.png>
- [27] [28] ("Masters Thesis.bbl" [29] [30] [31]) [32] ("Masters Thesis.aux")
+ [29] [30] [31]
+File: LowBudgetSpaghetti.png Graphic file (type bmp)
+<LowBudgetSpaghetti.png>
+ [32] [33] ("Masters Thesis.bbl" [34] [35] [36])
+[37] ("Masters Thesis.aux")
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5696 strings out of 427796
- 83342 string characters out of 3151769
- 184241 words of memory out of 3000000
- 9622 multiletter control sequences out of 15000+200000
+ 5704 strings out of 427796
+ 83520 string characters out of 3151769
+ 184271 words of memory out of 3000000
+ 9628 multiletter control sequences out of 15000+200000
  10064 words of font info for 50 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,10n,39p,1825b,292s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,39p,1825b,294s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Masters Thesis.pdf (32 pages).
+Output written on Masters Thesis.pdf (37 pages).

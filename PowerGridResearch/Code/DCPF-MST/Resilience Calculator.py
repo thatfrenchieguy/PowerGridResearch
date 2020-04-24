@@ -369,12 +369,11 @@ for e in ToDamageEdges:
     Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working']=False
                     
 #acounting for optimal resilience 
-Grid.node[7]['working']=True
+
 Grid.node[1]['working'] = True
 Grid[1][5][0]['working']=True
 Grid[22][23][0]['working']=True
 Grid[0][1][0]['working']=True
-Grid[5][9][0]['working']=True
 EdgeStartingStatus = np.zeros(len(EdgeTracker))
 for i in Nodes:
     for j in Nodes:
@@ -589,9 +588,7 @@ for e in ToDamageEdges:
     Grid[EdgeTracker[e][1][0]][EdgeTracker[e][1][1]][0]['working']=False
                     
 #acounting for optimal resilience 
-Grid.node[7]['working']=True
 Grid.node[4]['working'] = True
-Grid[1][5][0]['working']=True
 Grid[22][23][0]['working']=True
 Grid[23][24][0]['working']=True
 Grid[5][9][0]['working']=True

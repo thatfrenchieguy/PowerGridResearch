@@ -135,11 +135,11 @@ SortedNodes.reverse()
 
 
 ### time to interdict
-NumberNodesInterdict = 2
-NumberEdgesInterdict = 4
+NumberNodesInterdict = 1
+NumberEdgesInterdict = 3
 
-TrimmedNodes = SortedNodes[:3*NumberNodesInterdict]
-TrimmedEdges = SortedFlowRatio[:3*NumberEdgesInterdict]
+TrimmedNodes = SortedNodes[:4*NumberNodesInterdict]
+TrimmedEdges = SortedFlowRatio[:4*NumberEdgesInterdict]
 
 ListOfNodeInterdict = [list(i) for i in combinations(TrimmedNodes, NumberNodesInterdict)]
 ListOfEdgeInterdict = [list(j) for j in combinations(TrimmedEdges, NumberEdgesInterdict)]
