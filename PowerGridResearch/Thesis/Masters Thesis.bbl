@@ -42,6 +42,11 @@ Duque, P., Dolinskaya, I., and Sorensen, K. (2016).
   distribution problem.
 \newblock {\em European Journal of Operational Research}, 248:272--285.
 
+\bibitem[{Eldridge} et~al., 2017]{EldridgeEA2017}
+{Eldridge}, B., {O'Neill}, R., and {Castillo}, A. (2017).
+\newblock Marginal loss calculations for the dcopf.
+\newblock {\em FERC Technical Report on Loss Estimation}, pages 1--24.
+
 \bibitem[FEMA, 2013]{FEMASandyAAR}
 FEMA (2013).
 \newblock Hurricane sandy after-action report.
@@ -75,6 +80,12 @@ Guikema, S., Quiring, S., and Han, S.-R. (2010).
   distribution systems.
 \newblock {\em Risk Analysis}, 30:1744--1752.
 
+\bibitem[{Lamoree} et~al., 1994]{LamoreeEA1994}
+{Lamoree}, J., {Mueller}, D., {Vinett}, P., {Jones}, W., and {Samotyj}, M.
+  (1994).
+\newblock Voltage sag analysis case studies.
+\newblock {\em IEEE Transactions on Industry Applications}, 30(4):1083--1089.
+
 \bibitem[{Li} and {Bo}, 2007]{LiBo2007}
 {Li}, F. and {Bo}, R. (2007).
 \newblock Dcopf-based lmp simulation: Algorithm, comparison with acopf, and
@@ -103,6 +114,13 @@ Mahmoodjanloo, M., Parvasi, S.~P., and Ramezanian, R. (2016).
 Mann, M.~E. and Emanuel, K.~A. (2006).
 \newblock Atlantic hurricane trends linked to climate change.
 \newblock {\em Eos, Transactions American Geophysical Union}, 87(24):233--241.
+
+\bibitem[{Miret} et~al., 2013]{MiretEA2013}
+{Miret}, J., {Camacho}, A., {Castilla}, M., {de Vicuña}, L.~G., and {Matas},
+  J. (2013).
+\newblock Control scheme with voltage support capability for distributed
+  generation inverters under voltage sags.
+\newblock {\em IEEE Transactions on Power Electronics}, 28(11):5252--5262.
 
 \bibitem[Molyneaux et~al., 2016]{MolyneauxEA2016}
 Molyneaux, L., Brown, C., Wagner, L., and Foster, J. (2016).
@@ -170,5 +188,11 @@ Winkler, J., Duenas-Osorio, L., Stein, R., and Subramanian, D. (2010).
 \newblock Performance assessment of topologically diverse power systems
   subjected to hurricane events.
 \newblock {\em Reliability Engineering and System Safety}, 95:323--336.
+
+\bibitem[{Zhang} and {Chow}, 2015]{ZhangChow2015}
+{Zhang}, Y. and {Chow}, M. (2015).
+\newblock Distributed optimal generation dispatch considering transmission
+  losses.
+\newblock In {\em 2015 North American Power Symposium (NAPS)}, pages 1--6.
 
 \end{thebibliography}

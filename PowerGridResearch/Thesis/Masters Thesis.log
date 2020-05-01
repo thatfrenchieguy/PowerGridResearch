@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  23 APR 2020 21:22
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  29 APR 2020 20:50
 entering extended mode
 **"./Masters Thesis.tex"
 ("Masters Thesis.tex"
@@ -393,48 +393,43 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: ScherbFigure.PNG Graphic file (type bmp)
 <ScherbFigure.PNG>
  [3] [4]
-Overfull \hbox (4.36998pt too wide) in paragraph at lines 60--61
+Overfull \hbox (44.40997pt too wide) in paragraph at lines 62--63
 []\TU/lmr/m/n/10 Also of note from the perspective of road repair is a paper by
- Aksu et al [[]].
- []
-
-
-Overfull \hbox (24.86003pt too wide) in paragraph at lines 65--66
-\TU/lmr/m/n/10 silience in the context of disaster response for power grids. Mo
-lyneaux et al provide[[]]
+ Aksu and Ozdamar [[]].
  []
 
 [5] [6] [7]
 File: DCvsPipeflow.PNG Graphic file (type bmp)
 <DCvsPipeflow.PNG>
- [8] [9] [10] [11] [12]
+ [8] [9] [10] [11] [12] [13]
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 229.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 233.
 
 
-[13] [14] [15] [16]
-Overfull \hbox (27.29007pt too wide) in paragraph at lines 291--308
+[14] [15] [16]
+Overfull \hbox (27.29007pt too wide) in paragraph at lines 295--312
  [][] 
  []
 
 [17] [18] [19] [20]
 File: Rplot37.png Graphic file (type bmp)
 <Rplot37.png>
+ [21]
 File: Rplot30Rand.png Graphic file (type bmp)
 <Rplot30Rand.png>
- [21] [22]
+ [22]
 File: Rplot30Unperturbed.png Graphic file (type bmp)
 <Rplot30Unperturbed.png>
 File: Rplot30Perturbed.png Graphic file (type bmp)
 <Rplot30Perturbed.png>
- [23]
+ [23] [24]
 File: Rplot30scenario2.png Graphic file (type bmp)
 <Rplot30scenario2.png>
- [24]
+ [25]
 File: Rplot57.png Graphic file (type bmp)
 <Rplot57.png>
- [25] [26]
-Overfull \hbox (8.48003pt too wide) in paragraph at lines 452--453
+ [26]
+Overfull \hbox (8.48003pt too wide) in paragraph at lines 462--463
 []\TU/lmr/m/n/10 Most approaches to resilience construct a resilience curve lik
 e the following from [[]]
  []
@@ -460,12 +455,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5704 strings out of 427796
- 83520 string characters out of 3151769
+ 5708 strings out of 427796
+ 83579 string characters out of 3151769
  184271 words of memory out of 3000000
- 9628 multiletter control sequences out of 15000+200000
+ 9632 multiletter control sequences out of 15000+200000
  10064 words of font info for 50 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 39i,10n,39p,1825b,294s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,39p,1562b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on Masters Thesis.pdf (37 pages).
