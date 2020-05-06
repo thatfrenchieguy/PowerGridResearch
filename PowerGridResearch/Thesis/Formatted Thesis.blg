@@ -1,0 +1,26 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Formatted Thesis.aux
+A level-1 auxiliary file: chapter-introduction.aux
+A level-1 auxiliary file: chapter-modeling.aux
+A level-1 auxiliary file: chapter-results.aux
+A level-1 auxiliary file: chapter-resilience.aux
+A level-1 auxiliary file: chapter-conclusions.aux
+The style file: plain.bst
+Database file #1: Sources.bib
+Warning--string name "mar." is undefined
+--line 61 of file Sources.bib
+Repeated entry---line 73 of file Sources.bib
+ : @article{WinklerEA2010
+ :                       ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 441 of file Sources.bib
+ :  pages={1-24},
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 448 of file Sources.bib
+ : @article{Frank2016
+ :                   ,
+I'm skipping whatever remains of this entry
+Warning--empty institution in FEMASandyAAR
+Warning--empty institution in FEMA2017AAR
+Warning--empty chapter and pages in Wood2011
+(There were 3 error messages)

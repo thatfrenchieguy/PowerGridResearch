@@ -289,43 +289,22 @@ plt.axis('off')
 plt.show()
 #######   RANDOM SCENARIO         
 #####SCENARIO OF BROKEN THINGS###
-Grid.node[27]['working']=False
-Grid.node[23]['working']=False
-Grid.node[18]['working']=False
-Grid.node[4]['working']=False
-Grid.node[7]['working']=False
-Grid.node[24]['working']=False
-Grid.node[15]['working']=False
-Grid[1][4][0]['working']=False
-Grid[4][6][0]['working']=False
-Grid[7][27][0]['working']=False
-Grid[24][25][0]['working']=False
-Grid[11][15][0]['working']=False
-Grid[1][3][0]['working']=False
-Grid[19][18][0]['working']=False
-Grid[9][22][0]['working']=False
-Grid[9][19][0]['working']=False
-
-###END SCENARIO###            
-###Geographic Scenario###
+#Grid.node[27]['working']=False
+#Grid.node[23]['working']=False
+#Grid.node[18]['working']=False
 #Grid.node[4]['working']=False
-##
-#Grid.node[21]['working']=False
-#Grid.node[20]['working']=False
-#Grid.node[14]['working']=False
-#Grid.node[29]['working']=False
-#Grid.node[9]['working']=False
-#Grid[11][15][0]['working']=False
+#Grid.node[7]['working']=False
+#Grid.node[24]['working']=False
+#Grid.node[15]['working']=False
+#Grid[1][4][0]['working']=False
 #Grid[4][6][0]['working']=False
-#Grid[21][23][0]['working']=False
-#Grid[17][18][0]['working']=False
-#Grid[9][16][0]['working']=False
-#Grid[14][17][0]['working']=False
-#Grid[14][13][0]['working']=False
-#Grid[11][14][0]['working']=False
+#Grid[7][27][0]['working']=False
+#Grid[24][25][0]['working']=False
 #Grid[11][15][0]['working']=False
 #Grid[1][3][0]['working']=False
 #Grid[19][18][0]['working']=False
+#Grid[9][22][0]['working']=False
+#Grid[9][19][0]['working']=False
 
 ####IISE PAPER SCENARIO 2
 #Grid.node[5]['working']=False
@@ -362,8 +341,61 @@ Grid[9][19][0]['working']=False
 #Grid[24][26][0]['working']=False
 #Grid[26][27][0]['working']=False
 #Grid[28][29][0]['working']=False
-###
+####
 ##
+x  = nx.get_node_attributes(Grid,('xcoord'))
+y = nx.get_node_attributes(Grid,'ycoord')
+brokenpos=[]
+workingpos = []
+fixedpower = []
+brokenpower = []
+road = []
+nodecolor = []
+for i in Nodes:
+   if Grid.node[i]['working'] == False:
+       nodecolor.append('r')
+   else:
+      nodecolor.append('g')
+for e in Grid.edges:
+    if e[2]==0:
+        if Grid[e[0]][e[1]][e[2]]['working'] == False:  
+            brokenpower.append(e)
+        else:
+            fixedpower.append(e)
+  
+   
+nx.draw_networkx_nodes(Grid, pos, label=True, node_color = nodecolor)
+nx.draw_networkx_labels(Grid, pos)
+nx.draw_networkx_edges(Grid, pos, edgelist = fixedpower, edge_color = "g", width = 2, alpha =.7)
+nx.draw_networkx_edges(Grid, pos, edgelist = brokenpower, edge_color = "r", width = 2, alpha =.7)
+
+#nx.draw_networkx_edges(Grid, pos, edgelist = road, edge_color = 'r', width = 2, alpha = .3)
+#nx.draw_networkx_edges(Grid, pos, edgelist = tourdraw, edge_color = 'b', width = 4, alpha = 1)
+#
+plt.axis('off')
+plt.show()
+###END SCENARIO###            
+###Geographic Scenario###
+#Grid.node[4]['working']=False
+##
+#Grid.node[21]['working']=False
+#Grid.node[20]['working']=False
+#Grid.node[14]['working']=False
+#Grid.node[29]['working']=False
+#Grid.node[9]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[4][6][0]['working']=False
+#Grid[21][23][0]['working']=False
+#Grid[17][18][0]['working']=False
+#Grid[9][16][0]['working']=False
+#Grid[14][17][0]['working']=False
+#Grid[14][13][0]['working']=False
+#Grid[11][14][0]['working']=False
+#Grid[11][15][0]['working']=False
+#Grid[1][3][0]['working']=False
+#Grid[19][18][0]['working']=False
+
+
 
 
 #random generator

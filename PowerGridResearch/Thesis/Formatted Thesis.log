@@ -1,0 +1,888 @@
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6840 64-bit) (preloaded format=xelatex 2020.1.10)  5 MAY 2020 17:33
+entering extended mode
+**"./Formatted Thesis.tex"
+("Formatted Thesis.tex"
+LaTeX2e <2018-04-01> patch level 5
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (utdiss2.sty
+*
+* U.T. Austin Doctoral Dissertation Format by Young. U. Ryu,
+* June 1991. With some fixes by Miguel A. Lerma, Fall 1995, 
+* Spring 1996, Summer 1996, Spring 1997, Summer 1997, Spring 1998.
+*
+* Modified to new Graduate School standards Fall 2001
+* by Craig McCluskey mccluskey@mail.utexas.edu 
+* - this is utdiss2-05.sty
+*
+\regular@textheight=\skip43
+\short@textheight=\skip44
+\c@regular@short=\count89
+\one@num=\skip45
+\two@num=\skip46
+\three@num=\skip47
+\four@num=\skip48
+\five@num=\skip49
+\six@num=\skip50
+\c@onenum=\skip51
+\c@twonum=\skip52
+\c@threenum=\skip53
+\c@fournum=\skip54
+\c@fivenum=\skip55
+\toc@chap@indent=\skip56
+\chap@or@app=\count90
+\with@parts=\count91
+\c@no@chapters=\count92
+\s@short@textheight=\skip57
+\c@regular@short@col=\count93
+* *
+* *
+* This is a dissertation *
+* *
+* *
+\numberofsupervisors=\count94
+\supervisornumbercounter=\count95
+\numberofmembers=\count96
+\membernumbercounter=\count97
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip58
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen103
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen104
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count98
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count99
+\leftroot@=\count100
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count101
+\DOTSCASE@=\count102
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
+\dotsspace@=\muskip10
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks15
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks16
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks17
+\multlinegap=\skip59
+\multlinetaggap=\skip60
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks19
+\thm@bodyfont=\toks20
+\thm@headfont=\toks21
+\thm@notefont=\toks22
+\thm@headpunct=\toks23
+\thm@preskip=\skip61
+\thm@postskip=\skip62
+\thm@headsep=\skip63
+\dth@everypar=\toks24
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amscd.sty"
+Package: amscd 2017/04/14 v2.1 AMS Commutative Diagrams
+\athelp@=\toks25
+\minaw@=\dimen112
+\bigaw@=\dimen113
+\minCDarrowwidth=\dimen114
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\eucal.sty"
+Package: eucal 2009/06/22 v3.00 Euler Script fonts
+LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
+(Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks26
+\verbatim@line=\toks27
+\verbatim@in@stream=\read1
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\makeidx.sty"
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
+Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks28
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 99.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\xetex.def"
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen115
+\Gin@req@width=\dimen116
+)
+\epsfxsize=\dimen117
+\epsfysize=\dimen118
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty"
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\mathtools\mathtool
+s.sty"
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count110
+\calc@Bcount=\count111
+\calc@Adimen=\dimen119
+\calc@Bdimen=\dimen120
+\calc@Askip=\skip64
+\calc@Bskip=\skip65
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count112
+\calc@Cskip=\skip66
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\mathtools\mhsetup.
+sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count113
+\l_MT_multwidth_dim=\dimen121
+\origjot=\skip67
+\l_MT_shortvdotswithinadjustabove_dim=\dimen122
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen123
+\l_MT_above_intertext_sep=\dimen124
+\l_MT_below_intertext_sep=\dimen125
+\l_MT_above_shortintertext_sep=\dimen126
+\l_MT_below_shortintertext_sep=\dimen127
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\enumitem\enumitem.
+sty"
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip68
+\enit@outerparindent=\dimen128
+\enit@toks=\toks29
+\enit@inbox=\box28
+\enitdp@description=\count114
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count115
+\float@exts=\toks30
+\float@box=\box29
+\@float@everytoks=\toks31
+\@floatcapt=\box30
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\subcaption
+.sty"
+Package: subcaption 2020/01/03 v1.3b Sub-captions (AR)
+
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.st
+y"
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.s
+ty"
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen129
+\captionmargin@=\dimen130
+\captionwidth=\dimen131
+\caption@tempdima=\dimen132
+\caption@indent=\dimen133
+\caption@parindent=\dimen134
+\caption@hangindent=\dimen135
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count116
+\c@continuedfloat=\count117
+Package caption Info: float package is loaded.
+)
+\c@subfigure=\count118
+\c@subtable=\count119
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithm2e\algori
+thm2e.sty"
+Invalid UTF-8 byte or sequence at line 284 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 299 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 550 replaced by U+FFFD.
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count120
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip69
+
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\ifoddpage\ifoddpag
+e.sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count121
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\relsize\relsize.st
+y"
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip70
+\skiplinenumber=\skip71
+\skiprule=\skip72
+\skiphlne=\skip73
+\skiptext=\skip74
+\skiplength=\skip75
+\algomargin=\skip76
+\skipalgocfslide=\skip77
+\algowidth=\dimen136
+\inoutsize=\dimen137
+\inoutindent=\dimen138
+\interspacetitleruled=\dimen139
+\interspacealgoruled=\dimen140
+\interspacetitleboxruled=\dimen141
+\algocf@ruledwidth=\skip78
+\algocf@inoutbox=\box31
+\algocf@inputbox=\box32
+\AlCapSkip=\skip79
+\AlCapHSkip=\skip80
+\algoskipindent=\skip81
+\algocf@nlbox=\box33
+\algocf@hangingbox=\box34
+\algocf@untilbox=\box35
+\algocf@skipuntil=\skip82
+\algocf@capbox=\box36
+\algocf@lcaptionbox=\skip83
+\algoheightruledefault=\skip84
+\algoheightrule=\skip85
+\algotitleheightruledefault=\skip86
+\algotitleheightrule=\skip87
+\c@algocfline=\count122
+\c@algocfproc=\count123
+\c@algocf=\count124
+\algocf@algoframe=\box37
+\algocf@algobox=\box38
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\adjustbox\adjustbo
+x.sty"
+Package: adjustbox 2019/01/04 v1.2 Adjusting TeX boxes (trim, clip, ...)
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+\XKV@toks=\toks32
+\XKV@tempa@toks=\toks33
+)
+\XKV@depth=\count125
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\adjustbox\adjcalc.
+sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\adjustbox\trimclip
+.sty"
+Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
+
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\collectbox\collect
+box.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box39
+)
+\tc@llx=\dimen142
+\tc@lly=\dimen143
+\tc@urx=\dimen144
+\tc@ury=\dimen145
+Package trimclip Info: Using driver 'tc-xetex.def'.
+
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\adjustbox\tc-xetex
+.def"
+File: tc-xetex.def 2019/01/04 v2.2 Clipping driver for xetex
+))
+\adjbox@Width=\dimen146
+\adjbox@Height=\dimen147
+\adjbox@Depth=\dimen148
+\adjbox@Totalheight=\dimen149
+\adjbox@pwidth=\dimen150
+\adjbox@pheight=\dimen151
+\adjbox@pdepth=\dimen152
+\adjbox@ptotalheight=\dimen153
+
+("C:\Users\Brian French\AppData\Roaming\MiKTeX\2.9\tex\latex\varwidth\varwidth.
+sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box40
+\sift@deathcycles=\count126
+\@vwid@loff=\dimen154
+\@vwid@roff=\dimen155
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
+\col@sep=\dimen156
+\ar@mcellbox=\box41
+\extrarowheight=\dimen157
+\NC@list=\toks34
+\extratabsurround=\skip88
+\backup@length=\skip89
+\ar@cellbox=\box42
+)
+\TX@col@width=\dimen158
+\TX@old@table=\dimen159
+\TX@old@col=\dimen160
+\TX@target=\dimen161
+\TX@delta=\dimen162
+\TX@cols=\count127
+\TX@ftn=\toks35
+)
+* *
+* *
+* This is a master thesis *
+* *
+* *
+\c@thm=\count128
+\c@ax=\count129
+\c@defn=\count130
+\c@rem=\count131
+\@indexfile=\write3
+\openout3 = `"Formatted Thesis.idx"'.
+
+Writing index file "Formatted Thesis".idx
+("Formatted Thesis.aux" (chapter-introduction.aux) (chapter-modeling.aux)
+(chapter-results.aux
+
+LaTeX Warning: Label `fig:sub1' multiply defined.
+
+
+LaTeX Warning: Label `fig:sub1' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
+
+LaTeX Warning: Label `fig:sub1' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
+
+LaTeX Warning: Label `fig:sub2' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
+
+LaTeX Warning: Label `fig:sub2' multiply defined.
+
+
+LaTeX Warning: Label `fig:sub2' multiply defined.
+
+
+LaTeX Warning: Label `fig:sub2' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
+) (chapter-resilience.aux
+
+LaTeX Warning: Label `time' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
+
+LaTeX Warning: Label `time' multiply defined.
+
+) (chapter-conclusions.aux))
+\openout1 = `"Formatted Thesis.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+ [1
+
+] [2
+
+] [3
+
+] [4
+
+] [5
+
+
+] [6
+
+] ("Formatted Thesis.toc"
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [7
+
+])
+\tf@toc=\write4
+\openout4 = `"Formatted Thesis.toc"'.
+
+ [8]
+("Formatted Thesis.lot")
+\tf@lot=\write5
+\openout5 = `"Formatted Thesis.lot"'.
+
+ [9
+
+] ("Formatted Thesis.lof")
+\tf@lof=\write6
+\openout6 = `"Formatted Thesis.lof"'.
+
+ [10
+
+]
+\openout2 = `chapter-introduction.aux'.
+
+
+(chapter-introduction.tex
+Chapter 1.
+[1
+
+
+] [2] [3]
+File: ScherbFigure.PNG Graphic file (type bmp)
+<ScherbFigure.PNG>
+ [4] [5] [6] [7] [8]) [9]
+\openout2 = `chapter-modeling.aux'.
+
+ (chapter-modeling.tex
+Chapter 2.
+[10
+
+
+
+] [11] [12] [13] [14] [15] [16]
+File: DCvsPipeflow.PNG Graphic file (type bmp)
+<DCvsPipeflow.PNG>
+ [17] [18] [19] [20] [21] [22]
+Overfull \hbox (28.31065pt too wide) detected at line 163
+[]
+ []
+
+
+Overfull \hbox (5.51704pt too wide) detected at line 178
+[]
+ []
+
+[23] [24] [25] [26] [27] [28] [29] [30]) [31]
+\openout2 = `chapter-results.aux'.
+
+ (chapter-results.tex
+Chapter 3.
+[32
+
+
+
+] [33]
+File: GridLayout.png Graphic file (type bmp)
+<GridLayout.png>
+ [34]
+File: BaseCaseDamagePlot.png Graphic file (type bmp)
+<BaseCaseDamagePlot.png>
+ [35] [36]
+File: Rplot37.png Graphic file (type bmp)
+<Rplot37.png>
+ [37]
+File: Rplot30Rand.png Graphic file (type bmp)
+<Rplot30Rand.png>
+ [38] [39]
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+[]|\TU/lmr/m/n/12 Shift
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+\TU/lmr/m/n/12 Num-
+ []
+
+
+Overfull \hbox (4.60013pt too wide) in paragraph at lines 95--95
+[]|\TU/lmr/m/n/12 Uncoordinated
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+[]|\TU/lmr/m/n/12 Lower
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+[]|\TU/lmr/m/n/12 Node 4,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+\TU/lmr/m/n/12 Line 2,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+[]|\TU/lmr/m/n/12 Node 4,
+ []
+
+
+Underfull \hbox (badness 1057) in paragraph at lines 96--96
+\TU/lmr/m/n/12 3, Line 17,
+ []
+
+
+Underfull \hbox (badness 2689) in paragraph at lines 96--96
+[]|\TU/lmr/m/n/12 Node 4 and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+[]|\TU/lmr/m/n/12 Node 7,
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 96--96
+\TU/lmr/m/n/12 Line 17,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+[]|\TU/lmr/m/n/12 Node 4,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+\TU/lmr/m/n/12 Node 7,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+\TU/lmr/m/n/12 Line 3,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[]|\TU/lmr/m/n/12 Node 7,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+\TU/lmr/m/n/12 Line 8,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[]|\TU/lmr/m/n/12 Node 7,
+ []
+
+
+Underfull \hbox (badness 5533) in paragraph at lines 97--97
+\TU/lmr/m/n/12 2, Line 24,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[]|\TU/lmr/m/n/12 Node 4,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+[]|\TU/lmr/m/n/12 Node 23,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+\TU/lmr/m/n/12 Node 24,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+[]|\TU/lmr/m/n/12 Node 18,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+[]|\TU/lmr/m/n/12 Node 15,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+\TU/lmr/m/n/12 Line 2,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+\TU/lmr/m/n/12 Line 8,
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 98--98
+\TU/lmr/m/n/12 Line 20,
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 98--98
+\TU/lmr/m/n/12 Line 24,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+[]|\TU/lmr/m/n/12 Node 18,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 14,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 17,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+[]|\TU/lmr/m/n/12 Node 20,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 30,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 35,
+ []
+
+
+Underfull \hbox (badness 5533) in paragraph at lines 99--99
+\TU/lmr/m/n/12 8, Line 14,
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 30,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 2,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\TU/lmr/m/n/12 Line 8,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
+[]|\TU/lmr/m/n/12 Node 15,
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 100--100
+\TU/lmr/m/n/12 Line 24,
+ []
+
+
+Overfull \hbox (13.05753pt too wide) in paragraph at lines 92--103
+ [][] 
+ []
+
+[40]
+File: Rplot30unperturbed.png Graphic file (type bmp)
+<Rplot30unperturbed.png>
+File: Rplot30Perturbed.png Graphic file (type bmp)
+<Rplot30Perturbed.png>
+ [41] [42]
+File: 30BusSevereDamage.png Graphic file (type bmp)
+<30BusSevereDamage.png>
+File: Rplot30scenario2.png Graphic file (type bmp)
+<Rplot30scenario2.png>
+ [43] [44]
+File: Rplot57.png Graphic file (type bmp)
+<Rplot57.png>
+ [45] [46] [47] [48] [49] [50]) [51] [52]
+\openout2 = `chapter-resilience.aux'.
+
+
+(chapter-resilience.tex
+Chapter 4.
+File: resiliencecurve.png Graphic file (type bmp)
+<resiliencecurve.png>
+[53
+
+
+
+] [54]
+Overfull \hbox (8.35904pt too wide) in paragraph at lines 20--21
+\TU/lmr/m/n/12 can be formulated as a trilayer maximization/minimization/maximi
+zation mixed
+ []
+
+[55] [56] [57]
+File: IEEE30layout.png Graphic file (type bmp)
+<IEEE30layout.png>
+ [58]
+Overfull \hbox (23.33148pt too wide) detected at line 100
+[]
+ []
+
+[59] [60] [61]
+File: AverageSpaghetti.png Graphic file (type bmp)
+<AverageSpaghetti.png>
+ [62] [63]
+File: Heuristic24Scenario.png Graphic file (type bmp)
+<Heuristic24Scenario.png>
+File: Inderdiction24Scenario.png Graphic file (type bmp)
+<Inderdiction24Scenario.png>
+File: LowBudgetSpaghetti.png Graphic file (type bmp)
+<LowBudgetSpaghetti.png>
+ [64] [65] [66]) [67]
+\openout2 = `chapter-conclusions.aux'.
+
+ (chapter-conclusions.tex
+Chapter 5.
+[68
+
+
+
+]) [69] ("Formatted Thesis.bbl" [70
+
+
+] [71] [72]
+Overfull \hbox (1.73264pt too wide) in paragraph at lines 147--151
+[]\TU/lmr/m/n/12 Saeed Mousavizadeh, Mahmoud-Reza Haghifam, and Mohammad-Hossei
+n
+ []
+
+[73]
+Overfull \hbox (7.94547pt too wide) in paragraph at lines 178--183
+[]\TU/lmr/m/n/12 Mathaios Panteli, Dimitris Trakas, Pierluigi Mancarella, and N
+ikos Hatziar-
+ []
+
+[74] [75]) [76] [77
+
+] ("Formatted Thesis.aux" (chapter-introduction.aux)
+(chapter-modeling.aux) (chapter-results.aux) (chapter-resilience.aux)
+(chapter-conclusions.aux))
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 6706 strings out of 427796
+ 98587 string characters out of 3151769
+ 198921 words of memory out of 3000000
+ 10546 multiletter control sequences out of 15000+200000
+ 10072 words of font info for 51 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 45i,11n,79p,1824b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on Formatted Thesis.pdf (87 pages).

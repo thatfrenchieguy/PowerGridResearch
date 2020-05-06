@@ -1,0 +1,22 @@
+\addvspace {10pt}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces A power line loss function example from \cite {ScherbEA2015}\relax }}{4}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Comparison of DC and traditional (pipeflow) network flow\relax }}{18}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Overlaid power grid in green with road network in red\relax }}{35}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces IEEE 30 bus network with the base case damage applied and shown as red elements\relax }}{36}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Load shed by shift in the 30 bus base instance\relax }}{37}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Load shed by shift in the 30 bus randomized damage instance\relax }}{39}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Load shed by shift and method in a 30 bus instance before road perturbation\relax }}{42}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Load shed by shift and method in a 30 bus instance for the geographically dispersed road network\relax }}{42}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces IEEE 30 bus network with the more severe damage applied and shown as red elements\relax }}{44}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Load shed by shift in a 30 bus instance with increased damage\relax }}{44}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Load shed by shift in the 57 bus instance\relax }}{46}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Standard depiction of a resilience curve\relax }}{54}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Layout of the power grid used for hardening and resilience\relax }}{58}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Average load demand shed over the set of 20 random scenarios on IEEE 30 bus\relax }}{62}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A specific scenario from resilience modeling that shows the effect of protecting node 4 in the priority heuristic method\relax }}{64}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces A specific scenario from resilience modeling that shows the effect of protecting damaged lines in the interdiction based method\relax }}{65}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Average repair curve for the tightened budget constraint\relax }}{66}
+\addvspace {10pt}

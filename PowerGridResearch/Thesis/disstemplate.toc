@@ -1,0 +1,36 @@
+\contentsline {chapter}{Acknowledgments}{v}
+\contentsline {chapter}{Abstract}{vi}
+\contentsline {chapter}{List of Tables}{ix}
+\contentsline {chapter}{List of Figures}{x}
+\contentsline {chapter}{Chapter 1.\hspace *{1em}Introduction}{1}
+\contentsline {section}{\numberline {1.1}History of This Package}{2}
+\contentsline {section}{\numberline {1.2}Revised Philosophy for This Package}{2}
+\contentsline {chapter}{Chapter 2.\hspace *{1em}Instructions for Preparing Dissertations, Theses, and Reports}{4}
+\contentsline {section}{\numberline {2.1}Arrangement of Dissertation}{5}
+\contentsline {section}{\numberline {2.2}Other Requirements}{7}
+\contentsline {subsection}{\numberline {2.2.1}Margins}{7}
+\contentsline {subsection}{\numberline {2.2.2}Spacing and Page Arrangement}{8}
+\contentsline {section}{\numberline {2.3}Master's Theses and Reports}{8}
+\contentsline {chapter}{Chapter 3.\hspace *{1em}How to Use the utdiss2 Package}{10}
+\contentsline {section}{\numberline {3.1}Preamble}{10}
+\contentsline {section}{\numberline {3.2}Document}{13}
+\contentsline {chapter}{Chapter 4.\hspace *{1em}Making the Bibliography with BiBT\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}{}}{18}
+\contentsline {chapter}{Chapter 5.\hspace *{1em}Making Tables and Including Figures}{21}
+\contentsline {chapter}{Chapter 6.\hspace *{1em}An Example of Mathematical Writing}{27}
+\contentsline {section}{\numberline {6.1}Generalized Fatou's Lemma}{27}
+\contentsline {section}{\numberline {6.2}Other Examples of Mathematical Writing}{30}
+\contentsline {subsection}{\numberline {6.2.1}An Example of a Commutative Diagram}{30}
+\contentsline {subsection}{\numberline {6.2.2}Using AMS Fonts}{31}
+\contentsline {chapter}{Appendices}{32}
+\contentsline {chapter}{Appendix A.\hspace *{1em}Lerma's Appendix}{33}
+\contentsline {chapter}{Appendix B.\hspace *{1em}My Appendix \#2}{34}
+\contentsline {section}{\numberline {B.1}The First Section}{34}
+\contentsline {section}{\numberline {B.2}The Second Section}{34}
+\contentsline {subsection}{\numberline {B.2.1}The First Subsection of the Second Section}{34}
+\contentsline {subsection}{\numberline {B.2.2}The Second Subsection of the Second Section}{34}
+\contentsline {subsubsection}{\numberline {B.2.2.1}The First Subsubsection of the Second Subsection of the Second Section}{34}
+\contentsline {subsubsection}{\numberline {B.2.2.2}The Second Subsubsection of the Second Subsection of the Second Section}{35}
+\contentsline {chapter}{Appendix C.\hspace *{1em}My Appendix \#3}{36}
+\contentsline {section}{\numberline {C.1}The First Section}{36}
+\contentsline {section}{\numberline {C.2}The Second Section}{36}
+\contentsline {chapter}{Vita}{37}

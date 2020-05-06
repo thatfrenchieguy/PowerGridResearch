@@ -1,0 +1,13 @@
+\addvspace {10pt}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Total load shed over the repair horizon for the base instance\relax }}{37}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Total load shed over the repair horizon for the random damage instance\relax }}{38}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Repair schedule by interaction method for the 30 bus network with random damage\relax }}{40}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Total load shed over the repair horizon for the increased damage instance\relax }}{43}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Runtime and objective values for minimum spanning tree and routing versions of the power repair problem\relax }}{51}
+\addvspace {10pt}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Hardened elements by resilience method \relax }}{58}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Expected unsatisfied demand by shift in each hardening method\relax }}{63}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Expected unsatisfied demand by shift across resilience methods for a reduced hardening budget\relax }}{65}
+\addvspace {10pt}

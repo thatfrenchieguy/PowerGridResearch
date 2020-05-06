@@ -1,0 +1,261 @@
+\begin{thebibliography}{10}
+
+\bibitem{AksuEA2014}
+Dilek Aksu and Linet Ozdamar.
+\newblock A mathematical model for post-disaster road restoration: Enabling
+  accessibility and evacuation.
+\newblock {\em Transportation Research Part E}, 61:56--67, 2014.
+
+\bibitem{NPSMasters}
+Chee~Chien Ang.
+\newblock Optimized recovery of damaged electrial power grids.
+\newblock Master's thesis, Naval Postgraduate School, 2006.
+
+\bibitem{ArabEA2015}
+Ali Arab, Amin Khodaei, Suresh. Khator, Kevin Ding, Valentine Emesih, and Zhu
+  Han.
+\newblock Stochastic pre-hurricane restoration planning for electric power
+  systems infrastructure.
+\newblock {\em IEEE Transactions on Smart Grid}, 6:1046--1054, 2015.
+
+\bibitem{BentEA2011}
+Russell Bent, Pascal Van~Hentenryck, and Carelton Coffrin.
+\newblock Vehicle routing for the last mile of power system restoration.
+\newblock {\em Proceedings of Power Systems Computation Conference 2011}, pages
+  1--9, 2011.
+
+\bibitem{ChanEA2011}
+Sonic Chan, Reik Donner, and Stefan Lammer.
+\newblock Urban road networks -- spatial networks with universal geometric
+  features.
+\newblock {\em European Physics Journal B}, 84:563--577, 2011.
+
+\bibitem{ChurchEA2007}
+Richard Church and Maria~Paola Scaparra.
+\newblock Protecting critical assets: The r-interdiction median problem with
+  fortification.
+\newblock {\em Geographical Analysis}, 39(2):129--146, 2007.
+
+\bibitem{Deka2018}
+Deepjyoti Deka, Sriram Vishwanath, and Ross Baldick.
+\newblock Topological vulnerability of power grids to disasters: Bounds,
+  adversarial attacks and reinforcement.
+\newblock {\em PLOS ONE}, 13(10):1--18, Oct. 2018.
+
+\bibitem{DuqueEA2016}
+Pablo Duque, Irina Dolinskaya, and Kenneth Sorensen.
+\newblock Network repair crew scheduling and routing for emergency relief
+  distribution problem.
+\newblock {\em European Journal of Operational Research}, 248:272--285, 2016.
+
+\bibitem{EldridgeEA2017}
+Brett Eldridge, Richard O'Neill, and Anya Castillo.
+\newblock Marginal loss calculations for the {DCOPF}.
+\newblock {\em FERC Technical Report on Loss Estimation}, pages 1--24, 2017.
+
+\bibitem{FEMASandyAAR}
+FEMA.
+\newblock Hurricane {Sandy} after-action report.
+\newblock Technical report, July 2013.
+
+\bibitem{FEMA2017AAR}
+FEMA.
+\newblock 2017 hurricane season after-action report.
+\newblock Technical report, July 2018.
+
+\bibitem{FlemingEA2013}
+Christopher~L. Fleming, Stanley~E. Griffis, and John~E. Bell.
+\newblock The effects of triangle inequality on the vehicle routing problem.
+\newblock {\em European Journal of Operational Research}, 224(1):1 -- 7, 2013.
+
+\bibitem{Frank2016}
+Stephen Frank and Steffen Rebennack.
+\newblock An introduction to optimal power flow: Theory, formulation, and
+  examples.
+\newblock {\em IIE Transactions}, 48(12):1172--1197, 2016.
+
+\bibitem{GolariEA2014}
+Mehdi Golari, Neng Fan, and Jianhui Wang.
+\newblock Two-stage stochastic optimal islanding operations under severe
+  multiple contingencies in power grids.
+\newblock {\em Electric Power Systems Research}, 114:68--77, 2014.
+
+\bibitem{GuikemaEA2010}
+Seth Guikema, Steven Quiring, and Seung-Ryong Han.
+\newblock Prestorm estimation of hurricane damage to electric power
+  distribution systems.
+\newblock {\em Risk Analysis}, 30:1744--1752, 2010.
+
+\bibitem{Held1971}
+Michael Held and Richard~M. Karp.
+\newblock The traveling-salesman problem and minimum spanning trees: Part ii.
+\newblock {\em Mathematical Programming}, 1(1):6--25, Dec 1971.
+
+\bibitem{LamoreeEA1994}
+Jeff Lamoree, David Mueller, P.~Vinett, W.~Jones, and Marek Samotyj.
+\newblock Voltage sag analysis case studies.
+\newblock {\em IEEE Transactions on Industry Applications}, 30(4):1083--1089,
+  1994.
+
+\bibitem{LiBo2007}
+Fangxing Li and Rui Bo.
+\newblock {DCOPF}-based {LMP} simulation: Algorithm, comparison with {ACOPF},
+  and sensitivity.
+\newblock {\em IEEE Transactions on Power Systems}, 22(4):1475--1485, Nov 2007.
+
+\bibitem{LammerEA2006}
+Stefan Lämmer, Björn Gehlsen, and Dirk Helbing.
+\newblock Scaling laws in the spatial structure of urban road networks.
+\newblock {\em Physics A: Statistical Mechanics and its Applications},
+  363(1):89 -- 95, 2006.
+\newblock Information and Material Flows in Complex Networks.
+
+\bibitem{Madni2020}
+Azad Madni, Dan Erwin, and Michael Sievers.
+\newblock Constructing models for systems resilience: Challenges, concepts, and
+  formal methods.
+\newblock {\em Systems}, 8:3, Jan. 2020.
+
+\bibitem{Mahmoo2016}
+Mehdi Mahmoodjanloo, Seyed~Parsa Parvasi, and Reza Ramezanian.
+\newblock A tri-level covering fortification model for facility protection
+  against disturbance in r-interdiction median problem.
+\newblock {\em Computers and Industrial Engineering}, 102:219 -- 232, 2016.
+
+\bibitem{MannEA2006}
+Michael Mann and Kerry Emanuel.
+\newblock Atlantic hurricane trends linked to climate change.
+\newblock {\em Eos, Transactions American Geophysical Union}, 87(24):233--241,
+  2006.
+
+\bibitem{MiretEA2013}
+Jaume Miret, Antonio Camacho, Miguel Castilla, Luis~Garcia de~Vicuna, and Jose
+  Matas.
+\newblock Control scheme with voltage support capability for distributed
+  generation inverters under voltage sags.
+\newblock {\em IEEE Transactions on Power Electronics}, 28(11):5252--5262,
+  2013.
+
+\bibitem{MolyneauxEA2016}
+Lynette Molyneaux, Colin Brown, Liam Wagner, and John Foster.
+\newblock Measuring resilience in energy systems: Insights from a range of
+  disciplines.
+\newblock {\em Renewable and Sustainable Energy Reviews}, 59:1068 -- 1079,
+  2016.
+
+\bibitem{MousavizadehEA2018}
+Saeed Mousavizadeh, Mahmoud-Reza Haghifam, and Mohammad-Hossein Shariatkhah.
+\newblock A linear two-stage method for resiliency analysis in distribution
+  systems considering renewable energy and demand response resources.
+\newblock {\em Applied Energy}, 211:243--460, 2018.
+
+\bibitem{Newman2002}
+Mark Newman.
+\newblock The structure and function of networks.
+\newblock {\em Computer Physics Communications}, 147(1):40 -- 45, 2002.
+\newblock Proceedings of the Europhysics Conference on Computational Physics
+  Computational Modeling and Simulation of Complex Systems.
+
+\bibitem{NobelsEA2019}
+Matthias Noebels and Mathaios Panteli.
+\newblock Assessing the effect of preventive islanding on power grid
+  resilience.
+\newblock In {\em 2019 IEEE Milan PowerTech}, pages 1--6, 2019.
+
+\bibitem{OuyangEA2014}
+Min Ouyang and Leonardo Duenas-Osorio.
+\newblock Multi-dimensional hurricane resilience assessment of electric power
+  systems.
+\newblock {\em Structural Safety}, 48:15--24, 2014.
+
+\bibitem{Panteli2017}
+Mathaios Panteli and Pierluigi Mancarella.
+\newblock Modeling and evaluating the resilience of critical electrical power
+  infrastructure to extreme weather events.
+\newblock {\em IEEE Systems Journal}, 11(3):1733--1742, Sep. 2017.
+
+\bibitem{Panteli2016}
+Mathaios Panteli, Dimitris Trakas, Pierluigi Mancarella, and Nikos
+  Hatziargyriou.
+\newblock Boosting the power grid resilience to extreme weather events using
+  defensive islanding.
+\newblock {\em IEEE Transactions on Smart Grid}, 7(6):2913--2922, Nov 2016.
+
+\bibitem{PregnolatoEA2017}
+Maria Pregnolato, Alistair Ford, Sean~M. Wilkinson, and Richard~J. Dawson.
+\newblock The impact of flooding on road transport: A depth-disruption
+  function.
+\newblock {\em Transportation Research Part D: Transport and Environment},
+  55:67 -- 81, 2017.
+
+\bibitem{QiEA2012}
+Yingying Qi, Di~Shi, and Daniel Tylavsky.
+\newblock Impact of assumptions on {DC} power flow model accuracy.
+\newblock In {\em 2012 North American Power Symposium (NAPS)}, pages 1--6, Sep.
+  2012.
+
+\bibitem{Ramirez2009}
+José Ramirez-Marquez and Claudio Rocco.
+\newblock Stochastic network interdiction optimization via capacitated network
+  reliability modeling and probabilistic solution discovery.
+\newblock {\em Reliability Engineering and System Safety}, 94:913--921, May 2009.
+
+\bibitem{SalmeronEA2010}
+Javier Salmeron and Aruna Apte.
+\newblock Stochastic optimization for natural disater asset prepositioning.
+\newblock {\em Production and Operations Management}, 19:561--574, 2010.
+
+\bibitem{Salmeron2004}
+Javier Salmeron, Kevin Wood, and Ross Baldick.
+\newblock Analysis of electric grid security under terrorist threat.
+\newblock {\em IEEE Transactions on Power Systems}, 19(2):905--912, May 2004.
+
+\bibitem{ScherbEA2015}
+Anke Scherb, Luca Garre, and Daniel Straub.
+\newblock Probabilistic risk assessment of infrastructure networks subjected to
+  hurricanes.
+\newblock {\em Proceedings of International Conference on Applications of
+  Statistics in Civil Engineering}, 1:1--9, 2015.
+
+\bibitem{StottEA2009}
+Brian Stott, Jorge Jardim, and Ongun Alsac.
+\newblock {DC} power flow revisited.
+\newblock {\em IEEE Transactions on Power Systems}, 24(3):1290--1300, Aug 2009.
+
+\bibitem{SvendsenEA2007}
+Nils Svendsen and Stephen Wolthusen.
+\newblock Connectivity models of interdependency in mixed-type critical
+  infrastructure networks.
+\newblock {\em Information Secruity Technical Report}, 12:44--55, 2007.
+
+\bibitem{Watts1998}
+Duncan Watts and Steven Strogatz.
+\newblock Collective dynamics of 'small-world' networks.
+\newblock {\em Nature}, 393:440--442, 1998.
+
+\bibitem{WinklerEA2010}
+James Winkler, Leonardo Duenas-Osorio, Robert Stein, and Devika Subramanian.
+\newblock Performance assessment of topologically diverse power systems
+  subjected to hurricane events.
+\newblock {\em Reliability Engineering and System Safety}, 95:323--336, 2010.
+
+\bibitem{Wood2011}
+R.~Kevin Wood.
+\newblock {\em Bilevel Network Interdiction Models: Formulations and
+  Solutions}.
+\newblock John Wiley and Sons, 2011.
+
+\bibitem{YangEA2018}
+Xian Yan, Yong Li, Ye~Cai, Yijia Cao, Kwang Lee, and Zhijian Jia.
+\newblock Impact of road-block on peak-load of coupled traffic and energy
+  transportation networks.
+\newblock {\em Energies}, 11:1--12, 2018.
+
+\bibitem{ZhangChow2015}
+Yuan Zhang and Mo-Yuen Chow.
+\newblock Distributed optimal generation dispatch considering transmission
+  losses.
+\newblock In {\em 2015 North American Power Symposium (NAPS)}, pages 1--6,
+  2015.
+
+\end{thebibliography}

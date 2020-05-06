@@ -46,28 +46,31 @@ EdgeTracker = [] #this is an index i connected to a tuple where element 1 is the
 for i,e in enumerate(PowerSub.edges):
     EdgeTracker.append([i,e])
 ###schedule of nodes to be fixed from the pure scheduling solver
-InputNodes = [[11,0,'node'],
-              [14,0,'node'],
-              [4,1,'node'],
-              [28,1,'node'],
-              [20,2,'node'],
-              [21,2,'node'],
-              [29,3,'node'],
-              [31,3,'node'],
-              [9,4,'node']
+InputNodes = [[5,0,'node'],
+              [14,1,'node'],
+              [16,1,'node'],
+              [22,2,'node'],
+              [23,2,'node'],
+              [18,3,'node'],
+              [24,3,'node'],
+              [21,4,'node'],
+              [26,4,'node']
               ]
 ###schedule of edges to be fixed from the pure scheduling solver
-InputEdges = [[31,0,'edge'],
-              [40,0,'edge'],
-              [7,1,'edge'],
-              [12,1,'edge'],
-              [41,2,'edge'],
-              [42,2,'edge'],
-              [44,3,'edge'],
-              [52,3,'edge'],
-              [18,4,'edge'],
-              [20,4,'edge'],
-              [63,5,'edge']
+InputEdges = [[0,0,'edge'],
+              [3,0,'edge'],
+              [4,0,'edge'],
+              [7,0,'edge'],
+              [12,0,'edge'],
+              [23,0,'edge'],
+              [26,0,'edge'],
+              [27,1,'edge'],
+              [9,1,'edge'],
+              [34,2,'edge'],
+              [35,2,'edge'],
+              [29,3,'edge'],
+              [31,4,'edge'],
+              [32,4,'edge'],
               ]
 RoadData = []
 SP = np.zeros((len(Nodes),len(Nodes)))
